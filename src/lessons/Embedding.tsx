@@ -58,7 +58,7 @@ function SimilarityDemo() {
       ))}
       <h4>ベクトルの演算</h4>
       <p>
-        <Tex tex={String.raw`\vec{王} - \vec{男} + \vec{女}`} /> = [{analogy.join(', ')}] に最も近い語:
+        <Tex tex={String.raw`\vec{\text{王}} - \vec{\text{男}} + \vec{\text{女}}`} /> = [{analogy.join(', ')}] に最も近い語:
         <strong> {analogyRank[0].n}</strong>(類似度 {analogyRank[0].sim.toFixed(2)})
       </p>
     </div>

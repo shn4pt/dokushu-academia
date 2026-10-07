@@ -10,7 +10,7 @@ function ci(p: number, n: number) {
 function Interval({ name, p, n }: { name: string; p: number; n: number }) {
   const [lo, hi] = ci(p, n)
   return (
-    <div className="attn-row" style={{ gridTemplateColumns: '5em 1fr 9em' }}>
+    <div className="attn-row sim-row" style={{ gridTemplateColumns: '5em 1fr 9em' }}>
       <span className="attn-token">{name}</span>
       <div className="bar-track" style={{ position: 'relative', height: 14 }} aria-hidden>
         <div className="bar-fill" style={{ position: 'absolute', left: `${lo * 100}%`, width: `${(hi - lo) * 100}%` }} />

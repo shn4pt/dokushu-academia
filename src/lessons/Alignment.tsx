@@ -22,6 +22,8 @@ function GoodhartDemo() {
           <>
             <path className="curve" d={curvePath(proxy, X, Y, sx, sy)} />
             <path className="curve dashed" d={curvePath(truth, X, Y, sx, sy)} />
+            <text className="plot-label" x={sx(10) - 4} y={sy(10) + 14} textAnchor="end">報酬モデルのスコア</text>
+            <text className="plot-label" x={sx(10) - 4} y={sy(0) + 16} textAnchor="end">本当の品質</text>
             <circle className="mark" cx={sx(x)} cy={sy(proxy(x))} r={5} />
             <circle className="mark" cx={sx(x)} cy={sy(truth(x))} r={5} />
           </>
