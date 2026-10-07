@@ -35,7 +35,7 @@ export const glossary: Term[] = [
   { term: 'perplexity', reading: '困惑度', description: '平均損失の指数。次のトークンを平均して何個の候補から迷っているかの目安。小さいほど良い。', lessonId: '5-1' },
   { term: 'Teacher Forcing', description: '学習時に、常に正解の文脈を入力して次トークンを予測させる方式。', lessonId: '5-1' },
   { term: 'スケーリング則', reading: 'scaling law', description: 'パラメータ数・データ量・計算量を増やすと、損失がべき乗則で下がるという経験則。', lessonId: '5-3' },
-  { term: 'Chinchilla最適', description: '計算量が同じなら、モデルとデータを同じ割合で増やすのが良いという結果。目安は約20トークン/パラメータ。', lessonId: '5-3' },
+  { term: 'Chinchilla最適', description: '計算量が同じなら、モデルとデータを同じ割合で増やすのが良いという結果。Chinchilla(70B・1.4Tトークン)の比から、約20トークン/パラメータが目安とされる。', lessonId: '5-3' },
   { term: 'temperature', description: 'softmax前にロジットを割る値。低いほど決定的、高いほど多様になる。', lessonId: '6-1' },
   { term: 'top-p / top-k', description: '確率の上位だけに候補を絞ってからサンプリングする方法。', lessonId: '6-1' },
   { term: 'KVキャッシュ', description: '過去トークンの Key と Value を保存し、生成時の再計算を避ける仕組み。', lessonId: '6-2' },
