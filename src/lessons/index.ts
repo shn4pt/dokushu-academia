@@ -2,6 +2,15 @@ import type { LessonContent } from './types'
 
 // 登録したレッスンだけが公開扱い。本文は動的importで遅延読み込みする。
 const loaders: Record<string, () => Promise<{ default: LessonContent }>> = {
+  '0-1': () => import('./VectorMatrix'),
+  '0-2': () => import('./Probability'),
+  '0-3': () => import('./Gradient'),
+  '1-1': () => import('./LossFunction'),
+  '1-2': () => import('./GradientDescent'),
+  '1-3': () => import('./Overfitting'),
+  '2-1': () => import('./Neuron'),
+  '2-2': () => import('./Activation'),
+  '2-3': () => import('./Backprop'),
   '3-1': () => import('./Tokenization'),
   '3-2': () => import('./Embedding'),
   '3-3': () => import('./LanguageModel'),

@@ -136,3 +136,22 @@ button.danger { background: transparent; color: var(--danger); border-color: var
 .heat-cell { aspect-ratio: 1; }
 .heat-cell.sel { outline: 2px solid var(--text); outline-offset: -1px; }
 .demo label.row input[type="range"] { flex: 1; min-width: 120px; }
+
+.plot { width: 100%; max-width: 520px; height: auto; display: block; margin: 8px 0; }
+.plot .axis { stroke: var(--border); stroke-width: 1; }
+.plot .curve { fill: none; stroke: var(--accent); stroke-width: 2; }
+.plot .curve.dashed { stroke-dasharray: 5 4; stroke: var(--muted); }
+.plot .pt { fill: var(--text); }
+.plot .pt-test { fill: none; stroke: var(--danger); stroke-width: 1.5; }
+.plot .mark { fill: var(--danger); }
+.plot .resid { stroke: var(--danger); stroke-width: 1; stroke-dasharray: 3 3; }
+.plot .tangent { stroke: var(--danger); stroke-width: 1.5; }
+.num-input { width: 5em; font: inherit; padding: 4px 6px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); }
+.slider-row { gap: 12px; }
+.slider-label { min-width: 11em; font-variant-numeric: tabular-nums; }
+.slider-row input[type="range"] { flex: 1; min-width: 120px; }
+.mono { font-family: ui-monospace, monospace; }
+.sel-input { font: inherit; padding: 4px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); }
+table.calc { border-collapse: collapse; margin: 8px 0; font-variant-numeric: tabular-nums; }
+table.calc td, table.calc th { padding: 3px 12px; border-bottom: 1px solid var(--border); text-align: right; }
+table.calc th:first-child, table.calc td:first-child { text-align: left; }

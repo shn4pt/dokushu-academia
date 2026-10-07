@@ -25,3 +25,54 @@ const statusLabel: Record<StageStatus, string> = {
 export const StatusBadge = ({ status }: { status: StageStatus }) => (
   <span className={`badge badge-${status}`}>{statusLabel[status]}</span>
 )
+
+export function NumInput({
+  value,
+  onChange,
+  label,
+  step = 0.5,
+}: {
+  value: number
+  onChange: (v: number) => void
+  label: string
+  step?: number
+}) {
+  return (
+    <input
+      type="number"
+      className="num-input"
+      aria-label={label}
+      value={value}
+      step={step}
+      onChange={(e) => {
+        const v = e.target.valueAsNumber
+        if (!Number.isNaN(v)) onChange(v)
+      }}
+    />
+  )
+}
+
+export function Slider({
+  label,
+  value,
+  min,
+  max,
+  step,
+  onChange,
+  format = (v) => String(v),
+}: {
+  label: string
+  value: number
+  min: number
+  max: number
+  step: number
+  onChange: (v: number) => void
+  format?: (v: number) => string
+}) {
+  return (
+    <label className="row slider-row">
+      <span className="slider-label">{label} = {format(value)}</span>
+      <input type="range" min={min} max={max} step={step} value={value} onChange={(e) => onChange(Number(e.target.value))} />
+    </label>
+  )
+}
