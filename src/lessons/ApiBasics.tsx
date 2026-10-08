@@ -77,7 +77,7 @@ async function chat(input: string) {
 }`}</pre>
 
       <h3>主なパラメータ</h3>
-      <table className="calc">
+      <table className="calc text">
         <thead><tr><th>パラメータ</th><th>意味</th></tr></thead>
         <tbody>
           <tr><td><code>model</code></td><td>使うモデル。性能・速さ・料金が異なる</td></tr>
@@ -96,7 +96,7 @@ async function chat(input: string) {
       <p>
         料金は、入力トークンと出力トークンのそれぞれに、モデルごとの単価をかけたものです。応答の <code>usage</code> で実際の数を確認できます。
       </p>
-      <table className="calc">
+      <table className="calc text">
         <thead><tr><th>モデル(2026年10月時点)</th><th>入力 / 100万トークン</th><th>出力 / 100万トークン</th></tr></thead>
         <tbody>
           <tr><td>Claude Opus 5.5</td><td>$4</td><td>$20</td></tr>

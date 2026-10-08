@@ -24,7 +24,7 @@ function client() {
   return new Anthropic({ apiKey, dangerouslyAllowBrowser: true })
 }
 
-export function buildRequest(input: Omit<RunInput, 'onText' | 'signal'>) {
+export function buildRequest(input: Omit<RunInput, 'onText' | 'signal'> & { tools?: Anthropic.Beta.BetaToolUnion[] }) {
   const { settings } = getApiState()
   const model = findModel(settings.model)
   const request: Anthropic.Beta.MessageCreateParamsNonStreaming = {
@@ -32,6 +32,7 @@ export function buildRequest(input: Omit<RunInput, 'onText' | 'signal'>) {
     max_tokens: settings.maxTokens,
     ...(input.system ? { system: input.system } : {}),
     messages: input.messages,
+    ...(input.tools ? { tools: input.tools } : {}),
     thinking: settings.showThinking ? { type: 'adaptive', display: 'summarized' } : { type: 'adaptive' },
     output_config: {
       effort: settings.effort,
@@ -49,6 +50,22 @@ export async function runMessage(input: RunInput): Promise<RunResult> {
   const stream = client().beta.messages.stream(request, { signal: input.signal })
   if (input.onText) stream.on('text', input.onText)
   const message = await stream.finalMessage()
+  const cost = apiActions.addUsage(request.model, message.usage.input_tokens, message.usage.output_tokens)
+  return { message, request, cost }
+}
+
+/**
+ * ツール付きの1回の呼び出し(ツール呼び出しループの1ステップ)。
+ * 出力は短いので、ストリーミングせずに完全な応答を受け取る。
+ */
+export async function createWithTools(input: {
+  system?: string
+  messages: Anthropic.Beta.BetaMessageParam[]
+  tools: Anthropic.Beta.BetaToolUnion[]
+  signal?: AbortSignal
+}): Promise<RunResult> {
+  const request = buildRequest({ system: input.system, messages: input.messages, tools: input.tools })
+  const message = await client().beta.messages.create(request, { signal: input.signal })
   const cost = apiActions.addUsage(request.model, message.usage.input_tokens, message.usage.output_tokens)
   return { message, request, cost }
 }

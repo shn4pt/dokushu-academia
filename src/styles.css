@@ -285,3 +285,40 @@ code, pre, .mono, .order-line { font-family: ui-monospace, SFMono-Regular, Menlo
 @media (pointer: coarse) {
   .order-buttons button { min-width: 44px; min-height: 44px; }
 }
+
+/* --- トレース(エージェントの実行ログ) --- */
+.trace { list-style: none; padding: 0; margin: 10px 0; display: grid; gap: 6px; }
+.trace-step { border: 1px solid var(--border); border-left-width: 4px; border-radius: 8px; padding: 8px 12px; background: var(--surface); }
+.trace-step pre { margin: 6px 0 0; white-space: pre-wrap; word-break: break-word; }
+.trace-step.user { border-left-color: var(--muted); }
+.trace-step.assistant { border-left-color: var(--accent); }
+.trace-step.tool_use { border-left-color: #b7791f; }
+.trace-step.tool_result { border-left-color: var(--ok); }
+.trace-step.tool_result.error { border-left-color: var(--danger); }
+.trace-step.approval { border-left-color: #805ad5; }
+.trace-step.info { border-left-color: var(--border); }
+.trace-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+.trace-body { display: block; white-space: pre-wrap; word-break: break-word; font-size: 0.92rem; }
+.trace-pick { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+.trace-pick input { margin-top: 4px; flex: none; }
+.trace-step.correct-step { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, var(--surface)); }
+.trace-step.wrong-step { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 10%, var(--surface)); }
+.approval { border-color: #805ad5; }
+
+.flow { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; margin: 12px 0; }
+.flow-item { display: flex; flex-direction: column; align-items: flex-start; }
+.flow-box { display: inline-block; padding: 6px 12px; border: 1px solid var(--accent); border-radius: 8px; background: color-mix(in srgb, var(--accent) 8%, var(--surface)); }
+.flow-arrow { padding-left: 16px; color: var(--muted); }
+.check-row { display: flex; gap: 10px; align-items: flex-start; margin: 6px 0; }
+.check-row input { margin-top: 5px; flex: none; }
+.ctx-bars { display: flex; align-items: flex-end; gap: 2px; height: 120px; margin: 12px 0; border-bottom: 1px solid var(--border); }
+.ctx-bar { flex: 1; background: var(--accent); min-height: 2px; border-radius: 2px 2px 0 0; }
+.chunk-list { padding-left: 1.4em; display: grid; gap: 6px; }
+.chunk-list li div { background: var(--code-bg); border-radius: 6px; padding: 4px 8px; }
+.attn-row.sim-row.cost-row { grid-template-columns: minmax(8em, 13em) 1fr minmax(8em, auto); }
+@media (max-width: 520px) {
+  .attn-row.sim-row.cost-row { grid-template-columns: 1fr; }
+}
+table.calc.text td, table.calc.text th { text-align: left; vertical-align: top; }
+table.calc.text td:first-child { min-width: 6em; }
+.prose :not(pre) > code { overflow-wrap: anywhere; }

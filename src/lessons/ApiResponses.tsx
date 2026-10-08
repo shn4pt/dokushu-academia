@@ -10,7 +10,7 @@ function Body() {
         応答が返ってきても、それが「書き終えた結果」とは限りません。<code>content</code> を使う前に、
         <strong>なぜ止まったのか(<code>stop_reason</code>)</strong>を確認する習慣をつけましょう。
       </p>
-      <table className="calc">
+      <table className="calc text">
         <thead><tr><th>stop_reason</th><th>意味</th><th>アプリ側の対応</th></tr></thead>
         <tbody>
           <tr><td><code>end_turn</code></td><td>書き終えた</td><td>そのまま使う</td></tr>
@@ -61,7 +61,7 @@ console.log(message.stop_reason, message.usage.output_tokens);`}</pre>
 
       <h3>エラーと再試行</h3>
       <p>API の呼び出しは失敗することがあります。<strong>再試行してよい失敗</strong>と、<strong>直さない限り何度やっても失敗するもの</strong>を区別します。</p>
-      <table className="calc">
+      <table className="calc text">
         <thead><tr><th>状況</th><th>例</th><th>対応</th></tr></thead>
         <tbody>
           <tr><td>リクエストの誤り</td><td>400(不正なパラメータ)</td><td>再試行しても直らない。リクエストを直す</td></tr>

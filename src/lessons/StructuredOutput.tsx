@@ -25,7 +25,7 @@ function Body() {
       </p>
 
       <h3>3つの方法</h3>
-      <table className="calc">
+      <table className="calc text">
         <thead><tr><th>方法</th><th>形式の保証</th><th>向いている場面</th></tr></thead>
         <tbody>
           <tr><td>プロンプトで「JSONで」と頼む</td><td>なし(崩れることがある)</td><td>試作、人が読む場合</td></tr>
