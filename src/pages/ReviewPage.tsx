@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { findLesson } from '../data/curriculum'
+import { findLesson, lessonNo } from '../data/curriculum'
 import { progressActions, useProgress } from '../progress'
 import { GRADUATE_STREAK, SESSION_SIZE, bankEntries, isDue, shuffle, useBank, useDueKeys, type BankEntry } from '../review'
 
@@ -22,7 +22,7 @@ const toItem = (e: BankEntry): Item => ({
 
 const lessonLabel = (id: string) => {
   const l = findLesson(id)
-  return l ? `${l.id} ${l.title}` : id
+  return l ? `${lessonNo(l)} ${l.title}` : id
 }
 
 export default function ReviewPage() {

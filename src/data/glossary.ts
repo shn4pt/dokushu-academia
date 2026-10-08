@@ -75,4 +75,8 @@ export const glossary: Term[] = [
   { term: '最小権限', description: '機能に必要な権限だけを与える原則。被害の範囲を小さくする。', lessonId: '12-2' },
   { term: 'バッチ API', description: '多数の依頼をまとめて非同期に処理する API。料金が半額になる。', lessonId: '12-3' },
   { term: '確認用のケース', reading: 'held-out', description: '改善の途中では見ずに取り分けておき、最後に合わせすぎていないかを確かめる評価のケース。', lessonId: '13-3' },
+  { term: 'パーセプトロン', description: '入力の重み付き和でしきい値を判定する、初期のニューロンのモデル(1958年)。', lessonId: 'i-2' },
+  { term: 'n-gram 言語モデル', description: '直前の n−1 語から、次の語の確率を数え上げで求める統計的な言語モデル。', lessonId: 'i-2' },
+  { term: 'LSTM', description: '長い系列でも情報を保ちやすくした RNN の改良版(1997年)。', lessonId: 'i-2' },
+  { term: 'word2vec', description: '大量のテキストから、意味の近さを反映した単語のベクトルを学習する方法(2013年)。', lessonId: 'i-2' },
 ]

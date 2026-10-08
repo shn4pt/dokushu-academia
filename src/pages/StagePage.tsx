@@ -1,6 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
-import { findStage, stages } from '../data/curriculum'
+import { findLesson, findStage, lessonNo, stageLabel, stages } from '../data/curriculum'
 import { stageMinutes, stageStats } from '../data/stats'
 import { isReady } from '../lessons'
 import { formatMinutes, lessonMinutes } from '../time'
@@ -21,7 +21,7 @@ export default function StagePage() {
 
   return (
     <>
-      <p className="crumb"><Link to="/roadmap">ロードマップ</Link> / Stage {index}</p>
+      <p className="crumb"><Link to="/roadmap">ロードマップ</Link> / {stageLabel(stage)}</p>
       <div className="row between">
         <h1>{stage.title}</h1>
         <StatusBadge status={st.status} />
@@ -32,11 +32,38 @@ export default function StagePage() {
           所要時間の目安: 全体で {formatMinutes(sm.total, true)} ・ 残り <strong>{formatMinutes(sm.remaining, true)}</strong>
         </p>
       )}
+      {stage.why && (
+        <section className="card why-card">
+          <strong>なぜ学ぶのか</strong>
+          <p>{stage.why}</p>
+          {stage.uses && stage.uses.length > 0 && (
+            <>
+              <span className="muted">このステージの知識を使う、先のレッスン</span>
+              <ul className="plain uses">
+                {stage.uses.map((u) => (
+                  <li key={u.concept}>
+                    <strong>{u.concept}</strong> →{' '}
+                    {u.lessonIds.map((id, k) => {
+                      const target = findLesson(id)
+                      return (
+                        <span key={id}>
+                          {k > 0 && '、'}
+                          {target ? <Link to={`/lesson/${id}`}>{lessonNo(target)} {target.title}</Link> : id}
+                        </span>
+                      )
+                    })}
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </section>
+      )}
       <ProgressBar value={pct} label={`${stage.title}の進捗`} />
 
       {prev && prevStats && prevStats.status !== 'done' && prevStats.status !== 'empty' && (
         <p className="notice">
-          前提として、<Link to={`/stage/${prev.id}`}>Stage {index - 1}「{prev.title}」</Link>
+          前提として、<Link to={`/stage/${prev.id}`}>{stageLabel(prev)}「{prev.title}」</Link>
           を先に学ぶことをおすすめします。
         </p>
       )}
@@ -49,7 +76,7 @@ export default function StagePage() {
             <>
               <span className={'check' + (done ? ' on' : '')} aria-hidden>{done ? '✓' : ''}</span>
               <span className="grow">
-                <strong>{l.id} {l.title}</strong>
+                <strong>{lessonNo(l)} {l.title}</strong>
                 <span className="muted block">{l.summary}</span>
               </span>
               {ready && <span className="muted chip-time">{formatMinutes(lessonMinutes(l.id))}</span>}

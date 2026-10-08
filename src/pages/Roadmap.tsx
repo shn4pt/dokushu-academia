@@ -1,13 +1,14 @@
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
-import { stages } from '../data/curriculum'
+import { stageLabel, stages } from '../data/curriculum'
 import { nextLessonId, overallMinutes, overallStats, stageMinutes, stageStats } from '../data/stats'
 import { isReady } from '../lessons'
 import { formatMinutes, lessonMinutes } from '../time'
 import { useProgress } from '../progress'
 
 const phases = [
+  { title: 'はじめに', note: '全体像と歴史', stageIds: ['intro'] },
   { title: '基礎', note: '数学と機械学習の土台', stageIds: ['s0', 's1', 's2'] },
   { title: 'LLMの中核', note: '言語の表現と Transformer', stageIds: ['s3', 's4'] },
   { title: '学習と推論', note: 'モデルを作り、動かす', stageIds: ['s5', 's6'] },
@@ -51,7 +52,6 @@ export default function Roadmap() {
           <ol className="roadmap">
             {phase.stageIds.map((sid) => {
               const s = stages.find((x) => x.id === sid)!
-              const index = stages.indexOf(s)
               const st = stageStats(s, p)
               const sm = stageMinutes(s, p)
               const pct = st.total === 0 ? 0 : Math.round((st.done / st.total) * 100)
@@ -61,9 +61,9 @@ export default function Roadmap() {
                     className="roadmap-ring"
                     style={{ '--pct': pct } as CSSProperties}
                     role="img"
-                    aria-label={`Stage ${index}、進捗 ${pct}%`}
+                    aria-label={`${stageLabel(s)}、進捗 ${pct}%`}
                   >
-                    <span>{index}</span>
+                    <span>{s.num}</span>
                   </div>
                   <div className="card roadmap-card">
                     <div className="row between">

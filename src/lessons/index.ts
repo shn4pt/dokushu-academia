@@ -2,6 +2,8 @@ import type { LessonContent } from './types'
 
 // 登録したレッスンだけが公開扱い。本文は動的importで遅延読み込みする。
 const loaders: Record<string, () => Promise<{ default: LessonContent }>> = {
+  'i-1': () => import('./IntroMap'),
+  'i-2': () => import('./History'),
   '0-1': () => import('./VectorMatrix'),
   '0-2': () => import('./Probability'),
   '0-3': () => import('./Gradient'),

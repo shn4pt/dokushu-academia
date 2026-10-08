@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useMemo, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { findLesson, findStage } from '../data/curriculum'
+import { findLesson, findStage, lessonNo } from '../data/curriculum'
 import { glossary } from '../data/glossary'
 import { norm, parseTerms, search, type Section } from '../search'
 
@@ -121,7 +121,7 @@ export default function SearchPage() {
               return (
                 <li key={r.lessonId} className="card result">
                   <Link to={`/lesson/${lesson.id}`} className="result-title">
-                    {lesson.id} <strong><Highlight text={lesson.title} terms={terms} /></strong>
+                    {lessonNo(lesson)} <strong><Highlight text={lesson.title} terms={terms} /></strong>
                   </Link>
                   <span className="muted"> — {stage.title}</span>
                   <ul className="plain">

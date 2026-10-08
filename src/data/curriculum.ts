@@ -1,14 +1,45 @@
-export type LessonMeta = { id: string; title: string; summary: string }
-export type Stage = {
+export type LessonMeta = {
   id: string
   title: string
+  summary: string
+  /** 表示用の番号(既定は id)。序論は id を変えずに「序-1」と表示する */
+  label?: string
+}
+export type Stage = {
+  id: string
+  /** 表示用の番号(「序」または「0」〜) */
+  num: string
+  title: string
   goal: string
+  /** なぜこのステージを学ぶのか(1〜2文) */
+  why?: string
+  /** このステージの知識が、先のどのレッスンで使われるか */
+  uses?: { concept: string; lessonIds: string[] }[]
   lessons: LessonMeta[]
 }
 
 export const stages: Stage[] = [
   {
+    id: 'intro',
+    num: '序',
+    title: '全体像と歴史',
+    goal: 'これから学ぶ内容がどうつながるかと、LLM が生まれるまでの流れをつかむ。',
+    why: '各ステージで学ぶことが、LLM のどこに関わるのかを先に見ておくと、途中で「なぜこれを学ぶのか」を見失わずに進めます。',
+    lessons: [
+      { id: 'i-1', label: '序-1', title: 'LLM の全体像と、このコースの地図', summary: 'LLM が1つの応答を作るまでの流れと、各ステージのつながり、目的に応じた進み方。' },
+      { id: 'i-2', label: '序-2', title: 'LLM までの歴史', summary: 'パーセプトロンから Transformer、ChatGPT、エージェントまで。何が壁で、何がそれを破ったか。' },
+    ],
+  },
+  {
     id: 's0',
+    num: '0',
+    why: 'LLM の中身は、ベクトルと行列の計算、確率、勾配による学習でできています。以降の説明を、数式でつまずかずに読むための土台です。',
+    uses: [
+      { concept: 'ベクトルと内積', lessonIds: ['3-2', '4-2'] },
+      { concept: '行列積', lessonIds: ['2-1', '4-4'] },
+      { concept: '確率分布', lessonIds: ['3-3', '6-1'] },
+      { concept: '微分と勾配', lessonIds: ['1-2', '2-3'] },
+    ],
     title: '前提知識',
     goal: '以降の説明に必要な数学の最低限を、コードと結びつけて押さえる。',
     lessons: [
@@ -19,6 +50,13 @@ export const stages: Stage[] = [
   },
   {
     id: 's1',
+    num: '1',
+    why: 'LLM も「損失を下げるようにパラメータを調整する」機械学習の一種です。その基本の枠組みを押さえます。',
+    uses: [
+      { concept: '損失関数', lessonIds: ['5-1'] },
+      { concept: '勾配降下法', lessonIds: ['5-1', '7-1'] },
+      { concept: '汎化と過学習', lessonIds: ['5-2', '8-3'] },
+    ],
     title: '機械学習の基本',
     goal: '「データからパラメータを調整する」という学習の枠組みを理解する。',
     lessons: [
@@ -29,6 +67,13 @@ export const stages: Stage[] = [
   },
   {
     id: 's2',
+    num: '2',
+    why: 'Transformer もニューラルネットワークです。層、活性化関数、逆伝播は、LLM の部品と学習の仕組みそのものです。',
+    uses: [
+      { concept: '層と行列', lessonIds: ['4-4'] },
+      { concept: 'softmax', lessonIds: ['4-2', '6-1'] },
+      { concept: '誤差逆伝播', lessonIds: ['5-1'] },
+    ],
     title: 'ニューラルネットワーク',
     goal: '層を重ねたモデルがどう計算され、どう学習されるかを理解する。',
     lessons: [
@@ -39,6 +84,13 @@ export const stages: Stage[] = [
   },
   {
     id: 's3',
+    num: '3',
+    why: '文字列がどう数値になり、モデルが何を予測しているのか。LLM の入口と出口です。',
+    uses: [
+      { concept: 'トークン', lessonIds: ['6-3', '9-1'] },
+      { concept: '埋め込み', lessonIds: ['4-2', '11-4'] },
+      { concept: '言語モデル', lessonIds: ['5-1', '6-1'] },
+    ],
     title: '言語のデジタル化',
     goal: '文字列がどのように数値のベクトルへ変換されてモデルに入るかを理解する。',
     lessons: [
@@ -49,6 +101,13 @@ export const stages: Stage[] = [
   },
   {
     id: 's4',
+    num: '4',
+    why: 'LLM の中核の構造です。長い文脈を扱える理由と、その計算コストの源がここにあります。',
+    uses: [
+      { concept: 'Self-Attention', lessonIds: ['6-2', '6-3'] },
+      { concept: '位置エンコーディング', lessonIds: ['6-3'] },
+      { concept: 'Transformer ブロック', lessonIds: ['5-3'] },
+    ],
     title: 'Transformer',
     goal: 'LLMの中核であるTransformerの構造と、attentionの計算を理解する。',
     lessons: [
@@ -60,6 +119,13 @@ export const stages: Stage[] = [
   },
   {
     id: 's5',
+    num: '5',
+    why: '大量のテキストから知識と言語の能力を得る過程です。モデルの得意・不得意と、規模の効果の理由が分かります。',
+    uses: [
+      { concept: '次トークン予測', lessonIds: ['8-3'] },
+      { concept: '学習データ', lessonIds: ['7-1'] },
+      { concept: 'スケーリング則', lessonIds: ['12-3'] },
+    ],
     title: '事前学習',
     goal: '大量のテキストから言語モデルを作る学習の流れを理解する。',
     lessons: [
@@ -70,6 +136,13 @@ export const stages: Stage[] = [
   },
   {
     id: 's6',
+    num: '6',
+    why: 'API で使うときに直接触れる、生成の設定と、速さ・費用・文脈の長さの制約です。',
+    uses: [
+      { concept: 'サンプリング', lessonIds: ['9-1'] },
+      { concept: 'KV キャッシュ', lessonIds: ['11-3'] },
+      { concept: 'コンテキストウィンドウ', lessonIds: ['11-3'] },
+    ],
     title: '推論と生成',
     goal: '学習済みモデルが文章を生成する仕組みと、その高速化を理解する。',
     lessons: [
@@ -80,6 +153,13 @@ export const stages: Stage[] = [
   },
   {
     id: 's7',
+    num: '7',
+    why: '素のモデルを、指示に従うアシスタントにする方法です。プロンプトの効き方や、断る振る舞いの背景が分かります。',
+    uses: [
+      { concept: '教師ありファインチューニング', lessonIds: ['9-3'] },
+      { concept: 'RLHF', lessonIds: ['9-2'] },
+      { concept: 'アライメント', lessonIds: ['12-2'] },
+    ],
     title: '事後学習',
     goal: '素の言語モデルを、指示に従うアシスタントへ調整する方法を理解する。',
     lessons: [
@@ -90,6 +170,13 @@ export const stages: Stage[] = [
   },
   {
     id: 's8',
+    num: '8',
+    why: 'LLM を使ったシステムの全体像と限界です。第2部の入口になります。',
+    uses: [
+      { concept: 'RAG', lessonIds: ['11-4'] },
+      { concept: 'エージェント', lessonIds: ['10-1', '11-2'] },
+      { concept: '幻覚と評価', lessonIds: ['12-1'] },
+    ],
     title: '応用と限界',
     goal: 'LLMを使うシステムの全体像と、モデルの限界を理解する。第2部への橋渡し。',
     lessons: [
@@ -100,6 +187,12 @@ export const stages: Stage[] = [
   },
   {
     id: 's9',
+    num: '9',
+    why: '自分のプログラムから LLM を使う基本です。第2部のすべての土台になります。',
+    uses: [
+      { concept: 'メッセージ API', lessonIds: ['10-2'] },
+      { concept: '構造化出力', lessonIds: ['10-1', '12-1'] },
+    ],
     title: 'LLM API を使う',
     goal: 'Claude API を自分のプログラムから呼び出し、応答を安全に扱えるようになる。',
     lessons: [
@@ -111,6 +204,12 @@ export const stages: Stage[] = [
   },
   {
     id: 's10',
+    num: '10',
+    why: 'LLM に外部の操作をさせる仕組みです。エージェントの部品になります。',
+    uses: [
+      { concept: 'ツール呼び出しループ', lessonIds: ['11-2', '13-2'] },
+      { concept: 'ツール設計', lessonIds: ['12-2'] },
+    ],
     title: 'ツール利用の実装',
     goal: 'ツールを定義し、ツール呼び出しのループを自分で実装・設計できるようになる。',
     lessons: [
@@ -122,6 +221,12 @@ export const stages: Stage[] = [
   },
   {
     id: 's11',
+    num: '11',
+    why: '長く、複雑に動くエージェントを、無駄なく安全に組み立てる設計です。',
+    uses: [
+      { concept: '設計パターン', lessonIds: ['13-1'] },
+      { concept: 'コンテキストの管理', lessonIds: ['12-3'] },
+    ],
     title: 'エージェントの設計',
     goal: 'ワークフローとエージェントを使い分け、長く動くエージェントを安全に設計できるようになる。',
     lessons: [
@@ -134,6 +239,12 @@ export const stages: Stage[] = [
   },
   {
     id: 's12',
+    num: '12',
+    why: '作ったものが本当に良いか、安全かを確かめ、運用し続ける方法です。',
+    uses: [
+      { concept: '評価', lessonIds: ['13-3'] },
+      { concept: 'セキュリティ', lessonIds: ['13-1'] },
+    ],
     title: '品質と安全',
     goal: 'エージェントの品質を測り、攻撃や事故に備え、本番で運用できるようになる。',
     lessons: [
@@ -144,6 +255,8 @@ export const stages: Stage[] = [
   },
   {
     id: 's13',
+    num: '13',
+    why: 'ここまでの内容を、1つの機能として完成させます。',
     title: '総仕上げ',
     goal: '1つのエージェント機能を、要件から設計・実装・評価まで通して作る。',
     lessons: [
@@ -160,3 +273,9 @@ export const allLessons = stages.flatMap((s) =>
 
 export const findLesson = (id: string) => allLessons.find((l) => l.id === id)
 export const findStage = (id: string) => stages.find((s) => s.id === id)
+
+/** 「Stage 0」「序論」のような、ステージの表示名 */
+export const stageLabel = (s: Stage) => (s.num === '序' ? '序論' : `Stage ${s.num}`)
+/** レッスンの表示用の番号(「0-1」「序-1」など) */
+export const lessonNo = (l: { id: string; label?: string }) => l.label ?? l.id
+

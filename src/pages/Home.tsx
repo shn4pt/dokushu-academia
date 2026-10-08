@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
-import { findLesson, stages } from '../data/curriculum'
+import { findLesson, stageLabel, stages } from '../data/curriculum'
 import { nextLessonId, overallMinutes, overallStats, stageStats } from '../data/stats'
 import { useDueKeys } from '../review'
 import { formatMinutes, lessonMinutes } from '../time'
@@ -61,13 +61,13 @@ export default function Home() {
 
       <h2>ステージ別</h2>
       <div className="stage-list">
-        {stages.map((s, i) => {
+        {stages.map((s) => {
           const st = stageStats(s, p)
           const pct = st.total === 0 ? 0 : Math.round((st.done / st.total) * 100)
           return (
             <Link key={s.id} to={`/stage/${s.id}`} className="card stage-card">
               <div className="row between">
-                <strong>Stage {i}. {s.title}</strong>
+                <strong>{stageLabel(s)}. {s.title}</strong>
                 <StatusBadge status={st.status} />
               </div>
               <ProgressBar value={pct} label={`${s.title}の進捗`} />

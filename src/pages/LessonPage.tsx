@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
-import { allLessons, findLesson, findStage } from '../data/curriculum'
+import { allLessons, findLesson, findStage, lessonNo } from '../data/curriculum'
 import { questionKey } from '../review'
 import { formatMinutes, lessonTime } from '../time'
 import { currentSection, findHeading, scrollToHeading } from '../reading'
@@ -166,7 +166,7 @@ export default function LessonPage() {
       <p className="crumb">
         <Link to="/roadmap">ロードマップ</Link> / <Link to={`/stage/${stage.id}`}>{stage.title}</Link>
       </p>
-      <h1>{lesson.id} {lesson.title}</h1>
+      <h1>{lessonNo(lesson)} {lesson.title}</h1>
       <p className="lead">{lesson.summary}</p>
       {time && (
         <p className="muted time-line" title="本文の文字数、数式、デモ、クイズの数から見積もった目安です">
