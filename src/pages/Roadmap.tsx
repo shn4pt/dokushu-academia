@@ -79,6 +79,7 @@ export default function Roadmap() {
                             </span>
                             <span className="grow">{l.title}</span>
                             {isNext && <span className="next-pill">次はここ</span>}
+                            {!isNext && !isDone && p.reading[l.id] && <span className="resume-pill">途中</span>}
                           </>
                         )
                         return (

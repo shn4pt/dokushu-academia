@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { allLessons, findLesson, findStage } from '../data/curriculum'
 import { questionKey } from '../review'
-import { norm } from '../search'
+import { currentSection, findHeading, scrollToHeading } from '../reading'
 import { isReady, loadLessonContent } from '../lessons'
 import type { LessonContent, QuizQuestion } from '../lessons/types'
 import { progressActions, useProgress } from '../progress'
@@ -90,21 +90,62 @@ export default function LessonPage() {
 
   // 検索結果から来た場合は、該当する見出しまでスクロールする
   const targetSection = (location.state as { section?: string } | null)?.section
+  const fromResume = !!(location.state as { resume?: boolean } | null)?.resume
   const shown = loaded?.id === id
   useEffect(() => {
     if (!shown || !targetSection) return
-    const heading = [...document.querySelectorAll('.prose h3')].find((h) => norm(h.textContent ?? '') === norm(targetSection))
+    const heading = findHeading(targetSection)
     if (!heading) return
-    const frame = requestAnimationFrame(() => {
-      heading.scrollIntoView({ block: 'start' })
-      heading.classList.add('flash')
-    })
-    const timer = setTimeout(() => heading.classList.remove('flash'), 2000)
-    return () => {
-      cancelAnimationFrame(frame)
-      clearTimeout(timer)
-    }
+    const frame = requestAnimationFrame(() => scrollToHeading(heading))
+    return () => cancelAnimationFrame(frame)
   }, [shown, targetSection])
+
+  // しおり: 開いたときに、前回の位置があれば案内する(ホームの「続きから」からなら自動で移動する)
+  const readingRef = useRef(p.reading)
+  readingRef.current = p.reading
+  const completedRef = useRef(p.completed)
+  completedRef.current = p.completed
+  const [resume, setResume] = useState<{ section: string; mode: 'prompt' | 'resumed' } | null>(null)
+  useEffect(() => {
+    setResume(null)
+    if (!shown || !id || targetSection) return
+    const section = readingRef.current[id]?.section
+    if (!section || completedRef.current[id]) return
+    const heading = findHeading(section)
+    if (!heading) return // 本文の見出しが変わって、位置が分からなくなった場合は何もしない
+    if (fromResume) {
+      const frame = requestAnimationFrame(() => scrollToHeading(heading))
+      setResume({ section, mode: 'resumed' })
+      return () => cancelAnimationFrame(frame)
+    }
+    setResume({ section, mode: 'prompt' })
+  }, [shown, id])
+
+  useEffect(() => {
+    if (resume?.mode !== 'resumed') return
+    const timer = setTimeout(() => setResume(null), 8000)
+    return () => clearTimeout(timer)
+  }, [resume])
+
+  // しおり: 最も先まで読み進めた見出しを、スクロールに合わせて保存する(見出しが進んだときだけ書き込まれる)
+  useEffect(() => {
+    if (!shown || !id) return
+    let frame = 0
+    const onScroll = () => {
+      if (frame) return
+      frame = requestAnimationFrame(() => {
+        frame = 0
+        if (completedRef.current[id]) return // 読み終えたレッスンでは記録しない
+        const pos = currentSection()
+        if (pos) progressActions.setReading(id, pos.section, pos.index)
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(frame)
+    }
+  }, [shown, id])
 
   if (!lesson || !ready) return <Navigate to="/roadmap" replace />
   if (!loaded || loaded.id !== lesson.id) return <p className="muted">読み込み中…</p>
@@ -126,6 +167,32 @@ export default function LessonPage() {
       <h1>{lesson.id} {lesson.title}</h1>
       <p className="lead">{lesson.summary}</p>
 
+      {resume?.mode === 'prompt' && (
+        <div className="card resume-banner" role="status">
+          <span>前回は「{resume.section}」まで読みました。</span>
+          <span className="row">
+            <button
+              onClick={() => {
+                const heading = findHeading(resume.section)
+                if (heading) scrollToHeading(heading)
+                setResume(null)
+              }}
+            >
+              続きから読む
+            </button>
+            <button
+              className="secondary"
+              onClick={() => {
+                progressActions.clearReading(lesson.id)
+                setResume(null)
+              }}
+            >
+              最初から
+            </button>
+          </span>
+        </div>
+      )}
+
       <div className="prose"><Body /></div>
 
       <Quiz key={lesson.id} lessonId={lesson.id} questions={content.quiz} />
@@ -143,6 +210,22 @@ export default function LessonPage() {
         {prev ? <Link to={`/lesson/${prev.id}`}>← {prev.title}</Link> : <span />}
         {next ? <Link to={`/lesson/${next.id}`}>{next.title} →</Link> : <span />}
       </nav>
+      {resume?.mode === 'resumed' && (
+        <div className="resume-toast" role="status">
+          <span>前回の続き(「{resume.section}」)から表示しています。</span>
+          <button
+            className="secondary"
+            onClick={() => {
+              window.scrollTo(0, 0)
+              progressActions.clearReading(lesson.id)
+              setResume(null)
+            }}
+          >
+            先頭から読む
+          </button>
+          <button className="secondary" aria-label="閉じる" onClick={() => setResume(null)}>×</button>
+        </div>
+      )}
     </article>
   )
 }

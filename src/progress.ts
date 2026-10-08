@@ -12,29 +12,44 @@ export type QuestionStat = {
   at: string
 }
 
+/**
+ * レッスン内で、最も先まで読み進めた位置(しおり)。位置は座標ではなく、見出しのテキストで持つ。
+ * index は、その見出しが本文で何番目か。以前のデータには無いことがある。
+ */
+export type ReadingPos = { section: string; index?: number; at: string }
+
 export type ProgressState = {
   version: 1
   completed: Record<string, string>
   quiz: Record<string, QuizResult>
   /** キーは questionKey()。以前に書き出したデータには無いので、読み込み時に補う */
   questions: Record<string, QuestionStat>
+  /** キーはレッスンID。以前に書き出したデータには無いので、読み込み時に補う */
+  reading: Record<string, ReadingPos>
   lastVisited?: string
 }
 
 const KEY = 'llm-learning:progress'
-const empty = (): ProgressState => ({ version: 1, completed: {}, quiz: {}, questions: {} })
+const empty = (): ProgressState => ({ version: 1, completed: {}, quiz: {}, questions: {}, reading: {} })
 
 const isObject = (v: unknown) => !!v && typeof v === 'object' && !Array.isArray(v)
 
-function isValid(v: unknown): v is Omit<ProgressState, 'questions'> & { questions?: unknown } {
+type Stored = Omit<ProgressState, 'questions' | 'reading'> & { questions?: unknown; reading?: unknown }
+
+function isValid(v: unknown): v is Stored {
   if (!isObject(v)) return false
-  const s = v as Partial<ProgressState>
-  return s.version === 1 && isObject(s.completed) && isObject(s.quiz) && (s.questions === undefined || isObject(s.questions))
+  const s = v as Stored
+  return (
+    s.version === 1 && isObject(s.completed) && isObject(s.quiz) &&
+    (s.questions === undefined || isObject(s.questions)) &&
+    (s.reading === undefined || isObject(s.reading))
+  )
 }
 
-const normalize = (v: Omit<ProgressState, 'questions'> & { questions?: unknown }): ProgressState => ({
+const normalize = (v: Stored): ProgressState => ({
   ...v,
   questions: (v.questions as ProgressState['questions'] | undefined) ?? {},
+  reading: (v.reading as ProgressState['reading'] | undefined) ?? {},
 })
 
 function load(): ProgressState {
@@ -73,14 +88,29 @@ export const useProgress = () => useSyncExternalStore(subscribe, () => state)
 export const progressActions = {
   setCompleted(lessonId: string, done: boolean) {
     const completed = { ...state.completed }
-    if (done) completed[lessonId] = new Date().toISOString()
-    else delete completed[lessonId]
-    commit({ ...state, completed })
+    const reading = { ...state.reading }
+    if (done) {
+      completed[lessonId] = new Date().toISOString()
+      delete reading[lessonId] // 読み終えたので、しおりは不要
+    } else delete completed[lessonId]
+    commit({ ...state, completed, reading })
   },
   recordQuiz(lessonId: string, score: number, total: number) {
     const prev = state.quiz[lessonId]
     if (prev && prev.best >= score) return
     commit({ ...state, quiz: { ...state.quiz, [lessonId]: { best: score, total } } })
+  },
+  /** 最も先まで読み進めた位置だけを記録する(読み返して戻っても、しおりは戻らない)。 */
+  setReading(lessonId: string, section: string, index: number) {
+    const prev = state.reading[lessonId]
+    if (prev && (prev.index ?? -1) >= index) return
+    commit({ ...state, reading: { ...state.reading, [lessonId]: { section, index, at: new Date().toISOString() } } })
+  },
+  clearReading(lessonId: string) {
+    if (!state.reading[lessonId]) return
+    const reading = { ...state.reading }
+    delete reading[lessonId]
+    commit({ ...state, reading })
   },
   /** 答え合わせの結果を、問題ごとに記録する。 */
   recordAnswers(results: { key: string; correct: boolean }[]) {

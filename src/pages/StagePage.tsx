@@ -46,6 +46,7 @@ export default function StagePage() {
                 <span className="muted block">{l.summary}</span>
               </span>
               {!ready && <span className="badge badge-empty">準備中</span>}
+              {ready && !done && p.reading[l.id] && <span className="resume-pill">途中</span>}
             </>
           )
           return (
