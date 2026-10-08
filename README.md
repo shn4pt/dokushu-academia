@@ -55,3 +55,14 @@ npm run index   # 検索用の索引だけを作り直す
 - 実際に使ってみてずれていれば、`src/time.ts` の定数だけを調整すればよい。
 - ステージ・全体の合計は、5分単位に丸めて表示する(精度を見せすぎないため)。
 
+## 第2部(エージェント開発編)と Claude API
+
+Stage 9 以降は、Claude API を自分のプログラムから使う内容。レッスン内のプレイグラウンド(`src/ui/ApiPlayground.tsx`)で、
+利用者が自分の APIキーを入れると、ブラウザから Claude API を直接呼び出して試せる。キーがなくても、説明用に用意した応答の例で流れを確認できる。
+
+- APIキーはメモリか sessionStorage(タブを閉じると消える)にだけ置く(`src/api/settings.ts`)。localStorage・進捗データ・エクスポートには入れない。
+- 呼び出しは公式 SDK(`@anthropic-ai/sdk`)に `dangerouslyAllowBrowser: true` を指定して行う(`src/api/client.ts`)。学習用の構成で、本番のアプリではサーバー側から呼ぶこと。
+- 本番ビルドには CSP を付け、通信先を自サイトと `https://api.anthropic.com` に限定している(`vite.config.ts`)。
+- Opus と Sonnet では、安全上の拒否に備えてサーバー側のフォールバック(`fallbacks: "default"`)を有効にしている。
+- SDK は大きいので、プレイグラウンドを含むレッスンと API 設定ページを開いたときにだけ読み込む。
+

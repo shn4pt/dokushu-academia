@@ -12,6 +12,7 @@ const phases = [
   { title: 'LLMの中核', note: '言語の表現と Transformer', stageIds: ['s3', 's4'] },
   { title: '学習と推論', note: 'モデルを作り、動かす', stageIds: ['s5', 's6'] },
   { title: '調整と応用', note: '使えるモデルにして、使う', stageIds: ['s7', 's8'] },
+  { title: 'エージェント開発', note: '第2部:API で LLM を組み込み、エージェントを作る', stageIds: ['s9'] },
 ]
 
 export default function Roadmap() {

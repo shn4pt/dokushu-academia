@@ -6,6 +6,7 @@ import { mkdirSync, writeFileSync } from 'node:fs'
 import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { parse } from 'node-html-parser'
+import { MemoryRouter } from 'react-router-dom'
 import { createServer } from 'vite'
 
 const OUT = 'src/data/search-index.json'
@@ -90,7 +91,8 @@ try {
   for (const id of lessons.lessonIds) {
     const { Body, quiz } = await lessons.loadLessonContent(id)
     bank[id] = quiz
-    const html = renderToStaticMarkup(createElement(Body))
+    // 本文がリンク(Link)を含むことがあるため、Router の中で描画する
+    const html = renderToStaticMarkup(createElement(MemoryRouter, null, createElement(Body)))
     stats[id] = extractStats(html, quiz.length)
     for (const s of extractSections(html)) {
       sections.push({ id, ...s })

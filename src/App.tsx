@@ -1,3 +1,4 @@
+import { Suspense, lazy } from 'react'
 import { NavLink, Navigate, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Roadmap from './pages/Roadmap'
@@ -10,6 +11,9 @@ import ReviewPage from './pages/ReviewPage'
 import { useDueKeys } from './review'
 import { overallStats } from './data/stats'
 import { useProgress } from './progress'
+
+// API の SDK を含むため、開いたときにだけ読み込む
+const ApiKeyPage = lazy(() => import('./pages/ApiKeyPage'))
 
 export default function App() {
   const p = useProgress()
@@ -36,6 +40,7 @@ export default function App() {
           <Route path="/glossary" element={<Glossary />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/review" element={<ReviewPage />} />
+          <Route path="/api-key" element={<Suspense fallback={<p className="muted">読み込み中…</p>}><ApiKeyPage /></Suspense>} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

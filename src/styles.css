@@ -254,3 +254,34 @@ a, button, label, summary, select, input:not([type="range"]) { touch-action: man
 
 .time-line { margin: 6px 0; }
 .chip-time { font-size: 0.8rem; white-space: nowrap; }
+
+/* --- 第2部: API プレイグラウンドなど --- */
+.field { display: grid; gap: 4px; margin: 10px 0; }
+.text-area { font-family: inherit; resize: vertical; min-height: 4.5em; }
+.playground .api-status { margin: 6px 0 10px; }
+.history { display: grid; gap: 6px; margin: 8px 0; }
+.bubble { padding: 8px 12px; border-radius: 8px; background: var(--code-bg); }
+.bubble.assistant { border-left: 3px solid var(--accent); }
+.response { border-top: 1px solid var(--border); margin-top: 12px; padding-top: 8px; }
+.response-text { white-space: pre-wrap; word-break: break-word; margin: 8px 0; }
+.thinking { margin: 6px 0; }
+.json-ok { border-left: 3px solid var(--ok); padding-left: 10px; margin: 8px 0; }
+.notice-card { border-color: var(--danger); }
+.notice-card ul { margin: 8px 0 0; padding-left: 1.2em; }
+.card-title { margin: 0 0 8px; font-size: 1.1rem; }
+.plain-fieldset { border: 0; padding: 0; margin: 8px 0; }
+.plain-fieldset label { display: block; margin: 4px 0; }
+.order-list { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 6px; }
+.order-list li { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); }
+.order-list li.ok { border-color: var(--ok); }
+.order-list li.ng { border-color: var(--danger); background: color-mix(in srgb, var(--danger) 10%, var(--surface)); }
+.order-line { flex: 1; white-space: pre-wrap; word-break: break-word; font-size: 0.9rem; }
+.order-buttons { display: flex; gap: 4px; flex: none; }
+.order-buttons button { padding: 4px 10px; min-width: 40px; }
+.field select, .field input, .sel-input { max-width: 100%; min-width: 0; }
+.field select { width: 100%; }
+code, pre, .mono, .order-line { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+.prose table.calc { display: block; max-width: 100%; overflow-x: auto; }
+@media (pointer: coarse) {
+  .order-buttons button { min-width: 44px; min-height: 44px; }
+}

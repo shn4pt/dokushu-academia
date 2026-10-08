@@ -98,6 +98,17 @@ export const stages: Stage[] = [
       { id: '8-3', title: '幻覚と評価', summary: 'もっともらしい誤りが起きる理由と、性能の測り方。' },
     ],
   },
+  {
+    id: 's9',
+    title: 'LLM API を使う',
+    goal: 'Claude API を自分のプログラムから呼び出し、応答を安全に扱えるようになる。',
+    lessons: [
+      { id: '9-1', title: 'メッセージ API の基本', summary: 'リクエストと応答の構造、会話の履歴、トークンと料金、APIキーの扱い。' },
+      { id: '9-2', title: '応答の扱い', summary: 'stop_reason、ストリーミング、エラーと再試行、断られたときの備え。' },
+      { id: '9-3', title: 'プロンプト設計', summary: '目的・入力・出力の形を明確にした指示と、例示の使い方。' },
+      { id: '9-4', title: '構造化出力', summary: 'JSON Schema で応答の形式を制約し、プログラムで安全に扱う。' },
+    ],
+  },
 ]
 
 export const allLessons = stages.flatMap((s) =>
