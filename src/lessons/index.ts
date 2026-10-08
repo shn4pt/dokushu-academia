@@ -32,5 +32,6 @@ const loaders: Record<string, () => Promise<{ default: LessonContent }>> = {
   '4-4': () => import('./TransformerBlock'),
 }
 
+export const lessonIds = Object.keys(loaders)
 export const isReady = (id: string) => id in loaders
 export const loadLessonContent = (id: string) => loaders[id]().then((m) => m.default)

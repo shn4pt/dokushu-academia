@@ -187,3 +187,11 @@ table.calc th:first-child, table.calc td:first-child { text-align: left; }
 @media (max-width: 520px) {
   .slider-row { grid-template-columns: 1fr; gap: 2px; }
 }
+
+input[type="search"].text-input { -webkit-appearance: none; appearance: none; }
+mark { background: color-mix(in srgb, var(--accent) 28%, transparent); color: inherit; border-radius: 3px; padding: 0 1px; }
+.result-title { text-decoration: none; }
+.result .hit { margin: 8px 0 0; padding-left: 12px; border-left: 2px solid var(--border); }
+.prose h3 { scroll-margin-top: 72px; }
+.prose h3.flash { background: color-mix(in srgb, var(--accent) 18%, transparent); border-radius: 4px; transition: background 0.4s; }
+.plain li.card { padding: 14px 16px; }

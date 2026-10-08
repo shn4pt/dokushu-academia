@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { allLessons, findLesson, findStage } from '../data/curriculum'
+import { norm } from '../search'
 import { isReady, loadLessonContent } from '../lessons'
 import type { LessonContent, QuizQuestion } from '../lessons/types'
 import { progressActions, useProgress } from '../progress'
@@ -64,6 +65,7 @@ function Quiz({ lessonId, questions }: { lessonId: string; questions: QuizQuesti
 
 export default function LessonPage() {
   const { id } = useParams()
+  const location = useLocation()
   const p = useProgress()
   const lesson = id ? findLesson(id) : undefined
   const [loaded, setLoaded] = useState<{ id: string; content: LessonContent } | null>(null)
@@ -81,6 +83,24 @@ export default function LessonPage() {
       cancelled = true
     }
   }, [id])
+
+  // 検索結果から来た場合は、該当する見出しまでスクロールする
+  const targetSection = (location.state as { section?: string } | null)?.section
+  const shown = loaded?.id === id
+  useEffect(() => {
+    if (!shown || !targetSection) return
+    const heading = [...document.querySelectorAll('.prose h3')].find((h) => norm(h.textContent ?? '') === norm(targetSection))
+    if (!heading) return
+    const frame = requestAnimationFrame(() => {
+      heading.scrollIntoView({ block: 'start' })
+      heading.classList.add('flash')
+    })
+    const timer = setTimeout(() => heading.classList.remove('flash'), 2000)
+    return () => {
+      cancelAnimationFrame(frame)
+      clearTimeout(timer)
+    }
+  }, [shown, targetSection])
 
   if (!lesson || !ready) return <Navigate to="/roadmap" replace />
   if (!loaded || loaded.id !== lesson.id) return <p className="muted">読み込み中…</p>

@@ -5,6 +5,7 @@ import StagePage from './pages/StagePage'
 import LessonPage from './pages/LessonPage'
 import Glossary from './pages/Glossary'
 import ProgressPage from './pages/ProgressPage'
+import SearchPage from './pages/SearchPage'
 import { overallStats } from './data/stats'
 import { useProgress } from './progress'
 
@@ -18,6 +19,7 @@ export default function App() {
         <nav>
           <NavLink to="/roadmap">ロードマップ</NavLink>
           <NavLink to="/glossary">用語集</NavLink>
+          <NavLink to="/search">検索</NavLink>
           <NavLink to="/progress">進捗 {percent}%</NavLink>
         </nav>
       </header>
@@ -28,6 +30,7 @@ export default function App() {
           <Route path="/stage/:id" element={<StagePage />} />
           <Route path="/lesson/:id" element={<LessonPage />} />
           <Route path="/glossary" element={<Glossary />} />
+          <Route path="/search" element={<SearchPage />} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
