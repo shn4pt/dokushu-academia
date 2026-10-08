@@ -251,3 +251,6 @@ a, button, label, summary, select, input:not([type="range"]) { touch-action: man
 }
 .resume-toast span { flex: 1 1 14em; }
 .resume-pill { font-size: 0.72rem; padding: 0 8px; border-radius: 999px; border: 1px solid var(--accent); color: var(--accent); white-space: nowrap; }
+
+.time-line { margin: 6px 0; }
+.chip-time { font-size: 0.8rem; white-space: nowrap; }

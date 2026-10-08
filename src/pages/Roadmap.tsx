@@ -2,8 +2,9 @@ import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
 import { stages } from '../data/curriculum'
-import { nextLessonId, overallStats, stageStats } from '../data/stats'
+import { nextLessonId, overallMinutes, overallStats, stageMinutes, stageStats } from '../data/stats'
 import { isReady } from '../lessons'
+import { formatMinutes, lessonMinutes } from '../time'
 import { useProgress } from '../progress'
 
 const phases = [
@@ -17,6 +18,7 @@ export default function Roadmap() {
   const p = useProgress()
   const { done, total, percent } = overallStats(p)
   const next = nextLessonId(p)
+  const time = overallMinutes(p)
 
   return (
     <>
@@ -29,6 +31,9 @@ export default function Roadmap() {
           <span>{percent}%({done} / {total} レッスン)</span>
         </div>
         <ProgressBar value={percent} label="全体の進捗" />
+        <p className="muted time-line">
+          学習時間の目安: 全体で {formatMinutes(time.total, true)} ・ 残り <strong>{formatMinutes(time.remaining, true)}</strong>
+        </p>
         <div className="legend muted" aria-hidden>
           <span><span className="check on">✓</span> 完了</span>
           <span><span className="check next" /> 次のレッスン</span>
@@ -46,6 +51,7 @@ export default function Roadmap() {
               const s = stages.find((x) => x.id === sid)!
               const index = stages.indexOf(s)
               const st = stageStats(s, p)
+              const sm = stageMinutes(s, p)
               const pct = st.total === 0 ? 0 : Math.round((st.done / st.total) * 100)
               return (
                 <li key={s.id} className={`roadmap-item status-${st.status}`}>
@@ -61,7 +67,7 @@ export default function Roadmap() {
                     <div className="row between">
                       <Link to={`/stage/${s.id}`} className="stage-link"><strong>{s.title}</strong></Link>
                       <span className="row">
-                        <span className="muted">{st.done} / {st.total}</span>
+                        <span className="muted">{st.done} / {st.total} ・ {formatMinutes(sm.total, true)}</span>
                         <StatusBadge status={st.status} />
                       </span>
                     </div>
@@ -80,6 +86,7 @@ export default function Roadmap() {
                             <span className="grow">{l.title}</span>
                             {isNext && <span className="next-pill">次はここ</span>}
                             {!isNext && !isDone && p.reading[l.id] && <span className="resume-pill">途中</span>}
+                            {ready && <span className="muted chip-time">{lessonMinutes(l.id)}分</span>}
                           </>
                         )
                         return (

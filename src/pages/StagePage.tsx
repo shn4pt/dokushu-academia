@@ -1,8 +1,9 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
 import { findStage, stages } from '../data/curriculum'
-import { stageStats } from '../data/stats'
+import { stageMinutes, stageStats } from '../data/stats'
 import { isReady } from '../lessons'
+import { formatMinutes, lessonMinutes } from '../time'
 import { useProgress } from '../progress'
 
 export default function StagePage() {
@@ -15,6 +16,7 @@ export default function StagePage() {
   const prev = index > 0 ? stages[index - 1] : undefined
   const prevStats = prev ? stageStats(prev, p) : undefined
   const st = stageStats(stage, p)
+  const sm = stageMinutes(stage, p)
   const pct = st.total === 0 ? 0 : Math.round((st.done / st.total) * 100)
 
   return (
@@ -25,6 +27,11 @@ export default function StagePage() {
         <StatusBadge status={st.status} />
       </div>
       <p className="lead">{stage.goal}</p>
+      {sm.total > 0 && (
+        <p className="muted time-line">
+          所要時間の目安: 全体で {formatMinutes(sm.total, true)} ・ 残り <strong>{formatMinutes(sm.remaining, true)}</strong>
+        </p>
+      )}
       <ProgressBar value={pct} label={`${stage.title}の進捗`} />
 
       {prev && prevStats && prevStats.status !== 'done' && prevStats.status !== 'empty' && (
@@ -45,6 +52,7 @@ export default function StagePage() {
                 <strong>{l.id} {l.title}</strong>
                 <span className="muted block">{l.summary}</span>
               </span>
+              {ready && <span className="muted chip-time">{formatMinutes(lessonMinutes(l.id))}</span>}
               {!ready && <span className="badge badge-empty">準備中</span>}
               {ready && !done && p.reading[l.id] && <span className="resume-pill">途中</span>}
             </>

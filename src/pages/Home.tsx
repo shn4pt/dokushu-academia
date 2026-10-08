@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
 import { findLesson, stages } from '../data/curriculum'
-import { nextLessonId, overallStats, stageStats } from '../data/stats'
+import { nextLessonId, overallMinutes, overallStats, stageStats } from '../data/stats'
 import { useDueKeys } from '../review'
+import { formatMinutes, lessonMinutes } from '../time'
 import { useProgress } from '../progress'
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
   const { done, total, percent } = overallStats(p)
   const next = nextLessonId(p)
   const due = useDueKeys().length
+  const time = overallMinutes(p)
   const nextLesson = next ? findLesson(next) : undefined
   const position = next ? p.reading[next] : undefined
 
@@ -27,13 +29,19 @@ export default function Home() {
           <span>{percent}%({done} / {total} レッスン)</span>
         </div>
         <ProgressBar value={percent} label="全体の進捗" />
+        <p className="muted time-line">
+          学習時間の目安: 全体で {formatMinutes(time.total, true)} ・ 残り <strong>{formatMinutes(time.remaining, true)}</strong>
+        </p>
         <div className="row">
           {nextLesson ? (
             <>
               <Link className="button" to={`/lesson/${nextLesson.id}`} state={{ resume: true }}>
                 {done === 0 && !position ? '学習を始める' : '続きから学ぶ'}:{nextLesson.title}
               </Link>
-              {position && <span className="muted">前回は「{position.section}」まで読みました</span>}
+              <span className="muted">
+                {formatMinutes(lessonMinutes(nextLesson.id))}
+                {position && ` ・ 前回は「${position.section}」まで読みました`}
+              </span>
             </>
           ) : (
             <span>公開中のレッスンはすべて完了しました。</span>

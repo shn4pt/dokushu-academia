@@ -1,5 +1,6 @@
 import type { ProgressState } from '../progress'
 import { isReady } from '../lessons'
+import { lessonMinutes } from '../time'
 import { stages, type Stage } from './curriculum'
 
 export type StageStatus = 'todo' | 'doing' | 'done' | 'empty'
@@ -28,4 +29,27 @@ export function nextLessonId(p: ProgressState): string | undefined {
   if (p.lastVisited && isReady(p.lastVisited) && !p.completed[p.lastVisited]) return p.lastVisited
   for (const s of stages) for (const l of s.lessons) if (isReady(l.id) && !p.completed[l.id]) return l.id
   return undefined
+}
+
+/** 公開済みのレッスンの所要時間の目安(分)。remaining は、未完了のレッスンの合計。 */
+export function stageMinutes(stage: Stage, p: ProgressState) {
+  let total = 0
+  let remaining = 0
+  for (const l of stage.lessons) {
+    if (!isReady(l.id)) continue
+    const m = lessonMinutes(l.id)
+    total += m
+    if (!p.completed[l.id]) remaining += m
+  }
+  return { total, remaining }
+}
+
+export function overallMinutes(p: ProgressState) {
+  return stages.reduce(
+    (acc, s) => {
+      const m = stageMinutes(s, p)
+      return { total: acc.total + m.total, remaining: acc.remaining + m.remaining }
+    },
+    { total: 0, remaining: 0 },
+  )
 }

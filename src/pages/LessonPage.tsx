@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { allLessons, findLesson, findStage } from '../data/curriculum'
 import { questionKey } from '../review'
+import { formatMinutes, lessonTime } from '../time'
 import { currentSection, findHeading, scrollToHeading } from '../reading'
 import { isReady, loadLessonContent } from '../lessons'
 import type { LessonContent, QuizQuestion } from '../lessons/types'
@@ -158,6 +159,7 @@ export default function LessonPage() {
   const next = readyLessons[idx + 1]
   const done = !!p.completed[lesson.id]
   const { Body } = content
+  const time = lessonTime(lesson.id)
 
   return (
     <article key={lesson.id}>
@@ -166,6 +168,12 @@ export default function LessonPage() {
       </p>
       <h1>{lesson.id} {lesson.title}</h1>
       <p className="lead">{lesson.summary}</p>
+      {time && (
+        <p className="muted time-line" title="本文の文字数、数式、デモ、クイズの数から見積もった目安です">
+          所要時間の目安: <strong>{formatMinutes(time.total)}</strong>
+          (本文 {time.reading}分{time.demo > 0 && ` ・ デモ ${time.demo}分`} ・ クイズ {time.quiz}分)
+        </p>
+      )}
 
       {resume?.mode === 'prompt' && (
         <div className="card resume-banner" role="status">

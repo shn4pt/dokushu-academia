@@ -1,5 +1,6 @@
 // レッスン本文を描画してテキストを取り出し、検索用の索引(src/data/search-index.json)を作る。
 // 復習用に、全レッスンのクイズをまとめた src/data/quiz-bank.json も作る。
+// 学習時間の目安の算出に使う、レッスンごとの統計(src/data/lesson-stats.json)も作る。
 // npm run dev / build の前に自動で実行される。
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { createElement } from 'react'
@@ -9,6 +10,7 @@ import { createServer } from 'vite'
 
 const OUT = 'src/data/search-index.json'
 const QUIZ_OUT = 'src/data/quiz-bank.json'
+const STATS_OUT = 'src/data/lesson-stats.json'
 const clean = (s) => s.replace(/\s+/g, ' ').trim()
 
 const GREEK = {
@@ -58,6 +60,22 @@ function extractSections(html) {
   return sections
 }
 
+/** 学習時間の目安の算出に使う、本文の統計。実際の時間の計算は src/time.ts で行う。 */
+function extractStats(html, questions) {
+  const root = parse(`<div>${html}</div>`).firstChild
+  const formulas = root.querySelectorAll('.katex-display').length
+  const demos = root.querySelectorAll('.demo')
+  const demoCount = demos.length
+  for (const d of demos) d.remove()
+  let codeChars = 0
+  for (const pre of root.querySelectorAll('pre')) {
+    codeChars += clean(pre.text).length
+    pre.remove()
+  }
+  for (const k of root.querySelectorAll('.katex')) k.remove()
+  return { chars: clean(root.text).length, codeChars, formulas, demos: demoCount, questions }
+}
+
 const vite = await createServer({
   server: { middlewareMode: true },
   appType: 'custom',
@@ -68,16 +86,20 @@ try {
   const lessons = await vite.ssrLoadModule('/src/lessons/index.ts')
   const sections = []
   const bank = {}
+  const stats = {}
   for (const id of lessons.lessonIds) {
     const { Body, quiz } = await lessons.loadLessonContent(id)
     bank[id] = quiz
-    for (const s of extractSections(renderToStaticMarkup(createElement(Body)))) {
+    const html = renderToStaticMarkup(createElement(Body))
+    stats[id] = extractStats(html, quiz.length)
+    for (const s of extractSections(html)) {
       sections.push({ id, ...s })
     }
   }
   mkdirSync('src/data', { recursive: true })
   writeFileSync(OUT, JSON.stringify({ version: 1, sections }))
   writeFileSync(QUIZ_OUT, JSON.stringify(bank))
+  writeFileSync(STATS_OUT, JSON.stringify(stats))
   console.log(`search index: ${lessons.lessonIds.length} lessons, ${sections.length} sections; quiz bank: ${Object.values(bank).flat().length} questions`)
 } finally {
   await vite.close()

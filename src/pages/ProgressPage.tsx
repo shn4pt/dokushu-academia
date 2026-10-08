@@ -2,13 +2,15 @@ import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ProgressBar } from '../components'
 import { stages } from '../data/curriculum'
-import { overallStats, stageStats } from '../data/stats'
+import { overallMinutes, overallStats, stageStats } from '../data/stats'
 import { isReady } from '../lessons'
 import { progressActions, useProgress } from '../progress'
+import { formatMinutes } from '../time'
 
 export default function ProgressPage() {
   const p = useProgress()
   const { done, total, percent } = overallStats(p)
+  const time = overallMinutes(p)
   const fileRef = useRef<HTMLInputElement>(null)
   const [message, setMessage] = useState('')
 
@@ -44,6 +46,9 @@ export default function ProgressPage() {
           <span>{percent}%({done} / {total})</span>
         </div>
         <ProgressBar value={percent} label="全体の進捗" />
+        <p className="muted time-line">
+          学習時間の目安: 全体で {formatMinutes(time.total, true)} ・ 残り <strong>{formatMinutes(time.remaining, true)}</strong>
+        </p>
       </section>
 
       {stages.map((s) => {
