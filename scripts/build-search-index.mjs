@@ -2,7 +2,7 @@
 // 復習用に、全レッスンのクイズをまとめた src/data/quiz-bank.json も作る。
 // 学習時間の目安の算出に使う、レッスンごとの統計(src/data/lesson-stats.json)も作る。
 // npm run dev / build の前に自動で実行される。
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { createElement } from 'react'
 import { renderToStaticMarkup } from 'react-dom/server'
 import { parse } from 'node-html-parser'
@@ -77,6 +77,13 @@ function extractStats(html, questions) {
   }
   for (const k of root.querySelectorAll('.katex')) k.remove()
   return { chars: clean(root.text).length, codeChars, listingChars, formulas, demos: demoCount, questions }
+}
+
+// レッスンの描画中に、これから生成するファイル(学習時間の統計など)を読み込むレッスンがある。
+// まっさらな環境でも描画できるよう、まだ無ければ空の仮ファイルを置いておく(最後に本物で上書きする)。
+mkdirSync('src/data', { recursive: true })
+for (const [file, empty] of [[OUT, { version: 1, sections: [] }], [QUIZ_OUT, {}], [STATS_OUT, {}]]) {
+  if (!existsSync(file)) writeFileSync(file, JSON.stringify(empty))
 }
 
 const vite = await createServer({
