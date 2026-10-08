@@ -13,6 +13,7 @@ const phases = [
   { title: '学習と推論', note: 'モデルを作り、動かす', stageIds: ['s5', 's6'] },
   { title: '調整と応用', note: '使えるモデルにして、使う', stageIds: ['s7', 's8'] },
   { title: 'エージェント開発', note: '第2部:API で LLM を組み込み、エージェントを作る', stageIds: ['s9', 's10', 's11'] },
+  { title: '品質・安全と総仕上げ', note: '測って守り、1つの機能を完成させる', stageIds: ['s12', 's13'] },
 ]
 
 export default function Roadmap() {

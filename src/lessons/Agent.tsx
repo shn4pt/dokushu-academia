@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import type { LessonContent } from './types'
 
 type Step = { who: 'user' | 'model' | 'tool'; text: string; note?: string }
@@ -85,6 +86,13 @@ while True:
         単純なタスクなら、固定の手順(ワークフロー)で組んだ方が、確実で安価なことも多いです。
         柔軟性が本当に必要な場合にだけ、エージェントを選ぶのがよいでしょう。
       </p>
+      <div className="card bridge">
+        <strong>第2部で実装する</strong>
+        <p>
+          ここで見たループを、Claude API で実際に作ります。ツールの定義と呼び出しループは <Link to="/lesson/10-1">Stage 10</Link>、
+          ワークフローとの使い分け、止める条件、承認は <Link to="/lesson/11-1">Stage 11</Link>、安全な設計は <Link to="/lesson/12-2">12-2</Link> で扱います。
+        </p>
+      </div>
     </>
   )
 }

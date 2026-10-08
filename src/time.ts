@@ -1,13 +1,14 @@
 import stats from './data/lesson-stats.json'
 
 /** レッスン本文の統計(ビルド時に scripts/build-search-index.mjs が生成する)。 */
-type LessonStats = { chars: number; codeChars: number; formulas: number; demos: number; questions: number }
+type LessonStats = { chars: number; codeChars: number; listingChars?: number; formulas: number; demos: number; questions: number }
 const lessonStats = stats as Record<string, LessonStats>
 
 // 学習時間の目安の算出に使う前提。実測ではなく、初学者が理解しながら進む速さを見込んだ仮の値。
 // 実際に使ってみて、ずれていれば、ここだけ調整すればよい。
 export const CHARS_PER_MIN = 200 // 本文を、理解しながら読む速さ(字/分)
-export const CODE_WEIGHT = 2 // コードは、同じ文字数の本文の何倍の時間がかかるか
+export const CODE_WEIGHT = 2 // 説明のためのコード例は、同じ文字数の本文の何倍の時間がかかるか
+export const LISTING_WEIGHT = 1 // ファイル全文の掲載(参照しながら読む)の重み
 export const MIN_PER_FORMULA = 0.5 // 数式1つを追う時間(分)
 export const MIN_PER_DEMO = 3 // デモ1つを触って確かめる時間(分)
 export const MIN_PER_QUESTION = 0.7 // クイズ1問(分)
@@ -17,7 +18,10 @@ export type LessonTime = { reading: number; demo: number; quiz: number; total: n
 export function lessonTime(id: string): LessonTime | undefined {
   const s = lessonStats[id]
   if (!s) return undefined
-  const reading = Math.max(1, Math.round((s.chars + s.codeChars * CODE_WEIGHT) / CHARS_PER_MIN + s.formulas * MIN_PER_FORMULA))
+  const reading = Math.max(
+    1,
+    Math.round((s.chars + s.codeChars * CODE_WEIGHT + (s.listingChars ?? 0) * LISTING_WEIGHT) / CHARS_PER_MIN + s.formulas * MIN_PER_FORMULA),
+  )
   const demo = Math.round(s.demos * MIN_PER_DEMO)
   const quiz = Math.round(s.questions * MIN_PER_QUESTION)
   return { reading, demo, quiz, total: reading + demo + quiz }

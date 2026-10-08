@@ -69,4 +69,10 @@ export const glossary: Term[] = [
   { term: 'チャンク', reading: 'chunk', description: 'RAG で文書を分割した、検索の単位となる断片。', lessonId: '11-4' },
   { term: '再ランキング', reading: 'reranking', description: '検索で取り出した候補を、専用のモデルで関連の高い順に並べ替える処理。', lessonId: '11-4' },
   { term: 'マルチエージェント', description: '複数のエージェントが役割を分担して1つの仕事をこなす構成。', lessonId: '11-5' },
+  { term: '評価セット', reading: 'eval', description: '品質を測るために用意した、入力と期待することの組の集まり。同じ集まりで版を比べる。', lessonId: '12-1' },
+  { term: 'LLM による採点', reading: 'LLM-as-a-judge', description: '基準を与えた LLM に、出力の正しさや忠実さを判定させる方法。人の判定との一致を確かめて使う。', lessonId: '12-1' },
+  { term: 'プロンプトインジェクション', description: '入力や読み込んだ内容に紛れ込んだ文が、指示としてモデルに従われてしまう攻撃。', lessonId: '12-2' },
+  { term: '最小権限', description: '機能に必要な権限だけを与える原則。被害の範囲を小さくする。', lessonId: '12-2' },
+  { term: 'バッチ API', description: '多数の依頼をまとめて非同期に処理する API。料金が半額になる。', lessonId: '12-3' },
+  { term: '確認用のケース', reading: 'held-out', description: '改善の途中では見ずに取り分けておき、最後に合わせすぎていないかを確かめる評価のケース。', lessonId: '13-3' },
 ]

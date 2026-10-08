@@ -322,3 +322,11 @@ code, pre, .mono, .order-line { font-family: ui-monospace, SFMono-Regular, Menlo
 table.calc.text td, table.calc.text th { text-align: left; vertical-align: top; }
 table.calc.text td:first-child { min-width: 6em; }
 .prose :not(pre) > code { overflow-wrap: anywhere; }
+
+.bridge { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 6%, var(--surface)); margin-top: 24px; }
+.bridge p { margin: 6px 0 0; }
+.eval-table td.ok-cell { color: var(--ok); }
+.eval-table td.ng-cell { color: var(--danger); }
+.eval-table tr.changed td { background: color-mix(in srgb, #b7791f 12%, transparent); }
+.code-file { max-height: 480px; overflow: auto; font-size: 0.85rem; }
+.eval-table td:last-child { white-space: nowrap; }

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Slider } from '../components'
 import type { LessonContent } from './types'
 
@@ -107,6 +108,13 @@ function Body() {
         変更が本当に改善かどうかを判断できます。出力の採点には、人間、ルール、あるいは別のLLM(LLM-as-a-judge)を使いますが、
         採点者自身にも偏りがあることに注意が必要です。
       </p>
+      <div className="card bridge">
+        <strong>第2部で実践する</strong>
+        <p>
+          自分の機能の評価セットを作り、LLM による採点も含めて品質を測る方法は <Link to="/lesson/12-1">12-1 エージェントの評価</Link> で、
+          根拠を与えて幻覚を減らす方法は <Link to="/lesson/11-4">11-4 RAG の実装</Link> で扱います。
+        </p>
+      </div>
     </>
   )
 }

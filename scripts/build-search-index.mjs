@@ -69,12 +69,14 @@ function extractStats(html, questions) {
   const demoCount = demos.length
   for (const d of demos) d.remove()
   let codeChars = 0
+  let listingChars = 0 // ファイル全文の掲載(参照用)は、説明のためのコード例と分けて数える
   for (const pre of root.querySelectorAll('pre')) {
-    codeChars += clean(pre.text).length
+    if (pre.classList.contains('code-file')) listingChars += clean(pre.text).length
+    else codeChars += clean(pre.text).length
     pre.remove()
   }
   for (const k of root.querySelectorAll('.katex')) k.remove()
-  return { chars: clean(root.text).length, codeChars, formulas, demos: demoCount, questions }
+  return { chars: clean(root.text).length, codeChars, listingChars, formulas, demos: demoCount, questions }
 }
 
 const vite = await createServer({

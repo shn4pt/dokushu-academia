@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { Slider } from '../components'
 import type { LessonContent } from './types'
 
@@ -104,6 +105,13 @@ function Body() {
         <li><strong>ファインチューニング</strong>:口調・形式・振る舞いを変えたい(知識の注入には不向きな場合が多い)。</li>
         <li><strong>長いコンテキストに全部入れる</strong>:文書が少なく、収まる場合は最も単純。</li>
       </ul>
+      <div className="card bridge">
+        <strong>第2部で実装する</strong>
+        <p>
+          チャンク分割、埋め込み、ハイブリッド検索、再ランキングなど、RAG の実装は <Link to="/lesson/11-4">11-4 RAG の実装</Link> で扱います。
+          検索をツールとしてエージェントに渡す方法は <Link to="/lesson/10-1">Stage 10</Link> から学べます。
+        </p>
+      </div>
     </>
   )
 }
