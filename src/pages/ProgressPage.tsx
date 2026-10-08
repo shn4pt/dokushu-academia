@@ -51,7 +51,7 @@ export default function ProgressPage() {
         return (
           <section key={s.id} className="card">
             <div className="row between">
-              <Link to={`/stage/${s.id}`}><strong>{s.title}</strong></Link>
+              <Link to={`/stage/${s.id}`} className="stage-link"><strong>{s.title}</strong></Link>
               <span className="muted">{st.total === 0 ? '準備中' : `${st.done} / ${st.total}`}</span>
             </div>
             <ul className="plain">

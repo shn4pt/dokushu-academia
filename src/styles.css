@@ -206,3 +206,38 @@ mark { background: color-mix(in srgb, var(--accent) 28%, transparent); color: in
 @media (max-width: 520px) {
   .site-header nav { gap: 12px; font-size: 0.92rem; }
 }
+
+/* --- スライダー: つまみとタップ領域を大きくする --- */
+input[type="range"] { -webkit-appearance: none; appearance: none; background: transparent; height: 36px; cursor: pointer; }
+input[type="range"]::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: var(--border); }
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 26px; height: 26px; margin-top: -10px; border-radius: 50%;
+  background: var(--accent); border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--accent);
+}
+input[type="range"]::-moz-range-track { height: 6px; border-radius: 3px; background: var(--border); }
+input[type="range"]::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: var(--accent); border: 2px solid var(--surface); }
+
+/* --- タッチ操作 --- */
+a, button, label, summary, select, input:not([type="range"]) { touch-action: manipulation; }
+
+@media (pointer: coarse) {
+  /* 指で押せる大きさ(44px)を確保する */
+  .site-header nav a, .brand { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding: 0 4px; }
+  .lesson-chip, .num-input, .sel-input, summary { min-height: 44px; }
+  .num-input, .sel-input { padding: 8px 10px; }
+  summary { display: flex; align-items: center; }
+  label:has(> input[type="radio"]), label:has(> input[type="checkbox"]) { display: flex; align-items: center; gap: 10px; min-height: 44px; }
+  input[type="radio"], input[type="checkbox"] { width: 22px; height: 22px; flex: none; margin: 0; accent-color: var(--accent); }
+  .crumb a, .pager a, .stage-link, .plain a { display: inline-block; min-width: 44px; padding: 10px 4px; }
+  input[type="range"] { height: 44px; }
+}
+
+/* 画面が小さい(縦向きのスマホ・横向き)ときは、ヘッダーを固定せず、表示領域を広く使う */
+@media (max-width: 520px), (max-height: 500px) {
+  .site-header { position: static; }
+  .prose h3 { scroll-margin-top: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}

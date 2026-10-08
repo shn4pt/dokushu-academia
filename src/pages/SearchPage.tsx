@@ -68,7 +68,9 @@ export default function SearchPage() {
       <input
         className="text-input"
         type="search"
-        autoFocus
+        enterKeyHint="search"
+        // タッチ端末では、開いた直後にキーボードが画面を覆わないよう、自動でフォーカスしない
+        autoFocus={!window.matchMedia('(pointer: coarse)').matches}
         value={q}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="キーワードを入力(スペース区切りで AND 検索)"
