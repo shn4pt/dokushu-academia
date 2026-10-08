@@ -2,12 +2,14 @@ import { Link } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
 import { findLesson, stages } from '../data/curriculum'
 import { nextLessonId, overallStats, stageStats } from '../data/stats'
+import { useDueKeys } from '../review'
 import { useProgress } from '../progress'
 
 export default function Home() {
   const p = useProgress()
   const { done, total, percent } = overallStats(p)
   const next = nextLessonId(p)
+  const due = useDueKeys().length
   const nextLesson = next ? findLesson(next) : undefined
 
   return (
@@ -34,6 +36,15 @@ export default function Home() {
           )}
         </div>
       </section>
+
+      {due > 0 && (
+        <section className="card">
+          <div className="row between">
+            <span><strong>復習が必要な問題が {due} 問あります</strong><span className="muted block">間違えた問題を、2回連続で正解できるまで復習します。</span></span>
+            <Link className="button" to="/review">復習する</Link>
+          </div>
+        </section>
+      )}
 
       <h2>ステージ別</h2>
       <div className="stage-list">

@@ -1,4 +1,5 @@
 // レッスン本文を描画してテキストを取り出し、検索用の索引(src/data/search-index.json)を作る。
+// 復習用に、全レッスンのクイズをまとめた src/data/quiz-bank.json も作る。
 // npm run dev / build の前に自動で実行される。
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { createElement } from 'react'
@@ -7,6 +8,7 @@ import { parse } from 'node-html-parser'
 import { createServer } from 'vite'
 
 const OUT = 'src/data/search-index.json'
+const QUIZ_OUT = 'src/data/quiz-bank.json'
 const clean = (s) => s.replace(/\s+/g, ' ').trim()
 
 const GREEK = {
@@ -65,15 +67,18 @@ const vite = await createServer({
 try {
   const lessons = await vite.ssrLoadModule('/src/lessons/index.ts')
   const sections = []
+  const bank = {}
   for (const id of lessons.lessonIds) {
-    const { Body } = await lessons.loadLessonContent(id)
+    const { Body, quiz } = await lessons.loadLessonContent(id)
+    bank[id] = quiz
     for (const s of extractSections(renderToStaticMarkup(createElement(Body)))) {
       sections.push({ id, ...s })
     }
   }
   mkdirSync('src/data', { recursive: true })
   writeFileSync(OUT, JSON.stringify({ version: 1, sections }))
-  console.log(`search index: ${lessons.lessonIds.length} lessons, ${sections.length} sections`)
+  writeFileSync(QUIZ_OUT, JSON.stringify(bank))
+  console.log(`search index: ${lessons.lessonIds.length} lessons, ${sections.length} sections; quiz bank: ${Object.values(bank).flat().length} questions`)
 } finally {
   await vite.close()
 }

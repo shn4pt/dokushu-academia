@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { allLessons, findLesson, findStage } from '../data/curriculum'
+import { questionKey } from '../review'
 import { norm } from '../search'
 import { isReady, loadLessonContent } from '../lessons'
 import type { LessonContent, QuizQuestion } from '../lessons/types'
@@ -17,6 +18,9 @@ function Quiz({ lessonId, questions }: { lessonId: string; questions: QuizQuesti
   function submit() {
     setSubmitted(true)
     progressActions.recordQuiz(lessonId, score, questions.length)
+    progressActions.recordAnswers(
+      questions.map((q, i) => ({ key: questionKey(lessonId, q.question), correct: picked[i] === q.answer })),
+    )
   }
 
   function retry() {
