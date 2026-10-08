@@ -369,3 +369,16 @@ a.concept-chip:hover { border-color: var(--accent); }
 .task-row.ok { border-color: var(--ok); }
 .task-row.ng { border-color: var(--danger); }
 .task-row .row { margin: 6px 0 0; }
+
+/* 19-1 成熟度の自己診断 */
+.assess-dim { border: 1px solid var(--border); border-radius: 8px; padding: 8px 12px; margin: 10px 0; }
+.assess-dim legend { font-weight: 600; padding: 0 4px; }
+.assess-dim .choice { display: flex; gap: 8px; align-items: flex-start; padding: 4px 6px; border-radius: 6px; cursor: pointer; }
+.assess-dim .choice input { margin-top: 0.35em; flex: none; }
+.assess-result tr.weakest td { color: var(--danger); font-weight: 600; }
+.assess-bar { display: inline-block; width: 80px; height: 10px; margin-right: 8px; background: var(--code-bg); border-radius: 4px; overflow: hidden; vertical-align: middle; }
+.assess-bar > span { display: block; height: 100%; background: var(--accent); }
+@media (pointer: coarse) {
+  .assess-dim .choice { min-height: 44px; align-items: center; }
+  .assess-dim .choice input { margin-top: 0; }
+}

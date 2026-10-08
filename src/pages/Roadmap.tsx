@@ -16,6 +16,7 @@ const phases = [
   { title: 'エージェント開発', note: '第2部:API で LLM を組み込み、エージェントを作る', stageIds: ['s9', 's10', 's11'] },
   { title: '品質・安全と総仕上げ', note: '測って守り、1つの機能を完成させる', stageIds: ['s12', 's13'] },
   { title: 'AI を使った開発', note: '第3部:補完から AI ネイティブまで、開発のやり方を進化させる', stageIds: ['s14', 's15', 's16', 's17'] },
+  { title: 'AI ネイティブと総仕上げ', note: '意図と検証を設計し、自分の開発の次の一歩を決める', stageIds: ['s18', 's19'] },
 ]
 
 export default function Roadmap() {
