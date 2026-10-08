@@ -79,4 +79,7 @@ export const glossary: Term[] = [
   { term: 'n-gram 言語モデル', description: '直前の n−1 語から、次の語の確率を数え上げで求める統計的な言語モデル。', lessonId: 'i-2' },
   { term: 'LSTM', description: '長い系列でも情報を保ちやすくした RNN の改良版(1997年)。', lessonId: 'i-2' },
   { term: 'word2vec', description: '大量のテキストから、意味の近さを反映した単語のベクトルを学習する方法(2013年)。', lessonId: 'i-2' },
+  { term: 'AI 開発の水準', description: '補完(L1)、対話支援(L2)、エージェント型(L3)、委任(L4)、AI ネイティブ(L5)の5段階。水準ごとに人の役割が変わる。', lessonId: '14-1' },
+  { term: 'コーディングエージェント', description: 'コードを調べ、複数のファイルを編集し、コマンドやテストを実行して、開発のタスクを進めるエージェント。', lessonId: '14-1' },
+  { term: 'パッケージの幻覚', description: 'AI が、存在しないパッケージ名を含むコードを生成する現象。その名前を悪用する攻撃もある。', lessonId: '15-2' },
 ]
