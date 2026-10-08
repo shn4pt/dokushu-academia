@@ -22,8 +22,8 @@ function RewardDemo() {
       </p>
       <div className="row">
         人間が選んだ方:
-        <label><input type="radio" checked={chosen === 'A'} onChange={() => setChosen('A')} /> A</label>
-        <label><input type="radio" checked={chosen === 'B'} onChange={() => setChosen('B')} /> B</label>
+        <label><input type="radio" name="rlhf-chosen" checked={chosen === 'A'} onChange={() => setChosen('A')} /> A</label>
+        <label><input type="radio" name="rlhf-chosen" checked={chosen === 'B'} onChange={() => setChosen('B')} /> B</label>
       </div>
       <Slider label="Aのスコア r(A)" value={rA} min={-3} max={3} step={0.1} onChange={setRA} format={(v) => v.toFixed(1)} />
       <Slider label="Bのスコア r(B)" value={rB} min={-3} max={3} step={0.1} onChange={setRB} format={(v) => v.toFixed(1)} />
