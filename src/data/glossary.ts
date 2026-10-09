@@ -109,4 +109,11 @@ export const glossary: Term[] = [
   { term: '中央値', reading: 'median', description: 'データを大きさの順に並べたときの、真ん中の値。順位にもとづくので、極端な値にゆがめられにくい。', lessonId: 'st-1' },
   { term: '散布図', reading: 'scatter plot', description: '2 つの量の組を、点で図にしたもの。関係(直線的か、そうでないか)や、外れ値を確かめる。', lessonId: 'st-1' },
   { term: '相関係数', description: '2 つの量の関係の強さを表す尺度で、ふつうは直線的な関係の強さ。-1 から 1 の値をとる。曲線の関係でも、高い値になることがある。', lessonId: 'st-1' },
+  { term: 'シンプソンのパラドックス', reading: 'Simpson\'s paradox', description: '全体で見た関係が、集団を部分集団に分けると、現れたり、消えたり、逆転したりする現象。数学的にはありうる。', lessonId: 'e-2' },
+  { term: '交絡', reading: 'confounding', description: '2 つの量の両方に影響する第三の要因(共通の原因)があって、2 つの量の因果関係を測るのが難しくなること。', lessonId: 'e-2' },
+  { term: 'ランダム化', description: '乱数表などを使って、実験の材料を処理に割り当てること。思いつきの割り当てや、決まった順序の割り当てとは区別される。', lessonId: 'e-2' },
+  { term: '再現可能性', reading: 'reproducibility', description: '同じ入力データ・手順・コード・条件で、一貫した結果が得られること(全米アカデミーズの定義)。', lessonId: 'e-3' },
+  { term: '追試可能性', reading: 'replicability', description: '同じ問いを目指す別々の研究が、それぞれ自分のデータで、一貫した結果を得ること(全米アカデミーズの定義)。', lessonId: 'e-3' },
+  { term: '検出力', reading: 'power', description: '本当の関係があるときに、それを有意と検出できる確率(1 − β)。研究が小さいと低くなる。', lessonId: 'e-3' },
+  { term: 'p 値', description: 'データが、指定した統計モデルと、どれだけ両立しにくいかを示す数字。仮説が真である確率ではなく、効果の大きさも表さない(ASA の声明)。', lessonId: 'e-3' },
 ]

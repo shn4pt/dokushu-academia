@@ -2,6 +2,8 @@ import { createElement, type ComponentType } from 'react'
 import ClassifyItems from '../ui/ClassifyItems'
 import CodeReview from '../ui/CodeReview'
 import AnscombeDemo from '../ui/AnscombeDemo'
+import UcbDemo from '../ui/UcbDemo'
+import PpvLab from '../ui/PpvLab'
 import { parseLesson } from './mdparse'
 import type { LessonContent } from './types'
 
@@ -11,6 +13,8 @@ const registry: Record<string, ComponentType<any>> = {
   classify: ClassifyItems,
   codereview: CodeReview,
   anscombe: AnscombeDemo,
+  ucb: UcbDemo,
+  ppv: PpvLab,
 }
 
 /** Markdown のレッスンを読み込む。index.ts の loaders から、loadMarkdown('id', import('../content/id.md?raw')) の形で使う。 */

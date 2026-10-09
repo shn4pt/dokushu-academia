@@ -181,7 +181,9 @@ test.describe('根拠の読み方・序論(最初の、LLM 以外のレッスン
     await page.goto(go('/lesson/e-1'))
     await expect(page.locator('.crumb')).toContainText('講座一覧')
     await expect(page.locator('.crumb a', { hasText: '根拠の読み方' })).toBeVisible()
-    await expect(page.locator('.pager a')).toHaveCount(0) // 他の講座の最後のレッスンに続かない
+    // 前後のレッスンは、同じ講座の中だけ: 次は根拠-2。前は、他の講座の最後のレッスン(20-3)ではない
+    await expect(page.locator('.pager a')).toHaveCount(1)
+    await expect(page.locator('.pager a')).toHaveAttribute('href', /#\/lesson\/e-2$/)
     await expect(page.locator('.source-note summary')).toContainText('原典・公式で確認')
     await page.locator('.source-note summary').click()
     await expect(page.locator('.source-note')).toContainText('Evidence based medicine')
@@ -215,7 +217,7 @@ test.describe('根拠の読み方・序論(最初の、LLM 以外のレッスン
     await page.goto(go('/lesson/e-1'))
     await page.getByRole('button', { name: /完了/ }).first().click()
     await page.goto(go('/catalog'))
-    await expect(page.locator('.course-card', { hasText: '根拠の読み方' })).toContainText('1 / 1 レッスン')
+    await expect(page.locator('.course-card', { hasText: '根拠の読み方' })).toContainText('1 / 3 レッスン')
   })
 })
 
@@ -233,7 +235,7 @@ test('執筆の優先度と状況: 講座一覧と、講座の目次に表示さ
   await expect(page.getByTestId('writing-status')).toContainText('本文 0 / 予定 7 レッスン')
   await expect(page.getByTestId('writing-status')).toContainText('最優先')
   await page.goto(go('/course/evidence'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 1 / 予定 5 レッスン')
+  await expect(page.getByTestId('writing-status')).toContainText('本文 3 / 予定 5 レッスン')
   await page.goto(go('/course/llm'))
   await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
 })

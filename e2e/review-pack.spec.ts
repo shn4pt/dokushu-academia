@@ -25,19 +25,20 @@ test.describe('確認の材料', () => {
     expect(md).toContain('**限界の可能性(注記から抽出)**')
     expect(md).toContain('本文は未読')
     expect(md).toContain('学術 — 査読された論文')
-    expect(md).toContain('準備中: 実験・観察・相関と因果') // 目次の案も載る
+    expect(md).toContain('準備中: エビデンスの強さの比べ方') // 目次の案も載る
+    expect(md).toContain('同じデータが、見方で逆になる') // 公開済みの、ほかのレッスンも載る
   })
 
   test('別の目の確認が未実施なら、黄色の目印が出る。実施済みなら、結果が取り込まれる', () => {
-    expect(pack(['evidence'])).toMatch(/別の目の確認: \*\*未実施\*\*/)
-    const done = pack(['evidence'], { 'e-1': '# 別の目の確認: e-1(2099-01-01)\n\n| 主張 | 判定 |\n|---|---|\n| 例の主張 | 裏づく |\n' })
+    expect(pack(['statistics'])).toMatch(/別の目の確認: \*\*未実施\*\*/)
+    const done = pack(['statistics'], { 'st-1': '# 別の目の確認: st-1(2099-01-01)\n\n| 主張 | 判定 |\n|---|---|\n| 例の主張 | 裏づく |\n' })
     expect(done).toContain('別の目の確認: **実施済み**(2099-01-01)')
     expect(done).toContain('| 例の主張 | 裏づく |')
     expect(done).not.toContain('別の目の確認が未実施です')
   })
 
   test('本文が、別の目の確認のあとに変更されていたら、警告する', () => {
-    const md = pack(['evidence'], { 'e-1': '# 別の目の確認: e-1(2000-01-01)\n\n表\n' })
+    const md = pack(['statistics'], { 'st-1': '# 別の目の確認: st-1(2000-01-01)\n\n表\n' })
     expect(md).toContain('別の目の確認のあとに、本文が変更されています')
   })
 
@@ -47,8 +48,8 @@ test.describe('確認の材料', () => {
   })
 
   test('段階を絞れる(本文のない段階は、レッスンなし)', () => {
-    const md = pack(['evidence', '--tier', 'practice'])
-    expect(md).toContain('# 確認の材料: 根拠の読み方(実践)')
+    const md = pack(['evidence', '--tier', 'advanced'])
+    expect(md).toContain('# 確認の材料: 根拠の読み方(応用)')
     expect(md).toContain('公開済みのレッスンは、ありません')
   })
 

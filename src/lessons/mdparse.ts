@@ -16,6 +16,8 @@ export const componentSpecs: Record<string, { required: string[] }> = {
   classify: { required: ['title', 'description', 'options', 'items'] },
   codereview: { required: ['title', 'description', 'lines', 'answers', 'explanation'] },
   anscombe: { required: [] },
+  ucb: { required: [] },
+  ppv: { required: [] },
 }
 
 export class LessonFormatError extends Error {}

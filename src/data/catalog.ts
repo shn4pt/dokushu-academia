@@ -85,7 +85,7 @@ export const courses: Course[] = [
     summary: '論文や資料の読み方、エビデンスの強さ、実験と相関の違い。このサービスの根拠の表示の意味も、ここで学ぶ。',
     tiers: [
       { level: 'basic', scope: '根拠とは何か、情報の種類', stageIds: ['e0'] },
-      { level: 'practice', scope: '研究の読み方', planned: ['実験・観察・相関と因果', '再現性と、結果が割れている研究'] },
+      { level: 'practice', scope: '研究の読み方', stageIds: ['e1'] },
       { level: 'advanced', scope: '実務での使い方', planned: ['エビデンスの強さの比べ方', '根拠が少ない分野での判断'] },
     ],
   },

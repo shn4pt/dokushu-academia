@@ -2099,5 +2099,123 @@
         "summary": "別のエージェントによる事実確認を受けて、Anscombe の帰属を弱め、曲線でも相関係数が高くなることがあるという言い方に直し、判定問題の条件(裾・両端)を揃え、標本分散の注記と出典の使った箇所を足した"
       }
     ]
+  },
+  "e-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "スタンフォード哲学百科事典の項目 Simpson's Paradox(2021 年公開、2026 年 6 月改訂)を、生の HTML を直接取得して読み、定義、数学的に逆転が排除されないこと、Pearl の分析、バークレーの事例(5.5 節)を確認しました。データの値と説明は、Rdatasets の UCBAdmissions(R の datasets パッケージ)から取り、男女・学科ごとの合格率などは、その値から自分で計算しました(e2e/ucb.spec.ts で、別の実装と照合)。元の論文(Bickel ら 1975)は、書誌を Crossref で確認しただけで、本文は読んでいません。論文の内容(個々の学科に男性に有利な偏りを見つけられなかった、など)は、百科事典の要約として紹介しています。ランダム化は NIST の用語集の定義で、治療の効果の問いは Sackett らの論説(根拠-1 と同じ資料)です。「ランダムな割り当てが、集団にもともとある違いの影響を断ち切る」理由と、「3 つの問い(続き)」は、このサービスの説明・整理で、文献の主張ではありません。 別のエージェントによる事実確認の結果は、docs/verify/e-2.md にあります。",
+    "sources": [
+      {
+        "title": "Simpson's Paradox(Stanford Encyclopedia of Philosophy)",
+        "url": "https://plato.stanford.edu/entries/paradox-simpson/",
+        "how": "read",
+        "use": "定義、逆転は数学的に排除されないこと、バークレーの事例(5.5 節)、媒介変数と、経路ごとの効果、Pearl の説明をめぐる議論"
+      },
+      {
+        "title": "UCBAdmissions(Rdatasets: R の datasets パッケージの説明)",
+        "url": "https://vincentarelbundock.github.io/Rdatasets/doc/datasets/UCBAdmissions.html",
+        "how": "read",
+        "use": "6 学科・4,526 人のデータの説明、男性 2,691 人中 1,198 人(44.5%)、女性 1,835 人中 557 人(30.4%)"
+      },
+      {
+        "title": "UCBAdmissions.csv(Rdatasets)",
+        "url": "https://vincentarelbundock.github.io/Rdatasets/csv/datasets/UCBAdmissions.csv",
+        "how": "read",
+        "use": "学科・性別・合否ごとの人数(24 行)。合格率などの要約は、この値から計算"
+      },
+      {
+        "title": "Sex Bias in Graduate Admissions: Data from Berkeley(Bickel, Hammel, O'Connell, Science 187(4175):398-404, 1975)の書誌",
+        "url": "https://api.crossref.org/works/10.1126/science.187.4175.398",
+        "how": "search",
+        "use": "題名・著者・雑誌・巻号・ページ・年の確認。論文の本文は未読"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook: 用語集(randomization, scientific)",
+        "url": "https://www.itl.nist.gov/div898/handbook/glossary.htm",
+        "how": "read",
+        "use": "科学的なランダム化の定義(乱数表による割り当て。思いつき・決まった順序の割り当てとは区別)"
+      },
+      {
+        "title": "Evidence based medicine: what it is and what it isn't の PDF の写し(Sackett ら, BMJ 1996;312:71-72)",
+        "url": "https://www.dcscience.net/sackett-BMJ-1996.pdf",
+        "how": "read",
+        "use": "治療の問いでは、実験によらない方法は、しばしば偽陽性の結論を導く(根拠-1 で読んだ資料。BMJ 版との字句の一致は未確認)"
+      },
+      {
+        "title": "e2e/ucb.spec.ts(合格率・応募の分布の、別の実装での照合)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/ucb.spec.ts",
+        "how": "repo",
+        "use": "全体・学科別の合格率、応募の分布、4 学科で女性が高い、を照合"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、NIST の定義の言い換え(「など」を削除、処理の順序)、百科事典の指摘と、このレッスンの整理の区別、クイズ解説の言い回しを直した"
+      }
+    ]
+  },
+  "e-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "全米アカデミーズの報告書 Reproducibility and Replicability in Science(2019)の 3 章(定義、結論 3-1)と 5 章(結論 5-1〜5-4、追試できない原因)、Ioannidis(2005)(要約、式、6 つの系。PLOS のページ)、ASA のプレスリリース(6 つの原則の文言)を、生の HTML・PDF から取り出したテキストで読んで確認しました。Ioannidis の論文は、要約・モデルの設定と式・6 つの系だけを使い、本文のほかの議論(偏りを入れた式など)は読んでいません。ASA の声明そのもの(Wasserstein と Lazar, 2016)は、書誌だけを確認し、本文は読んでいません(6 つの原則の文言は、ASA のプレスリリースにあるものです)。OSC(2015)は、根拠-1 と同じく、要旨の数字だけを使っています。「割れている研究に出会ったとき」の 4 つの確かめ方は、このサービスの整理です。表の PPV は、論文の式から自分で計算した値です(e2e/ppv.spec.ts で照合)。 別のエージェントによる事実確認の結果は、docs/verify/e-3.md にあります。",
+    "sources": [
+      {
+        "title": "Reproducibility and Replicability in Science, 3 Understanding Reproducibility and Replicability(National Academies, 2019)",
+        "url": "https://nap.nationalacademies.org/read/25303/chapter/6",
+        "how": "read",
+        "use": "再現可能性と追試可能性の定義(結論 3-1)、分野によって用語の使い方が違うこと"
+      },
+      {
+        "title": "Reproducibility and Replicability in Science, 5 Replicability(National Academies, 2019)",
+        "url": "https://nap.nationalacademies.org/read/25303/chapter/8",
+        "how": "read",
+        "use": "結論 5-1・5-2・5-4、追試できない原因(進歩に役立ちうるもの・避けたいもの)、意外な結果は追試されないことが多い"
+      },
+      {
+        "title": "Why Most Published Research Findings Are False(Ioannidis, PLoS Medicine 2(8): e124, 2005)",
+        "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124",
+        "how": "read",
+        "use": "要約、R・α・検出力の定義と、モデルの前提、PPV の式(偏りのない場合)、6 つの系、シミュレーションにもとづく主張。このレッスンで使った範囲は、これだけ(偏りを入れた式など、ほかの議論は使っていない)"
+      },
+      {
+        "title": "ASA Releases Statement on Statistical Significance and P-Values(American Statistical Association, 2016 年 3 月 7 日のプレスリリース)",
+        "url": "https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf",
+        "how": "read",
+        "use": "p 値についての 6 つの原則の文言、検定より推定を重視する方法などへの言及。この資料は、ASA のプレスリリースで、声明の本文ではない(声明の書誌は、下の別の項目)"
+      },
+      {
+        "title": "The ASA Statement on p-Values: Context, Process, and Purpose(Wasserstein & Lazar, The American Statistician 70(2):129-133, 2016)の書誌",
+        "url": "https://api.crossref.org/works/10.1080/00031305.2016.1154108",
+        "how": "search",
+        "use": "声明の書誌(題名・雑誌・巻号・ページ・年)。本文は未読"
+      },
+      {
+        "title": "Estimating the reproducibility of psychological science(Open Science Collaboration, Science 2015)",
+        "url": "https://doi.org/10.1126/science.aac4716",
+        "how": "search",
+        "use": "元の研究 97% が有意・追試で 36%、効果量が追試の 95% 信頼区間に入ったのが 47%、主観的に追試できたとされたのが 39%(要旨のみ。Europe PMC の記録で確認。根拠-1 と同じ)"
+      },
+      {
+        "title": "e2e/ppv.spec.ts(PPV の式と、レッスンの表の照合)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/ppv.spec.ts",
+        "how": "repo",
+        "use": "式の値、内訳(自然な頻度)との一致、表の数字を、手計算と照合"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、追試できない原因の分類(知識・技術の限界、報告の条件)、「評価の仕組みのずれ」、6 つの系の訳、判定問題の条件、デモの注記を直した"
+      }
+    ]
   }
 }

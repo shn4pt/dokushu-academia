@@ -438,3 +438,5 @@ a.concept-chip:hover { border-color: var(--accent); }
 .md blockquote { margin: 12px 0; padding: 4px 14px; border-left: 3px solid var(--border); color: var(--muted); }
 .md blockquote p { margin: 6px 0; }
 .plot-svg { display: block; width: 100%; max-width: 420px; height: auto; margin: 8px 0; color: var(--muted); }
+.ucb-table .bar-track { display: inline-block; width: 110px; vertical-align: middle; }
+.ucb-table .bar-fill { display: block; }
