@@ -76,6 +76,8 @@ const loaders: Record<string, () => Promise<{ default: LessonContent }>> = {
   'e-1': () => import('./EvidenceIntro'),
   'e-2': md('e-2'),
   'e-3': md('e-3'),
+  'e-4': md('e-4'),
+  'e-5': md('e-5'),
   'st-1': md('st-1'),
   '4-1': () => import('./WhyAttention'),
   '4-2': () => import('./SelfAttention'),

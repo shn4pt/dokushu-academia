@@ -168,8 +168,7 @@ test('講座の目次: 「なぜ学ぶのか」が先頭に出る', async ({ pag
 test.describe('根拠の読み方・序論(最初の、LLM 以外のレッスン)', () => {
   test('講座の目次: 一部公開で、ステージから、レッスンに移れる', async ({ page }) => {
     await page.goto(go('/course/evidence'))
-    await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
-    await expect(page.getByRole('note')).toContainText('一部だけ公開中')
+    await expect(page.locator('.badge', { hasText: '公開中' })).toBeVisible()
     await page.locator('.stage-card', { hasText: '序論:根拠とは何か' }).click()
     await expect(page.locator('.crumb')).toContainText('根拠の読み方')
     await expect(page.locator('.notice')).toHaveCount(0) // LLM の最後のステージが、前提として出ない
@@ -217,7 +216,7 @@ test.describe('根拠の読み方・序論(最初の、LLM 以外のレッスン
     await page.goto(go('/lesson/e-1'))
     await page.getByRole('button', { name: /完了/ }).first().click()
     await page.goto(go('/catalog'))
-    await expect(page.locator('.course-card', { hasText: '根拠の読み方' })).toContainText('1 / 3 レッスン')
+    await expect(page.locator('.course-card', { hasText: '根拠の読み方' })).toContainText('1 / 5 レッスン')
   })
 })
 
@@ -235,7 +234,7 @@ test('執筆の優先度と状況: 講座一覧と、講座の目次に表示さ
   await expect(page.getByTestId('writing-status')).toContainText('本文 0 / 予定 7 レッスン')
   await expect(page.getByTestId('writing-status')).toContainText('最優先')
   await page.goto(go('/course/evidence'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 3 / 予定 5 レッスン')
+  await expect(page.getByTestId('writing-status')).toContainText('本文 5 / 予定 5 レッスン')
   await page.goto(go('/course/llm'))
   await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
 })

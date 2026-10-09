@@ -4,6 +4,7 @@ import CodeReview from '../ui/CodeReview'
 import AnscombeDemo from '../ui/AnscombeDemo'
 import UcbDemo from '../ui/UcbDemo'
 import PpvLab from '../ui/PpvLab'
+import GradeLab from '../ui/GradeLab'
 import { parseLesson } from './mdparse'
 import type { LessonContent } from './types'
 
@@ -15,6 +16,7 @@ const registry: Record<string, ComponentType<any>> = {
   anscombe: AnscombeDemo,
   ucb: UcbDemo,
   ppv: PpvLab,
+  grade: GradeLab,
 }
 
 /** Markdown のレッスンを読み込む。index.ts の loaders から、loadMarkdown('id', import('../content/id.md?raw')) の形で使う。 */

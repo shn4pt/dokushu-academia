@@ -18,6 +18,7 @@ export const componentSpecs: Record<string, { required: string[] }> = {
   anscombe: { required: [] },
   ucb: { required: [] },
   ppv: { required: [] },
+  grade: { required: [] },
 }
 
 export class LessonFormatError extends Error {}

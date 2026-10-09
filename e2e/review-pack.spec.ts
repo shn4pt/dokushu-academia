@@ -25,8 +25,9 @@ test.describe('確認の材料', () => {
     expect(md).toContain('**限界の可能性(注記から抽出)**')
     expect(md).toContain('本文は未読')
     expect(md).toContain('学術 — 査読された論文')
-    expect(md).toContain('準備中: エビデンスの強さの比べ方') // 目次の案も載る
     expect(md).toContain('同じデータが、見方で逆になる') // 公開済みの、ほかのレッスンも載る
+    expect(md).toContain('根拠が少ない分野での判断')
+    expect(pack(['statistics'])).toContain('準備中: 平均・ばらつき・分布') // 目次の案も載る
   })
 
   test('別の目の確認が未実施なら、黄色の目印が出る。実施済みなら、結果が取り込まれる', () => {
@@ -48,8 +49,8 @@ test.describe('確認の材料', () => {
   })
 
   test('段階を絞れる(本文のない段階は、レッスンなし)', () => {
-    const md = pack(['evidence', '--tier', 'advanced'])
-    expect(md).toContain('# 確認の材料: 根拠の読み方(応用)')
+    const md = pack(['statistics', '--tier', 'advanced'])
+    expect(md).toContain('# 確認の材料: データ分析・統計(応用)')
     expect(md).toContain('公開済みのレッスンは、ありません')
   })
 

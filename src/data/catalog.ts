@@ -86,7 +86,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: '根拠とは何か、情報の種類', stageIds: ['e0'] },
       { level: 'practice', scope: '研究の読み方', stageIds: ['e1'] },
-      { level: 'advanced', scope: '実務での使い方', planned: ['エビデンスの強さの比べ方', '根拠が少ない分野での判断'] },
+      { level: 'advanced', scope: '実務での使い方', stageIds: ['e2'] },
     ],
   },
   {
@@ -350,8 +350,8 @@ export const writingPlan: { priority: Priority; title: string; reason: string; i
   {
     priority: 1,
     title: '最優先',
-    reason: 'プロダクトマネジメントの前提を、順にたどった講座です。根拠の読み方 → データ分析・統計 → 経営・戦略 → 心理学 → UX → プロダクトマネジメントの順に、通して学べる状態を目指します。',
-    ids: ['evidence', 'statistics', 'strategy', 'psychology', 'ux', 'pm'],
+    reason: 'プロダクトマネジメントの前提を、順にたどった講座です。(根拠の読み方は公開済み。)データ分析・統計 → 経営・戦略 → 心理学 → UX → プロダクトマネジメントの順に、通して学べる状態を目指します。',
+    ids: ['statistics', 'strategy', 'psychology', 'ux', 'pm'],
   },
   {
     priority: 2,

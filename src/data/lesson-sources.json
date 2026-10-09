@@ -2217,5 +2217,69 @@
         "summary": "別のエージェントによる事実確認を受けて、追試できない原因の分類(知識・技術の限界、報告の条件)、「評価の仕組みのずれ」、6 つの系の訳、判定問題の条件、デモの注記を直した"
       }
     ]
+  },
+  "e-4": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "Cochrane Handbook for Systematic Reviews of Interventions v6.5 の第 14 章(2023 年 8 月更新)の、14.2.1〜14.2.3(GRADE の考え方、下げる要因、上げる要因)と、要点の記述を、生の HTML を取得して、テキストで読んで確認しました。使った範囲は、確実性の定義、4 段階、出発点、下げる 5 つの要因、上げる要因、各要因のハンドブックの例(14.3 節の Table 14.3.a にあるもの)です。GRADE の推奨の強さ(確実性とは別の評価)や、第 14 章の「結果の要約の表」の作り方は、読んでおらず、使っていません。ヘルメットの例(Thompson ら 2000)は、ハンドブックが引く例で、元の論文は読んでいません。「ほかの分野に移し替えるときの 5 つの問い」と、デモの足し引きの計算(判断のあとの段階の計算だけ)は、このサービスの整理・簡略化で、GRADE の主張ではありません。 デモは、簡略化したものです(上げる要因は 1 つにつき 1 段階、「ほかに方法上の問題がない」という条件は確かめない)。別のエージェントによる事実確認の結果は、docs/verify/e-4.md にあります。",
+    "sources": [
+      {
+        "title": "Cochrane Handbook for Systematic Reviews of Interventions v6.5, Chapter 14: Completing 'Summary of findings' tables and grading the certainty of the evidence(Schünemann ら, 2023 年 8 月更新)",
+        "url": "https://training.cochrane.org/handbook/current/chapter-14",
+        "how": "read",
+        "use": "GRADE の確実性の定義、4 段階、出発点(ランダム化試験は高、非ランダム化の研究は低)、下げる 5 つの要因と各要因の説明・例、上げる要因(大きな効果・用量反応・交絡が効果を小さく見せる方向)、評価の理由の記録(各要因の例は、14.3 節の Table 14.3.a)"
+      },
+      {
+        "title": "e2e/grade.spec.ts(確実性の計算の、手計算との照合)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/grade.spec.ts",
+        "how": "repo",
+        "use": "出発点、下げる・上げる、下限・上限、判定問題の 6 つの答えを、このサービスが実装した規則どおりに計算していることの照合(ハンドブックの規則そのものとの照合ではない)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、GRADE の目的の言い方、大きな効果の説明、「望ましい」と「必須」の区別、下げたランダム化試験を上げる例外、デモの簡略化の断りを直した"
+      }
+    ]
+  },
+  "e-5": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "Barends・Rousseau・Briner の Evidence-Based Management: The Basic Principles(Center for Evidence-Based Management, 2014)の PDF を、生の PDF から取り出したテキストで、定義から、まとめまで、使った範囲を読んで確認しました(定義、根拠とは何か、必要性、4 つの源、吟味の問い、「最良の入手できる根拠」、よくある誤解 1〜6、「根拠にもとづく実践の根拠」。末尾の参考文献の一覧は、使っていません)。その資料が引く研究(予測の平均、統計モデルによる判断など)は、このレッスンでは、資料の記述として紹介するだけで、元の研究は読んでいません。批判の部分は、Rynes と Bartunek(2017, Annual Review of Organizational Psychology and Organizational Behavior)のレビューの、導入・要旨と、批判と応答の節(認識論的・政治的な批判、研究の質、体系的レビューへの批判、応答)を読んで確認しました(レビューの全体は読んでいません)。「自分の判断に、移し替える」の整理は、このサービスの整理で、CEBMa の主張ではありません。 別のエージェントによる事実確認の結果は、docs/verify/e-5.md にあります。",
+    "sources": [
+      {
+        "title": "Evidence-Based Management: The Basic Principles(Barends, Rousseau, Briner; Center for Evidence-Based Management, 2014)",
+        "url": "https://cebma.org/assets/Uploads/Evidence-Based-Practice-The-Basic-Principles.pdf",
+        "how": "read",
+        "use": "根拠にもとづく実践の定義、4 つの源、6 つのステップ、吟味の問い、「最良の入手できる根拠」、よくある誤解(経験の無視、数字だけの話、時間、組織は特別、根拠がなければ何もできない、根拠は答えを与える)、実践の効果についての記述"
+      },
+      {
+        "title": "Evidence-Based Management: Foundations, Development, Controversies and Future(Rynes & Bartunek, Annu. Rev. Organ. Psychol. Organ. Behav. 4:235-261, 2017)",
+        "url": "https://cebma.org/assets/Uploads/Rynes-Bartunek-2017.pdf",
+        "how": "read",
+        "use": "根拠にもとづく経営への批判(認識論的・政治的な批判、研究の質、体系的レビューへの批判)と、レビューの応答の整理。このレッスンで使った範囲は、導入・要旨と、批判と応答の節だけ"
+      },
+      {
+        "title": "Evidence based medicine: what it is and what it isn't の PDF の写し(Sackett ら, BMJ 1996;312:71-72)",
+        "url": "https://www.dcscience.net/sackett-BMJ-1996.pdf",
+        "how": "read",
+        "use": "ランダム化試験が実施されていなければ、次善の根拠をたどる(根拠-1 で読んだ資料。BMJ 版との字句の一致は未確認)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、定義の注、組織の根拠の例、「妥当」の訳、誤解 5 と「最良の入手できる根拠」の節の区別、批判の整理(体系的レビューへの批判、レビューの応答、Ioannidis への言及、主語、Learmonth の引用の続き)を直した"
+      }
+    ]
   }
 }

@@ -116,4 +116,7 @@ export const glossary: Term[] = [
   { term: '追試可能性', reading: 'replicability', description: '同じ問いを目指す別々の研究が、それぞれ自分のデータで、一貫した結果を得ること(全米アカデミーズの定義)。', lessonId: 'e-3' },
   { term: '検出力', reading: 'power', description: '本当の関係があるときに、それを有意と検出できる確率(1 − β)。研究が小さいと低くなる。', lessonId: 'e-3' },
   { term: 'p 値', description: 'データが、指定した統計モデルと、どれだけ両立しにくいかを示す数字。仮説が真である確率ではなく、効果の大きさも表さない(ASA の声明)。', lessonId: 'e-3' },
+  { term: 'GRADE', description: '根拠の確実性を、出発点・下げる要因・上げる要因から、高・中・低・非常に低の 4 段階で評価する手順。医療の介入の評価のために作られ、Cochrane などが採用している。', lessonId: 'e-4' },
+  { term: '確実性', reading: 'certainty', description: '効果(または関連)の推定値が、知りたい量に近いと、どれだけ確信できるか(GRADE の定義)。', lessonId: 'e-4' },
+  { term: '根拠にもとづく経営', reading: 'evidence-based management', description: '科学的な根拠・組織のデータ・実務家の経験・関係者の価値観という複数の源から、最良の根拠を吟味して、判断すること。批判もある。', lessonId: 'e-5' },
 ]
