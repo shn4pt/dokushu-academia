@@ -874,8 +874,33 @@
   },
   "14-1": {
     "status": "original",
-    "note": "5つの水準(L1〜L5)は、このアプリが整理した枠組みで、業界の標準の分類ではありません。",
-    "sources": []
+    "note": "5つの水準(L1〜L5)は、このアプリが整理した枠組みで、業界の標準の分類ではありません。ほかにも、運転自動化のレベルにならった整理がいくつかあり、番号や境界は一致しません。本文のシャピロの整理との対応は、このコースの解釈です。",
+    "sources": [
+      {
+        "title": "The Five Levels: from Spicy Autocomplete to the Software Factory(Dan Shapiro, 2026年1月)",
+        "url": "https://www.danshapiro.com/blog/2026/01/the-five-levels-from-spicy-autocomplete-to-the-software-factory/",
+        "how": "read",
+        "use": "自動運転のレベルにならった、AI を使った開発の6段階(レベル0〜5)。レベル5は「ダークファクトリー」"
+      },
+      {
+        "title": "The Five Levels(Simon Willison のリンク記事, 2026年1月28日)",
+        "url": "https://simonwillison.net/2026/jan/28/the-five-levels",
+        "how": "read",
+        "use": "シャピロの整理が、運転自動化のレベルに着想を得ていること、各レベルの名前"
+      },
+      {
+        "title": "AI を使った開発の段階の分類(学術の提案、AI4SE など)",
+        "how": "search",
+        "use": "複数の提案があり、段階の数・境界は一致しない(検索結果の要約で確認)"
+      }
+    ],
+    "checkedAt": "2026-10-09",
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "この水準がこのアプリの整理であることと、ほかの整理との違い(特に L5 の意味)を本文に追加した"
+      }
+    ]
   },
   "14-2": {
     "status": "verified",
@@ -950,7 +975,13 @@
   "14-3": {
     "status": "original",
     "note": "2つの軸による整理は、このアプリの説明のための枠組みです。",
-    "sources": []
+    "sources": [],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "本文に、このコースの枠組みであることを追記した"
+      }
+    ]
   },
   "15-1": {
     "status": "original",
@@ -1148,17 +1179,43 @@
   "18-3": {
     "status": "original",
     "note": "リスクの整理は、第2部の安全の内容(12-2)をもとに、このアプリがまとめたものです。",
-    "sources": []
+    "sources": [],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "本文に、このコースの整理であることを追記した"
+      }
+    ]
   },
   "19-1": {
     "status": "original",
-    "note": "6つの軸と段階は、このアプリが作った簡易の目安で、正式な評価の方法ではありません。",
-    "sources": []
+    "note": "6つの軸と段階は、このアプリが作った簡易の目安で、正式な評価の方法ではなく、調査で妥当性を確かめた尺度でもありません。DORA の AI ケイパビリティモデル(7つの能力)との違いを、本文に書きました。重なりの説明は、このコースの解釈です。",
+    "sources": [
+      {
+        "title": "Introducing DORA's inaugural AI Capabilities Model(Google Cloud, 2025年)",
+        "url": "https://cloud.google.com/blog/products/ai-machine-learning/introducing-doras-inaugural-ai-capabilities-model",
+        "how": "read",
+        "use": "AI の効果を増幅する7つの能力と、その作り方(78件のインタビュー、約5,000人の回答)"
+      }
+    ],
+    "checkedAt": "2026-10-09",
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "研究に基づく整理(DORA の AI ケイパビリティモデル)との違いを本文に追加した"
+      }
+    ]
   },
   "19-2": {
     "status": "original",
     "note": "移行の原則と計画の例は、第3部の内容をもとにしたこのアプリの提案です。",
-    "sources": []
+    "sources": [],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "本文に、このコースの提案であることを追記した"
+      }
+    ]
   },
   "19-3": {
     "status": "verified",
