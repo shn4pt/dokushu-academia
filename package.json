@@ -13,7 +13,8 @@
     "sources:check": "node scripts/check-sources.mjs",
     "history": "node scripts/update-history.mjs",
     "test:e2e": "playwright test",
-    "typecheck:e2e": "tsc --noEmit -p e2e/tsconfig.json"
+    "typecheck:e2e": "tsc --noEmit -p e2e/tsconfig.json",
+    "sources:report": "node scripts/sources-report.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.132.0",

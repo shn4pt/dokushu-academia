@@ -98,7 +98,8 @@ function Body() {
 
       <h3>対策3:要約で置き換える(コンパクション)</h3>
       <p>
-        会話が長くなり上限に近づいたら、それまでの内容を要約に置き換えます。Claude API のコンパクション(ベータ)では、
+        会話が長くなり上限に近づいたら、それまでの内容を要約に置き換えます。Claude API のコンパクション(ベータ)は、
+        サーバー側で要約を作る機能で、<strong>いつ要約するかの決め方が2通り</strong>あります。まず、自動で要約される方式です。
         既定で15万トークン程度に達すると、サーバー側で要約が作られます。応答に含まれる要約のブロックを次の呼び出しで必ず送り返す必要があるので、
         <strong>テキストだけでなく応答の <code>content</code> を丸ごと履歴に加えます</strong>(9-1 で学んだとおりです)。
       </p>
@@ -110,6 +111,29 @@ function Body() {
   context_management: { edits: [{ type: "compact_20260112" }] },
 });
 messages.push({ role: "assistant", content: response.content }); // 要約のブロックを保つ`}</pre>
+      <p>
+        もう1つは、<strong>アプリが要約するタイミングを決める方式(オンデマンド)</strong>です。公式のドキュメントは、使える場合はこちらを勧めています。
+        会話をそのまま送り、<code>compaction</code> のパラメータを付けると、返事の代わりに要約のブロックが1つだけ返ります(<code>stop_reason</code> は <code>"compaction"</code>)。
+        以降は、<strong>そのブロックを先頭に置き、要約された元のメッセージは取り除きます</strong>(ブロックは、受け取ったまま変えずに送ります)。
+      </p>
+      <pre>{`const summary = await client.beta.messages.create({
+  betas: ["compact-2026-09-04"],
+  model: "claude-opus-5-5",
+  max_tokens: 4096, // 思考も含めた上限なので、余裕を持たせる
+  system: SYSTEM_PROMPT, // 普段の会話と同じ system と tools を送る
+  tools,
+  messages,
+  compaction: { type: "summarize" },
+});
+if (summary.stop_reason === "compaction") {
+  // 履歴を、要約のブロックだけに置き換える(ブロックは変えずに先頭へ)
+  messages = [{ role: "assistant", content: summary.content }];
+}`}</pre>
+      <ul>
+        <li>要約が返らないことがあります(<code>max_tokens</code> で途中で切れた、など)。ブロックを探す前に、まず <code>stop_reason</code> を確認し、返らなければ履歴をそのままにして、あとでもう一度試します。</li>
+        <li>要約されたメッセージの中の画像や文書は、要約に含まれません。あとの会話で必要なら、もう一度渡します。</li>
+        <li>最近の数ターンを、要約せずにそのまま残す方法や、会話を止めずに背景で要約する方法もあります。いつ要約するかは、前の応答の使用量(入力+出力のトークン数)が、自分で決めた上限を超えたかで判断します。</li>
+      </ul>
 
       <h3>対策4:会話の外に記憶する(メモリ)</h3>
       <p>

@@ -5,55 +5,155 @@
     "sources": []
   },
   "i-2": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "年表のほかの項目(パーセプトロン、word2vec など)の年と内容は、原典との照合がまだです。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
     "sources": [
       {
-        "title": "Attention Is All You Need(Vaswani ら, 2017)",
-        "url": "https://arxiv.org/abs/1706.03762",
+        "title": "Computing Machinery and Intelligence(Turing, 1950, Mind)",
+        "url": "https://academic.oup.com/mind/article/LIX/236/433/986238",
         "how": "read",
-        "use": "Transformer の発表(2017年)の記述"
+        "use": "「機械は考えられるか」を、模倣ゲームの形で問い直した"
       },
       {
-        "title": "Training language models to follow instructions with human feedback(InstructGPT, 2022)",
+        "title": "A Proposal for the Dartmouth Summer Research Project on Artificial Intelligence(McCarthy ら, 1955年8月31日)",
+        "url": "https://ojs.aaai.org/index.php/aimagazine/article/view/1904",
+        "how": "search",
+        "use": "「人工知能」という言葉が使われた提案書。1956年夏のダートマス会議の提案"
+      },
+      {
+        "title": "The Perceptron(Rosenblatt, 1958, Psychological Review)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/13602029/",
+        "how": "search",
+        "use": "パーセプトロン(書誌の確認。要旨は掲載されていない)"
+      },
+      {
+        "title": "ELIZA(Weizenbaum, 1966, Communications of the ACM)",
+        "url": "https://courses.cs.umbc.edu/331/papers/eliza.html",
+        "how": "search",
+        "use": "キーワードで起動する規則による会話プログラム"
+      },
+      {
+        "title": "Perceptrons(Minsky・Papert, 1969)の XOR の限界(解説)",
+        "how": "search",
+        "use": "1層のパーセプトロンでは XOR を表せない(書籍の本文ではなく、解説で確認)"
+      },
+      {
+        "title": "Learning representations by back-propagating errors(Rumelhart・Hinton・Williams, 1986, Nature)",
+        "url": "https://ui.adsabs.harvard.edu/abs/1986Natur.323..533R/abstract",
+        "how": "search",
+        "use": "多層のネットワークの重みを、誤差の逆伝播で学習する(書誌と要旨の要約で確認)"
+      },
+      {
+        "title": "Sequence to Sequence Learning with Neural Networks(Sutskever ら, 2014)",
+        "url": "https://arxiv.org/abs/1409.3215",
+        "how": "read",
+        "use": "LSTM による系列変換(seq2seq)"
+      },
+      {
+        "title": "Neural Machine Translation by Jointly Learning to Align and Translate(Bahdanau ら, 2014)",
+        "url": "https://arxiv.org/abs/1409.0473",
+        "how": "read",
+        "use": "翻訳中に、入力のどこを見るかを学習する(attention)"
+      },
+      {
+        "title": "Efficient Estimation of Word Representations in Vector Space(word2vec, 2013)",
+        "url": "https://arxiv.org/abs/1301.3781",
+        "how": "read",
+        "use": "単語ベクトルの学習"
+      },
+      {
+        "title": "Attention Is All You Need(2017)",
+        "url": "https://arxiv.org/abs/1706.03762",
+        "how": "read",
+        "use": "Transformer"
+      },
+      {
+        "title": "BERT(2018)",
+        "url": "https://arxiv.org/abs/1810.04805",
+        "how": "read",
+        "use": "穴埋め(masked language model)での事前学習"
+      },
+      {
+        "title": "Language Models are Few-Shot Learners(GPT-3, 2020)",
+        "url": "https://arxiv.org/abs/2005.14165",
+        "how": "read",
+        "use": "1750億パラメータ、勾配の更新なしの few-shot"
+      },
+      {
+        "title": "InstructGPT(2022)",
         "url": "https://arxiv.org/abs/2203.02155",
         "how": "read",
-        "use": "InstructGPT の発表(2022年)の記述"
+        "use": "人間のフィードバックによる強化学習で、指示に従うよう調整"
+      },
+      {
+        "title": "Introducing the Model Context Protocol(Anthropic, 2024年11月25日)",
+        "url": "https://www.anthropic.com/news/model-context-protocol",
+        "how": "read",
+        "use": "MCP の公開日"
+      },
+      {
+        "title": "Claude と GPT-4 の公開(2023年3月14日)・GPT-2(2019年2月)・ChatGPT(2022年11月30日)・o1(2024年9月12日)の公開日",
+        "how": "search",
+        "use": "公開の時期(OpenAI のサイトは取得できず、検索結果の要約で確認)"
+      }
+    ],
+    "note": "2012年の AlexNet(15.3% と 26.2% の誤差)は、検索結果の要約で確認しました(論文のアブストラクトには、2012年の結果は書かれていません)。1990年代の n-gram の音声認識・機械翻訳での利用、1997年の LSTM の論文、GPT-1(2018年)の論文の原文は、取得できず、未確認です。2025年以降のエージェントの実用化の記述は、一般的な状況の説明です。",
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、「人工知能」という言葉の由来(1955年の提案書)の説明を直した"
       }
     ]
   },
   "4-1": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "ほかの記述は、原典との照合がまだです。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
     "sources": [
       {
         "title": "Attention Is All You Need(Vaswani ら, 2017)",
-        "url": "https://arxiv.org/abs/1706.03762",
+        "url": "https://ar5iv.labs.arxiv.org/html/1706.03762",
         "how": "read",
-        "use": "Transformer が RNN を使わず attention だけで系列を処理することの記述"
+        "use": "再帰は並列化を妨げる。自己注意は、位置の間の経路が一定(O(1))。計算量は系列長の2乗"
+      },
+      {
+        "title": "Neural Machine Translation by Jointly Learning to Align and Translate(2014)",
+        "url": "https://arxiv.org/abs/1409.0473",
+        "how": "read",
+        "use": "固定長のベクトルが、エンコーダ・デコーダの性能の制約になる、という指摘"
+      },
+      {
+        "title": "Sequence to Sequence Learning with Neural Networks(2014)",
+        "url": "https://arxiv.org/abs/1409.3215",
+        "how": "read",
+        "use": "LSTM による系列変換"
       }
-    ]
+    ],
+    "note": "RNN の勾配消失・情報の欠落は、一般的に知られた性質で、本文の記述に合わせて、Vaswani らと Bahdanau らの論文で、並列化と固定長ベクトルの制約を確認しました。勾配消失そのものを示した原論文(1990年代)は、照合していません。"
   },
   "5-3": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "「約20トークン/パラメータ」は論文が明記した定数ではなく、70B・1.4T の比から導いた概算です。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
     "sources": [
       {
-        "title": "Training Compute-Optimal Large Language Models(Hoffmann ら, 2022, Chinchilla)",
-        "url": "https://arxiv.org/abs/2203.15556",
+        "title": "Training Compute-Optimal Large Language Models(Hoffmann ら, 2022)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2203.15556",
         "how": "read",
-        "use": "損失の近似式の係数、70B・1.4T トークンの比"
+        "use": "損失の式 L = E + A/N^α + B/D^β と係数(E=1.69, A=406.4, B=410.7, α=0.34, β=0.28)、モデルが2倍ならトークンも2倍、70B を 1.4兆トークンで学習、C≈6ND"
       },
       {
         "title": "Scaling Laws for Neural Language Models(Kaplan ら, 2020)",
-        "url": "https://arxiv.org/abs/2001.08361",
+        "url": "https://ar5iv.labs.arxiv.org/html/2001.08361",
         "how": "read",
-        "use": "スケーリング則の最初の報告"
+        "use": "損失はべき乗則で下がる。逆伝播は順伝播の約2倍"
+      },
+      {
+        "title": "LLaMA(Touvron ら, 2023)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2302.13971",
+        "how": "read",
+        "use": "推論の予算を考えて、より多くのトークンで学習する、という方針"
       }
     ],
+    "note": "「約20トークン/パラメータ」は、論文が明記した定数ではなく、70B・1.4兆の比から導いた概算です(本文にも明記)。「能力が急に現れるように見える現象も議論されている」は、一般的な議論として書いており、個別の論文は照合していません。",
     "changes": [
       {
         "date": "2026-10-08",
@@ -62,36 +162,69 @@
     ]
   },
   "6-3": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "ほかの記述は、原典との照合がまだです。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
     "sources": [
       {
         "title": "Lost in the Middle(Liu ら, 2023)",
         "url": "https://arxiv.org/abs/2307.03172",
         "how": "read",
-        "use": "長い文脈の中央の情報が使われにくい傾向"
+        "use": "関連する情報が先頭か末尾にあるとき性能が高く、中央にあると大きく下がる。長い文脈のモデルでも"
+      },
+      {
+        "title": "Context windows(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/context-windows.md",
+        "how": "read",
+        "use": "コンテキストウィンドウは、参照できるすべてのテキストと、生成する応答を含む。入力に収まらなければエラー。1Mトークンのモデル"
+      },
+      {
+        "title": "Train Short, Test Long(ALiBi, 2021)",
+        "url": "https://arxiv.org/abs/2108.12409",
+        "how": "read",
+        "use": "学習時より長い入力への外挿が、位置の表し方に依存する"
+      },
+      {
+        "title": "Attention Is All You Need(2017)",
+        "url": "https://ar5iv.labs.arxiv.org/html/1706.03762",
+        "how": "read",
+        "use": "自己注意の計算量は系列長の2乗"
       }
     ],
     "changes": [
       {
         "date": "2026-10-08",
         "summary": "原典との照合に基づき、根拠を確認できなかった「差は小さくなっている」の記述を削除した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、根拠を確認できなかった「差は小さくなっている」の記述を削除した(2026-10-08)"
       }
     ]
   },
   "7-1": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "ほかの記述は、原典との照合がまだです。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
     "sources": [
       {
-        "title": "LIMA: Less Is More for Alignment(Zhou ら, 2023)",
+        "title": "LIMA(Zhou ら, 2023)",
         "url": "https://arxiv.org/abs/2305.11206",
         "how": "read",
-        "use": "少量(1,000件)の質の高いデータでも効果があること"
+        "use": "1,000件の質の高いデータで調整。知識はほぼ事前学習で獲得され、少量の調整データで足りることを示唆"
+      },
+      {
+        "title": "InstructGPT(Ouyang ら, 2022)",
+        "url": "https://arxiv.org/abs/2203.02155",
+        "how": "read",
+        "use": "大きくするだけでは、指示に従うようにならない。人のお手本での教師ありの調整(約13,000件のプロンプト)"
+      },
+      {
+        "title": "SFT Trainer(Hugging Face TRL)",
+        "url": "https://huggingface.co/docs/trl/sft_trainer",
+        "how": "read",
+        "use": "損失は次トークンの交差エントロピー。応答(completion・assistant)のトークンだけに損失をかける設定"
       }
     ],
+    "note": "「SFT のデータは千件程度〜数百万件」の上限(数百万件)は、個別の資料を照合していません。「自信を持って答える癖がつくと幻覚を助長する」は、一般的な指摘で、8-3 の資料と整合しますが、SFT に限った実験は照合していません。",
     "changes": [
       {
         "date": "2026-10-08",
@@ -100,49 +233,109 @@
     ]
   },
   "7-2": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "ほかの記述は、原典との照合がまだです。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
     "sources": [
       {
-        "title": "Training language models to follow instructions with human feedback(InstructGPT, 2022)",
-        "url": "https://arxiv.org/abs/2203.02155",
+        "title": "InstructGPT(Ouyang ら, 2022)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2203.02155",
         "how": "read",
-        "use": "RLHF の流れ(SFT・報酬モデル・強化学習)"
+        "use": "3段階(教師あり・報酬モデル・PPO)、比較から報酬モデルの損失(log σ(r_w − r_l))、SFT のモデルからの1トークンごとの KL ペナルティ"
       },
       {
         "title": "Direct Preference Optimization(Rafailov ら, 2023)",
         "url": "https://arxiv.org/abs/2305.18290",
         "how": "read",
-        "use": "DPO の考え方"
-      }
-    ]
-  },
-  "7-3": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "ほかの記述は、原典との照合がまだです。",
-    "sources": [
+        "use": "報酬モデルを再パラメータ化し、分類の損失だけで解く。安定していて軽い。RL でのサンプリングが不要"
+      },
       {
-        "title": "Constitutional AI: Harmlessness from AI Feedback(Bai ら, 2022)",
+        "title": "Constitutional AI(Bai ら, 2022)",
         "url": "https://arxiv.org/abs/2212.08073",
         "how": "read",
-        "use": "AI のフィードバックを使う方法"
+        "use": "AI のフィードバックで、無害さを学習する"
+      },
+      {
+        "title": "Tülu 3(Lambert ら, 2024)",
+        "url": "https://arxiv.org/abs/2411.15124",
+        "how": "read",
+        "use": "検証可能な報酬による強化学習(RLVR)"
       }
-    ]
+    ],
+    "note": "「DPO は広く使われている」は、一般的な状況の説明で、利用の広がりの統計は照合していません。"
   },
-  "8-2": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "ほかの記述は、原典との照合がまだです。",
+  "7-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
     "sources": [
       {
-        "title": "ReAct: Synergizing Reasoning and Acting in Language Models(Yao ら, 2022)",
+        "title": "A General Language Assistant as a Laboratory for Alignment(Askell ら, 2021)",
+        "url": "https://arxiv.org/abs/2112.00861",
+        "how": "read",
+        "use": "有用(helpful)・正直(honest)・無害(harmless)の HHH"
+      },
+      {
+        "title": "Scaling Laws for Reward Model Overoptimization(Gao ら, 2022)",
+        "url": "https://arxiv.org/abs/2210.10760",
+        "how": "read",
+        "use": "代理の報酬を最適化しすぎると、本当の性能が下がる(Goodhart の法則)"
+      },
+      {
+        "title": "Towards Understanding Sycophancy in Language Models(Sharma ら, 2023)",
+        "url": "https://arxiv.org/abs/2310.13548",
+        "how": "read",
+        "use": "人の好みの評価が、迎合的な応答を好む傾向がある"
+      },
+      {
+        "title": "Red Teaming Language Models to Reduce Harms(Ganguli ら, 2022)",
+        "url": "https://arxiv.org/abs/2209.07858",
+        "how": "read",
+        "use": "レッドチーミング。RLHF のモデルは、大きくなるほど攻撃されにくい"
+      },
+      {
+        "title": "XSTest(Röttger ら, 2023)",
+        "url": "https://arxiv.org/abs/2308.01263",
+        "how": "read",
+        "use": "安全な依頼まで断る「過剰な拒否」の評価"
+      },
+      {
+        "title": "Constitutional AI(Bai ら, 2022)",
+        "url": "https://arxiv.org/abs/2212.08073",
+        "how": "read",
+        "use": "原則(憲法)に沿った自己評価"
+      }
+    ],
+    "note": "デモの「報酬を最適化しすぎるとどうなるか」の曲線は、概念を示す模式図で、実測ではありません(本文にも明記)。「誰の価値観か」「多層的な防御」は、一般的な整理です。"
+  },
+  "8-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "sources": [
+      {
+        "title": "ReAct(Yao ら, 2022)",
         "url": "https://arxiv.org/abs/2210.03629",
         "how": "read",
-        "use": "ReAct パターンの記述"
+        "use": "考える→行動する→観察する、のパターン"
+      },
+      {
+        "title": "Building effective agents(Anthropic Engineering, 2024年12月)",
+        "url": "https://www.anthropic.com/engineering/building-effective-agents",
+        "how": "read",
+        "use": "エージェントの自律性は、費用の増加と誤りの累積につながる。単純な解決を選ぶ。止める条件。人の確認"
+      },
+      {
+        "title": "Handle tool calls(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls.md",
+        "how": "read",
+        "use": "ツールの実行は、アプリ側。モデルは tool_use で依頼するだけ。ツールの結果は信用できない内容を含みうる"
+      },
+      {
+        "title": "Not what you've signed up for(Greshake ら, 2023)",
+        "url": "https://arxiv.org/abs/2302.12173",
+        "how": "read",
+        "use": "取得されるデータに仕込まれた指示(間接プロンプトインジェクション)"
       }
-    ]
+    ],
+    "note": "「ステップが増えるほど成功率は下がる」は、誤りの累積(Anthropic の記事)の帰結として書いており、成功率の測定値は照合していません。デモは台本です(本文にも明記)。"
   },
   "9-1": {
     "status": "verified",
@@ -272,7 +465,7 @@
     "status": "verified",
     "checkedAt": "2026-10-09",
     "versions": "Claude API のドキュメント(2026-10-09 時点)。モデル・料金・パラメータ・ベータの機能は変わりやすいので、使う前に最新の情報を確かめてください。",
-    "note": "本文のコンパクションは、トークンの閾値で自動的に起きる方式です。公式には、必要なときに自分で要約を依頼する方式(オンデマンド)もあり、同じページでは、使える場合はこちらを勧めています。「入力トークンの合計は、回数のほぼ2乗で増える」は、毎回全体を送ることからの計算(デモ)です。",
+    "note": "本文のコンパクションは、自動で要約される方式(閾値)と、アプリが決める方式(オンデマンド)の2通りを載せています。オンデマンドのコードは、公式のドキュメントの例に基づいており、実際の API では動かして確認していません。「入力トークンの合計は、回数のほぼ2乗で増える」は、毎回全体を送ることからの計算(デモ)です。",
     "sources": [
       {
         "title": "Context editing",
@@ -309,12 +502,22 @@
         "url": "https://platform.claude.com/docs/en/about-claude/pricing.md",
         "how": "read",
         "use": "キャッシュの読み取り(Opus 5.5 は5%)と書き込み(5分は1.25倍)"
+      },
+      {
+        "title": "Compaction on demand(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand.md",
+        "how": "read",
+        "use": "ベータ compact-2026-09-04、compaction: {type: \"summarize\"}、stop_reason \"compaction\"、ブロックを先頭に置いて元のメッセージを取り除く、要約が返らない場合の扱い"
       }
     ],
     "changes": [
       {
         "date": "2026-10-09",
         "summary": "原典との照合に基づき、effort や思考の設定を変えるとキャッシュが効かなくなること、最小のキャッシュ長(512トークン)を追記した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "アプリが要約のタイミングを決める方式(オンデマンドのコンパクション)を追加した"
       }
     ]
   },
@@ -663,42 +866,72 @@
     "sources": []
   },
   "14-2": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "METR は原文を読んで確認しました。そのほかは、検索結果での確認にとどまります。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
     "sources": [
       {
         "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity(METR, 2025年7月)",
         "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
         "how": "read",
-        "use": "19% 遅くなった、実感は 20% 速くなった"
+        "use": "19% 遅くなった、実感は 20% 速くなった(2026-10-08 に確認)"
       },
       {
         "title": "METR の2026年2月の更新",
         "url": "https://metr.org/blog/2026-02-24-uplift-update/",
         "how": "read",
-        "use": "選択バイアスの指摘と、更新後の見方"
+        "use": "選択バイアスの指摘と、更新後の見方(2026-10-08 に確認)"
       },
       {
         "title": "The Impact of AI on Developer Productivity: Evidence from GitHub Copilot(Peng ら, 2023)",
-        "how": "search",
-        "use": "Copilot の研究の結果(検索で確認。原文は未取得)"
+        "url": "https://arxiv.org/abs/2302.06590",
+        "how": "read",
+        "use": "HTTP サーバーを JavaScript で作る課題で、Copilot を使った群が 55.8% 速く完了"
       },
       {
-        "title": "DORA 2024 Accelerate State of DevOps レポート",
-        "how": "search",
-        "use": "AI の利用と、スループット・安定性の関係(検索で確認。原文は未取得)"
+        "title": "Announcing the 2024 DORA report(Google Cloud)",
+        "url": "https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report",
+        "how": "read",
+        "use": "AI の導入で、スループットが 1.5%、安定性が 7.2% 低下と推定。25% の導入増加と、文書の質 7.5%・コードの質 3.4%・レビューの速さ 3.1% の改善"
       },
       {
-        "title": "GitHub Copilot と Claude Code の公開時期",
+        "title": "We Have a Package for You!(Spracklen ら, 2024・USENIX Security 2025)",
+        "url": "https://arxiv.org/abs/2406.10279",
+        "how": "read",
+        "use": "57.6万件のコード、16のモデル。パッケージの幻覚は、商用モデルで平均5.2%以上、オープンなモデルで21.7%以上"
+      },
+      {
+        "title": "GitHub Copilot is generally available to all developers(GitHub, 2022年6月21日)",
+        "url": "https://github.blog/news-insights/product-news/github-copilot-is-generally-available-to-all-developers/",
+        "how": "read",
+        "use": "一般提供の開始(2022年6月)。技術プレビューは「前年」"
+      },
+      {
+        "title": "Claude 3.7 Sonnet and Claude Code(Anthropic, 2025年2月24日)",
+        "url": "https://www.anthropic.com/news/claude-3-7-sonnet",
+        "how": "read",
+        "use": "Claude Code の限定的な研究プレビュー"
+      },
+      {
+        "title": "Introducing Claude 4(Anthropic, 2025年5月22日)",
+        "url": "https://www.anthropic.com/news/claude-4",
+        "how": "read",
+        "use": "Claude Code の一般提供"
+      },
+      {
+        "title": "ChatGPT の公開日(2022年11月30日)",
         "how": "search",
-        "use": "ツールの変遷の年表(検索で確認)"
+        "use": "検索結果で確認(OpenAI のサイトは取得できなかった)"
       }
     ],
+    "note": "Copilot の技術プレビューの「2021年6月」という月は、GitHub の記事に「前年」とあるだけで、月までは確認できていません。DORA の「25%の導入増加ごとの 1.5%・7.2% の低下」は、記事では、25%の増加は改善の項目に、1.5%・7.2% は「導入が進むにつれて」と書かれており、「25%ごと」という結び付けは確認できなかったため、本文から外しました。METR の2件は、原文を読んで確認しています(2026-10-08)。",
     "changes": [
       {
         "date": "2026-10-08",
         "summary": "METR の2025年の結果と、2026年2月の更新(選択バイアスの指摘)の両方を載せた"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、DORA の数字の説明を、確認できた範囲(導入が進むにつれて、速さ1.5%・安定性7.2% の低下と推定)に直した"
       }
     ]
   },
@@ -713,16 +946,17 @@
     "sources": []
   },
   "15-2": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "レビュー問題のコードは、説明用にこのアプリが作った例です。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
     "sources": [
       {
-        "title": "We Have a Package for You!(パッケージの幻覚の研究, USENIX Security 2025)",
-        "how": "search",
-        "use": "生成コードに、存在しないパッケージ名が含まれる割合(検索で確認。原文は未取得)"
+        "title": "We Have a Package for You!(Spracklen ら, 2024・USENIX Security 2025)",
+        "url": "https://arxiv.org/abs/2406.10279",
+        "how": "read",
+        "use": "パッケージの幻覚の割合と、ソフトウェアの供給網への攻撃(パッケージの取り違え)"
       }
-    ]
+    ],
+    "note": "レビュー問題のコード(SQL への値の埋め込み、境界の誤り、秘密情報の直書き)は、このアプリが説明のために作った例です。確認の手順の各項目は、一般的な実務の助言です(型・lint・テスト・説明できるか)。"
   },
   "15-3": {
     "status": "original",
