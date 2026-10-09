@@ -46,8 +46,11 @@ test('一覧ページ: AI 執筆の説明、件数が記録と一致、絞り込
   for (const [s, label] of [['verified', '原典・公式で確認'], ['partial', '一部を確認'], ['original', 'このアプリ独自の整理'], ['unverified', '未確認']] as const)
     await expect(page.locator('.source-legend dt', { hasText: label })).toContainText(`${count(s)} レッスン`)
   await expect(page.locator('.source-list li')).toHaveCount(ids.length)
-  await page.selectOption('select[aria-label="確認の状況で絞り込む"]', 'unverified')
-  await expect(page.locator('.source-list li')).toHaveCount(count('unverified'))
+  for (const k of ['verified', 'partial', 'original', 'unverified']) {
+    await page.selectOption('select[aria-label="確認の状況で絞り込む"]', k)
+    await expect(page.locator('.source-list li')).toHaveCount(count(k))
+  }
+  await page.selectOption('select[aria-label="確認の状況で絞り込む"]', 'partial')
   await page.locator('.source-list li a').first().click()
   await expect(page.locator('article h1')).toBeVisible()
 })

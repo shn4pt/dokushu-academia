@@ -349,9 +349,41 @@
     ]
   },
   "12-1": {
-    "status": "unverified",
-    "note": "評価の考え方は一般的な内容で、特定の資料に基づいていません。出典を追加する必要があります。",
-    "sources": []
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "誤差の目安「±1/√(件数×繰り返し回数)」は、割合の95%信頼区間(最大でも 1.96×0.5/√n ≒ 0.98/√n)から導いた大まかな式で、資料の記載ではありません。「採点役を構造化出力で受け取る」「同じケースを複数回実行する」は、このアプリの推奨です。",
+    "sources": [
+      {
+        "title": "Demystifying evals for AI agents(Anthropic Engineering)",
+        "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+        "how": "read",
+        "use": "最初は20〜50件の、実際の失敗からの課題。結果で採点する。両方向のケース。ログを読む。LLM の採点を人の判定と合わせる"
+      },
+      {
+        "title": "Create strong empirical evaluations(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/test-and-evaluate/develop-tests.md",
+        "how": "read",
+        "use": "評価は実際の用途に合わせる、境界の例、自動採点、別のモデルで採点する"
+      },
+      {
+        "title": "Judging LLM-as-a-Judge(Zheng ら, 2023)",
+        "url": "https://arxiv.org/abs/2306.05685",
+        "how": "read",
+        "use": "LLM による採点の偏り(位置・長さ・自分びいき)と、人との一致(8割超)"
+      },
+      {
+        "title": "Adding Error Bars to Evals(Miller, 2024)",
+        "url": "https://arxiv.org/abs/2411.00640",
+        "how": "read",
+        "use": "評価の統計的なばらつきを扱う提案"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "Anthropic のエンジニアリングブログの目安に合わせ、評価セットの最初の件数を「15〜100件」から「20〜50件」に直した"
+      }
+    ]
   },
   "12-2": {
     "status": "verified",
@@ -661,6 +693,689 @@
         "url": "https://github.com/shn4pt/mygame1/commits/main",
         "how": "repo",
         "use": "年表・出来事の時刻と内容"
+      }
+    ]
+  },
+  "0-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "内積の符号(同じ向きなら正、逆向きなら負)は、資料に書かれた内積と角度の式 v·w=|v||w|cosθ から導かれる性質で、資料にその文はありません。LLM の埋め込みの次元数の目安(数百〜数万)は、BERT の 768 や GPT-3 の 12,288 など、別のレッスン(4-4)の数値と整合しています。",
+    "sources": [
+      {
+        "title": "Linear Algebra(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_preliminaries/linear-algebra.html",
+        "how": "read",
+        "use": "ベクトル、内積(要素ごとの積の和)、行列とベクトルの積、行列の積の形"
+      },
+      {
+        "title": "Geometry and Linear Algebraic Operations(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_appendix-mathematics-for-deep-learning/geometry-linear-algebraic-ops.html",
+        "how": "read",
+        "use": "内積と角度、直交すると内積が0、コサイン類似度"
+      }
+    ]
+  },
+  "0-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "確率分布の「合計が1」は、確率の公理(全事象の確率が1)から。連鎖律は、資料の2変数の積の法則を、言語モデルの節の式で系列に拡張したものを確認しました。",
+    "sources": [
+      {
+        "title": "Probability and Statistics(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_preliminaries/probability.html",
+        "how": "read",
+        "use": "確率の公理、条件付き確率、期待値、大数の法則"
+      },
+      {
+        "title": "Language Models(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_recurrent-neural-networks/language-model.html",
+        "how": "read",
+        "use": "連鎖律による同時確率の分解(言語モデル)"
+      }
+    ]
+  },
+  "0-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "「勾配は最も急に増える方向」は、資料の「負の勾配が最も急に減る方向」の裏返しで、資料にそのままの文はありません。",
+    "sources": [
+      {
+        "title": "Calculus(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_preliminaries/calculus.html",
+        "how": "read",
+        "use": "微分と傾き、数値微分、勾配、連鎖律"
+      },
+      {
+        "title": "Multivariable Calculus(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_appendix-mathematics-for-deep-learning/multivariable-calculus.html",
+        "how": "read",
+        "use": "勾配の逆向きが最も急に減る方向、多変数の連鎖律"
+      }
+    ]
+  },
+  "1-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "表の値(0.9→0.11、0.5→0.69、0.1→2.30、0.01→4.61)は、計算し直して一致を確認しました。",
+    "sources": [
+      {
+        "title": "Linear Regression(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_linear-regression/linear-regression.html",
+        "how": "read",
+        "use": "二乗誤差の損失、大きな誤差ほど強く罰する"
+      },
+      {
+        "title": "Softmax Regression(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_linear-classification/softmax-regression.html",
+        "how": "read",
+        "use": "交差エントロピーは正解の確率の負の対数(負の対数尤度、最尤推定)"
+      },
+      {
+        "title": "表の損失の値(-ln p)の再計算",
+        "how": "calc",
+        "use": "デモの数値を、計算し直して確認"
+      }
+    ]
+  },
+  "1-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "「1ステップに数百万トークン以上」は、GPT-3(3.2M)と Llama 2(4M)の最大規模のモデルでの値です。小さなモデルでは、これより小さいバッチも使われます。",
+    "sources": [
+      {
+        "title": "Learning Rate Scheduling(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_optimization/lr-scheduler.html",
+        "how": "read",
+        "use": "大きすぎると発散、小さすぎると遅い、ウォームアップのあと下げる"
+      },
+      {
+        "title": "Adam(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_optimization/adam.html",
+        "how": "read",
+        "use": "モーメンタムと二乗勾配の移動平均を使う、よく使われる"
+      },
+      {
+        "title": "Linear Regression(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_linear-regression/linear-regression.html",
+        "how": "read",
+        "use": "ミニバッチ、学習率"
+      },
+      {
+        "title": "Decoupled Weight Decay Regularization(Loshchilov・Hutter, 2017)",
+        "url": "https://arxiv.org/abs/1711.05101",
+        "how": "read",
+        "use": "AdamW(重み減衰を勾配の更新から分ける)"
+      },
+      {
+        "title": "Language Models are Few-Shot Learners(GPT-3, 2020)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2005.14165",
+        "how": "read",
+        "use": "バッチサイズ 3.2M トークン(175B)"
+      },
+      {
+        "title": "Llama 2(2023)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2307.09288",
+        "how": "read",
+        "use": "AdamW、グローバルバッチ 4M トークン、ウォームアップ 2000 ステップ+コサイン減衰"
+      }
+    ]
+  },
+  "1-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "デモの結果(訓練誤差は次数とともに下がり続け、テスト誤差は次数3〜4で最小になり、次数9では訓練誤差が0)は、再計算して確認しました。正則化・ドロップアウト・早期終了は、機械学習の標準的な手法として書いており、個別の原典は照合していません。",
+    "sources": [
+      {
+        "title": "Linear Regression(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_linear-regression/linear-regression.html",
+        "how": "read",
+        "use": "学習の目的は未知のデータでの性能(汎化)"
+      },
+      {
+        "title": "Scaling Data-Constrained Language Models(Muennighoff ら, 2023)",
+        "url": "https://arxiv.org/abs/2305.16264",
+        "how": "read",
+        "use": "最大4エポックの繰り返しは、損失への影響が小さい"
+      },
+      {
+        "title": "Language Models are Few-Shot Learners(GPT-3, 2020)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2005.14165",
+        "how": "read",
+        "use": "データセットごとの繰り返し回数は 0.43〜3.4 エポック"
+      },
+      {
+        "title": "Extracting Training Data from Large Language Models(Carlini ら, 2020)",
+        "url": "https://arxiv.org/abs/2012.07805",
+        "how": "read",
+        "use": "GPT-2 から学習データの文章をそのまま取り出せた"
+      },
+      {
+        "title": "Deduplicating Training Data Makes Language Models Better(Lee ら, 2021)",
+        "url": "https://arxiv.org/abs/2107.06499",
+        "how": "read",
+        "use": "重複除去で、暗記した文章を出す頻度が約1/10"
+      },
+      {
+        "title": "次数ごとの訓練誤差とテスト誤差の再計算(デモと同じデータ・同じ式)",
+        "how": "calc",
+        "use": "デモの数値を、計算し直して確認"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、LLM の学習の繰り返し回数の記述を「1回前後(多くても数回)」に直した"
+      }
+    ]
+  },
+  "2-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "「数十〜百前後の層」「数十億〜1兆以上」は、GPT-3(96層、175B)と、兆単位のパラメータを持つ MoE モデルによる範囲です。",
+    "sources": [
+      {
+        "title": "Multilayer Perceptrons(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_multilayer-perceptrons/mlp.html",
+        "how": "read",
+        "use": "隠れ層は重み・バイアスの変換+非線形の活性化"
+      },
+      {
+        "title": "Language Models are Few-Shot Learners(GPT-3, 2020)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2005.14165",
+        "how": "read",
+        "use": "GPT-3 175B は 96 層"
+      },
+      {
+        "title": "Switch Transformers(Fedus ら, 2021)",
+        "url": "https://arxiv.org/abs/2101.03961",
+        "how": "read",
+        "use": "専門家混合(MoE)で兆単位のパラメータ"
+      },
+      {
+        "title": "パラメータ数の計算(1024→1024 は 1,049,600 個)",
+        "how": "calc",
+        "use": "デモの数値を、計算し直して確認"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、層数とパラメータ数の範囲を「百前後」「1兆以上(専門家混合モデルを含む)」に直した"
+      }
+    ]
+  },
+  "2-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "tanh が RNN 系で多用された、という記述は、LSTM などの一般的な知識で、個別の資料は照合していません。",
+    "sources": [
+      {
+        "title": "Multilayer Perceptrons(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_multilayer-perceptrons/mlp.html",
+        "how": "read",
+        "use": "線形の層の重ねは1つに潰れる、ReLU・シグモイド・tanh、勾配消失、GELU"
+      },
+      {
+        "title": "BERT(2018)",
+        "url": "https://ar5iv.labs.arxiv.org/html/1810.04805",
+        "how": "read",
+        "use": "BERT は GELU を使い、OpenAI GPT に倣った"
+      }
+    ]
+  },
+  "2-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "optimizer.step() と zero_grad() という関数名そのものは、このチュートリアルには書かれていません(PyTorch の一般的な使い方として書いています)。",
+    "sources": [
+      {
+        "title": "Forward Propagation, Backward Propagation, and Computational Graphs(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_multilayer-perceptrons/backprop.html",
+        "how": "read",
+        "use": "連鎖律で出力側から逆向きに計算、途中の値を保存して再利用、学習は推論よりメモリを使う"
+      },
+      {
+        "title": "Scaling Laws for Neural Language Models(Kaplan ら, 2020)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2001.08361",
+        "how": "read",
+        "use": "逆伝播の計算量は、順伝播の約2倍"
+      },
+      {
+        "title": "Automatic Differentiation(PyTorch チュートリアル)",
+        "url": "https://docs.pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html",
+        "how": "read",
+        "use": "計算の記録(計算グラフ)と backward()、勾配は累積するのでリセットが要る"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、逆伝播のコストを「順伝播の数倍程度(目安は約2倍)」に直した"
+      }
+    ]
+  },
+  "3-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "本文の「unbelievable」の分割とIDは、流れを示すための例で、実際のトークナイザの出力ではありません(本文にもそう明記しました)。SentencePiece の byte fallback の説明は、README では確認できませんでした(byte-level BPE は確認済み)。「綴りの扱いが不得意になる」ことは、数字の資料以外では個別に照合していません。",
+    "sources": [
+      {
+        "title": "Neural Machine Translation of Rare Words with Subword Units(Sennrich ら, 2015)",
+        "url": "https://arxiv.org/abs/1508.07909",
+        "how": "read",
+        "use": "サブワードで、まれな語・未知語を扱う(BPE を単語分割に応用)"
+      },
+      {
+        "title": "Tokenization algorithms(Hugging Face Transformers)",
+        "url": "https://huggingface.co/docs/transformers/tokenizer_summary",
+        "how": "read",
+        "use": "BPE の手順、バイト単位の BPE(基本の語彙は256のバイト)、単語・文字・サブワードの比較"
+      },
+      {
+        "title": "Tokenizers(Hugging Face LLM Course)",
+        "url": "https://huggingface.co/learn/llm-course/chapter2/4",
+        "how": "read",
+        "use": "単語・文字・サブワードのトレードオフ、整数IDへの変換"
+      },
+      {
+        "title": "Byte-Pair Encoding tokenization(Hugging Face LLM Course)",
+        "url": "https://huggingface.co/learn/llm-course/chapter6/5",
+        "how": "read",
+        "use": "結合規則を順に学習し、順に適用する"
+      },
+      {
+        "title": "Language Model Tokenizers Introduce Unfairness Between Languages(Petrov ら, 2023)",
+        "url": "https://arxiv.org/abs/2305.15425",
+        "how": "read",
+        "use": "同じ内容でも、言語によってトークン数が大きく違う(最大15倍)"
+      },
+      {
+        "title": "Tokenization counts: the impact of tokenization on arithmetic in frontier LLMs(Singh・Strouse, 2024)",
+        "url": "https://arxiv.org/abs/2402.14903",
+        "how": "read",
+        "use": "数字のトークン化が算術の性能に影響する"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、byte-level BPE と byte fallback の記述を直した(2026-10-08)"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "例のトークン分割とIDが説明用であることを、本文に明記した"
+      }
+    ]
+  },
+  "3-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "デモは手作りの3次元ベクトルで、実際のモデルの値ではありません(本文にも明記)。",
+    "sources": [
+      {
+        "title": "Geometry and Linear Algebraic Operations(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_appendix-mathematics-for-deep-learning/geometry-linear-algebraic-ops.html",
+        "how": "read",
+        "use": "コサイン類似度の定義、直交するとき内積0"
+      },
+      {
+        "title": "Efficient Estimation of Word Representations in Vector Space(word2vec, Mikolov ら, 2013)",
+        "url": "https://ar5iv.labs.arxiv.org/html/1301.3781",
+        "how": "read",
+        "use": "King − Man + Woman が Queen に「最も近い」ベクトルになるという紹介。評価では、最も近い語が正解と完全に一致したときだけ正解とする"
+      },
+      {
+        "title": "デモの手作りベクトル(王 − 男 + 女 = [1, −0.8, 1] = 女王)の計算",
+        "how": "calc",
+        "use": "デモの数値を、計算し直して確認"
+      }
+    ]
+  },
+  "3-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "sources": [
+      {
+        "title": "Language Models(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_recurrent-neural-networks/language-model.html",
+        "how": "read",
+        "use": "連鎖律、n-gram(unigram・bigram・trigram)、クロスエントロピーとパープレキシティ"
+      },
+      {
+        "title": "A Neural Probabilistic Language Model(Bengio ら, 2003)",
+        "url": "https://www.jmlr.org/papers/v3/bengio03a.html",
+        "how": "read",
+        "use": "n-gram の限界と、見たことのない系列にも高い確率を与えられる(ニューラルの言語モデル)"
+      }
+    ]
+  },
+  "4-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "「Query=何を探しているか」などの比喩の説明は、理解のためのたとえで、論文の文ではありません。",
+    "sources": [
+      {
+        "title": "Attention Is All You Need(Vaswani ら, 2017)",
+        "url": "https://ar5iv.labs.arxiv.org/html/1706.03762",
+        "how": "read",
+        "use": "Q・K・V、1/√d_k のスケーリングの理由、デコーダの因果マスク(−∞)、自己注意の計算量 O(n²·d)"
+      }
+    ]
+  },
+  "4-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "自己注意が語順を使わないこと(入れ替えても出力が入れ替わるだけ)は、自己注意の式から導かれる性質で、論文には、位置情報を足す必要がある理由として書かれています。",
+    "sources": [
+      {
+        "title": "Attention Is All You Need(Vaswani ら, 2017)",
+        "url": "https://ar5iv.labs.arxiv.org/html/1706.03762",
+        "how": "read",
+        "use": "正弦波の位置エンコーディング。長い系列にも外挿できるかもしれない、学習する位置埋め込みでもほぼ同じ結果"
+      },
+      {
+        "title": "GPT-2(Hugging Face Transformers)",
+        "url": "https://huggingface.co/docs/transformers/model_doc/gpt2",
+        "how": "read",
+        "use": "GPT-2 は絶対位置の埋め込みを使う"
+      },
+      {
+        "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding(Su ら, 2021)",
+        "url": "https://arxiv.org/abs/2104.09864",
+        "how": "read",
+        "use": "回転行列で絶対位置を表し、相対位置の依存を自己注意に組み込む(RoPE)"
+      },
+      {
+        "title": "Train Short, Test Long(ALiBi, Press ら, 2021)",
+        "url": "https://arxiv.org/abs/2108.12409",
+        "how": "read",
+        "use": "距離に比例する罰則を注意スコアに足す"
+      },
+      {
+        "title": "LLaMA(Touvron ら, 2023)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2302.13971",
+        "how": "read",
+        "use": "絶対位置埋め込みをやめ、RoPE を使う"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、「RoPE が主流」の記述を「LLaMA をはじめ、多くの最近の LLM が使っている」に直した"
+      }
+    ]
+  },
+  "4-4": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "「パラメータの約2/3は FFN」は、Kaplan らの式(注意が 4d²、FFN が 8d² / 層)から導いた値です。デモの GPT-2 small(約85M)は埋め込みを除いた値で、埋め込みを含めると約124M です。",
+    "sources": [
+      {
+        "title": "Attention Is All You Need(Vaswani ら, 2017)",
+        "url": "https://ar5iv.labs.arxiv.org/html/1706.03762",
+        "how": "read",
+        "use": "マルチヘッド、FFN(d_model=512、d_ff=2048)、残差接続+層正規化"
+      },
+      {
+        "title": "Scaling Laws for Neural Language Models(Kaplan ら, 2020)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2001.08361",
+        "how": "read",
+        "use": "パラメータ数 N ≈ 12·n_layer·d_model²(d_attn = d_ff/4 = d_model のとき)"
+      },
+      {
+        "title": "On Layer Normalization in the Transformer Architecture(Xiong ら, 2020)",
+        "url": "https://arxiv.org/abs/2002.04745",
+        "how": "read",
+        "use": "Pre-LN は初期の勾配が安定し、ウォームアップを省ける"
+      },
+      {
+        "title": "Root Mean Square Layer Normalization(Zhang・Sennrich, 2019)",
+        "url": "https://arxiv.org/abs/1910.07467",
+        "how": "read",
+        "use": "RMSNorm は、平均を引く処理を省いて計算が軽い"
+      },
+      {
+        "title": "LLaMA(Touvron ら, 2023)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2302.13971",
+        "how": "read",
+        "use": "Pre-norm と RMSNorm を使う"
+      },
+      {
+        "title": "パラメータ数の見積もり(d=768・L=12 → 約85M、d=12288・L=96 → 約174B)",
+        "how": "calc",
+        "use": "デモの数値を、計算し直して確認"
+      }
+    ]
+  },
+  "5-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "「文法や事実、論理がある程度必要で、獲得されていくと考えられている」は、本文でも仮説として書いており、検証はしていません。",
+    "sources": [
+      {
+        "title": "Language Models(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_recurrent-neural-networks/language-model.html",
+        "how": "read",
+        "use": "クロスエントロピーとパープレキシティ"
+      },
+      {
+        "title": "Perplexity of fixed-length models(Hugging Face Transformers)",
+        "url": "https://huggingface.co/docs/transformers/perplexity",
+        "how": "read",
+        "use": "パープレキシティ=平均の負の対数尤度の指数。トークン化の違いで、モデル間は単純に比べられない"
+      },
+      {
+        "title": "Sequence-to-Sequence Learning(Dive into Deep Learning)",
+        "url": "https://d2l.ai/chapter_recurrent-modern/seq2seq.html",
+        "how": "read",
+        "use": "教師強制(正解の系列をデコーダの入力にする)の説明"
+      },
+      {
+        "title": "Attention Is All You Need(Vaswani ら, 2017)",
+        "url": "https://ar5iv.labs.arxiv.org/html/1706.03762",
+        "how": "read",
+        "use": "因果マスクで、デコーダの全位置の予測を並列に計算できる"
+      },
+      {
+        "title": "デモの数値(e^0.920 ≒ 2.51、ln 50,000 ≒ 10.82)の計算",
+        "how": "calc",
+        "use": "デモの数値を、計算し直して確認"
+      }
+    ]
+  },
+  "5-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "ライセンス・著作権の扱いは、法制度や組織の方針で異なるため、一般的な注意として書いており、個別の資料では確認していません。個人情報のマスクなどの安全性の前処理も、一般的な説明です。",
+    "sources": [
+      {
+        "title": "Language Models are Few-Shot Learners(GPT-3, 2020)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2005.14165",
+        "how": "read",
+        "use": "品質フィルタ(分類器)、あいまい重複除去(MinHashLSH)、ベンチマークの汚染"
+      },
+      {
+        "title": "Deduplicating Training Data Makes Language Models Better(Lee ら, 2021)",
+        "url": "https://arxiv.org/abs/2107.06499",
+        "how": "read",
+        "use": "重複が多く、暗記の頻度が上がる。重複除去で約1/10"
+      },
+      {
+        "title": "The RefinedWeb Dataset for Falcon LLM(Penedo ら, 2023)",
+        "url": "https://arxiv.org/abs/2306.01116",
+        "how": "read",
+        "use": "よくフィルタし重複を除いた Web データだけでも強いモデルになる。CommonCrawl から5兆トークン"
+      },
+      {
+        "title": "Llama 2(2023)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2307.09288",
+        "how": "read",
+        "use": "2兆トークンで学習"
+      },
+      {
+        "title": "Datasheets for Datasets(Gebru ら, 2018)",
+        "url": "https://arxiv.org/abs/1803.09010",
+        "how": "read",
+        "use": "データの出所・構成を文書にする提案"
+      }
+    ]
+  },
+  "6-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "temperature=0 でも完全に決定的とは限らない理由(並列計算の浮動小数点の誤差など)は、API リファレンスの該当部分を取得できず、未確認です。",
+    "sources": [
+      {
+        "title": "The Curious Case of Neural Text Degeneration(Holtzman ら, 2019)",
+        "url": "https://arxiv.org/abs/1904.09751",
+        "how": "read",
+        "use": "尤度を最大にする復号は、退屈で繰り返しの多い文章になる。nucleus(top-p)で、信頼できない裾を切る"
+      },
+      {
+        "title": "How to generate text(Hugging Face ブログ)",
+        "url": "https://huggingface.co/blog/how-to-generate",
+        "how": "read",
+        "use": "greedy・サンプリング・temperature(0に近づくと greedy)・top-k・top-p"
+      },
+      {
+        "title": "Messages API リファレンス(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/api/messages.md",
+        "how": "read",
+        "use": "Claude Opus 4.6 より後に公開されたモデルは temperature を設定できない"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しいモデルでは temperature を指定できないことがある、という注意を追加した"
+      }
+    ]
+  },
+  "6-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "「プリフィルは計算が主なコスト」は、NVIDIA の記事で「GPU を使い切る並列計算」とあり、「compute-bound」という語では書かれていません。KV キャッシュの量子化は、KVQuant の概要で確認しました。",
+    "sources": [
+      {
+        "title": "Mastering LLM Techniques: Inference Optimization(NVIDIA)",
+        "url": "https://developer.nvidia.com/blog/mastering-llm-techniques-inference-optimization/",
+        "how": "read",
+        "use": "プリフィルとデコード、デコードはメモリ律速、KV キャッシュの大きさの式、MQA・GQA"
+      },
+      {
+        "title": "Fast Transformer Decoding: One Write-Head is All You Need(Shazeer, 2019)",
+        "url": "https://arxiv.org/abs/1911.02150",
+        "how": "read",
+        "use": "MQA。keys・values の読み込みが、デコードのメモリ帯域のボトルネック"
+      },
+      {
+        "title": "GQA(Ainslie ら, 2023)",
+        "url": "https://arxiv.org/abs/2305.13245",
+        "how": "read",
+        "use": "MQA と MHA の中間の数の key-value ヘッド"
+      },
+      {
+        "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention(Kwon ら, 2023)",
+        "url": "https://arxiv.org/abs/2309.06180",
+        "how": "read",
+        "use": "KV キャッシュは大きく、動的に増減する"
+      },
+      {
+        "title": "KVQuant(Hooper ら, 2024)",
+        "url": "https://arxiv.org/abs/2401.18079",
+        "how": "read",
+        "use": "長い文脈では KV キャッシュがメモリの大半。低精度で量子化する"
+      },
+      {
+        "title": "Prompt caching(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching.md",
+        "how": "read",
+        "use": "共通の先頭部分の再利用(完全に同じ接頭辞が必要)"
+      },
+      {
+        "title": "KV キャッシュのメモリ(1トークン 524,288 バイト、1500 トークンで 786 MB)の計算",
+        "how": "calc",
+        "use": "デモの数値を、計算し直して確認"
+      }
+    ]
+  },
+  "8-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "RAG の手順(チャンク分割・埋め込み・上位 k 件の取得)は、第2部(11-4)の資料で確認しています。デモの検索は、2文字の組の一致で代用した説明用のものです(本文にも明記)。",
+    "sources": [
+      {
+        "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks(Lewis ら, 2020)",
+        "url": "https://arxiv.org/abs/2005.11401",
+        "how": "read",
+        "use": "モデルの重みの知識(パラメータ記憶)と、外部の検索(非パラメータ記憶)を組み合わせる"
+      },
+      {
+        "title": "Fine-Tuning or Retrieval?(Ovadia ら, 2023)",
+        "url": "https://arxiv.org/abs/2312.05934",
+        "how": "read",
+        "use": "知識の注入では、RAG が教師なしのファインチューニングを一貫して上回る"
+      },
+      {
+        "title": "Adaptive Chameleon or Stubborn Sloth(Xie ら, 2023)",
+        "url": "https://arxiv.org/abs/2305.13300",
+        "how": "read",
+        "use": "外部の証拠が、モデルの既存の知識と矛盾するときの振る舞い(確証バイアス)"
+      },
+      {
+        "title": "Not what you've signed up for(Greshake ら, 2023)",
+        "url": "https://arxiv.org/abs/2302.12173",
+        "how": "read",
+        "use": "検索されるデータに仕込まれた指示(間接プロンプトインジェクション)"
+      }
+    ]
+  },
+  "8-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "「文脈に引きずられる(質問の誤った前提に合わせる)」は、一般的に知られた振る舞いとして書いており、個別の資料は照合していません。デモの信頼区間は、正規近似の簡易計算で、本文にもそう明記しています。",
+    "sources": [
+      {
+        "title": "Why Language Models Hallucinate(Kalai ら, 2025)",
+        "url": "https://arxiv.org/abs/2509.04664",
+        "how": "read",
+        "use": "学習と評価が、不確かさを認めるより、推測を評価する"
+      },
+      {
+        "title": "Calibrated Language Models Must Hallucinate(Kalai・Vempala, 2023)",
+        "url": "https://arxiv.org/abs/2311.14648",
+        "how": "read",
+        "use": "学習データに1回しか出ない事実が、幻覚の起きやすさの目安になる"
+      },
+      {
+        "title": "How Language Model Hallucinations Can Snowball(Zhang ら, 2023)",
+        "url": "https://arxiv.org/abs/2305.13534",
+        "how": "read",
+        "use": "初期の誤りに固執し、さらに誤りを重ねる"
+      },
+      {
+        "title": "Language Models are Few-Shot Learners(GPT-3, 2020)",
+        "url": "https://ar5iv.labs.arxiv.org/html/2005.14165",
+        "how": "read",
+        "use": "ベンチマークの汚染の分析"
+      },
+      {
+        "title": "Dynabench(Kiela ら, 2021)",
+        "url": "https://arxiv.org/abs/2104.14337",
+        "how": "read",
+        "use": "ベンチマークの高得点と、簡単な例での失敗のずれ"
+      },
+      {
+        "title": "Adding Error Bars to Evals(Miller, 2024)",
+        "url": "https://arxiv.org/abs/2411.00640",
+        "how": "read",
+        "use": "評価の統計的なばらつきを扱う提案"
+      },
+      {
+        "title": "Judging LLM-as-a-Judge(Zheng ら, 2023)",
+        "url": "https://arxiv.org/abs/2306.05685",
+        "how": "read",
+        "use": "LLM による採点の偏り(位置・長さ・自分びいき)"
       }
     ]
   }

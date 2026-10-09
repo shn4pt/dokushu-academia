@@ -95,7 +95,7 @@ function Body() {
       <h3>誤差逆伝播法(バックプロパゲーション)</h3>
       <p>
         ネットワークは関数の合成なので、<strong>連鎖律</strong>で損失から入力側へ向かって、勾配を順に計算できます。
-        途中の結果を再利用するため、全パラメータの勾配が<strong>順伝播とほぼ同じ程度のコスト</strong>で求まります。
+        途中の結果を再利用するため、全パラメータの勾配が<strong>順伝播の数倍程度(目安は約2倍)のコスト</strong>で求まります。
       </p>
       <Tex block tex={String.raw`\frac{\partial L}{\partial w}=\frac{\partial L}{\partial a}\cdot\frac{\partial a}{\partial z}\cdot\frac{\partial z}{\partial w}`} />
       <ol>

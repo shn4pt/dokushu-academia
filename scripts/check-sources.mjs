@@ -1,12 +1,12 @@
 // 出典の記録(src/data/lesson-sources.json)を検査する。npm run build の前に自動で実行される。
-//  - 記録の誤り(存在しないレッスン、確認済みなのに出典や確認日がない、など)は、ビルドを失敗させる。
-//  - 記録が足りないこと(未確認、確認日が古い)は、警告にとどめる。出典が埋まったら STRICT に切り替える。
+//  - 記録の誤り(存在しないレッスン、確認済みなのに出典や確認日がない、など)と、記録のないレッスンは、ビルドを失敗させる。
+//    レッスンを足したら、出典の記録も足す。まだ確認できていないなら、status を "unverified" と明記する(隠さない)。
+//  - 明記された「未確認」と、確認日が古いこと(180日以上)は、警告にとどめる。
 import { readFileSync } from 'node:fs'
 
-const STRICT = process.env.SOURCES_STRICT === '1'
 const STALE_DAYS = 180
 const STATUSES = ['verified', 'partial', 'original', 'unverified']
-const HOWS = ['read', 'search', 'skill', 'repo']
+const HOWS = ['read', 'search', 'skill', 'repo', 'calc']
 
 const ids = [...readFileSync('src/lessons/index.ts', 'utf8').matchAll(/'([0-9i-]+)': \(\) => import\(/g)].map((m) => m[1])
 const sources = JSON.parse(readFileSync('src/data/lesson-sources.json', 'utf8'))
@@ -21,7 +21,7 @@ for (const id of Object.keys(history)) if (!ids.includes(id)) errors.push(`${id}
 const count = Object.fromEntries(STATUSES.map((s) => [s, 0]))
 for (const id of ids) {
   const e = sources[id]
-  if (!e) { warnings.push(`${id}: 出典の記録がありません(未確認として表示されます)`); count.unverified++; continue }
+  if (!e) { errors.push(`${id}: 出典の記録がありません(src/data/lesson-sources.json に追加してください。まだ確認できていなければ status を "unverified" にします)`); count.unverified++; continue }
   if (!STATUSES.includes(e.status)) { errors.push(`${id}: status が不正です(${e.status})`); continue }
   count[e.status]++
   if (e.status === 'unverified') warnings.push(`${id}: 未確認です`)
@@ -41,9 +41,8 @@ for (const id of ids) {
     else if ((today - t) / 86400000 > STALE_DAYS) warnings.push(`${id}: 確認日(${e.checkedAt})から ${STALE_DAYS} 日以上たっています。再確認してください`)
   }
 }
-for (const id of ids) if (!history[id]) warnings.push(`${id}: 変更履歴がありません(npm run history で更新できます)`)
+for (const id of ids) if (!history[id]) warnings.push(`${id}: 変更履歴がありません(コミットしてから npm run history で更新できます)`)
 
 console.log(`出典の記録: 原典で確認 ${count.verified} / 一部を確認 ${count.partial} / このアプリ独自の整理 ${count.original} / 未確認 ${count.unverified}(全 ${ids.length} レッスン)`)
 if (warnings.length) console.log(`警告 ${warnings.length} 件:\n` + warnings.map((w) => '  - ' + w).join('\n'))
 if (errors.length) { console.error(`エラー ${errors.length} 件:\n` + errors.map((w) => '  - ' + w).join('\n')); process.exit(1) }
-if (STRICT && (warnings.length > 0)) { console.error('SOURCES_STRICT=1 のため、警告もエラーとして扱います'); process.exit(1) }

@@ -121,6 +121,7 @@ function Body() {
         <li>事実に基づく回答、コード、抽出など:temperature を低め(0に近く)にする。</li>
         <li>アイデア出しや創作:temperature を上げる、または top-p を併用する。</li>
         <li>API によっては temperature=0 でも完全に決定的とは限らない(並列計算の浮動小数点の誤差など)。</li>
+        <li>新しいモデルでは、API で temperature を指定できないことがある(Claude API では、Claude Opus 4.6 より後に公開されたモデルは、temperature を設定できない)。使えるかどうかは、使うモデルの最新のドキュメントで確かめる。</li>
       </ul>
     </>
   )

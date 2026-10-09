@@ -107,6 +107,7 @@ function Body() {
         に置き換えてから処理します。この変換を担う部品が<strong>トークナイザ</strong>です。
       </p>
       <pre>{`"unbelievable" → ["un", "believ", "able"] → [403, 12871, 540]`}</pre>
+      <p className="muted">この分割とIDは、流れを示すための例です。実際のトークナイザの出力ではありません。</p>
 
       <h3>分割の粒度のトレードオフ</h3>
       <ul>

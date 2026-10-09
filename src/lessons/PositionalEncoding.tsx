@@ -64,7 +64,7 @@ function Body() {
       <ul>
         <li><strong>正弦波(オリジナルのTransformer)</strong>:周期の異なるsin/cosの組で位置を表す。学習不要で、見たことのない長さにも式を適用できる。</li>
         <li><strong>学習される位置埋め込み(GPT-2など)</strong>:位置ごとの行を持つ表をパラメータとして学習する。</li>
-        <li><strong>相対位置方式(RoPE、ALiBiなど)</strong>:絶対位置ではなく、トークン間の距離をattentionに反映する。現在のLLMではRoPEが主流。</li>
+        <li><strong>相対位置方式(RoPE、ALiBiなど)</strong>:絶対位置ではなく、トークン間の距離をattentionに反映する。LLaMA をはじめ、多くの最近のLLMがRoPEを使っている。</li>
       </ul>
       <Tex block tex={String.raw`PE_{(pos,\,2k)}=\sin\!\left(\frac{pos}{10000^{2k/d}}\right),\quad PE_{(pos,\,2k+1)}=\cos\!\left(\frac{pos}{10000^{2k/d}}\right)`} />
 

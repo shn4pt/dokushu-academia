@@ -2,7 +2,7 @@ import rawSources from './data/lesson-sources.json'
 import rawHistory from './data/lesson-history.json'
 
 export type SourceStatus = 'verified' | 'partial' | 'original' | 'unverified'
-export type SourceHow = 'read' | 'search' | 'skill' | 'repo'
+export type SourceHow = 'read' | 'search' | 'skill' | 'repo' | 'calc'
 export type Source = { title: string; url?: string; how: SourceHow; use: string }
 export type LessonSources = {
   status: SourceStatus
@@ -33,6 +33,7 @@ export const howLabel: Record<SourceHow, string> = {
   search: '検索結果で確認(原文は未取得)',
   skill: 'Claude API スキル同梱の資料で確認',
   repo: 'このリポジトリの記録で確認',
+  calc: '計算し直して確認',
 }
 
 const sources = rawSources as Record<string, LessonSources>
