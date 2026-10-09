@@ -213,7 +213,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: 'UX と利用者理解の基本', stageIds: ['ux0'] },
       { level: 'practice', scope: '調査と検証', stageIds: ['ux1'] },
-      { level: 'advanced', scope: 'プロダクトへの反映', planned: ['調査結果を意思決定につなげる', '定量と定性の組み合わせ'] },
+      { level: 'advanced', scope: 'プロダクトへの反映', stageIds: ['ux2'] },
     ],
   },
   {
@@ -350,8 +350,8 @@ export const writingPlan: { priority: Priority; title: string; reason: string; i
   {
     priority: 1,
     title: '最優先',
-    reason: 'プロダクトマネジメントの前提を、順にたどった講座です。(根拠の読み方、データ分析・統計、経営・戦略、心理学は公開済み。)UX → プロダクトマネジメントの順に、通して学べる状態を目指します。',
-    ids: ['ux', 'pm'],
+    reason: 'プロダクトマネジメントの前提を、順にたどった講座です。(根拠の読み方、データ分析・統計、経営・戦略、心理学、UX・ユーザーリサーチは公開済み。)プロダクトマネジメントを、通して学べる状態を目指します。',
+    ids: ['pm'],
   },
   {
     priority: 2,

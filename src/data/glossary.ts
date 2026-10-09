@@ -190,4 +190,8 @@ export const glossary: Term[] = [
   { term: '思考発話法', reading: 'thinking aloud', description: '参加者に、考えていることを声に出しながら、タスクをしてもらう方法。安く、頑健だが、進行役の促しが行動に影響しうる(Nielsen)。', lessonId: 'ux-4' },
   { term: 'タスクの成功率', reading: 'task success rate', description: 'タスクを完了できた利用者の割合。なぜ失敗したかは分からないが、最もシンプルなユーザビリティの指標(NN/g)。', lessonId: 'ux-4' },
   { term: 'SUS', reading: 'System Usability Scale', description: '10 項目の質問で、認知されたユーザビリティを 0〜100 で測るテスト後の質問票。百分率ではない。', lessonId: 'ux-4' },
+  { term: '重大度の評価', reading: 'severity rating', description: '使いやすさの問題の重大さを、頻度・影響・持続性(と市場への影響)から、0〜4 で評価すること。1 人の評価は不安定で、3 人の平均が使われる(Nielsen)。', lessonId: 'ux-5' },
+  { term: '重要業績指標(KPI)', reading: 'key performance indicator', description: 'サービスの成績を測る指標。GOV.UK は、取引あたりの費用、利用者の満足度、完了率、デジタルの利用率の 4 つを挙げる。', lessonId: 'ux-5' },
+  { term: '三角測量', reading: 'triangulation', description: '複数のデータ源や調査方法で同じ問いを見て、一つの方法の限界を補い、結果の信頼性を高めること。', lessonId: 'ux-6' },
+  { term: '形成的・総括的な調査', reading: 'formative / summative research', description: '形成的は、設計を良くするための調査。総括的は、以前の版や競合と比べて成績を測る調査。', lessonId: 'ux-6' },
 ]

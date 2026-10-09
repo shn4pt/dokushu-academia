@@ -3076,5 +3076,109 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ux-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "NN/g の記事 4 本と、GOV.UK サービスマニュアルの 3 ページを、ウェブページの本文として読みました: NN/g は Discovery: Definition(Rosala, 2020。2024-08-02 に再確認と表示)、Severity Ratings for Usability Problems(Nielsen, 1994)、Formal Usability Reports vs. Quick Findings(Nielsen, 2005)、Why User Interviews Fail(Rosala, 2019。ux-3 の出典。関係者の巻き込みの記述)。GOV.UK は Using performance data to improve your service: an introduction、User research for government services: an introduction(ux-2 の出典。チームの観察時間)、Analyse a research session(ux-3 の出典)。これらは、実務家の資料(この講座の根拠の基準)です。主張の多くは、書き手の経験にもとづき、独立した研究で確かめられたかは確認していません。重大度の尺度と『3 人の平均で十分』は、1994 年の Nielsen の記事の主張です。実務家 258 人の調査(2005 年)は、Nielsen の記事が述べた範囲で、回答者の選び方などは確かめていません。GOV.UK の手引きは、英国政府のサービス向けです。KPI の記述は、英国政府の要件で、一般の企業の指標を定めるものではありません。『結果を意思決定につなげる、問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/ux-5.md にあります。",
+    "sources": [
+      {
+        "title": "Discovery: Definition(Maria Rosala, Nielsen Norman Group, 2020)",
+        "url": "https://www.nngroup.com/articles/discovery-phase/",
+        "how": "read",
+        "use": "発見の定義、成果(利用者・問題と機会・制約の理解と、共有されたビジョン)、必要な場合(記事の本文)"
+      },
+      {
+        "title": "Severity Ratings for Usability Problems(Jakob Nielsen, Nielsen Norman Group, 1994)",
+        "url": "https://www.nngroup.com/articles/how-to-rate-the-severity-of-usability-problems/",
+        "how": "read",
+        "use": "重大度の 3 要素、0〜4 の尺度、使い道、評価者の人数(記事の本文)"
+      },
+      {
+        "title": "Formal Usability Reports vs. Quick Findings(Jakob Nielsen, Nielsen Norman Group, 2005)",
+        "url": "https://www.nngroup.com/articles/formal-vs-quick-usability-reports/",
+        "how": "read",
+        "use": "報告の形の調査結果、簡潔な報告と正式な報告書の使い分け(記事の本文)"
+      },
+      {
+        "title": "Why User Interviews Fail(Maria Rosala, Nielsen Norman Group, 2019)",
+        "url": "https://www.nngroup.com/articles/why-user-interviews-fail/",
+        "how": "read",
+        "use": "関係者の巻き込み(記事の本文)"
+      },
+      {
+        "title": "Using performance data to improve your service: an introduction(GOV.UK Service Manual、Performance analysis community)",
+        "url": "https://www.gov.uk/service-manual/measuring-success/using-data-to-improve-your-service-an-introduction",
+        "how": "read",
+        "use": "4 つの重要業績指標、測定値と指標、早い段階からの計測、数字の使い方(ページの本文)"
+      },
+      {
+        "title": "User research for government services: an introduction(GOV.UK Service Manual)",
+        "url": "https://www.gov.uk/service-manual/user-research/how-user-research-improves-service-design",
+        "how": "read",
+        "use": "チームの観察時間と、研究者の関わり方(ページの本文)"
+      },
+      {
+        "title": "Analyse a research session(GOV.UK Service Manual)",
+        "url": "https://www.gov.uk/service-manual/user-research/analyse-a-research-session",
+        "how": "read",
+        "use": "分析セッションに多くの人を呼ぶ理由(ページの本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ux-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "NN/g の記事 6 本を、ウェブページの本文として読みました: When to Use Which User-Experience Research Methods(Rohrer, 2022。2026-07-15 に再確認と表示)、Quantitative vs. Qualitative Usability Testing(Budiu, 2017)、Triangulation: Get Better Research Results by Using Multiple UX Methods(Whitenton, 2021)、Three Uses for Analytics in User-Experience Practice(Cardello, 2013)、Define Stronger A/B Test Variations Through UX Research(Cardello, 2014)、Risks of Quantitative Studies(Nielsen, 2004)。これらは、実務家の記事(この講座の根拠の基準)です。主張の多くは、書き手の経験にもとづき、独立した研究で確かめられたかは確認していません。記事の間で、定量への評価が違う(Budiu は定量を不可欠とし、Nielsen 2004 は定量の危険を強調する)ことを、本文で示しました。Nielsen 2004 の『20 回に 1 回は偶然』は単純化した記述で、本文は、統計-4・根拠-3 で学ぶ見方を、このサービスの補足として添えています。『組み合わせを設計する、問い』は、このサービス独自の整理です。統計学の教科書や論文で、これらの方法の使い分けを確かめることは、していません。 別のエージェントによる事実確認の結果は、docs/verify/ux-6.md にあります。",
+    "sources": [
+      {
+        "title": "When to Use Which User-Experience Research Methods(Christian Rohrer, Nielsen Norman Group, 2022)",
+        "url": "https://www.nngroup.com/articles/which-ux-research-methods/",
+        "how": "read",
+        "use": "3 つの軸、時間の軸(生成的・形成的・総括的)、方法の選び方(記事の本文)"
+      },
+      {
+        "title": "Quantitative vs. Qualitative Usability Testing(Raluca Budiu, Nielsen Norman Group, 2017)",
+        "url": "https://www.nngroup.com/articles/quant-vs-qual/",
+        "how": "read",
+        "use": "定性と定量のテストの違い、反復サイクルでの使い分け(記事の本文)"
+      },
+      {
+        "title": "Triangulation: Get Better Research Results by Using Multiple UX Methods(Kathryn Whitenton, Nielsen Norman Group, 2021)",
+        "url": "https://www.nngroup.com/articles/triangulation-better-research-results-using-multiple-ux-methods/",
+        "how": "read",
+        "use": "三角測量の定義、例、いつ行うか(記事の本文)"
+      },
+      {
+        "title": "Three Uses for Analytics in User-Experience Practice(Jen Cardello, Nielsen Norman Group, 2013)",
+        "url": "https://www.nngroup.com/articles/analytics-user-experience/",
+        "how": "read",
+        "use": "分析データの 3 つの使い方、計測計画(記事の本文)"
+      },
+      {
+        "title": "Define Stronger A/B Test Variations Through UX Research(Jen Cardello, Nielsen Norman Group, 2014)",
+        "url": "https://www.nngroup.com/articles/ab-testing-and-ux-research/",
+        "how": "read",
+        "use": "A/B テストの問題と、利用者調査による補い(記事の本文)"
+      },
+      {
+        "title": "Risks of Quantitative Studies(Jakob Nielsen, Nielsen Norman Group, 2004)",
+        "url": "https://www.nngroup.com/articles/risks-of-quantitative-studies/",
+        "how": "read",
+        "use": "定量の研究の危険(記事の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

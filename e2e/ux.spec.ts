@@ -32,16 +32,6 @@ test('UX-2: 利用者を知る、調べ方、言うこととすること、ニ�
   await expect(page.locator('.source-note')).toContainText('GOV.UK')
 })
 
-test('講座の目次: UX は、基礎・実践が公開され、応用が準備中', async ({ page }) => {
-  await page.goto(go('/course/ux'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
-  await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
-  await expect(page.locator('.stage-card', { hasText: '序論:UX と利用者を知る' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(2)
-  await page.locator('.stage-card', { hasText: '序論:UX と利用者を知る' }).click()
-  await expect(page.locator('.lesson-list a')).toHaveCount(2)
-})
-
 test('UX-3: 方法の選び方、研究の問い、同意、質問の作り方、誘導、現場調査、記録と分析、判定問題、クイズ、出典', async ({ page }) => {
   await page.goto(go('/lesson/ux-3'))
   await expect(page.locator('article h1')).toContainText('インタビューと観察の進め方')
@@ -64,4 +54,37 @@ test('UX-4: ユーザビリティテストの要素、タスクの書き方、�
   await answer(page, ['適切でない', '適切', '適切でない', '適切でない', '適切', '適切でない'], 1)
   await page.locator('.source-note summary').click()
   await expect(page.locator('.source-note')).toContainText('Thinking Aloud')
+})
+
+test('UX-5: 発見、重大度の評価、報告の形、チームの巻き込み、KPI、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ux-5'))
+  await expect(page.locator('article h1')).toContainText('調査結果を意思決定につなげる')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['発見', '頻度', '持続性', '3 人の評価の平均', '258 人', '4 つの重要業績指標', '結果を意思決定につなげる、問い']) await expect(art).toContainText(t)
+  await answer(page, ['1(見た目だけ)', '4(大惨事)', '2(軽い問題)', '3(大きな問題)'], 0)
+  await answer(page, ['適切', '適切でない', '適切でない', '適切', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Severity')
+})
+
+test('UX-6: 3 つの軸、定性と定量、三角測量、分析データ、A/B テスト、数字の危険、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ux-6'))
+  await expect(page.locator('article h1')).toContainText('定量と定性の組み合わせ')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['態度的', '三角測量', '評価者効果', '計測計画', '1,378', '蝶々型投票用紙', '組み合わせを設計する、問い']) await expect(art).toContainText(t)
+  await answer(page, ['定性', '定量', '定量', '定性', '定量'], 0)
+  await answer(page, ['適切でない', '適切', '適切', '適切', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Triangulation')
+})
+
+test('講座の目次: UX は、基礎・実践・応用のすべてが公開済み', async ({ page }) => {
+  await page.goto(go('/course/ux'))
+  await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
+  await expect(page.locator('.stage-card', { hasText: '応用:結果を判断につなぐ' })).toBeVisible()
+  await expect(page.locator('.planned-item')).toHaveCount(0)
+  await page.locator('.stage-card', { hasText: '応用:結果を判断につなぐ' }).click()
+  await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })
