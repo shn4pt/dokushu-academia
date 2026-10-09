@@ -64,3 +64,18 @@ test('存在しない講座は、講座一覧に戻る', async ({ page }) => {
   await page.goto(go('/course/nothing'))
   await expect(page.locator('h1')).toContainText('講座一覧')
 })
+
+test('ヘッダーのタイトルを押すと、講座一覧に移る', async ({ page }) => {
+  await page.goto(go('/lesson/0-1'))
+  await page.locator('.site-header .brand').click()
+  await expect(page).toHaveURL(/#\/catalog$/)
+  await expect(page.locator('h1')).toContainText('講座一覧')
+})
+
+test('講座一覧から、続きのレッスンに移れる', async ({ page }) => {
+  await page.goto(go('/catalog'))
+  const resume = page.getByRole('region', { name: '続きから学ぶ' }).getByRole('link')
+  await expect(resume).toContainText('学習を始める')
+  await resume.click()
+  await expect(page).toHaveURL(/#\/lesson\//)
+})

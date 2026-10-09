@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom'
 import { ProgressBar } from '../components'
 import { courseStageIds, courses, evidenceInfo, groups, isAvailable, plannedCount } from '../data/catalog'
-import { findStage } from '../data/curriculum'
-import { stageStats } from '../data/stats'
+import { findLesson, findStage } from '../data/curriculum'
+import { nextLessonId, overallStats, stageStats } from '../data/stats'
+import { formatMinutes, lessonMinutes } from '../time'
 import { useProgress } from '../progress'
 
 export default function CatalogPage() {
   const p = useProgress()
+  const { done } = overallStats(p)
+  const next = nextLessonId(p)
+  const nextLesson = next ? findLesson(next) : undefined
+  const position = next ? p.reading[next] : undefined
   return (
     <>
       <h1>講座一覧</h1>
@@ -17,6 +22,19 @@ export default function CatalogPage() {
       <p className="notice" role="note">
         <strong>構成案です。</strong>「公開中」の講座以外は目次の案だけで、本文はまだありません。題名は話題の案で、本文を書くときに出典を確認して決め直します。
       </p>
+      {nextLesson && (
+        <section className="card" aria-label="続きから学ぶ">
+          <div className="row">
+            <Link className="button" to={`/lesson/${nextLesson.id}`} state={{ resume: true }}>
+              {done === 0 && !position ? '学習を始める' : '続きから学ぶ'}:{nextLesson.title}
+            </Link>
+            <span className="muted">
+              {formatMinutes(lessonMinutes(nextLesson.id))}
+              {position && ` ・ 前回は「${position.section}」まで読みました`}
+            </span>
+          </div>
+        </section>
+      )}
       {groups.map((g) => (
         <section key={g.id} aria-labelledby={`group-${g.id}`}>
           <h2 id={`group-${g.id}`}>{g.title}</h2>

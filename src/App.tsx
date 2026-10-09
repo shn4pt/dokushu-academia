@@ -25,7 +25,7 @@ export default function App() {
   return (
     <>
       <header className="site-header">
-        <NavLink to="/" className="brand">LLMのしくみ</NavLink>
+        <NavLink to="/catalog" className="brand">LLMのしくみ</NavLink>
         <nav>
           <NavLink to="/catalog">講座</NavLink>
           <NavLink to="/roadmap">ロードマップ</NavLink>
