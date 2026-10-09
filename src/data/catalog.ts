@@ -240,7 +240,7 @@ export const courses: Course[] = [
     summary: '人の認知、感情、学習の基礎。研究の見方も合わせて学ぶ。',
     tiers: [
       { level: 'basic', scope: '心理学の基本と、研究の見方', stageIds: ['ps0'] },
-      { level: 'practice', scope: '認知・感情・動機づけ', planned: ['注意と記憶', '動機づけの理論'] },
+      { level: 'practice', scope: '認知・感情・動機づけ', stageIds: ['ps1'] },
       { level: 'advanced', scope: '仕事と社会への応用', planned: ['学習と習慣', '集団と意思決定'] },
     ],
   },

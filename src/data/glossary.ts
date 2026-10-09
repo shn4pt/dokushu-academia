@@ -160,4 +160,11 @@ export const glossary: Term[] = [
   { term: '二重盲検', reading: 'double-blind study', description: '研究者も参加者も、どの群かを知らない設計。期待による偏りとプラセボ効果を防ぐ。', lessonId: 'ps-2' },
   { term: '信頼性と妥当性', reading: 'reliability and validity', description: '信頼性は、測定が一貫していること。妥当性は、測りたいものを正しく測れていること。', lessonId: 'ps-2' },
   { term: 'インフォームド・コンセント', reading: 'informed consent', description: '研究の内容と危険の説明を受けたうえでの、参加者の自由意思による同意。いつでも罰なしにやめられる。', lessonId: 'ps-2' },
+  { term: '非注意性盲目', reading: 'inattentional blindness', description: '完全に見えているものに、他のことに注意を向けているために気づかないこと。Simons と Chabris(1999)のゴリラの実験が有名。', lessonId: 'ps-3' },
+  { term: '作業記憶', reading: 'working memory', description: '情報を保ちながら処理する、容量に限りのある記憶。教科書は、近年の研究で 4 ± 1 個とされ、Miller の 7 ± 2 とは異なる、と述べる。', lessonId: 'ps-3' },
+  { term: '処理水準', reading: 'levels of processing', description: '情報を深く(意味的に)処理するほど、よく覚えるという考え(Craik と Lockhart)。', lessonId: 'ps-3' },
+  { term: '誘導', reading: 'suggestibility', description: '外からの誤った情報や、誘導的な質問によって、偽の記憶が作られること。Loftus と Palmer(1974)の実験が有名。', lessonId: 'ps-3' },
+  { term: '内発的動機づけ', reading: 'intrinsic motivation', description: '活動そのものの満足のために行う動機づけ。外発的動機づけは、他者から何かを得るために行う動機づけ。', lessonId: 'ps-4' },
+  { term: '自己決定理論', reading: 'self-determination theory', description: '有能感・自律性・関係性という 3 つの心理的欲求が満たされると、自発的な動機づけと健康が高まるとする理論(Deci と Ryan)。', lessonId: 'ps-4' },
+  { term: '欲求階層', reading: 'hierarchy of needs', description: 'Maslow が提案した、生理的欲求から自己実現までの、動機の階層。教科書は、主観的だという批判を紹介している。', lessonId: 'ps-4' },
 ]

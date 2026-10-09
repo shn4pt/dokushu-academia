@@ -2696,5 +2696,67 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ps-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Psychology 2e の、Sensation versus Perception の注意の部分(m82192)、How Memory Functions(m82213)、Problems with Memory(m82215)、Ways to Enhance Memory(m82216)を、GitHub の原稿(openstax/osbooks-psychology、2026-07-09 のコミット de7e40c)の CNXML から、本文を読みました。注意のボトムアップとトップダウン、ゴリラの実験(『ほぼ半数』)と赤い十字の実験(約 3 分の 1)、符号化・貯蔵・検索、処理水準、Atkinson と Shiffrin のモデル、作業記憶、容量(7 ± 2 と 4 ± 1)、順向干渉、顕在記憶と潜在記憶、Loftus と Palmer の実験、目撃証言、忘却曲線、記憶の 7 つの罪、覚えるための方法は、教科書の記述です。教科書が引く原論文は読んでいません(教科書の紹介を通した範囲です)。ただし、Simons と Chabris(1999)と Cowan(2010)は、Europe PMC の書誌で、要旨だけを読みました(how: search)。要旨にもとづく記述は、気づきやすさが対象の類似性と課題の難しさに依存すること、場所の近さは影響しないように見えること、課題の要求で変わる能力と区別できる中心的な記憶の貯蔵が、若い成人で 3〜5 個の意味のある項目に限られること、の範囲です。覚えるための方法のうち、本文で挙げたものについて、教科書は効果の大きさを示しておらず、個々の研究を確かめていません(教科書は、声に出す方法で記憶が 10% 以上高まったと述べますが、本文では使っていません)。『この講座の読み方』の 3 点は、このサービス独自の整理です。教科書の他の節(記憶に関わる脳の部位、他の認知の節)は、読んでいません。 別のエージェントによる事実確認の結果は、docs/verify/ps-3.md にあります。",
+    "sources": [
+      {
+        "title": "Psychology 2e(OpenStax、CC BY 4.0)の、Sensation versus Perception(注意の部分)/ How Memory Functions / Problems with Memory / Ways to Enhance Memory",
+        "url": "https://openstax.org/details/books/psychology-2e",
+        "how": "read",
+        "use": "注意と非注意性盲目、記憶の符号化・貯蔵・検索、容量、干渉、顕在記憶と潜在記憶、誘導と目撃証言、忘却、記憶の誤り、覚えるための方法(該当節の本文)"
+      },
+      {
+        "title": "Gorillas in our midst: sustained inattentional blindness for dynamic events(Simons と Chabris, Perception, 1999)",
+        "url": "https://doi.org/10.1068/p281059",
+        "how": "search",
+        "use": "要旨だけ(Europe PMC): 気づきやすさが、対象の類似性と課題の難しさに依存すること、場所の近さは影響しないように見えること(論文の本文は読んでいない)"
+      },
+      {
+        "title": "The Magical Mystery Four: How is Working Memory Capacity Limited, and Why?(Cowan, Current Directions in Psychological Science, 2010)",
+        "url": "https://doi.org/10.1177/0963721409359277",
+        "how": "search",
+        "use": "要旨だけ(Europe PMC): 課題の要求で変わる能力と区別できる、中心的な記憶の貯蔵が、若い成人で 3〜5 個の意味のある項目に限られること(論文の本文は読んでいない)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ps-4": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Psychology 2e の Motivation(m82225)を、GitHub の原稿(コミット de7e40c、2026-07-09)の CNXML から、本文を読みました。動機づけの定義、内発と外発、本能理論、動因理論、覚醒理論と Yerkes-Dodson の法則、自己効力感、社会的な動機、Maslow の欲求階層とその批判、報酬の効果をめぐる結果の食い違いは、教科書の記述です。Ryan と Deci(2000, American Psychologist, 55, 68-78)は、著者の研究グループのサイトの PDF から、全文(本文と図 1)を読みました(how: read)。3 つの心理的欲求、認知的評価理論、自律の程度の連続体、内在化を支える条件は、この論文の記述です。論文は、理論の提唱者自身による総説です。論文が引く個々の研究は、読んでいません(職場の研究 Baard ら, 1998 は、論文の時点で未公刊の原稿)。Deci、Koestner、Ryan(1999)のメタ分析は、Europe PMC の書誌で、要旨だけを読みました(how: search)。要旨にもとづく記述は、128 件の研究、報酬の種類ごとの効果量(-0.40、-0.36、-0.28、フィードバック 0.33)、児童のほうが物質的報酬の悪影響が大きい傾向、の範囲です。Eisenberger と Cameron(1996)の論文は、読んでいません(Ryan と Deci の論文を通した範囲です)。Cameron と Pierce(1994)の論文も、読んでいません(教科書を通した範囲です)。SDT について第三者による批判的な検討と、追試の状況は、確認していません。『動機づけを見る、問い』は、このサービス独自の整理です。教科書の他の節(空腹、性、感情)は、読んでいません。 別のエージェントによる事実確認の結果は、docs/verify/ps-4.md にあります。",
+    "sources": [
+      {
+        "title": "Psychology 2e(OpenStax、CC BY 4.0)の Motivation",
+        "url": "https://openstax.org/details/books/psychology-2e",
+        "how": "read",
+        "use": "動機づけの定義、内発と外発、本能・動因・覚醒の理論、自己効力感、社会的な動機、Maslow の欲求階層とその批判、報酬の効果をめぐる食い違い(該当節の本文)"
+      },
+      {
+        "title": "Self-determination theory and the facilitation of intrinsic motivation, social development, and well-being(Ryan と Deci, American Psychologist, 2000)",
+        "url": "https://doi.org/10.1037/0003-066X.55.1.68",
+        "how": "read",
+        "use": "3 つの心理的欲求、認知的評価理論(報酬・フィードバック・自律性支援)、外発的動機づけの自律の連続体、内在化を支える条件、報酬をめぐる議論への言及(論文の全文。著者の研究グループのサイトの PDF で読んだ)"
+      },
+      {
+        "title": "A meta-analytic review of experiments examining the effects of extrinsic rewards on intrinsic motivation(Deci, Koestner, Ryan, Psychological Bulletin, 1999)",
+        "url": "https://doi.org/10.1037/0033-2909.125.6.627",
+        "how": "search",
+        "use": "要旨だけ(Europe PMC): 128 件のメタ分析、報酬の種類ごとの効果量、肯定的なフィードバック、児童と大学生の違い(論文の本文は読んでいない)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

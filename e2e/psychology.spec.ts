@@ -32,12 +32,37 @@ test('心理学-2: 研究の方法、相関と因果、実験、信頼性と妥�
   await expect(page.locator('.source-note')).toContainText('Psychology 2e')
 })
 
-test('講座の目次: 心理学は、基礎が公開され、実践・応用が準備中', async ({ page }) => {
+test('心理学-3: 注意、記憶のしくみ、容量、誘導、忘却、覚え方、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ps-3'))
+  await expect(page.locator('article h1')).toContainText('注意と記憶')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['非注意性盲目', 'ほぼ半数', '処理水準', '4 ± 1', 'Cowan', '誘導', '忘却曲線', '分散学習', 'この講座の出典と限界']) await expect(art).toContainText(t)
+  await answer(page, ['感覚記憶', '短期記憶', 'エピソード記憶', '意味記憶', '手続き記憶'], 0)
+  await answer(page, ['適切でない', '適切', '適切', '適切', '適切でない', '適切'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Simons')
+})
+
+test('心理学-4: 動機づけの理論、自己決定理論、報酬の効果の割れ方、限界、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ps-4'))
+  await expect(page.locator('article h1')).toContainText('動機づけの理論')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['欲求階層', 'Yerkes-Dodson', '有能感', '自律性', '関係性', '内在化', '128 件', '理論の提唱者自身', '動機づけを見る、問い']) await expect(art).toContainText(t)
+  await answer(page, ['無動機', '外的調整', '取り入れ的調整', '同一化的調整', '内発的動機づけ'], 0)
+  await answer(page, ['適切でない', '適切でない', '適切', '適切でない', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Ryan')
+})
+
+test('講座の目次: 心理学は、基礎・実践が公開され、応用が準備中', async ({ page }) => {
   await page.goto(go('/course/psychology'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 2 / 予定 6 レッスン')
+  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
   await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '序論:心理学とは何か' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(4)
-  await page.locator('.stage-card', { hasText: '序論:心理学とは何か' }).click()
+  await expect(page.locator('.stage-card', { hasText: '実践:注意・記憶・動機づけ' })).toBeVisible()
+  await expect(page.locator('.planned-item')).toHaveCount(2)
+  await page.locator('.stage-card', { hasText: '実践:注意・記憶・動機づけ' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })
