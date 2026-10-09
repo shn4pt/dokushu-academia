@@ -70,6 +70,13 @@ export async function createWithTools(input: {
   return { message, request, cost }
 }
 
+/** 組み立て済みのリクエストを、そのまま1回送る(プロンプトキャッシュの実験など、リクエストの中身を自分で決めたいとき) */
+export async function sendRequest(request: Anthropic.Beta.MessageCreateParamsNonStreaming, signal?: AbortSignal) {
+  const message = await client().beta.messages.create(request, { signal })
+  apiActions.addUsage(request.model, message.usage.input_tokens + (message.usage.cache_creation_input_tokens ?? 0) + (message.usage.cache_read_input_tokens ?? 0), message.usage.output_tokens)
+  return message
+}
+
 /** キーの確認。モデル情報の取得はトークンを消費しない。 */
 export async function checkKey() {
   const { settings } = getApiState()

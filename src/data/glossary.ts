@@ -96,4 +96,9 @@ export const glossary: Term[] = [
   { term: '報酬ハッキング(開発での)', description: 'AI が、検証の基準の穴を突いて「合格」すること。テストの期待値の書き換えなど。', lessonId: '18-1' },
   { term: '理解の負債', description: 'システムの動きや判断の理由を、誰も説明できない状態が積み重なること。障害のときに直せなくなる。', lessonId: '18-3' },
   { term: '成熟度の自己診断', description: '検証・文脈と仕様・権限と安全・レビューとプロセス・計測・人の理解の6つの軸で、AI に任せられる範囲の現在地を確かめる方法(このアプリでの整理)。', lessonId: '19-1' },
+  { term: 'isError', description: 'MCP のツールの実行の失敗を、結果の中で知らせる印。モデルが読んで、直して再試行できる。', lessonId: '20-1' },
+  { term: 'Wilson の信頼区間', description: '合格率のような割合の、本当の値がありそうな幅。問題数が少なくても使いやすい。', lessonId: '20-2' },
+  { term: 'κ(カッパ)', reading: 'Cohen\'s kappa', description: '2者の判断の一致から、偶然の一致を引いた指標。採点者と人の一致を見る。', lessonId: '20-2' },
+  { term: 'LLM-as-a-judge', description: 'LLM を採点者にして、文章などを自動で評価する方法。順序の偏りなどに備える。', lessonId: '20-2' },
+  { term: 'cache_read_input_tokens', description: 'キャッシュから読み取った入力トークンの数。基本の入力料金より安い。', lessonId: '20-3' },
 ]

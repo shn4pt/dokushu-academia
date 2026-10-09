@@ -1912,5 +1912,74 @@
         "use": "LLM による採点の偏り(位置・長さ・自分びいき)"
       }
     ]
+  },
+  "20-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-09",
+    "note": "MCP の仕様(ツールのエラー、注釈、サーバーが守ること)と、Claude Code・Claude API の公式ドキュメントで、各記述を確認しました。コードは型検査と、実物の MCP クライアントとメモリ上でつないだテストで確認しています。実際の Claude Code や API には接続しておらず、stdio での起動やトークンの扱いの安全の節の一部(token passthrough など)は、仕様の要約にもとづくもので、認可の仕様の全文は読んでいません。",
+    "sources": [
+      {
+        "title": "MCP 仕様 2026-07-28: Tools",
+        "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
+        "how": "read",
+        "use": "ツールの2種類のエラー、注釈は信頼しないこと、サーバーが守ること"
+      },
+      {
+        "title": "Claude Code: MCP",
+        "url": "https://code.claude.com/docs/en/mcp",
+        "how": "read",
+        "use": "claude mcp add の書き方(stdio と http)、-- の区切り、スコープ、claude mcp list"
+      },
+      {
+        "title": "Claude API: MCP connector",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector",
+        "how": "read",
+        "use": "ベータのヘッダ mcp-client-2025-11-20、リモートの MCP サーバーにつなぐこと"
+      },
+      {
+        "title": "e2e/capstone2.spec.ts(MCP サーバーのテスト)",
+        "url": "https://github.com/shn4pt/mygame1/blob/main/e2e/capstone2.spec.ts",
+        "how": "repo",
+        "use": "実物のクライアントとの接続、一覧、isError、引数の検証、利用者の絞り込み"
+      }
+    ]
+  },
+  "20-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-09",
+    "note": "Wilson の信頼区間が小さな標本で勧められることは、Brown・Cai・DasGupta(2001)の要旨で確認しました(本文は未読)。McNemar の検定と κ は標準的な手法で、コードは手計算の値と照らしたテストで確認しています。LLM を採点者にする方法の偏り(順序など)の大きさは、特定の文献では確認しておらず、一般的な注意として書いています。判定コードは通信を差し替えたテストで確認しており、実際の API では動かしていません。",
+    "sources": [
+      {
+        "title": "Interval Estimation for a Binomial Proportion(Brown, Cai, DasGupta, 2001, Statistical Science)",
+        "url": "https://projecteuclid.org/journals/statistical-science/volume-16/issue-2/Interval-Estimation-for-a-Binomial-Proportion/10.1214/ss/1009213286.full",
+        "how": "read",
+        "use": "小さな標本では、単純な近似の区間より Wilson などを勧める(要旨のみ)"
+      },
+      {
+        "title": "e2e/capstone2.spec.ts(統計と判定のテスト)",
+        "url": "https://github.com/shn4pt/mygame1/blob/main/e2e/capstone2.spec.ts",
+        "how": "repo",
+        "use": "Wilson 8/10、対応のある比較 1対7 の p=0.0703125、κ=0.667 を手計算と照合。判定の順序入れ替え"
+      }
+    ]
+  },
+  "20-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-09",
+    "note": "料金の倍率(読み取り・書き込み)と usage の項目は公式のドキュメントで確認済みの内容(11-4)にもとづきます。実験の画面は、実際の API には接続して確かめていません(通信を差し替えたテストのみ)。キャッシュが無効になる原因は公式の「what invalidates the cache」の要約で、設定変更ごとの詳細は確認していません。",
+    "sources": [
+      {
+        "title": "Prompt caching(Claude API)",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching",
+        "how": "read",
+        "use": "usage の項目、書き込み・読み取りの倍率、有効期限、無効になる原因(11-4 で確認)"
+      },
+      {
+        "title": "src/capstone2/cost.ts の計算(手計算との照合テスト)",
+        "url": "https://github.com/shn4pt/mygame1/blob/main/e2e/capstone2.spec.ts",
+        "how": "repo",
+        "use": "費用・命中率・損益分岐を、手計算の値と照合"
+      }
+    ]
   }
 }

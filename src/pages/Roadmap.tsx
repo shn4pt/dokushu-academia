@@ -17,6 +17,7 @@ const phases = [
   { title: '品質・安全と総仕上げ', note: '測って守り、1つの機能を完成させる', stageIds: ['s12', 's13'] },
   { title: 'AI を使った開発', note: '第3部:補完から AI ネイティブまで、開発のやり方を進化させる', stageIds: ['s14', 's15', 's16', 's17'] },
   { title: 'AI ネイティブと総仕上げ', note: '意図と検証を設計し、自分の開発の次の一歩を決める', stageIds: ['s18', 's19'] },
+  { title: '発展編', note: '第2部の続き:MCP サーバー、評価の自動化、キャッシュの費用', stageIds: ['s20'] },
 ]
 
 export default function Roadmap() {
