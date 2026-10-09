@@ -2658,5 +2658,43 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ps-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Psychology 2e の、What Is Psychology?(m82162)、History of Psychology(m82163)、Contemporary Psychology(m82164)を、GitHub の原稿(openstax/osbooks-psychology、2026-07-09 のコミット de7e40c)の CNXML から、本文を読みました。心理学の定義、科学的な方法、学派の移り変わり(構造主義、機能主義、精神分析、ゲシュタルト、行動主義、人間性心理学、認知革命)、現代の分野、WEIRD の指摘は、教科書の記述です。Henrich、Heine、Norenzayan(2010)など、教科書が引く原論文や、各学派の原著は、読んでいません(教科書の紹介を通した範囲です)。教科書は、アメリカの大学の入門書で、各学派の評価も教科書の立場です。このサービスは、個々の主張を一次の論文で確かめていません。『読むときの 3 つの問い』は、このサービス独自の整理です。教科書の他の節(キャリア、各分野の章)は、このレッスンでは扱っておらず、読んでいません。 別のエージェントによる事実確認の結果は、docs/verify/ps-1.md にあります。",
+    "sources": [
+      {
+        "title": "Psychology 2e(OpenStax、CC BY 4.0)の、What Is Psychology? / History of Psychology / Contemporary Psychology",
+        "url": "https://openstax.org/details/books/psychology-2e",
+        "how": "read",
+        "use": "心理学の定義と科学的な方法、経験的な方法、学派の移り変わり、現代の主な分野、WEIRD などの偏りの指摘(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ps-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Psychology 2e の、Why Is Research Important?(m82167)、Approaches to Research(m82168)、Analyzing Findings(m82169)、Ethics(m82170)を、GitHub の原稿(openstax/osbooks-psychology、2026-07-09 のコミット de7e40c)の CNXML から、本文を読みました。研究の方法ごとの強みと限界、相関係数と交絡変数、錯覚的な相関と満月の話(Rotton と Kelly, 1985 のメタ分析)、実験の設計(統制群、ランダム割り付け、盲検、プラセボ)、信頼性と妥当性、査読と再現性の危機、倫理審査とタスキギー梅毒研究は、教科書の記述です。Rotton と Kelly、ミネソタ大学の学生研究(r = -0.29)、Shaw と Tan、Massimini と Peterson など、教科書が引く原論文は、読んでいません。再現性の危機については、教科書の短い記述だけを使い、OSC(Open Science Collaboration)の論文の数字と読み方は、根拠-1・根拠-3(e-1・e-3)に委ねています。p 値の 5% の基準は、教科書の説明です。研究の方法の表と、ランダムな標本とランダム割り付けの対比は、教科書の説明をこのサービスが整理したものです。IRB は、アメリカの制度の説明です。『5 つの問い』は、このサービス独自の整理です。教科書の他の節(統計の詳しい説明、報告の書き方の細部)は、読んでいません。 別のエージェントによる事実確認の結果は、docs/verify/ps-2.md にあります。",
+    "sources": [
+      {
+        "title": "Psychology 2e(OpenStax、CC BY 4.0)の、Why Is Research Important? / Approaches to Research / Analyzing Findings / Ethics",
+        "url": "https://openstax.org/details/books/psychology-2e",
+        "how": "read",
+        "use": "経験的な研究の特徴と反証可能性、研究の方法の強みと限界、相関と因果、実験の設計、信頼性と妥当性、査読と再現性の危機、研究の倫理(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }
