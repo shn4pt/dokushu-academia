@@ -56,13 +56,35 @@ test('心理学-4: 動機づけの理論、自己決定理論、報酬の効果�
   await expect(page.locator('.source-note')).toContainText('Ryan')
 })
 
-test('講座の目次: 心理学は、基礎・実践が公開され、応用が準備中', async ({ page }) => {
+test('心理学-5: 学習の種類、強化と罰、スケジュール、観察学習、習慣、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ps-5'))
+  await expect(page.locator('article h1')).toContainText('学習と習慣')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['効果の法則', '正の強化', '変動比率', 'Laskowski', '潜在学習', 'ボボ人形', '18 日から 254 日', 'この講座の出典と限界']) await expect(art).toContainText(t)
+  await answer(page, ['正の強化', '負の強化', '正の罰', '負の罰', '負の強化'], 0)
+  await answer(page, ['適切でない', '適切でない', '適切', '適切でない', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Lally')
+})
+
+test('心理学-6: 同調、服従、Meta-Milgram、スタンフォード監獄実験、集団の意思決定、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ps-6'))
+  await expect(page.locator('article h1')).toContainText('集団と意思決定')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['76%', 'Meta-Milgram', '43.6%', '62.5%', '37.5%', 'スタンフォード監獄実験', '集団思考', '社会的手抜き', '集団の研究を読む、5 つの問い']) await expect(art).toContainText(t)
+  await answer(page, ['同調', '服従', '集団思考', '集団極性化', '社会的手抜き'], 0)
+  await answer(page, ['適切', '適切でない', '適切でない', '適切でない', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Meta-Milgram')
+})
+
+test('講座の目次: 心理学は、基礎・実践・応用のすべてが公開済み', async ({ page }) => {
   await page.goto(go('/course/psychology'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
-  await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
-  await expect(page.locator('.stage-card', { hasText: '序論:心理学とは何か' })).toBeVisible()
-  await expect(page.locator('.stage-card', { hasText: '実践:注意・記憶・動機づけ' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(2)
-  await page.locator('.stage-card', { hasText: '実践:注意・記憶・動機づけ' }).click()
+  await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
+  await expect(page.locator('.stage-card', { hasText: '応用:学習・習慣と集団の判断' })).toBeVisible()
+  await expect(page.locator('.planned-item')).toHaveCount(0)
+  await page.locator('.stage-card', { hasText: '応用:学習・習慣と集団の判断' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

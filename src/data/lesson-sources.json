@@ -2758,5 +2758,73 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ps-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Psychology 2e の、What Is Learning?(m82199)、Classical Conditioning(m82200)の Pavlov の説明、Operant Conditioning(m82201)、Observational Learning(m82202)を、GitHub の原稿(openstax/osbooks-psychology、2026-07-09 のコミット de7e40c)の CNXML から、本文を読みました。学習の定義、古典的条件づけ、オペラント条件づけ(効果の法則、正負・強化と罰、罰の欠点、シェイピング、一次・二次強化子、トークン・エコノミー、強化のスケジュール、ギャンブルの記述と Laskowski ら 2019 への言及)、潜在学習、観察学習(Bandura の 4 段階、ボボ人形の実験、メディアの暴力をめぐる結論の割れ方)は、教科書の記述です。教科書が引く原論文は読んでいません。Wood と Rünger(2016, Annual Review of Psychology)と、Lally ら(2010, European Journal of Social Psychology)は、要旨だけを読みました(how: search。Wood と Rünger は Europe PMC、Lally らは Crossref の書誌)。要旨にもとづく記述は、習慣が同じ状況での繰り返しで形成されること、習慣と熟慮の関係の 3 点、96 人・12 週間・自己報告の習慣尺度、82 人が分析対象、漸近曲線、自動性が上限の 95% に達するまでの日数が 18〜254 日、1 回の行動し損ねの影響が小さいこと、の範囲です。Lally らの論文の本文にある、中央値などの数字は、使っていません。教科書の古典的条件づけの他の部分(消去、般化、Little Albert など)は、読んでいません。『この講座の読み方』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/ps-5.md にあります。",
+    "sources": [
+      {
+        "title": "Psychology 2e(OpenStax、CC BY 4.0)の、What Is Learning? / Classical Conditioning(Pavlov の部分)/ Operant Conditioning / Observational Learning",
+        "url": "https://openstax.org/details/books/psychology-2e",
+        "how": "read",
+        "use": "学習の定義、古典的条件づけ、オペラント条件づけ(強化・罰・スケジュール)、潜在学習、観察学習、メディアの暴力をめぐる結果の割れ方(該当節の本文)"
+      },
+      {
+        "title": "Psychology of Habit(Wood と Rünger, Annual Review of Psychology, 2016)",
+        "url": "https://doi.org/10.1146/annurev-psych-122414-033417",
+        "how": "search",
+        "use": "要旨だけ(Europe PMC): 習慣の形成、習慣と熟慮の関係、頻度から意図を推論しがちなこと(総説の本文は読んでいない)"
+      },
+      {
+        "title": "How are habits formed: Modelling habit formation in the real world(Lally ら, European Journal of Social Psychology, 2010)",
+        "url": "https://doi.org/10.1002/ejsp.674",
+        "how": "search",
+        "use": "要旨だけ(Crossref): 96 人・12 週間、自動性の漸近曲線、95% に達するまで 18〜254 日、1 回の行動し損ねの影響が小さいこと(論文の本文は読んでいない)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ps-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Psychology 2e の、Conformity, Compliance, and Obedience(m82249)と、Zimbardo's Stanford Prison Experiment の部分(m82247)を、GitHub の原稿(コミット de7e40c、2026-07-09)の CNXML から、本文を読みました。Asch の実験と要因、規範的影響と情報的影響、Milgram の実験と変形の数字(65%、48%、40%、30%、23%)、集団思考、集団極性化、社会的手抜き、スタンフォード監獄実験への批判の記述は、教科書の記述です。教科書が引く原論文(Asch、Milgram、Janis、Karau と Williams など)は読んでいません。Haslam ら(2014)の Meta-Milgram(PLOS ONE 9(4): e93927)は、Europe PMC のオープンアクセスの全文(PMC3976349)を読みました(how: read)。21 条件・740 人・43.6%・62.5%、8 つの要因の方向、場所の格式が無関係なこと、限界の記述は、この論文の記述です。教科書の 65% は論文の表の条件 1 と 5(26/40)、論文の 62.5% は条件 2(25/40)に当たります。教科書の電話の 23% は、近い条件 18(9/40、22.5%)と読めますが、教科書の原資料では確かめていません(条件 19 は 15/40)。Burger(2009, American Psychologist)と Le Texier(2019, American Psychologist)は、Europe PMC の書誌で、要旨だけを読みました(how: search)。集団思考・集団極性化・社会的手抜きの実証研究は、確かめていません。『5 つの問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/ps-6.md にあります。",
+    "sources": [
+      {
+        "title": "Psychology 2e(OpenStax、CC BY 4.0)の、Conformity, Compliance, and Obedience / Zimbardo's Stanford Prison Experiment",
+        "url": "https://openstax.org/details/books/psychology-2e",
+        "how": "read",
+        "use": "Asch と Milgram の実験、同調の要因、集団思考・集団極性化・社会的手抜き、スタンフォード監獄実験への批判(該当節の本文)"
+      },
+      {
+        "title": "Meta-Milgram: An Empirical Synthesis of the Obedience Experiments(Haslam, Loughnan, Perry, PLOS ONE, 2014)",
+        "url": "https://doi.org/10.1371/journal.pone.0093927",
+        "how": "read",
+        "use": "Milgram の 21 条件の統合、服従率、8 つの要因の方向、場所の格式が無関係なこと、分析の限界(論文の全文。Europe PMC のオープンアクセス版で読んだ)"
+      },
+      {
+        "title": "Replicating Milgram: Would people still obey today?(Burger, American Psychologist, 2009)",
+        "url": "https://doi.org/10.1037/a0010932",
+        "how": "search",
+        "use": "要旨だけ(Europe PMC): 70 人、150 ボルトまでの部分的な再現、服従率が Milgram の値よりわずかに低い程度、サクラが拒否するのを見た影響がなかったこと(論文の本文は読んでいない)"
+      },
+      {
+        "title": "Debunking the Stanford Prison Experiment(Le Texier, American Psychologist, 2019)",
+        "url": "https://doi.org/10.1037/amp0000401",
+        "how": "search",
+        "use": "要旨だけ(Europe PMC): 資料室の記録と参加者 15 人への聞き取りにもとづく批判(論文の本文は読んでいない)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

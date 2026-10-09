@@ -241,7 +241,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: '心理学の基本と、研究の見方', stageIds: ['ps0'] },
       { level: 'practice', scope: '認知・感情・動機づけ', stageIds: ['ps1'] },
-      { level: 'advanced', scope: '仕事と社会への応用', planned: ['学習と習慣', '集団と意思決定'] },
+      { level: 'advanced', scope: '仕事と社会への応用', stageIds: ['ps2'] },
     ],
   },
   {
@@ -350,8 +350,8 @@ export const writingPlan: { priority: Priority; title: string; reason: string; i
   {
     priority: 1,
     title: '最優先',
-    reason: 'プロダクトマネジメントの前提を、順にたどった講座です。(根拠の読み方、データ分析・統計、経営・戦略は公開済み。)心理学 → UX → プロダクトマネジメントの順に、通して学べる状態を目指します。',
-    ids: ['psychology', 'ux', 'pm'],
+    reason: 'プロダクトマネジメントの前提を、順にたどった講座です。(根拠の読み方、データ分析・統計、経営・戦略、心理学は公開済み。)UX → プロダクトマネジメントの順に、通して学べる状態を目指します。',
+    ids: ['ux', 'pm'],
   },
   {
     priority: 2,

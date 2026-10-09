@@ -167,4 +167,12 @@ export const glossary: Term[] = [
   { term: '内発的動機づけ', reading: 'intrinsic motivation', description: '活動そのものの満足のために行う動機づけ。外発的動機づけは、他者から何かを得るために行う動機づけ。', lessonId: 'ps-4' },
   { term: '自己決定理論', reading: 'self-determination theory', description: '有能感・自律性・関係性という 3 つの心理的欲求が満たされると、自発的な動機づけと健康が高まるとする理論(Deci と Ryan)。', lessonId: 'ps-4' },
   { term: '欲求階層', reading: 'hierarchy of needs', description: 'Maslow が提案した、生理的欲求から自己実現までの、動機の階層。教科書は、主観的だという批判を紹介している。', lessonId: 'ps-4' },
+  { term: 'オペラント条件づけ', reading: 'operant conditioning', description: '行動と、その結果(強化や罰)の連合を学ぶ学習。強化は行動を増やし、罰は行動を減らす。正は足す、負は取り除く、の意味。', lessonId: 'ps-5' },
+  { term: '強化のスケジュール', reading: 'reinforcement schedule', description: '強化を与えるタイミングの規則。固定・変動と、間隔・比率の組み合わせで 4 種。変動比率は、行動が最も長く維持される。', lessonId: 'ps-5' },
+  { term: '観察学習', reading: 'observational learning', description: '他者(モデル)を見て学ぶこと。Bandura は、注意・保持・再生・動機づけの 4 段階を挙げた。', lessonId: 'ps-5' },
+  { term: '習慣', reading: 'habit', description: '同じ状況で繰り返される、自動的になった行動。Lally らの研究の要旨では、自動性が上限の 95% に達するまでの日数は、18〜254 日と幅広かった。', lessonId: 'ps-5' },
+  { term: '同調', reading: 'conformity', description: '集団に合わせて行動を変えること。規範的影響(受け入れられるため)と情報的影響(集団が正しいと考えるため)がある。', lessonId: 'ps-6' },
+  { term: '服従', reading: 'obedience', description: '権威者の要求に従って行動を変えること。Milgram の実験が代表。', lessonId: 'ps-6' },
+  { term: '集団思考', reading: 'groupthink', description: '集団の合意と思うものに合わせて、個人の意見を変えてしまい、反対意見が抑えられること(Janis, 1972)。', lessonId: 'ps-6' },
+  { term: '社会的手抜き', reading: 'social loafing', description: '成果が合算される課題で、個人の努力が減ること。個人の貢献が評価されると、減りうる。', lessonId: 'ps-6' },
 ]
