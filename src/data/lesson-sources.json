@@ -2504,5 +2504,57 @@
         "summary": "別のエージェントによる事実確認を受けて、「いくら大きくても」の条件、治療の子孫の説明(7.6 節と Fine Point 7.4)、一貫性・正値性の言い方、出所と語気、サービスの意見の区別、クイズ 2 を直した"
       }
     ]
+  },
+  "sg-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-09",
+    "note": "OpenStax の Introduction to Business(第 2 版)の第 1 章 The Nature of Business(m67639)を、GitHub の原稿(openstax/osbooks-introduction-business、2026-05-20 のコミット 2a83987)の CNXML から取り出したテキストで読みました。事業の定義、収益・費用・利益、リスクとその関係の説明、非営利組織、生産の要素(4 つのグループと知識)を使っています。ソニーとアップルの事例は教科書の記述で、このサービスは、事例そのものは確認していません。教科書は、アメリカの大学の入門書で、日本の実態の説明ではありません。「5 つの生産の要素」と書く節末の復習問題と、本文の「4 つのグループ」の食い違いは、このレッスンが指摘したもので、知識を数えたという解釈は推測です。「事業を見る 4 つの問い」は、このサービス独自の整理です。第 1 章の他の節(事業環境、経済の仕組み)は、読んでいません。 別のエージェントによる事実確認の結果は、docs/verify/sg-1.md にあります。",
+    "sources": [
+      {
+        "title": "Introduction to Business, 2e, 第 1 章 The Nature of Business(OpenStax、CC BY-NC-SA 4.0)",
+        "url": "https://openstax.org/details/books/introduction-business",
+        "how": "read",
+        "use": "事業の定義、収益・費用・利益の定義、リスクの定義と、リスクと利益の一般的な関係、非営利組織、生産の要素と知識(第 1 章の該当節)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、資本とお金の記述の揺れ、ソニーとアップルの書き方、知識の紹介の主語、非営利の競争、政府の並べ方、リスクの言い換え、費用の例の広告、起業家の非営利の目標、文のねじれを直した"
+      }
+    ]
+  },
+  "sg-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-09",
+    "note": "OpenStax の Principles of Managerial Accounting の、Identify and Apply Basic Cost Behavior Patterns(m68110)、Explain Contribution Margin…(m68115)、Calculate a Break-Even Point…(m68116)、Calculate and Interpret a Company's Margin of Safety and Operating Leverage(m68120)を、GitHub の原稿(openstax/osbooks-principles-accounting-bundle、2026-04-23 のコミット 2165bf6)の CNXML から、本文と図の代替テキストまで読みました。式(貢献利益、損益分岐点、目標利益、安全余裕、営業レバレッジ度)と、Hicks Manufacturing(225 個、22,500 ドル、175 個で 4,000 ドルの損失、425 個、42,500 ドル)、安全余裕の例(153,000 ドル、72,000 ドル、32%)、Wallace の問題(2.4、12%)は、教科書の値で、このレッスンが計算し直しました(e2e/cvp.spec.ts)。教科書の記述には、数字のずれがありました(営業レバレッジの例で、会社 A の 1.74 を本文が 1.71 と書く、セルフレジの例で、売上 1% で営業利益 6% と書くが、表から計算すると約 4.3%)。このレッスンは、これらを使っていません。会社 X と Y の比較、部品の例は、このサービスの例です。混合費、段階費用、複数商品の分析、税を考える分析、感度分析の章は、一部しか使っていません。 別のエージェントによる事実確認の結果は、docs/verify/sg-2.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Managerial Accounting(OpenStax、CC BY-NC-SA 4.0)の、費用の動き・貢献利益・損益分岐点・安全余裕と営業レバレッジの各節",
+        "url": "https://openstax.org/details/books/principles-managerial-accounting",
+        "how": "read",
+        "use": "固定費・変動費・混合費・関連範囲、貢献利益、損益分岐点と目標利益の式、CVP の前提、安全余裕、営業レバレッジ度とその意味(該当節の本文と図の代替テキスト)"
+      },
+      {
+        "title": "e2e/cvp.spec.ts(CVP の式の、手計算との照合)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/cvp.spec.ts",
+        "how": "repo",
+        "use": "貢献利益、損益分岐点、目標利益、安全余裕、営業レバレッジ度の計算"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、税の記述の範囲、費用の分類の例の言い方(committed cost の訳)、段階費用の文、レバレッジの言い回し、バードバスの訳、サービスの補足の断り書きを直した"
+      }
+    ]
   }
 }

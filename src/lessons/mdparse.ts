@@ -23,6 +23,7 @@ export const componentSpecs: Record<string, { required: string[] }> = {
   ci: { required: [] },
   power: { required: [] },
   samplesize: { required: [] },
+  breakeven: { required: [] },
   peek: { required: [] },
   confound: { required: [] },
 }

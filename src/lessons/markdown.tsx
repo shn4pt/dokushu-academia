@@ -9,6 +9,7 @@ import SpreadLab from '../ui/SpreadLab'
 import CiLab from '../ui/CiLab'
 import PowerLab from '../ui/PowerLab'
 import SampleSizeLab from '../ui/SampleSizeLab'
+import BreakEvenLab from '../ui/BreakEvenLab'
 import PeekLab from '../ui/PeekLab'
 import ConfoundLab from '../ui/ConfoundLab'
 import { parseLesson } from './mdparse'
@@ -27,6 +28,7 @@ const registry: Record<string, ComponentType<any>> = {
   ci: CiLab,
   power: PowerLab,
   samplesize: SampleSizeLab,
+  breakeven: BreakEvenLab,
   peek: PeekLab,
   confound: ConfoundLab,
 }

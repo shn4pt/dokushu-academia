@@ -185,7 +185,7 @@ export const courses: Course[] = [
     why: "個別の判断を、事業の経済性と、競争の中での位置取りにつなげて考えられるようになるためです。",
     summary: '事業の経済性と、競争の中での位置取りの基礎。',
     tiers: [
-      { level: 'basic', scope: '事業と市場の基礎', planned: ['序論:事業とは何か', '費用・収益・利益の構造'] },
+      { level: 'basic', scope: '事業と市場の基礎', stageIds: ['sg0'] },
       { level: 'practice', scope: '競争と戦略の枠組み', planned: ['競争環境の分析', '差別化とコスト'] },
       { level: 'advanced', scope: '意思決定と成長', planned: ['投資の判断', '新規事業の進め方'] },
     ],

@@ -130,4 +130,9 @@ export const glossary: Term[] = [
   { term: 'A/A テスト', description: '2 つの群に同じ体験を出して、実験の仕組みを確かめるテスト。有意になるのは、約 5%(水準 5% のとき)のはず。', lessonId: 'st-5' },
   { term: '交絡', reading: 'confounding', description: '治療と結果の共通の原因があるために、関連が因果の効果からずれること。データを増やしても消えない(Hernán & Robins)。', lessonId: 'st-6' },
   { term: '目標試験', reading: 'target trial', description: '観察データで因果を問うときに、まず書き出す、理想的なランダム化試験。対象者・治療の戦略・割り当て・追跡・結果・対比を決める。', lessonId: 'st-6' },
+  { term: '収益・費用・利益', description: '収益は顧客から受け取るお金、費用は作って売るためにかかる支出、利益はすべての費用を払った後に残るお金(OpenStax の入門書)。', lessonId: 'sg-1' },
+  { term: '固定費・変動費', description: '固定費は活動量が変わっても合計が変わらない費用、変動費は活動量に比例して変わる費用。両方をもつものが混合費。', lessonId: 'sg-2' },
+  { term: '貢献利益', reading: 'contribution margin', description: '価格から単位あたりの変動費を引いた額。固定費の支払いと利益に回せる、1 個あたりの額。', lessonId: 'sg-2' },
+  { term: '損益分岐点', reading: 'break-even point', description: '総収益と総費用が等しく、利益も損失も出ない販売数(または売上高)。固定費 ÷ 単位あたりの貢献利益。', lessonId: 'sg-2' },
+  { term: '営業レバレッジ', reading: 'operating leverage', description: '売上の変化が営業利益の変化に効く感度。貢献利益の合計 ÷ 営業利益。固定費が大きい構造ほど大きい。', lessonId: 'sg-2' },
 ]
