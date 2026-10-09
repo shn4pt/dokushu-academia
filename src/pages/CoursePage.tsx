@@ -1,8 +1,9 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
-import { evidenceInfo, findCourse, groups, isAvailable, levelLabel } from '../data/catalog'
+import { evidenceInfo, findCourse, followers, groups, isAvailable, levelLabel, prerequisites } from '../data/catalog'
 import { findStage, stageLabel } from '../data/curriculum'
 import { stageStats } from '../data/stats'
+import CourseLinks from '../ui/CourseLinks'
 import { useProgress } from '../progress'
 
 export default function CoursePage() {
@@ -13,6 +14,8 @@ export default function CoursePage() {
   const ev = evidenceInfo[course.evidence]
   const group = groups.find((g) => g.id === course.group)
   const available = isAvailable(course)
+  const before = prerequisites(course)
+  const after = followers(course)
 
   return (
     <>
@@ -23,10 +26,30 @@ export default function CoursePage() {
       </div>
       <p className="lead">{course.summary}</p>
 
+      {course.group === 'learning' && (
+        <Link to="/map" className="card stage-card">
+          <strong>最初に: このサービスの地図</strong>
+          <span className="muted">講座のつながりと、この構成の理由、根拠の表示の読み方を、1枚で見ます。</span>
+        </Link>
+      )}
+
       <section className="card why-card">
         <strong>この講座の根拠の基準: {ev.label}</strong>
         <p>{ev.basis}。{ev.note}</p>
       </section>
+
+      {(before.length > 0 || after.length > 0) && (
+        <section className="card" aria-label="講座の関係">
+          {before.length > 0 && (
+            <><strong>先に学ぶとよい講座</strong><CourseLinks list={before} /></>
+          )}
+          {after.length > 0 && (
+            <><strong>この講座のあとに</strong><CourseLinks list={after} /></>
+          )}
+          <span className="muted">学ぶ順序の提案で、必須ではありません。</span>
+          <Link className="rel-link" to="/map">全体の地図</Link>
+        </section>
+      )}
 
       {!available && (
         <p className="notice" role="note">

@@ -42,6 +42,8 @@ export type Tier = {
 
 export type Course = {
   id: string
+  /** 先に学ぶとよい講座(このサービスの設計上の提案。必須ではない) */
+  requires?: string[]
   title: string
   group: string
   evidence: EvidenceKind
@@ -82,7 +84,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'statistics', title: 'データ分析・統計', group: 'data', evidence: 'academic',
+    id: 'statistics', requires: ['evidence'], title: 'データ分析・統計', group: 'data', evidence: 'academic',
     summary: '指標の見方、ばらつきと誤差、A/B テストなど、意思決定に使うデータの基礎。',
     tiers: [
       { level: 'basic', scope: 'データと確率の基礎', planned: ['序論:データから何が言えるか', '平均・ばらつき・分布'] },
@@ -101,7 +103,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'agents', title: 'AI エージェント開発', group: 'ai', evidence: 'tech',
+    id: 'agents', requires: ['llm'], title: 'AI エージェント開発', group: 'ai', evidence: 'tech',
     summary: 'Claude API で、ツールを使うエージェントを設計・実装・評価する。',
     tiers: [
       { level: 'basic', scope: 'API の基本と、ツール、エージェントの考え方', stageIds: ['s9', 's10'] },
@@ -110,7 +112,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'aidev', title: 'AI を使った開発', group: 'ai', evidence: 'tech',
+    id: 'aidev', requires: ['agents'], title: 'AI を使った開発', group: 'ai', evidence: 'tech',
     summary: '補完から AI ネイティブまで、開発のやり方を段階的に進化させる。',
     tiers: [
       { level: 'basic', scope: '水準の考え方と、補完・対話の使い方', stageIds: ['s14', 's15'] },
@@ -129,7 +131,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'security', title: 'セキュリティ', group: 'ai', evidence: 'tech',
+    id: 'security', requires: ['swe'], title: 'セキュリティ', group: 'ai', evidence: 'tech',
     summary: '脅威の考え方と、設計・運用で守る基礎。',
     tiers: [
       { level: 'basic', scope: 'セキュリティの基本概念', planned: ['序論:何を、誰から守るか', '認証と認可'] },
@@ -139,7 +141,7 @@ export const courses: Course[] = [
   },
   // ── プロダクト・事業 ──
   {
-    id: 'pm', title: 'プロダクトマネジメント', group: 'product', evidence: 'practice',
+    id: 'pm', requires: ['evidence', 'statistics', 'strategy', 'ux'], title: 'プロダクトマネジメント', group: 'product', evidence: 'practice',
     summary: '顧客の課題の発見から、優先順位、計測、ロードマップまで。',
     tiers: [
       { level: 'basic', scope: 'プロダクトマネジメントとは何か', planned: ['序論:PM の仕事の全体像', '課題と解決策を分ける'] },
@@ -157,7 +159,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'marketing', title: 'マーケティング', group: 'business', evidence: 'practice',
+    id: 'marketing', requires: ['strategy'], title: 'マーケティング', group: 'business', evidence: 'practice',
     summary: '顧客の理解、価値の伝え方、施策の効果の見方。',
     tiers: [
       { level: 'basic', scope: 'マーケティングの基本概念', planned: ['序論:価値を届けるとは', '市場とセグメント'] },
@@ -166,7 +168,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'ux', title: 'UX・ユーザーリサーチ', group: 'product', evidence: 'practice',
+    id: 'ux', requires: ['psychology'], title: 'UX・ユーザーリサーチ', group: 'product', evidence: 'practice',
     summary: '利用者の理解、調査の方法、使いやすさの検証。',
     tiers: [
       { level: 'basic', scope: 'UX と利用者理解の基本', planned: ['序論:使いやすさとは何か', '利用者の課題の捉え方'] },
@@ -175,7 +177,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'planning', title: '経営企画', group: 'business', evidence: 'practice',
+    id: 'planning', requires: ['strategy', 'accounting'], title: '経営企画', group: 'business', evidence: 'practice',
     summary: '計画、予算、経営指標と、事業の意思決定の支え方。',
     tiers: [
       { level: 'basic', scope: '経営企画の役割', planned: ['序論:経営企画の仕事', '中期計画と予算'] },
@@ -185,7 +187,7 @@ export const courses: Course[] = [
   },
   // ── 人と組織 ──
   {
-    id: 'psychology', title: '心理学', group: 'psychology', evidence: 'academic',
+    id: 'psychology', requires: ['evidence'], title: '心理学', group: 'psychology', evidence: 'academic',
     summary: '人の認知、感情、学習の基礎。研究の見方も合わせて学ぶ。',
     tiers: [
       { level: 'basic', scope: '心理学の基本と、研究の見方', planned: ['序論:心理学は何を明らかにしてきたか', '実験と相関、再現性'] },
@@ -194,7 +196,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'behavior', title: '行動心理学・行動経済学', group: 'psychology', evidence: 'academic',
+    id: 'behavior', requires: ['psychology', 'statistics'], title: '行動心理学・行動経済学', group: 'psychology', evidence: 'academic',
     summary: '人の選択の偏りと、行動の変え方。結果が割れている研究も扱う。',
     tiers: [
       { level: 'basic', scope: '意思決定のくせ', planned: ['序論:人は合理的か', '認知バイアスと、その限界'] },
@@ -240,7 +242,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'audit', title: '監査・内部統制', group: 'business', evidence: 'law',
+    id: 'audit', requires: ['accounting'], title: '監査・内部統制', group: 'business', evidence: 'law',
     summary: '会計監査と内部統制の考え方。',
     tiers: [
       { level: 'basic', scope: '監査と統制の基本', planned: ['序論:なぜ監査が必要か', '内部統制の考え方'] },
@@ -255,3 +257,13 @@ export const findCourse = (id: string) => courses.find((c) => c.id === id)
 export const isAvailable = (c: Course) => c.tiers.some((t) => t.stageIds)
 export const courseStageIds = (c: Course) => c.tiers.flatMap((t) => t.stageIds ?? [])
 export const plannedCount = (c: Course) => c.tiers.reduce((n, t) => n + (t.planned?.length ?? 0), 0)
+
+/** 領域の重なり(下から上へ): 土台 → 学問の領域 → 実践 */
+export const layers = [
+  { id: 'foundation', title: '土台', note: '学ぶことと、根拠の読み方', groupIds: ['learning'] },
+  { id: 'fields', title: '学問の領域', note: '基礎論から応用へ、領域ごとに学ぶ', groupIds: ['data', 'ai', 'business', 'psychology', 'society'] },
+  { id: 'practice', title: '実践', note: '学んだことを統合して、プロダクトをつくる', groupIds: ['product'] },
+] as const
+
+export const prerequisites = (c: Course) => (c.requires ?? []).map(findCourse).filter((x): x is Course => !!x)
+export const followers = (c: Course) => courses.filter((x) => x.requires?.includes(c.id))

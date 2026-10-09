@@ -7,6 +7,7 @@ import LessonPage from './pages/LessonPage'
 import Glossary from './pages/Glossary'
 import ProgressPage from './pages/ProgressPage'
 import CatalogPage from './pages/CatalogPage'
+import MapPage from './pages/MapPage'
 import CoursePage from './pages/CoursePage'
 import SourcesPage from './pages/SourcesPage'
 import SearchPage from './pages/SearchPage'
@@ -39,6 +40,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/map" element={<MapPage />} />
           <Route path="/course/:id" element={<CoursePage />} />
           <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/stage/:id" element={<StagePage />} />

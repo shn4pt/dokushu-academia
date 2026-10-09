@@ -413,3 +413,16 @@ a.concept-chip:hover { border-color: var(--accent); }
 .tier { margin-top: 8px; }
 .planned { display: grid; gap: 8px; padding: 0; }
 .planned-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0; }
+
+/* 地図 */
+.map { display: grid; gap: 12px; margin: 12px 0; }
+.map-layer { border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; background: var(--card, transparent); }
+.map-layer h3 { margin: 0 0 8px; font-size: 1rem; }
+.map-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.map-group ul { display: flex; flex-direction: column; gap: 6px; padding: 0; margin: 6px 0 0; }
+.chip { display: inline-flex; align-items: center; min-height: 36px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 8px; text-decoration: none; font-size: 0.9rem; }
+.chip-open { border: 2px solid var(--accent); font-weight: 600; }
+@media (pointer: coarse) { .chip { min-height: 44px; } }
+.rel-links { display: flex; flex-wrap: wrap; gap: 4px 16px; list-style: none; padding: 0; margin: 4px 0 8px; }
+.rel-link { display: inline-flex; align-items: center; }
+@media (pointer: coarse) { .rel-link { min-height: 44px; min-width: 44px; } }

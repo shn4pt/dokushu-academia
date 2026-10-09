@@ -1,5 +1,5 @@
 import { go, expect, test } from './fixtures'
-import { courseStageIds, courses, groups, isAvailable } from '../src/data/catalog'
+import { courseStageIds, courses, groups, isAvailable, layers } from '../src/data/catalog'
 import { stages } from '../src/data/curriculum'
 
 test.describe('講座一覧のデータ', () => {
@@ -17,6 +17,27 @@ test.describe('講座一覧のデータ', () => {
   })
   test('どの領域にも、講座が1つ以上ある(空の領域を出さない)', () => {
     for (const g of groups) expect(courses.some((c) => c.group === g.id), g.id).toBe(true)
+  })
+  test('前提の関係: 存在する講座だけを指し、自分自身を指さず、循環しない', () => {
+    const ids = new Set(courses.map((c) => c.id))
+    for (const c of courses) for (const r of c.requires ?? []) {
+      expect(ids.has(r), `${c.id} → ${r}`).toBe(true)
+      expect(r).not.toBe(c.id)
+    }
+    // 循環の検出(深さ優先)
+    const state = new Map<string, number>()
+    const visit = (id: string) => {
+      if (state.get(id) === 1) throw new Error(`循環: ${id}`)
+      if (state.get(id) === 2) return
+      state.set(id, 1)
+      for (const r of courses.find((c) => c.id === id)?.requires ?? []) visit(r)
+      state.set(id, 2)
+    }
+    for (const c of courses) visit(c.id)
+  })
+  test('地図の層は、すべての領域をちょうど1回ずつ含む', () => {
+    const inLayers = layers.flatMap((l) => [...l.groupIds]).sort()
+    expect(inLayers).toEqual(groups.map((g) => g.id).sort())
   })
   test('公開中の講座は、全段階にステージがあり、目次のみの講座は、全段階にレッスンの案がある', () => {
     for (const c of courses) {
@@ -81,4 +102,29 @@ test('講座一覧から、続きのレッスンに移れる', async ({ page }) 
   await expect(resume).toContainText('学習を始める')
   await resume.click()
   await expect(page).toHaveURL(/#\/lesson\//)
+})
+
+test('地図: 全講座が図に並び、独自の整理であることと、前提の表が表示される', async ({ page }) => {
+  await page.goto(go('/map'))
+  await expect(page.locator('h1')).toContainText('このサービスの地図')
+  await expect(page.getByRole('note')).toContainText('独自の整理')
+  await expect(page.locator('.map .chip')).toHaveCount(courses.length)
+  await expect(page.locator('.map-layer h3')).toHaveCount(layers.length)
+  await expect(page.locator('.chip-open')).toHaveCount(courses.filter(isAvailable).length)
+  const row = page.locator('table.calc tr', { hasText: '行動心理学・行動経済学' })
+  await expect(row).toContainText('心理学')
+  await expect(row).toContainText('データ分析・統計')
+  await page.locator('.chip', { hasText: '法務' }).click()
+  await expect(page.locator('h1')).toContainText('法務')
+})
+
+test('講座の目次: 先に学ぶとよい講座と、そのあとの講座が出る', async ({ page }) => {
+  await page.goto(go('/course/statistics'))
+  const rel = page.getByRole('region', { name: '講座の関係' })
+  await expect(rel).toContainText('根拠の読み方')
+  await expect(rel).toContainText('行動心理学・行動経済学')
+  await expect(rel).toContainText('必須ではありません')
+  await page.goto(go('/course/evidence'))
+  await page.getByRole('link', { name: /このサービスの地図/ }).first().click()
+  await expect(page).toHaveURL(/#\/map$/)
 })
