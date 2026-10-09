@@ -1,0 +1,35 @@
+name: CI
+
+# プルリクエストと、公開前(deploy.yml から呼び出し)に実行する。
+# ビルド(型チェック・索引の生成・出典の検査)と、ブラウザでのテストが通らないと、公開しない。
+on:
+  pull_request:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # tsc の型チェック、検索索引・クイズ・学習時間の生成、出典の記録の検査も、ここで行われる
+      - run: npm run build
+      - run: npm run typecheck:e2e
+      - run: npx playwright install --with-deps chromium
+      - run: npx playwright test
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report
+            test-results
+          retention-days: 7

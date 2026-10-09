@@ -80,7 +80,7 @@ export default function ProgressPage() {
 
       <h2>Claude API</h2>
       <p className="muted">第2部のレッスンで API を試すための設定です。APIキーは進捗データには含まれません。</p>
-      <p><Link to="/api-key">Claude API の設定を開く →</Link></p>
+      <p><Link to="/api-key" className="standalone-link">Claude API の設定を開く →</Link></p>
 
       <h2>データの管理</h2>
       <p className="muted">

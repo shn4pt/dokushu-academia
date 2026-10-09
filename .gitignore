@@ -4,3 +4,5 @@ dist
 src/data/search-index.json
 src/data/quiz-bank.json
 src/data/lesson-stats.json
+playwright-report
+test-results

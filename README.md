@@ -103,3 +103,22 @@ Stage 14 以降は、AI を使った開発の水準(L1 補完〜L5 AI ネイテ�
 - 検査:`npm run build` の前に `scripts/check-sources.mjs` が実行される。
   - **エラー(ビルドを失敗させる)**:存在しないレッスンの記録、確認済み・一部確認なのに資料や確認日がない、確認済みなのに原文を読んだ資料がない、不正な値、未来の日付。
   - **警告**:未確認のレッスン、確認日から 180 日以上たったもの。`SOURCES_STRICT=1 npm run build` で、警告もエラーにできる。未確認がなくなったら、CI をこれに切り替える。
+
+## テストと CI
+
+ブラウザ操作のテストは Playwright(`e2e/`)。公開前に自動で実行し、通らないと GitHub Pages に公開しない。
+
+```bash
+npm run build          # 型チェック・索引の生成・出典の検査(テストは dist を配信して使う)
+npx playwright install chromium   # 初回のみ
+npm run test:e2e       # 全部(デスクトップ幅 + iPhone 13 の画面・タッチ操作)
+npx playwright test --project=desktop progress   # 一部だけ
+npm run typecheck:e2e  # テストの型チェック
+```
+
+- `smoke`:全レッスン・全ステージ・各ページの表示、エラーが出ないこと。 `progress`:進捗・クイズ・エクスポート/インポート/リセット・壊れたデータ・API キーが保存データに入らないこと。
+- `review` `search` `bookmark` `time` `sources`:復習、検索、しおり、学習時間、出典の表示。 `exercises`:第3部の演習と、19-1 の診断。 `api`:Claude API は実際には呼ばず、通信を差し替えて、リクエストの中身・エラー・キーの扱い・CSP を確かめる。
+- `mobile`:全ページが横にはみ出さないこと、操作部品が 44px 以上であること(文の途中にあるリンクは対象外)。
+- どのテストも、ページ内で未処理の例外や `console.error` が出たら失敗する(`e2e/fixtures.ts`)。
+- レッスンの件数などは、テストに書き写さず、アプリが生成するデータ(`quiz-bank.json`)から読む。レッスンを足してもテストの修正は要らない。
+- `.github/workflows/ci.yml`:プルリクエストと公開前に、ビルド → テストを実行する。失敗したときは、レポートと画面写真・トレースが成果物として保存される。`deploy.yml` は、これが通ってから公開する。
