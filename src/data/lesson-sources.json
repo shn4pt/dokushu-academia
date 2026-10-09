@@ -2826,5 +2826,97 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ux-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Nielsen Norman Group(NN/g)の記事 4 本と、米国政府の Digital.gov(旧 usability.gov)のページを、ウェブページの本文として読みました: The Definition of User Experience(Norman と Nielsen, 1998)、Usability 101(Nielsen, 2012。2026-07-15 に再確認と表示)、10 Usability Heuristics(Nielsen, 1994。2024-01-30 に再確認と表示)、Why You Only Need to Test with 5 Users(Nielsen, 2000)、Digital.gov の使いやすさのページ。Faulkner(2003, Behavior Research Methods)は、Europe PMC の書誌で、要旨だけを読みました(how: search)。これらは、実務家の資料(この講座の根拠の基準)です。記事に、NN/g の研修の案内が載っています。『設計予算の約 10% で指標が 2 倍を超える』などの数字は、NN/g の主張で、データは示されておらず、確かめていません。5 人のテストの式と 31%・85% の数字は、Nielsen と Landauer(1993)の研究を、Nielsen の記事が述べた範囲です。原論文(Nielsen と Landauer, 1993)は読んでいません。ISO 9241-11 の使いやすさの定義は、読んでいません。『この講座の読み方』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/ux-1.md にあります。",
+    "sources": [
+      {
+        "title": "The Definition of User Experience (UX)(Don Norman, Jakob Nielsen, Nielsen Norman Group, 1998)",
+        "url": "https://www.nngroup.com/articles/definition-user-experience/",
+        "how": "read",
+        "use": "UX の定義、UX と UI、UX と使いやすさの区別(記事の本文)"
+      },
+      {
+        "title": "Usability 101: Introduction to Usability(Jakob Nielsen, Nielsen Norman Group, 2012)",
+        "url": "https://www.nngroup.com/articles/usability-101-introduction-to-usability/",
+        "how": "read",
+        "use": "使いやすさの 5 つの要素、utility、重要さ、ユーザーテスト、いつ行うか(記事の本文)"
+      },
+      {
+        "title": "10 Usability Heuristics for User Interface Design(Jakob Nielsen, Nielsen Norman Group, 1994)",
+        "url": "https://www.nngroup.com/articles/ten-usability-heuristics/",
+        "how": "read",
+        "use": "10 のヒューリスティックの名称と説明、スリップとミステイク、想起より再認の説明(記事の本文)"
+      },
+      {
+        "title": "Why You Only Need to Test with 5 Users(Jakob Nielsen, Nielsen Norman Group, 2000)",
+        "url": "https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/",
+        "how": "read",
+        "use": "5 人のテストの主張、式の前提(L = 31%)、反復、人数を増やす条件(記事の本文)"
+      },
+      {
+        "title": "Usability(Digital.gov。旧 usability.gov からの転送先、米国政府のウェブサイト)",
+        "url": "https://digital.gov/topics/usability/",
+        "how": "read",
+        "use": "使いやすさの説明と、UX との関係(ページの本文)"
+      },
+      {
+        "title": "Beyond the five-user assumption: benefits of increased sample sizes in usability testing(Laura Faulkner, Behavior Research Methods, 2003)",
+        "url": "https://doi.org/10.3758/bf03195514",
+        "how": "search",
+        "use": "要旨だけ(Europe PMC): 60 人から無作為に抽出した 5 人の組で、問題の 55% から 99% が見つかったこと、10 人で下限 80%、20 人で 95%(論文の本文は読んでいない)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ux-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "英国政府の GOV.UK サービスマニュアルの 2 ページ(Learning about users and their needs、User research for government services: an introduction。オープンガバメントライセンス)と、NN/g の記事 3 本(First Rule of Usability? Don't Listen to Users、Personas Make Users Memorable、Journey Mapping 101)を、ウェブページの本文として読みました。GOV.UK のページは、2016〜2017 年に公開・更新されたものです。これらは、実務家の資料(この講座の根拠の基準)です。Nielsen と Levy(1994)の分析(113 組の比較、相関 0.44)と、その後の r = 0.53 は、Nielsen の記事が述べた範囲で、原論文は読んでいません。NN/g のペルソナの記事は、ペルソナの限界を論じておらず、ペルソナの効果を検証した研究は確かめていません。GOV.UK の『ユーザーニーズを中心に設計されたサービスは使われやすい』などの記述は、マニュアルの主張で、データは確かめていません。『調査を読む、5 つの問い』は、このサービス独自の整理です。他のユーザーリサーチの手法(インタビュー、観察、アンケートの設計)は、次の段階で扱う予定で、このレッスンでは読んでいません。 別のエージェントによる事実確認の結果は、docs/verify/ux-2.md にあります。",
+    "sources": [
+      {
+        "title": "Learning about users and their needs(GOV.UK Service Manual、User research community。2016 年公開、2017 年更新)",
+        "url": "https://www.gov.uk/service-manual/user-research/start-by-learning-user-needs",
+        "how": "read",
+        "use": "ユーザーニーズの定義、何をどう調べるか、誰を調べるか、ニーズの書き方と条件、ユーザーストーリーとの関係、共有の道具(ページの本文)"
+      },
+      {
+        "title": "User research for government services: an introduction(GOV.UK Service Manual。2016 年公開、2017 年更新)",
+        "url": "https://www.gov.uk/service-manual/user-research/how-user-research-improves-service-design",
+        "how": "read",
+        "use": "利用者を知る理由、包括的な調査、人気でなく何が機能するか、継続的な調査(ページの本文)"
+      },
+      {
+        "title": "First Rule of Usability? Don't Listen to Users(Jakob Nielsen, Nielsen Norman Group, 2001)",
+        "url": "https://www.nngroup.com/articles/first-rule-of-usability-dont-listen-to-users/",
+        "how": "read",
+        "use": "自己報告の 3 段階の問題、好みと成績の相関、いつ聞くか(記事の本文)"
+      },
+      {
+        "title": "Personas Make Users Memorable(Taylor Dykes, Nielsen Norman Group, 2025。URL は /articles/persona/)",
+        "url": "https://www.nngroup.com/articles/persona/",
+        "how": "read",
+        "use": "ペルソナの定義、調査にもとづくこと、作り方、役割(記事の本文)"
+      },
+      {
+        "title": "Journey Mapping 101(Sarah Gibbons, Nielsen Norman Group, 2018。2026-07-15 に再確認と表示)",
+        "url": "https://www.nngroup.com/articles/journey-mapping-101/",
+        "how": "read",
+        "use": "ジャーニーマップの定義と 5 つの要素(記事の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

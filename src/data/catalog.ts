@@ -211,7 +211,7 @@ export const courses: Course[] = [
     },
     summary: '利用者の理解、調査の方法、使いやすさの検証。',
     tiers: [
-      { level: 'basic', scope: 'UX と利用者理解の基本', planned: ['序論:使いやすさとは何か', '利用者の課題の捉え方'] },
+      { level: 'basic', scope: 'UX と利用者理解の基本', stageIds: ['ux0'] },
       { level: 'practice', scope: '調査と検証', planned: ['インタビューと観察の進め方', 'ユーザビリティの検証'] },
       { level: 'advanced', scope: 'プロダクトへの反映', planned: ['調査結果を意思決定につなげる', '定量と定性の組み合わせ'] },
     ],

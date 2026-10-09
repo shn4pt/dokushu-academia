@@ -175,4 +175,11 @@ export const glossary: Term[] = [
   { term: '服従', reading: 'obedience', description: '権威者の要求に従って行動を変えること。Milgram の実験が代表。', lessonId: 'ps-6' },
   { term: '集団思考', reading: 'groupthink', description: '集団の合意と思うものに合わせて、個人の意見を変えてしまい、反対意見が抑えられること(Janis, 1972)。', lessonId: 'ps-6' },
   { term: '社会的手抜き', reading: 'social loafing', description: '成果が合算される課題で、個人の努力が減ること。個人の貢献が評価されると、減りうる。', lessonId: 'ps-6' },
+  { term: 'ユーザー体験(UX)', reading: 'user experience', description: '会社とそのサービスや製品への、利用者の関わりのすべての側面(Norman と Nielsen)。UI や使いやすさより広い概念。', lessonId: 'ux-1' },
+  { term: '使いやすさ', reading: 'usability', description: 'UI の品質の属性。学びやすさ・効率・覚えやすさ・誤り・満足の 5 つの要素で表される(Nielsen)。', lessonId: 'ux-1' },
+  { term: 'ヒューリスティック評価', reading: 'usability heuristics', description: 'Nielsen の 10 の経験則(システム状態の見えやすさ、一貫性、エラーの予防、想起より再認など)で、設計を点検する方法。広い経験則で、具体的な指針ではない。', lessonId: 'ux-1' },
+  { term: 'ユーザーテスト', reading: 'user testing', description: '代表的な利用者に、代表的な作業をしてもらい、何をするかを観察して、使いやすさの問題を見つける方法。', lessonId: 'ux-1' },
+  { term: 'ユーザーニーズ', reading: 'user needs', description: '利用者がサービスに求める必要で、満たさなければ正しい結果が得られないもの。解決策でなく、利用者の問題の形で書く(GOV.UK)。', lessonId: 'ux-2' },
+  { term: 'ペルソナ', reading: 'persona', description: 'ユーザー調査にもとづく架空の利用者。調査で得た情報を一人の人物に統合し、チームの共感と共通の語彙を作る道具(NN/g)。', lessonId: 'ux-2' },
+  { term: 'ジャーニーマップ', reading: 'journey map', description: '人が目標を達成するまでの過程の可視化。主体・場面と期待・段階・行動と考えと感情・機会の 5 つの要素を持つ(NN/g)。', lessonId: 'ux-2' },
 ]
