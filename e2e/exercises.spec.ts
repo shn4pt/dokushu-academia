@@ -107,7 +107,7 @@ test.describe('19-1 成熟度の自己診断と 19-2 の計画', () => {
   const pick = (page: Page, dim: number, v: number) => dims(page).nth(dim).locator('input[type=radio]').nth(v).check()
 
   test.beforeEach(async ({ page }) => {
-    await page.goto(go('/'))
+    await page.goto(go('/llm'))
     await page.evaluate(() => localStorage.clear())
   })
 

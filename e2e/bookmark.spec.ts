@@ -4,7 +4,7 @@ const reading = (page: import('@playwright/test').Page) =>
   page.evaluate((k) => JSON.parse(localStorage.getItem(k) ?? '{}').reading ?? {}, PROGRESS_KEY)
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(go('/'))
+  await page.goto(go('/llm'))
   await page.evaluate(() => localStorage.clear())
 })
 
@@ -25,7 +25,7 @@ test('読み進めた見出しが記録され、ホームから、その見出�
   expect((await reading(page))['5-3'].index).toBe(before)
 
   // ホームの「続きから学ぶ」で、記録した見出しに戻る
-  await page.goto(go('/'))
+  await page.goto(go('/llm'))
   await expect(page.locator('main')).toContainText(`前回は「${rec.section}」まで読みました`)
   await page.getByRole('link', { name: /続きから学ぶ/ }).click()
   await expect(page.locator('article h1')).toContainText('5-3')

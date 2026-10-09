@@ -32,6 +32,13 @@ export default function CoursePage() {
         {status === 'open' && ' ・ すべての段階が公開済み'}
       </p>
 
+      {['llm', 'agents', 'aidev'].includes(course.id) && (
+        <Link to="/llm" className="card stage-card">
+          <strong>LLM の講座のホーム</strong>
+          <span className="muted">序論と Stage 0〜20 の全体像、進捗、学習時間の目安、復習をまとめて見られます。</span>
+        </Link>
+      )}
+
       {course.group === 'learning' && (
         <Link to="/map" className="card stage-card">
           <strong>最初に: このサービスの地図</strong>

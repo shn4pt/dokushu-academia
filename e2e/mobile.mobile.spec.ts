@@ -15,7 +15,7 @@ for (const id of ids) {
   })
 }
 
-for (const path of ['/', '/roadmap', '/glossary', '/search', '/review', '/progress', '/api-key', '/sources', '/catalog', '/map', '/course/pm', ...stageIds.map((s) => `/stage/${s}`)]) {
+for (const path of ['/', '/llm', '/roadmap', '/glossary', '/search', '/review', '/progress', '/api-key', '/sources', '/catalog', '/map', '/course/pm', ...stageIds.map((s) => `/stage/${s}`)]) {
   test(`スマホ: ${path} は横スクロールしない`, async ({ page }) => {
     await page.goto(go(path))
     await expect(page.locator('main')).toBeVisible()
@@ -46,7 +46,7 @@ async function smallTargets(page: Page) {
   })
 }
 
-for (const path of ['/', '/roadmap', '/glossary', '/search?q=attention', '/review', '/progress', '/api-key', '/sources', '/lesson/7-2', '/lesson/14-3', '/lesson/16-3', '/lesson/19-1', '/lesson/15-2', '/lesson/9-1', '/lesson/20-1', '/lesson/20-2', '/lesson/20-3', '/catalog', '/map', '/course/pm', '/course/agents', '/course/evidence', '/lesson/e-1']) {
+for (const path of ['/llm', '/roadmap', '/glossary', '/search?q=attention', '/review', '/progress', '/api-key', '/sources', '/lesson/7-2', '/lesson/14-3', '/lesson/16-3', '/lesson/19-1', '/lesson/15-2', '/lesson/9-1', '/lesson/20-1', '/lesson/20-2', '/lesson/20-3', '/catalog', '/map', '/course/pm', '/course/agents', '/course/evidence', '/lesson/e-1']) {
   test(`スマホ: ${path} の操作部品は 44px 以上`, async ({ page }) => {
     await page.goto(go(path))
     await expect(page.locator('main')).toBeVisible()

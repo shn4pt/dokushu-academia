@@ -2,7 +2,7 @@ import { go, expect, test } from './fixtures'
 import { answerQuiz, quizOf } from './quiz'
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(go('/'))
+  await page.goto(go('/llm'))
   await page.evaluate(() => localStorage.clear())
   await page.reload()
 })

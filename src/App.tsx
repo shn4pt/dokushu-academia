@@ -38,7 +38,8 @@ export default function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Navigate to="/catalog" replace />} />
+          <Route path="/llm" element={<Home />} />
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="/course/:id" element={<CoursePage />} />

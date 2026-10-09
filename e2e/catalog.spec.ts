@@ -237,3 +237,11 @@ test('執筆の優先度と状況: 講座一覧と、講座の目次に表示さ
   await page.goto(go('/course/llm'))
   await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
 })
+
+test('LLM の講座の目次から、LLM の講座のホームに移れる', async ({ page }) => {
+  await page.goto(go('/course/llm'))
+  await page.getByRole('link', { name: /LLM の講座のホーム/ }).click()
+  await expect(page).toHaveURL(/#\/llm$/)
+  await expect(page.locator('h1')).toContainText('LLMのしくみを、段階的に学ぶ')
+  await expect(page.locator('.crumb a', { hasText: '講座一覧' })).toBeVisible()
+})

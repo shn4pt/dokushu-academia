@@ -17,6 +17,7 @@ export default function Home() {
 
   return (
     <>
+      <p className="crumb"><Link to="/catalog">講座一覧</Link> / LLM の講座</p>
       <h1>LLMのしくみを、段階的に学ぶ</h1>
       <p className="lead">
         プログラミング経験者向けに、序論と{llmStages.length - 1}のステージで学びます。第1部では、前提となる数学から Transformer、学習、推論まで、

@@ -16,13 +16,13 @@ test('ロードマップの時間と、レッスンページの時間が一致�
 })
 
 test('レッスンを完了にすると、残り時間が減る', async ({ page }) => {
-  await page.goto(go('/'))
+  await page.goto(go('/llm'))
   await page.evaluate(() => localStorage.clear())
   await page.reload()
   const remaining = async () => (await page.locator('main .time-line strong').first().innerText()).trim()
   const before = await remaining()
   await page.goto(go('/lesson/0-1'))
   await page.getByRole('button', { name: 'このレッスンを完了にする' }).click()
-  await page.goto(go('/'))
+  await page.goto(go('/llm'))
   expect(await remaining()).not.toBe(before)
 })

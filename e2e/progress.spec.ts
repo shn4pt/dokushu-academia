@@ -5,7 +5,7 @@ import { answerQuiz, quizOf } from './quiz'
 const stored = (page: import('@playwright/test').Page) => page.evaluate((k) => JSON.parse(localStorage.getItem(k) ?? 'null'), PROGRESS_KEY)
 
 test.beforeEach(async ({ page }) => {
-  await page.goto(go('/'))
+  await page.goto(go('/llm'))
   await page.evaluate(() => localStorage.clear())
   await page.reload()
 })
@@ -28,7 +28,7 @@ test('レッスンを完了にすると、進捗率・ホーム・進捗ペー�
   await page.getByRole('button', { name: 'このレッスンを完了にする' }).click()
   await expect(page.getByRole('button', { name: /完了済み/ })).toBeVisible()
   await expect(page.locator('.site-header')).toContainText('進捗 1%')
-  await page.goto(go('/'))
+  await page.goto(go('/llm'))
   await expect(page.locator('main')).toContainText(`1%(1 / ${ids.length}`)
   await expect(page.locator('main')).toContainText('続きから学ぶ')
   await page.goto(go('/progress'))
