@@ -1914,21 +1914,39 @@
     ]
   },
   "20-1": {
-    "status": "partial",
+    "status": "verified",
     "checkedAt": "2026-10-09",
-    "note": "MCP の仕様(ツールのエラー、注釈、サーバーが守ること)と、Claude Code・Claude API の公式ドキュメントで、各記述を確認しました。コードは型検査と、実物の MCP クライアントとメモリ上でつないだテストで確認しています。実際の Claude Code や API には接続しておらず、stdio での起動やトークンの扱いの安全の節の一部(token passthrough など)は、仕様の要約にもとづくもので、認可の仕様の全文は読んでいません。",
+    "note": "MCP の仕様(ツール、標準入出力、認可、セキュリティの手引き)と、Claude Code・Claude API の公式ドキュメントを読んで、各記述を確認しました(確認日の版)。コードは型検査と、実物の MCP クライアントとメモリ上でつないだテストで確認しています。実際の Claude Code や API には接続していません。「書き込みのツールは人の承認を前提にする」は、仕様の「人が確認できること(SHOULD)」にもとづくこのコースの助言です。",
     "sources": [
       {
         "title": "MCP 仕様 2026-07-28: Tools",
         "url": "https://modelcontextprotocol.io/specification/2026-07-28/server/tools",
         "how": "read",
-        "use": "ツールの2種類のエラー、注釈は信頼しないこと、サーバーが守ること"
+        "use": "2種類のエラー、注釈は信頼しない、ツール名の推奨、決まった順序、サーバーが守ること、状態のハンドル"
+      },
+      {
+        "title": "MCP 仕様 2026-07-28: stdio",
+        "url": "https://modelcontextprotocol.io/specification/2026-07-28/basic/transports/stdio",
+        "how": "read",
+        "use": "サーバーは標準出力に MCP のメッセージ以外を書いてはならない。ログは標準エラー"
+      },
+      {
+        "title": "MCP 仕様 2025-11-25: Authorization",
+        "url": "https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization",
+        "how": "read",
+        "use": "自分あてのトークンだけを受け入れる、トークンを素通ししない、最小権限"
+      },
+      {
+        "title": "MCP: Security Best Practices",
+        "url": "https://modelcontextprotocol.io/docs/tutorials/security/security_best_practices",
+        "how": "read",
+        "use": "トークンの素通し、状態のハンドル、ローカルサーバーの危険、スコープの最小化"
       },
       {
         "title": "Claude Code: MCP",
         "url": "https://code.claude.com/docs/en/mcp",
         "how": "read",
-        "use": "claude mcp add の書き方(stdio と http)、-- の区切り、スコープ、claude mcp list"
+        "use": "claude mcp add(stdio と http)、-- の区切り、スコープ、信頼できるサーバーだけつなぐ注意"
       },
       {
         "title": "Claude API: MCP connector",
@@ -1947,7 +1965,7 @@
   "20-2": {
     "status": "partial",
     "checkedAt": "2026-10-09",
-    "note": "Wilson の信頼区間が小さな標本で勧められることは、Brown・Cai・DasGupta(2001)の要旨で確認しました(本文は未読)。McNemar の検定と κ は標準的な手法で、コードは手計算の値と照らしたテストで確認しています。LLM を採点者にする方法の偏り(順序など)の大きさは、特定の文献では確認しておらず、一般的な注意として書いています。判定コードは通信を差し替えたテストで確認しており、実際の API では動かしていません。",
+    "note": "Wilson の信頼区間が小さな標本で勧められることは、Brown・Cai・DasGupta(2001)の要旨で確認しました。本文は有料で読めておらず、公開されたコピーも見つからなかったため、要旨にある範囲だけを根拠にしています。McNemar の検定と κ は標準的な手法で、コードは手計算の値と照らしたテストで確認しています。LLM を採点者にする方法の偏り(順序など)の大きさは、特定の文献では確認しておらず、一般的な注意として書いています。判定コードは通信を差し替えたテストで確認しており、実際の API では動かしていません。",
     "sources": [
       {
         "title": "Interval Estimation for a Binomial Proportion(Brown, Cai, DasGupta, 2001, Statistical Science)",

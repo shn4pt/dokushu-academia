@@ -10,7 +10,7 @@ for (const [id, title] of [['20-1', 'MCP サーバーを自作する'], ['20-2',
     await page.goto(go(`/lesson/${id}`))
     await expect(page.locator('article h1')).toContainText(title)
     await expect(page.locator('.source-note')).toBeVisible()
-    await expect(page.locator('.source-note summary')).toContainText('一部を確認')
+    await expect(page.locator('.source-note summary')).toContainText(id === '20-1' ? '原典・公式で確認' : '一部を確認')
   })
 }
 
