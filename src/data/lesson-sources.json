@@ -2614,5 +2614,49 @@
         "summary": "別のエージェントによる事実確認を受けて、サービスの整理の切り分け、Flux の出題、本文にない出題の補足、文の構造、会社 L と D の表の断り書きを直した"
       }
     ]
+  },
+  "sg-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Managerial Accounting の、Evaluate the Payback and Accounting Rate of Return in Capital Investment Decisions(m68090)、Explain the Time Value of Money…(m68092)、Use Discounted Cash Flow Models to Make Capital Investment Decisions(m68093)、Compare and Contrast Non-Time Value-Based Methods and Time Value-Based Methods…(m68094)を、GitHub の原稿(openstax/osbooks-principles-accounting-bundle、2026-04-23 のコミット 2165bf6)の CNXML から、本文を読みました。式(回収期間、ARR、NPV、IRR、収益性指数)と、例(印刷会社 7.5 年、40,000 ドルの 5.33 年、ピアノの会社 25%、X 線装置 68,400 ドル・収益性指数 1.342・1.208、溶接設備の IRR 8%、5,000 ドルの 3 年 5,955.08 ドル、3,969.16 ドル、30,000 ドルの設備の NPV 9,927 ドルと IRR 19.86%)は教科書の値で、このレッスンが計算し直しました(e2e/invest.spec.ts)。X 線装置の NPV は、教科書の表の 6.710 では 68,400 ドル、正確には約 68,403 ドルです。教科書の記述には、使わなかった箇所があります(Baby Goods Manufacturing の ARR の例は、増分の費用が 15,000 ドルとあるのに、式では 5,000 ドルを使っており、数が合わない。『NPV は高リスクの投資を認める』『IRR は事前の収益率が不要』などの強みと弱みの一部は、教科書の他の記述と整合しないため、使っていない)。案 A と B の比較(1,000 万円、年 400 万円を 3 年、年 250 万円を 8 年)は、このサービスの例で、e2e/invest.spec.ts で計算しています。キャッシュフローの表は、CNXML では画像の代替テキスト(alt)に数値があり、5.33 年の例は、本文と alt の双方に一致することを確かめました。税、減価償却、インフレの扱いは、教科書が先の科目に委ねており、このレッスンも扱っていません。実際の会社が、どの方法をどれだけ使い、どれが成果につながるかは、確認していません。 別のエージェントによる事実確認の結果は、docs/verify/sg-5.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Managerial Accounting(OpenStax、CC BY-NC-SA 4.0)の、回収期間と会計上の収益率・貨幣の時間価値・割引キャッシュフロー法・4 つの方法の比較の各節",
+        "url": "https://openstax.org/details/books/principles-managerial-accounting",
+        "how": "read",
+        "use": "資本予算の位置づけ、回収期間と ARR の式と例、時間価値(現在価値・将来価値・複利・割引)、NPV と IRR の定義と例、収益性指数、互いに排他的な案、4 つの方法の強みと弱み(該当節の本文)"
+      },
+      {
+        "title": "e2e/invest.spec.ts(投資の判断の式の、教科書の値と別実装との照合。案 A と B の例を含む)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/invest.spec.ts",
+        "how": "repo",
+        "use": "回収期間、ARR、現在価値・将来価値、NPV、IRR、収益性指数の計算"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "sg-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Entrepreneurship の、Launching the Imperfect Business: Lean Startup(m71164)、Designing the Business Model(m71178)、Conducting a Feasibility Analysis(m71179)を、GitHub の原稿(openstax/osbooks-entrepreneurship、2026-06-17 のコミット a299e6d)の CNXML から、本文を読みました。リーン・スタートアップ、作る・測る・学ぶ、MVP、革新の会計、ピボットと 10 の型(一部を紹介)、滑走路(550,000 ドル ÷ 50,000 ドル = 11 か月)、ビジネスモデル(Osterwalder と Pigneur の定義)、ビジネスモデル・キャンバス、リーン・キャンバス、望ましさ・実現可能性・成り立ち、実現可能性分析の 3 つの部分、go-or-no-go は、教科書の記述です。Eric Ries、Osterwalder と Pigneur、Ash Maurya の原著は、読んでいません(教科書の引用を通して知った範囲です)。教科書が挙げる企業の例(Dropbox、Zappos、IMVU、Twitter、PayPal、Nintendo など)は、教科書の記述で、二次資料にもとづくものがあり、企業の実態を確かめていません。リーン・スタートアップやキャンバスが、成果につながることを実証した研究は、確認していません。教科書の TAM と SAM の説明は簡略なので、概要だけ紹介しています。成長のエンジン(engine of growth)の型は、説明が不明瞭なため、使っていません。ソーシャル・ビジネスモデル・キャンバス、顧客共感マップ、バリュー・プロポジション・キャンバスは、m71178 の中で読みましたが、本文では使っていません。事業計画や資金調達の節は、対象外で、読んでいません。経営-5 とのつなぎ(『仮説の検証で見積りの質を上げる』『段階ごとの進退の判断で損失を抑える』)は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/sg-6.md にあります。",
+    "sources": [
+      {
+        "title": "Entrepreneurship(OpenStax、CC BY-NC-SA 4.0)の、Launching the Imperfect Business: Lean Startup / Designing the Business Model / Conducting a Feasibility Analysis",
+        "url": "https://openstax.org/details/books/entrepreneurship",
+        "how": "read",
+        "use": "リーン・スタートアップ、作る・測る・学ぶ、MVP、革新の会計、ピボットと滑走路、ビジネスモデルと、ビジネスモデル・キャンバス、リーン・キャンバス、実現可能性分析の部分と go-or-no-go(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

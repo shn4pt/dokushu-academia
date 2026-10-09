@@ -187,7 +187,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: '事業と市場の基礎', stageIds: ['sg0'] },
       { level: 'practice', scope: '競争と戦略の枠組み', stageIds: ['sg1'] },
-      { level: 'advanced', scope: '意思決定と成長', planned: ['投資の判断', '新規事業の進め方'] },
+      { level: 'advanced', scope: '意思決定と成長', stageIds: ['sg2'] },
     ],
   },
   {
@@ -350,8 +350,8 @@ export const writingPlan: { priority: Priority; title: string; reason: string; i
   {
     priority: 1,
     title: '最優先',
-    reason: 'プロダクトマネジメントの前提を、順にたどった講座です。(根拠の読み方とデータ分析・統計は公開済み。)経営・戦略 → 心理学 → UX → プロダクトマネジメントの順に、通して学べる状態を目指します。',
-    ids: ['strategy', 'psychology', 'ux', 'pm'],
+    reason: 'プロダクトマネジメントの前提を、順にたどった講座です。(根拠の読み方、データ分析・統計、経営・戦略は公開済み。)心理学 → UX → プロダクトマネジメントの順に、通して学べる状態を目指します。',
+    ids: ['psychology', 'ux', 'pm'],
   },
   {
     priority: 2,

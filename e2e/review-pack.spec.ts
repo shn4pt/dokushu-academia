@@ -27,7 +27,7 @@ test.describe('確認の材料', () => {
     expect(md).toContain('学術 — 査読された論文')
     expect(md).toContain('同じデータが、見方で逆になる') // 公開済みの、ほかのレッスンも載る
     expect(md).toContain('根拠が少ない分野での判断')
-    expect(pack(['strategy'])).toContain('準備中: 投資の判断') // 目次の案も載る
+    expect(pack(['marketing'])).toContain('準備中: 序論:価値を届けるとは') // 目次の案も載る
   })
 
   test('別の目の確認が未実施なら、黄色の目印が出る。実施済みなら、結果が取り込まれる', () => {
@@ -49,8 +49,8 @@ test.describe('確認の材料', () => {
   })
 
   test('段階を絞れる(本文のない段階は、レッスンなし)', () => {
-    const md = pack(['strategy', '--tier', 'advanced'])
-    expect(md).toContain('# 確認の材料: 経営・戦略(応用)')
+    const md = pack(['marketing', '--tier', 'basic'])
+    expect(md).toContain('# 確認の材料: マーケティング(基礎)')
     expect(md).toContain('公開済みのレッスンは、ありません')
   })
 
