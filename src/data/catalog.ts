@@ -99,7 +99,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: 'データと確率の基礎', stageIds: ['st0'] },
       { level: 'practice', scope: '推定と検定', stageIds: ['st1'] },
-      { level: 'advanced', scope: '実験と因果', planned: ['A/B テストの設計', '観察データから因果を考える'] },
+      { level: 'advanced', scope: '実験と因果', stageIds: ['st2'] },
     ],
   },
   // ── AI・技術(公開中) ──
@@ -350,8 +350,8 @@ export const writingPlan: { priority: Priority; title: string; reason: string; i
   {
     priority: 1,
     title: '最優先',
-    reason: 'プロダクトマネジメントの前提を、順にたどった講座です。(根拠の読み方は公開済み。)データ分析・統計 → 経営・戦略 → 心理学 → UX → プロダクトマネジメントの順に、通して学べる状態を目指します。',
-    ids: ['statistics', 'strategy', 'psychology', 'ux', 'pm'],
+    reason: 'プロダクトマネジメントの前提を、順にたどった講座です。(根拠の読み方とデータ分析・統計は公開済み。)経営・戦略 → 心理学 → UX → プロダクトマネジメントの順に、通して学べる状態を目指します。',
+    ids: ['strategy', 'psychology', 'ux', 'pm'],
   },
   {
     priority: 2,

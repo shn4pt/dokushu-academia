@@ -2440,5 +2440,69 @@
         "summary": "別のエージェントによる事実確認を受けて、検定の書式と手順の言い方、β の補足、棄却できないことの言い方、整理と出典の主張の区別、Ioannidis の系 3 の位置づけ、慣習的な呼び名の削除を直した"
       }
     ]
+  },
+  "st-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-09",
+    "note": "Kohavi ら(2009)の公式 PDF と、Johari ら(arXiv:1512.04922v3)を、生の PDF からテキストを取り出して読みました。Kohavi ら: OEC の定義と3.2.4(実験前に決める)、3.2 の式(2)(n=16σ²/Δ²)、6.2.4(割り当てと期間)、A/A テスト、3.6(新奇性と先入観)、6.3.2(検出力不足)。Johari ら: 継続して結果を見ることの問題(導入部)。本文中の数値(409,600/121,600/7,600/6,400 人、期間の倍率、結果を見る回数ごとの誤り率)は、このレッスンが、式とシミュレーションで計算した値です(e2e/sampleSize.spec.ts、e2e/peek.spec.ts)。Johari らが提案する always valid p-values の中身(数式)は、導入部だけを読み、理論の本体は確認していません。「約 5%、8%、14%…」は、このサービスのシミュレーションで、論文の値ではありません。 別のエージェントによる事実確認の結果は、docs/verify/st-5.md にあります。",
+    "sources": [
+      {
+        "title": "Controlled experiments on the web: survey and practical guide(Kohavi, Longbotham, Sommerfield, Henne; Data Mining and Knowledge Discovery 18, 2009)",
+        "url": "https://exp-platform.com/Documents/controlledExperimentDMKD.pdf",
+        "how": "read",
+        "use": "OEC、標本の大きさの式と数値例、割り当てと期間の倍率、A/A テスト、新奇性と先入観、検出力不足、実施の注意(論文の公式 PDF)"
+      },
+      {
+        "title": "Always Valid Inference: Continuous Monitoring of A/B Tests(Johari, Pekelis, Walsh; arXiv:1512.04922v3)",
+        "url": "https://arxiv.org/abs/1512.04922",
+        "how": "read",
+        "use": "結果を継続して見ながら標本の大きさを決めると、p 値や信頼区間が信頼できなくなること、第 1 種の誤りの増加(導入部。逐次的な方法の理論の本体は未確認)"
+      },
+      {
+        "title": "e2e/sampleSize.spec.ts・e2e/peek.spec.ts(必要な数の式と、結果を見る回数のシミュレーションの照合)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/peek.spec.ts",
+        "how": "repo",
+        "use": "必要なユーザー数の計算、期間の倍率、結果を見る回数ごとの誤り率のシミュレーション"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、チェックアウトの例(6,400 人と 64,000 人)、論文の数字と再計算値の区別、図 1 の位置づけ、「5 倍」の言い方、「しか」・「3.3 倍」などの言い回しを直した"
+      }
+    ]
+  },
+  "st-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-09",
+    "note": "Hernán と Robins の Causal Inference: What If(オンライン版、2026 年 8 月 19 日版の PDF)を、生の PDF からテキストを取り出して読みました。読んだ範囲: 第 3 章(3.1 の3つの条件と heroic、3.2 の同定の仮定がデータの外にあること、3.6 の目標試験の構成要素)、第 7 章(7.1 の共通の原因による偏り、7.6 の確認できない仮定と、治療の子孫で補正しないことの Fine Point)。教科書の他の章(傾向スコア、逆確率重みづけなどの方法)は読んでいません。部品の数値(+0.14、−0.10)は、このサービスが作った例で、教科書の例ではありません(e2e/confounding.spec.ts で手計算と照合)。Pearl の概説は参照のみで、本文の主張の根拠には使っていません。 別のエージェントによる事実確認の結果は、docs/verify/st-6.md にあります。",
+    "sources": [
+      {
+        "title": "Causal Inference: What If(Hernán MA, Robins JM; Chapman & Hall/CRC, オンライン版)",
+        "url": "https://miguelhernan.org/s/hernanrobins_WhatIf_19aug26.pdf",
+        "how": "read",
+        "use": "関連と因果、共通の原因による偏り、同定の3つの条件と仮定がデータの外にあること、確認できない仮定、治療の子孫で補正しない注意、目標試験の構成要素(第3章・第7章の該当箇所)"
+      },
+      {
+        "title": "e2e/confounding.spec.ts(交絡のデモの式の、手計算との照合)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/confounding.spec.ts",
+        "how": "repo",
+        "use": "単純な比較と調整後の比較の式、層ごとの値"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、「いくら大きくても」の条件、治療の子孫の説明(7.6 節と Fine Point 7.4)、一貫性・正値性の言い方、出所と語気、サービスの意見の区別、クイズ 2 を直した"
+      }
+    ]
   }
 }

@@ -8,6 +8,9 @@ import GradeLab from '../ui/GradeLab'
 import SpreadLab from '../ui/SpreadLab'
 import CiLab from '../ui/CiLab'
 import PowerLab from '../ui/PowerLab'
+import SampleSizeLab from '../ui/SampleSizeLab'
+import PeekLab from '../ui/PeekLab'
+import ConfoundLab from '../ui/ConfoundLab'
 import { parseLesson } from './mdparse'
 import type { LessonContent } from './types'
 
@@ -23,6 +26,9 @@ const registry: Record<string, ComponentType<any>> = {
   spread: SpreadLab,
   ci: CiLab,
   power: PowerLab,
+  samplesize: SampleSizeLab,
+  peek: PeekLab,
+  confound: ConfoundLab,
 }
 
 /** Markdown のレッスンを読み込む。index.ts の loaders から、loadMarkdown('id', import('../content/id.md?raw')) の形で使う。 */

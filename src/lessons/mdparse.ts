@@ -22,6 +22,9 @@ export const componentSpecs: Record<string, { required: string[] }> = {
   spread: { required: [] },
   ci: { required: [] },
   power: { required: [] },
+  samplesize: { required: [] },
+  peek: { required: [] },
+  confound: { required: [] },
 }
 
 export class LessonFormatError extends Error {}

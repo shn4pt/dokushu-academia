@@ -126,4 +126,8 @@ export const glossary: Term[] = [
   { term: '信頼区間', reading: 'confidence interval', description: '母集団の値を含むと見込む区間。95% は、同じ方法で標本を取り直して区間を作ったとき、長い目で約 95% が真の値を含む、という約束。', lessonId: 'st-3' },
   { term: '帰無仮説・対立仮説', description: '検定で、疑う主張が帰無仮説(H0)、信じる主張が対立仮説(Ha)。帰無仮説を棄却できるかを調べる。', lessonId: 'st-4' },
   { term: '第 1 種・第 2 種の誤り', description: '第 1 種は、帰無仮説が正しいのに棄却する誤り(確率 α)。第 2 種は、間違っているのに棄却しない誤り(確率 β)。', lessonId: 'st-4' },
+  { term: 'OEC(総合評価指標)', reading: 'Overall Evaluation Criterion', description: '実験の目的を定量的に表す評価の指標。複数の目的は 1 つにまとめ、短期だけを見ず、実験の前に決める(Kohavi ら)。', lessonId: 'st-5' },
+  { term: 'A/A テスト', description: '2 つの群に同じ体験を出して、実験の仕組みを確かめるテスト。有意になるのは、約 5%(水準 5% のとき)のはず。', lessonId: 'st-5' },
+  { term: '交絡', reading: 'confounding', description: '治療と結果の共通の原因があるために、関連が因果の効果からずれること。データを増やしても消えない(Hernán & Robins)。', lessonId: 'st-6' },
+  { term: '目標試験', reading: 'target trial', description: '観察データで因果を問うときに、まず書き出す、理想的なランダム化試験。対象者・治療の戦略・割り当て・追跡・結果・対比を決める。', lessonId: 'st-6' },
 ]

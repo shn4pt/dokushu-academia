@@ -89,9 +89,9 @@ pageTest.describe('画面(st-1)', () => {
     await pageExpect(page.locator('.result').first()).toContainText('数字を見て')
   })
 
-  pageTest('講座の目次: データ分析・統計は、一部公開で、ステージから辿れる', async ({ page }) => {
+  pageTest('講座の目次: データ分析・統計は、公開中で、ステージから辿れる', async ({ page }) => {
     await page.goto(go('/course/statistics'))
-    await pageExpect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
+    await pageExpect(page.locator('.badge', { hasText: '公開中' }).first()).toBeVisible()
     await page.locator('.stage-card', { hasText: '序論:データから何が言えるか' }).click()
     await page.locator('.lesson-list a').first().click()
     await pageExpect(page.locator('article h1')).toContainText('数字を見て')
