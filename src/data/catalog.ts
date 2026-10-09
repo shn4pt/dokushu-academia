@@ -49,18 +49,31 @@ export type Course = {
   tiers: Tier[]
 }
 
+// 領域は、大学の学部の区分を参考にした学問のまとまり。プロダクト(実践)は、ほかの領域で学んだことを統合する実務の領域。
+// 経済学・社会学・人文(歴史・哲学・倫理)は、あとから足す予定(いまは法務・労務だけを「経済・社会・法」に置いている)。
 export const groups = [
-  { id: 'foundation', title: '学びの土台', note: '根拠の読み方と、データの見方。どの講座にも共通する土台' },
-  { id: 'ai', title: 'AI・技術', note: 'LLM の中身から、AI を使ったものづくりまで' },
-  { id: 'product', title: 'プロダクト・事業', note: '何を作るか、どう事業にするか' },
-  { id: 'people', title: '人と組織', note: '人の行動と、チームの動かし方' },
-  { id: 'office', title: 'バックオフィス・法令', note: '事業を支える、お金・法律・内部の統制' },
+  { id: 'learning', title: '学び方', note: '学ぶこと自体と、根拠の読み方(学習科学・研究方法論)' },
+  { id: 'data', title: '数理・データ', note: '統計とデータサイエンス。意思決定に使うデータの見方' },
+  { id: 'ai', title: '情報・AI', note: 'LLM の中身から、AI を使ったものづくり、ソフトウェアとセキュリティまで' },
+  { id: 'business', title: '経営・商学', note: '事業の戦略、顧客、組織、お金の流れ' },
+  { id: 'psychology', title: '心理・行動', note: '人の認知と行動、意思決定のくせ' },
+  { id: 'society', title: '経済・社会・法', note: '事業を取り巻く法と制度(経済学・社会学などは、あとから追加予定)' },
+  { id: 'product', title: 'プロダクト(実践)', note: '他の領域で学んだことを統合して、プロダクトをつくる' },
 ] as const
 
 export const courses: Course[] = [
   // ── 学びの土台 ──
   {
-    id: 'evidence', title: '根拠の読み方', group: 'foundation', evidence: 'academic',
+    id: 'learning', title: '学び方・動機づけ', group: 'learning', evidence: 'academic',
+    summary: '大人の学び方、記憶と習慣、続けるための工夫。学習科学の知見にもとづく。',
+    tiers: [
+      { level: 'basic', scope: '学ぶとはどういうことか', planned: ['序論:なぜ学び直すのか', '記憶と忘却のしくみ'] },
+      { level: 'practice', scope: '効果的な学び方', planned: ['復習の間隔と、思い出す練習', '習慣にして続ける'] },
+      { level: 'advanced', scope: '仕事の中での学び', planned: ['経験から学ぶ', 'チームで学ぶ'] },
+    ],
+  },
+  {
+    id: 'evidence', title: '根拠の読み方', group: 'learning', evidence: 'academic',
     summary: '論文や資料の読み方、エビデンスの強さ、実験と相関の違い。このサービスの根拠の表示の意味も、ここで学ぶ。',
     tiers: [
       { level: 'basic', scope: '根拠とは何か、情報の種類', planned: ['序論:根拠があるとは、どういうことか', '一次情報と二次情報'] },
@@ -69,7 +82,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'statistics', title: 'データ分析・統計', group: 'foundation', evidence: 'academic',
+    id: 'statistics', title: 'データ分析・統計', group: 'data', evidence: 'academic',
     summary: '指標の見方、ばらつきと誤差、A/B テストなど、意思決定に使うデータの基礎。',
     tiers: [
       { level: 'basic', scope: 'データと確率の基礎', planned: ['序論:データから何が言えるか', '平均・ばらつき・分布'] },
@@ -135,7 +148,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'strategy', title: '経営・戦略', group: 'product', evidence: 'practice',
+    id: 'strategy', title: '経営・戦略', group: 'business', evidence: 'practice',
     summary: '事業の経済性と、競争の中での位置取りの基礎。',
     tiers: [
       { level: 'basic', scope: '事業と市場の基礎', planned: ['序論:事業とは何か', '費用・収益・利益の構造'] },
@@ -144,7 +157,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'marketing', title: 'マーケティング', group: 'product', evidence: 'practice',
+    id: 'marketing', title: 'マーケティング', group: 'business', evidence: 'practice',
     summary: '顧客の理解、価値の伝え方、施策の効果の見方。',
     tiers: [
       { level: 'basic', scope: 'マーケティングの基本概念', planned: ['序論:価値を届けるとは', '市場とセグメント'] },
@@ -162,7 +175,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'planning', title: '経営企画', group: 'product', evidence: 'practice',
+    id: 'planning', title: '経営企画', group: 'business', evidence: 'practice',
     summary: '計画、予算、経営指標と、事業の意思決定の支え方。',
     tiers: [
       { level: 'basic', scope: '経営企画の役割', planned: ['序論:経営企画の仕事', '中期計画と予算'] },
@@ -172,7 +185,7 @@ export const courses: Course[] = [
   },
   // ── 人と組織 ──
   {
-    id: 'psychology', title: '心理学', group: 'people', evidence: 'academic',
+    id: 'psychology', title: '心理学', group: 'psychology', evidence: 'academic',
     summary: '人の認知、感情、学習の基礎。研究の見方も合わせて学ぶ。',
     tiers: [
       { level: 'basic', scope: '心理学の基本と、研究の見方', planned: ['序論:心理学は何を明らかにしてきたか', '実験と相関、再現性'] },
@@ -181,7 +194,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'behavior', title: '行動心理学・行動経済学', group: 'people', evidence: 'academic',
+    id: 'behavior', title: '行動心理学・行動経済学', group: 'psychology', evidence: 'academic',
     summary: '人の選択の偏りと、行動の変え方。結果が割れている研究も扱う。',
     tiers: [
       { level: 'basic', scope: '意思決定のくせ', planned: ['序論:人は合理的か', '認知バイアスと、その限界'] },
@@ -190,7 +203,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'management', title: 'マネジメント', group: 'people', evidence: 'practice',
+    id: 'management', title: 'マネジメント', group: 'business', evidence: 'practice',
     summary: 'チームと組織を動かす基礎。目標、フィードバック、育成。',
     tiers: [
       { level: 'basic', scope: 'マネジメントの基本', planned: ['序論:マネジメントとは', '目標の立て方'] },
@@ -200,7 +213,7 @@ export const courses: Course[] = [
   },
   // ── バックオフィス・法令(全体像と考え方に限る) ──
   {
-    id: 'legal', title: '法務', group: 'office', evidence: 'law',
+    id: 'legal', title: '法務', group: 'society', evidence: 'law',
     summary: '契約、知的財産、個人情報など、事業に関わる法の全体像と考え方。',
     tiers: [
       { level: 'basic', scope: '法の全体像', planned: ['序論:事業と法の関わり', '契約の基本'] },
@@ -209,7 +222,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'labor', title: '労務', group: 'office', evidence: 'law',
+    id: 'labor', title: '労務', group: 'society', evidence: 'law',
     summary: '雇用と働き方に関わる制度の全体像と考え方。',
     tiers: [
       { level: 'basic', scope: '雇用の全体像', planned: ['序論:雇用の基本的な仕組み', '労働時間の考え方'] },
@@ -218,7 +231,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'accounting', title: '会計・経理', group: 'office', evidence: 'law',
+    id: 'accounting', title: '会計・経理', group: 'business', evidence: 'law',
     summary: '財務諸表の読み方と、お金の流れの基礎。',
     tiers: [
       { level: 'basic', scope: '会計の基礎', planned: ['序論:会計は何を伝えるか', '貸借対照表と損益計算書'] },
@@ -227,7 +240,7 @@ export const courses: Course[] = [
     ],
   },
   {
-    id: 'audit', title: '監査・内部統制', group: 'office', evidence: 'law',
+    id: 'audit', title: '監査・内部統制', group: 'business', evidence: 'law',
     summary: '会計監査と内部統制の考え方。',
     tiers: [
       { level: 'basic', scope: '監査と統制の基本', planned: ['序論:なぜ監査が必要か', '内部統制の考え方'] },

@@ -15,6 +15,9 @@ test.describe('講座一覧のデータ', () => {
       expect(c.tiers.map((t) => t.level)).toEqual(['basic', 'practice', 'advanced'])
     }
   })
+  test('どの領域にも、講座が1つ以上ある(空の領域を出さない)', () => {
+    for (const g of groups) expect(courses.some((c) => c.group === g.id), g.id).toBe(true)
+  })
   test('公開中の講座は、全段階にステージがあり、目次のみの講座は、全段階にレッスンの案がある', () => {
     for (const c of courses) {
       for (const t of c.tiers) {
