@@ -143,5 +143,6 @@ npm run typecheck:e2e  # テストの型チェック
 
 ## 運営(講座づくり・品質・鮮度)
 講座とレッスンの作り方は `docs/production.md`(手順書)、Claude Code のスキルは `.claude/skills/`(`make-lesson`・`verify-lesson`・`recheck-sources`)。
+- `npm run review -- <講座の id> [--tier 段階] [--checks] [--links]`: 公開前に本人が見る「確認の材料」を、自動で1つの Markdown にまとめる(`reviews/` に出力。別の目の確認の結果は `docs/verify/`)。
 - `npm run freshness` / `npm run freshness:links`: 確認日の古いレッスンと、切れた外部リンクの点検(月に1回、GitHub Actions でも実行され、問題があれば issue になる)。
 - 法令・基準の講座のレッスンには、品質ゲート(`e2e/gates.spec.ts`)がある。原典で確認済みで、確認日が 90 日以内でないと、テストが失敗し、公開できない。

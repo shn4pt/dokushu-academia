@@ -8,6 +8,7 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { courses } from '../src/data/catalog.ts'
 import { stages } from '../src/data/curriculum.ts'
 import { ageDays, courseOfLesson, maxAgeDays } from '../src/data/gates.ts'
+import { checkLinks } from './lib/links.mjs'
 
 const args = process.argv.slice(2)
 const withLinks = args.includes('--links')
@@ -42,23 +43,7 @@ if (stale.length) lines.push('', '再確認したら、`src/data/lesson-sources.
 if (withLinks) {
   const urls = new Map() // url -> そのリンクを使うレッスン
   for (const [id, e] of Object.entries(sources)) for (const s of e.sources ?? []) if (s.url?.startsWith('https://')) urls.set(s.url, [...(urls.get(s.url) ?? []), id])
-  const check = async (url) => {
-    for (const method of ['HEAD', 'GET']) {
-      try {
-        const res = await fetch(url, { method, redirect: 'follow', signal: AbortSignal.timeout(20000), headers: { 'user-agent': 'Mozilla/5.0 (compatible; dokushu-academia-linkcheck)' } })
-        if (res.status < 400) return { kind: 'ok' }
-        if (res.status === 404 || res.status === 410) return { kind: 'broken', note: String(res.status) }
-        if (method === 'GET') return { kind: 'unverifiable', note: String(res.status) } // 403・429・5xx は、ボットを拒む場合があるので、切れたとは断定しない
-      } catch (e) {
-        const code = e?.cause?.code ?? e?.name
-        if (method === 'GET') return code === 'ENOTFOUND' ? { kind: 'broken', note: 'ドメインが見つからない' } : { kind: 'unverifiable', note: String(code) }
-      }
-    }
-    return { kind: 'unverifiable' }
-  }
-  const results = []
-  const queue = [...urls.keys()]
-  await Promise.all(Array.from({ length: 6 }, async () => { for (let u; (u = queue.shift()); ) results.push({ url: u, ...(await check(u)) }) }))
+  const results = await checkLinks(urls.keys())
   const broken = results.filter((r) => r.kind === 'broken')
   const unv = results.filter((r) => r.kind === 'unverifiable')
   lines.push(`## 外部リンク(${results.length} 件を確認)`, '', `- 切れている: ${broken.length} 件`, `- 確認できない(ボットを拒む、時間切れなど。手元で開いて確かめる): ${unv.length} 件`, '')

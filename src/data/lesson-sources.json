@@ -1970,7 +1970,7 @@
       {
         "title": "Interval Estimation for a Binomial Proportion(Brown, Cai, DasGupta, 2001, Statistical Science)",
         "url": "https://projecteuclid.org/journals/statistical-science/volume-16/issue-2/Interval-Estimation-for-a-Binomial-Proportion/10.1214/ss/1009213286.full",
-        "how": "read",
+        "how": "search",
         "use": "小さな標本では、単純な近似の区間より Wilson などを勧める(要旨のみ)"
       },
       {
@@ -2003,18 +2003,24 @@
   "e-1": {
     "status": "verified",
     "checkedAt": "2026-10-09",
-    "note": "Sackett らの論説は全文を読んで確認しました(BMJ 掲載のものの、第三者が公開している PDF の写しで読みました)。Open Science Collaboration(2015)は、Europe PMC の書誌記録にある要旨の数字だけを使っています(本文は未読)。一次情報・二次情報の定義は、図書館の案内で確認しました。「3つの問い」、医療の考え方の他分野への移し替え、二次情報から一次情報へ確かめる進め方は、このサービスの整理で、文献の主張ではありません。",
+    "note": "Sackett らの論説は、BMJ のページが遮断されたため、第三者が公開している PDF の写しを全文読んで確認しました(BMJ 版との字句の一致は未確認)。Open Science Collaboration(2015)は、Europe PMC の書誌記録にある要旨だけを使っています(本文は未読。「査読された」ことは、この要旨にないので、本文では「学術誌に載った」と書いています)。一次情報・二次情報の定義は、図書館の案内で確認しました。「3つの問い」、医療の考え方の他分野への移し替え、「判断する人」への広げ方、複数の研究を見る進め方、二次情報から一次情報へ確かめる進め方は、このサービスの整理で、文献の主張ではありません。別のエージェントによる事実確認の結果は、docs/verify/e-1.md にあります。",
     "sources": [
       {
-        "title": "Evidence based medicine: what it is and what it isn't(Sackett ら, BMJ 1996;312:71-72)",
+        "title": "Evidence based medicine: what it is and what it isn't(Sackett ら, BMJ 1996;312:71-72)の書誌",
         "url": "https://www.bmj.com/content/312/7023/71",
+        "how": "search",
+        "use": "掲載誌・年・巻号の確認。掲載ページは、自動アクセスが遮断されて読めなかった(本文は、下の写しで読んだ)"
+      },
+      {
+        "title": "同論説の PDF の写し(第三者が公開。BMJ 1996;312:71-72 の書誌つき)",
+        "url": "https://www.dcscience.net/sackett-BMJ-1996.pdf",
         "how": "read",
-        "use": "定義、外部の根拠と経験の両方が要ること、問いによって適した根拠が違うこと、次善の根拠をたどること(全文は、第三者が公開する PDF の写しで確認)"
+        "use": "定義(current best evidence)、外部の根拠と経験の両方が要ること、問いによって適した根拠が違うこと、ランダム化試験が実施されていなければ次善の根拠をたどること(全文を読んだ。BMJ 版との字句の一致は、未確認)"
       },
       {
         "title": "Estimating the reproducibility of psychological science(Open Science Collaboration, Science 2015)",
         "url": "https://doi.org/10.1126/science.aac4716",
-        "how": "read",
+        "how": "search",
         "use": "100 件の再現の試み、元の研究 97% が有意・再現で 36%、効果の大きさは約半分(要旨のみ。Europe PMC の記録で確認)"
       },
       {
@@ -2028,6 +2034,10 @@
       {
         "date": "2026-10-09",
         "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、定義の訳(現時点で最良)、論説の言葉とこのサービスの読みの区別、「査読」の削除、一次・二次の判定問題の修正、出典の記録(第三者の写し)を直した"
       }
     ]
   }

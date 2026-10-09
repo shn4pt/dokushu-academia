@@ -7,6 +7,7 @@ import { readFileSync } from 'node:fs'
 const STALE_DAYS = 180
 const STATUSES = ['verified', 'partial', 'original', 'unverified']
 const HOWS = ['read', 'search', 'skill', 'repo', 'calc']
+const PARTIAL_WORDS = ['要旨のみ', '要旨だけ', '本文は未読', '未読', '原文は未取得', '見出しのみ']
 
 const ids = [...readFileSync('src/lessons/index.ts', 'utf8').matchAll(/'([0-9a-z-]+)': \(\) => import\(/g)].map((m) => m[1])
 const sources = JSON.parse(readFileSync('src/data/lesson-sources.json', 'utf8'))
@@ -33,6 +34,8 @@ for (const id of ids) {
     if (!HOWS.includes(s.how)) errors.push(`${id}: 出典「${s.title}」の how が不正です(${s.how})`)
     if (s.url && !/^https:\/\//.test(s.url)) errors.push(`${id}: 出典「${s.title}」の url は https で始めてください`)
     if (s.how === 'read' && !s.url) errors.push(`${id}: 出典「${s.title}」は read ですが url がありません`)
+    // 要旨や見出しだけを読んだ資料を、「原文を読んだ(read)」にしない(docs/production.md の原則1)
+    if (s.how === 'read' && PARTIAL_WORDS.some((w) => s.use.includes(w))) errors.push(`${id}: 出典「${s.title}」は、使った箇所に「${PARTIAL_WORDS.find((w) => s.use.includes(w))}」とあるのに read です(原文を読んでいないなら search にする)`)
   }
   if (e.checkedAt) {
     const t = Date.parse(e.checkedAt)
