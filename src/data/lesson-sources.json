@@ -2918,5 +2918,163 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ux-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Nielsen Norman Group(NN/g)の記事 7 本と、GOV.UK サービスマニュアルの 5 ページを、ウェブページの本文として読みました: NN/g は User Interviews 101(Rosala と Pernice, 2023)、Why User Interviews Fail(Rosala, 2019)、Open-Ended vs. Closed Questions in User Research(Rosala, 2024)、Avoid Leading Questions to Get Better Insights from Participants(Schade, 2017)、Field Studies(Farrell と Fessenden, 2024)、Contextual Inquiry(Flaherty, 2020)、Writing an Effective Guide for a UX Interview(Rosala。読んだが、本文は他の記事で裏づく範囲に限り、出典の一覧には載せていない)。GOV.UK は Capturing research questions、Finding participants for user research、Getting informed consent for user research、Taking notes and recording user research sessions、Analyse a research session。これらは、実務家の資料(この講座の根拠の基準)です。主張の多くは、書き手の経験にもとづき、独立した研究で確かめられたかは確認していません。GOV.UK の手引きは、英国政府のサービス向けで、同意の記述は英国の法律の下での手引きです(日本の個人情報の扱いは確認していません)。NN/g の記事の『現場調査の経験談(自動車保険のデータ入力)』は、記事の著者一人の経験談です。『調査の方法を選ぶ、問い』は、このサービス独自の整理です。他の手法(アンケートの設計、日記調査、カードソート)は、このレッスンでは扱っていません。 別のエージェントによる事実確認の結果は、docs/verify/ux-3.md にあります。",
+    "sources": [
+      {
+        "title": "User Interviews 101(Maria Rosala, Kara Pernice, Nielsen Norman Group, 2023)",
+        "url": "https://www.nngroup.com/articles/user-interviews/",
+        "how": "read",
+        "use": "インタビューの定義、インタビューとユーザビリティテストの違い、進め方、他の方法との組み合わせ、限界(記事の本文)"
+      },
+      {
+        "title": "Why User Interviews Fail(Maria Rosala, Nielsen Norman Group, 2019)",
+        "url": "https://www.nngroup.com/articles/why-user-interviews-fail/",
+        "how": "read",
+        "use": "インタビューで答えられない問い、方法の選び方、計画、分析(記事の本文)"
+      },
+      {
+        "title": "Open-Ended vs. Closed Questions in User Research(Maria Rosala, Nielsen Norman Group, 2024)",
+        "url": "https://www.nngroup.com/articles/open-ended-questions/",
+        "how": "read",
+        "use": "開いた質問と閉じた質問、誘導的な閉じた質問の例(記事の本文)"
+      },
+      {
+        "title": "Avoid Leading Questions to Get Better Insights from Participants(Amy Schade, Nielsen Norman Group, 2017)",
+        "url": "https://www.nngroup.com/articles/leading-questions/",
+        "how": "read",
+        "use": "誘導質問の例と、避けるルール(記事の本文)"
+      },
+      {
+        "title": "Field Studies(Susan Farrell, Therese Fessenden, Nielsen Norman Group, 2024)",
+        "url": "https://www.nngroup.com/articles/field-studies/",
+        "how": "read",
+        "use": "現場調査の種類と、他の方法との選び分け(記事の本文)"
+      },
+      {
+        "title": "Contextual Inquiry: Inspire Design by Observing and Interviewing Users in Their Context(Kim Flaherty, Nielsen Norman Group, 2020)",
+        "url": "https://www.nngroup.com/articles/contextual-inquiry/",
+        "how": "read",
+        "use": "コンテキスチュアル・インクワイアリーの原則、セッションの構成、リスク(記事の本文)"
+      },
+      {
+        "title": "Capturing research questions(GOV.UK Service Manual)",
+        "url": "https://www.gov.uk/service-manual/user-research/capturing-research-questions",
+        "how": "read",
+        "use": "研究の問いの作り方と優先順位づけ(ページの本文)"
+      },
+      {
+        "title": "Finding participants for user research(GOV.UK Service Manual)",
+        "url": "https://www.gov.uk/service-manual/user-research/find-user-research-participants",
+        "how": "read",
+        "use": "参加者の基準、人数、募集の方法、情報シート(ページの本文)"
+      },
+      {
+        "title": "Getting informed consent for user research(GOV.UK Service Manual)",
+        "url": "https://www.gov.uk/service-manual/user-research/getting-users-consent-for-research",
+        "how": "read",
+        "use": "インフォームド・コンセントの内容と記録、撤回(ページの本文)"
+      },
+      {
+        "title": "Taking notes and recording user research sessions(GOV.UK Service Manual)",
+        "url": "https://www.gov.uk/service-manual/user-research/taking-notes-and-recording-user-research-sessions",
+        "how": "read",
+        "use": "メモの取り方、観察と解釈の区別、付箋の使い方(ページの本文)"
+      },
+      {
+        "title": "Analyse a research session(GOV.UK Service Manual)",
+        "url": "https://www.gov.uk/service-manual/user-research/analyse-a-research-session",
+        "how": "read",
+        "use": "分析セッションの進め方、親和図、発見の書き方(ページの本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ux-4": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "NN/g の記事 9 本と、GOV.UK サービスマニュアルの 2 ページ(進行ありのテスト、参加者の募集)を、ウェブページの本文として読みました: Usability (User) Testing 101(Moran, 2019)、Thinking Aloud: The #1 Usability Tool(Nielsen, 2012)、Turn User Goals into Task Scenarios for Usability Testing(McCloskey, 2014)、Write Better Qualitative Usability Tasks: Top 10 Mistakes to Avoid(Schade, 2017)、Authentic Behavior in User Testing(Nielsen, 2005)、Observer Guidelines for Usability Research(Farrell, 2016)、Success Rate: The Simplest Usability Metric(Nielsen と Budiu, 2001)、Beyond the NPS: Measure Perceived Usability with the SUS, NASA-TLX, and the Single Ease Question(Laubheimer, 2018)、How Many Test Users in a Usability Study?(Nielsen, 2012)。GOV.UK は Using moderated usability testing と Finding participants for user research(1 ラウンド 4〜8 人の記述)。これらは、実務家の資料(この講座の根拠の基準)です。主張の多くは、書き手の経験にもとづき、独立した研究で確かめられたかは確認していません。SUS の平均 68 や 80 以上が上位 10% という数字は、NN/g の記事が引く Sauro の分析で、原資料は読んでいません。83 件の案件の分析は、NN/g 自身のデータで、確かめていません。Faulkner(2003)の要旨は、ux-1 の出典です。他の手法(遠隔の進行なしテスト、アイトラッキング、NASA-TLX、単一の簡単さの質問)は、このレッスンでは詳しく扱っていません。『検証を進める、問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/ux-4.md にあります。",
+    "sources": [
+      {
+        "title": "Usability (User) Testing 101(Kate Moran, Nielsen Norman Group, 2019)",
+        "url": "https://www.nngroup.com/articles/usability-testing-101/",
+        "how": "read",
+        "use": "ユーザビリティテストの目的、3 つの要素、種類、費用(記事の本文)"
+      },
+      {
+        "title": "Thinking Aloud: The #1 Usability Tool(Jakob Nielsen, Nielsen Norman Group, 2012)",
+        "url": "https://www.nngroup.com/articles/thinking-aloud-the-1-usability-tool/",
+        "how": "read",
+        "use": "思考発話法の定義、長所と短所(記事の本文)"
+      },
+      {
+        "title": "Turn User Goals into Task Scenarios for Usability Testing(Marieke McCloskey, Nielsen Norman Group, 2014)",
+        "url": "https://www.nngroup.com/articles/task-scenarios-usability-testing/",
+        "how": "read",
+        "use": "タスクシナリオの 3 つのコツと例(記事の本文)"
+      },
+      {
+        "title": "Write Better Qualitative Usability Tasks: Top 10 Mistakes to Avoid(Amy Schade, Nielsen Norman Group, 2017)",
+        "url": "https://www.nngroup.com/articles/better-usability-tasks/",
+        "how": "read",
+        "use": "タスクのよくある誤り(記事の本文)"
+      },
+      {
+        "title": "Authentic Behavior in User Testing(Jakob Nielsen, Nielsen Norman Group, 2005)",
+        "url": "https://www.nngroup.com/articles/authentic-behavior-in-user-testing/",
+        "how": "read",
+        "use": "没入と不信の停止、うまくいかない場合と対策(記事の本文)"
+      },
+      {
+        "title": "Observer Guidelines for Usability Research(Susan Farrell, Nielsen Norman Group, 2016)",
+        "url": "https://www.nngroup.com/articles/observer-guidelines/",
+        "how": "read",
+        "use": "見学者の心得とメモの取り方(記事の本文)"
+      },
+      {
+        "title": "Success Rate: The Simplest Usability Metric(Jakob Nielsen, Raluca Budiu, Nielsen Norman Group, 2001)",
+        "url": "https://www.nngroup.com/articles/success-rate-the-simplest-usability-metric/",
+        "how": "read",
+        "use": "成功率、成功の水準、指標と洞察の衝突(記事の本文)"
+      },
+      {
+        "title": "Beyond the NPS: Measure Perceived Usability with the SUS, NASA-TLX, and the Single Ease Question(Page Laubheimer, Nielsen Norman Group, 2018)",
+        "url": "https://www.nngroup.com/articles/measuring-perceived-usability/",
+        "how": "read",
+        "use": "SUS の説明、点数の読み方、質問票に必要な標本の大きさ(記事の本文)"
+      },
+      {
+        "title": "How Many Test Users in a Usability Study?(Jakob Nielsen, Nielsen Norman Group, 2012)",
+        "url": "https://www.nngroup.com/articles/how-many-test-users/",
+        "how": "read",
+        "use": "人数の目安と例外、83 件の案件の分析(記事の本文)"
+      },
+      {
+        "title": "Using moderated usability testing(GOV.UK Service Manual)",
+        "url": "https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing",
+        "how": "read",
+        "use": "進行ありのテストの進め方、セッションの長さ、タスクの設計、参加者の安心(ページの本文)"
+      },
+      {
+        "title": "Finding participants for user research(GOV.UK Service Manual)",
+        "url": "https://www.gov.uk/service-manual/user-research/find-user-research-participants",
+        "how": "read",
+        "use": "1 ラウンドの参加者の人数の目安(インタビューやユーザビリティテストで 4〜8 人)(ページの本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

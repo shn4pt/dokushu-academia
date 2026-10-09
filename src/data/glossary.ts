@@ -182,4 +182,12 @@ export const glossary: Term[] = [
   { term: 'ユーザーニーズ', reading: 'user needs', description: '利用者がサービスに求める必要で、満たさなければ正しい結果が得られないもの。解決策でなく、利用者の問題の形で書く(GOV.UK)。', lessonId: 'ux-2' },
   { term: 'ペルソナ', reading: 'persona', description: 'ユーザー調査にもとづく架空の利用者。調査で得た情報を一人の人物に統合し、チームの共感と共通の語彙を作る道具(NN/g)。', lessonId: 'ux-2' },
   { term: 'ジャーニーマップ', reading: 'journey map', description: '人が目標を達成するまでの過程の可視化。主体・場面と期待・段階・行動と考えと感情・機会の 5 つの要素を持つ(NN/g)。', lessonId: 'ux-2' },
+  { term: '研究の問い', reading: 'research questions', description: '調査で学ぶ必要のあること。利用者に尋ねる質問ではなく、チームが答えを知りたい問い(GOV.UK)。', lessonId: 'ux-3' },
+  { term: '誘導質問', reading: 'leading question', description: '答えを示唆する質問。「did / was / is」で始まる閉じた質問に多い。開いた質問("how" / "what")に直すと、誘導が減る(NN/g)。', lessonId: 'ux-3' },
+  { term: 'コンテキスチュアル・インクワイアリー', reading: 'contextual inquiry', description: '利用者の自然な環境で、少数の利用者の作業を観察し、インタビューする現場調査(Beyer と Holtzblatt)。', lessonId: 'ux-3' },
+  { term: '親和図', reading: 'affinity diagram', description: '観察を付箋に1つずつ書き、似たもの同士に分けてグループにし、発見をまとめる分析の方法。', lessonId: 'ux-3' },
+  { term: 'ユーザビリティテスト', reading: 'usability testing', description: '進行役が、参加者にタスクをしてもらい、行動を観察して、設計の問題を見つける調査方法。', lessonId: 'ux-4' },
+  { term: '思考発話法', reading: 'thinking aloud', description: '参加者に、考えていることを声に出しながら、タスクをしてもらう方法。安く、頑健だが、進行役の促しが行動に影響しうる(Nielsen)。', lessonId: 'ux-4' },
+  { term: 'タスクの成功率', reading: 'task success rate', description: 'タスクを完了できた利用者の割合。なぜ失敗したかは分からないが、最もシンプルなユーザビリティの指標(NN/g)。', lessonId: 'ux-4' },
+  { term: 'SUS', reading: 'System Usability Scale', description: '10 項目の質問で、認知されたユーザビリティを 0〜100 で測るテスト後の質問票。百分率ではない。', lessonId: 'ux-4' },
 ]
