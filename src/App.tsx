@@ -6,6 +6,8 @@ import StagePage from './pages/StagePage'
 import LessonPage from './pages/LessonPage'
 import Glossary from './pages/Glossary'
 import ProgressPage from './pages/ProgressPage'
+import CatalogPage from './pages/CatalogPage'
+import CoursePage from './pages/CoursePage'
 import SourcesPage from './pages/SourcesPage'
 import SearchPage from './pages/SearchPage'
 import ReviewPage from './pages/ReviewPage'
@@ -25,6 +27,7 @@ export default function App() {
       <header className="site-header">
         <NavLink to="/" className="brand">LLMのしくみ</NavLink>
         <nav>
+          <NavLink to="/catalog">講座</NavLink>
           <NavLink to="/roadmap">ロードマップ</NavLink>
           <NavLink to="/glossary">用語集</NavLink>
           <NavLink to="/search">検索</NavLink>
@@ -35,6 +38,8 @@ export default function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/course/:id" element={<CoursePage />} />
           <Route path="/roadmap" element={<Roadmap />} />
           <Route path="/stage/:id" element={<StagePage />} />
           <Route path="/lesson/:id" element={<LessonPage />} />

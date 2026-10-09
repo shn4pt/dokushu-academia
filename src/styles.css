@@ -405,3 +405,11 @@ a.concept-chip:hover { border-color: var(--accent); }
   .source-note a { display: inline-block; padding: 10px 0; line-height: 1.5; }
   .source-note summary { min-height: 44px; }
 }
+
+/* 講座一覧 */
+.course-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 8px; }
+.course-card { display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: inherit; }
+.evidence-tag { font-size: 0.82rem; color: var(--muted); }
+.tier { margin-top: 8px; }
+.planned { display: grid; gap: 8px; padding: 0; }
+.planned-item { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 0; }
