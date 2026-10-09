@@ -45,7 +45,9 @@ function extractSections(html) {
     const t = clean(cur.parts.join(' '))
     if (t || cur.h) sections.push({ h: cur.h, t })
   }
-  for (const el of root.childNodes) {
+  // Markdown 形式のレッスンは、本文が div.md に包まれている。見出しなどを、本文の直下の要素として扱う
+  const nodes = root.childNodes.flatMap((n) => (n.nodeType === 1 && n.classList?.contains('md') ? n.childNodes : [n]))
+  for (const el of nodes) {
     if (el.nodeType !== 1) continue
     if (el.tagName === 'H3') {
       flush()

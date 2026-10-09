@@ -432,3 +432,9 @@ a.concept-chip:hover { border-color: var(--accent); }
 /* 執筆の優先度 */
 .plan-list { display: grid; gap: 12px; padding-left: 20px; margin: 8px 0; }
 .plan-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
+
+/* Markdown 形式のレッスン: 本文を包む枠は、見た目に影響させない(見出しなどが、本文の直下にあるのと同じ) */
+.md { display: contents; }
+.md blockquote { margin: 12px 0; padding: 4px 14px; border-left: 3px solid var(--border); color: var(--muted); }
+.md blockquote p { margin: 6px 0; }
+.plot-svg { display: block; width: 100%; max-width: 420px; height: auto; margin: 8px 0; color: var(--muted); }

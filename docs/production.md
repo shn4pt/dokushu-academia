@@ -29,7 +29,7 @@
 | 7. 公開 | コミット → 変更履歴の生成(`npm run history`)→ push → CI とデプロイの確認 | AI(本人の承認後) |
 
 ## 新しいレッスンを足すときの置き場所
-- 本文: `src/lessons/<Name>.tsx`(`LessonContent`: `Body` と `quiz`)。`src/lessons/index.ts` の `loaders` に ID を登録する。
+- 本文: **Markdown**(`src/content/<ID>.md`、`loaders` に `md('<ID>')` と登録)を基本にする。専用の対話的な部品などが要るときだけ TSX(`src/lessons/<Name>.tsx`)。書き方は `docs/lesson-format.md`。
 - ステージ(講座の中のまとまり): `src/data/curriculum.ts` の `stages`。LLM 以外の講座のステージには `course` を付ける。
 - 講座: `src/data/catalog.ts` の `courses` の `tiers`(`stageIds` に入れる。`planned` からは外す)。
 - 出典: `src/data/lesson-sources.json`(状況、確認日、出典、`note`)。ない状態でビルドは通らない。
@@ -70,5 +70,6 @@ npm run review -- <講座の id> [--tier basic|practice|advanced] [--checks] [--
 - `pkill -f` は、自分のシェルを止めることがある。サーバーは、プロセス ID を指定して止める。
 - PubMed・PMC・一部の出版社は、自動アクセスを遮断する(403・reCAPTCHA)。Europe PMC の API、公式の PDF の写し、書誌の API を試す。
 - WebFetch の結果が長いと、途中で切れる。`offset` で続きを読む。読んでいない部分の主張はしない。
+- WebFetch は、取得した内容を**要約モデルに通す**ので、返ってくる「引用」は、逐語に近い要約であって、原文の逐語とは限らない。本文で「〜と述べている」と書く定義・数字は、`curl` で生の HTML(PDF なら取り出したテキスト)を取得して、文言を逐語で照合する(`st-1` で行った方法)。
 - ブラウザのテストには、ブラウザの共有ライブラリが要る(環境によっては、手元に用意する)。ビルドを先にしてから、テストを流す。
 - リポジトリ名・フォルダ名を変えるときは、公開 URL(進捗の保存先)が変わることに注意する。

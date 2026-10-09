@@ -1,5 +1,10 @@
 import type { LessonContent } from './types'
 
+// Markdown 形式のレッスン(src/content/<id>.md。書き方は docs/lesson-format.md)。md('id') と書く。
+const mdSources = import.meta.glob('../content/*.md', { query: '?raw', import: 'default' }) as Record<string, () => Promise<string>>
+const md = (id: string) => () =>
+  import('./markdown').then((m) => m.loadMarkdown(id, mdSources[`../content/${id}.md`]().then((source) => ({ default: source }))))
+
 // 登録したレッスンだけが公開扱い。本文は動的importで遅延読み込みする。
 const loaders: Record<string, () => Promise<{ default: LessonContent }>> = {
   'i-1': () => import('./IntroMap'),
@@ -69,6 +74,7 @@ const loaders: Record<string, () => Promise<{ default: LessonContent }>> = {
   '20-2': () => import('./EvalAutomation'),
   '20-3': () => import('./CacheCost'),
   'e-1': () => import('./EvidenceIntro'),
+  'st-1': md('st-1'),
   '4-1': () => import('./WhyAttention'),
   '4-2': () => import('./SelfAttention'),
   '4-3': () => import('./PositionalEncoding'),

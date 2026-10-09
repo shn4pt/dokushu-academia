@@ -105,4 +105,8 @@ export const glossary: Term[] = [
   { term: '二次情報', description: '一次情報を解釈・論評・分析した情報。全体をつかむ入口になるが、判断の前に元の一次情報で確かめる。', lessonId: 'e-1' },
   { term: 'ランダム化比較試験', description: '参加者を無作為に群へ分けて、治療などの効果を比べる試験。治療の効果の問いで、誤りにくい根拠とされる。', lessonId: 'e-1' },
   { term: '再現性', description: '同じ方法でやり直したときに、同じ結果が得られること。学術誌に載った研究でも、再現されないことがある。', lessonId: 'e-1' },
+  { term: '外れ値', reading: 'outlier', description: '値が極端で、ほかのデータとつじつまが合わないように見える観測値。1 点で、傾きや相関係数を大きく変えることがある。', lessonId: 'st-1' },
+  { term: '中央値', reading: 'median', description: 'データを大きさの順に並べたときの、真ん中の値。順位にもとづくので、極端な値にゆがめられにくい。', lessonId: 'st-1' },
+  { term: '散布図', reading: 'scatter plot', description: '2 つの量の組を、点で図にしたもの。関係(直線的か、そうでないか)や、外れ値を確かめる。', lessonId: 'st-1' },
+  { term: '相関係数', description: '2 つの量の関係の強さを表す尺度で、ふつうは直線的な関係の強さ。-1 から 1 の値をとる。曲線の関係でも、高い値になることがある。', lessonId: 'st-1' },
 ]

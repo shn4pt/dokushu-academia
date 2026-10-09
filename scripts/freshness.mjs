@@ -9,13 +9,14 @@ import { courses } from '../src/data/catalog.ts'
 import { stages } from '../src/data/curriculum.ts'
 import { ageDays, courseOfLesson, maxAgeDays } from '../src/data/gates.ts'
 import { checkLinks } from './lib/links.mjs'
+import { readLessonFiles } from './lib/lessons.mjs'
 
 const args = process.argv.slice(2)
 const withLinks = args.includes('--links')
 const out = args.includes('--out') ? args[args.indexOf('--out') + 1] : undefined
 const now = args.includes('--now') ? new Date(args[args.indexOf('--now') + 1]) : new Date() // --now 日付: 古さの判定を試すとき用
 const sources = JSON.parse(readFileSync('src/data/lesson-sources.json', 'utf8'))
-const ready = new Set([...readFileSync('src/lessons/index.ts', 'utf8').matchAll(/'([0-9a-z-]+)': \(\) => import\(/g)].map((m) => m[1]))
+const ready = new Set(readLessonFiles().keys())
 
 const lines = []
 let problems = 0

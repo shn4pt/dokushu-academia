@@ -2040,5 +2040,64 @@
         "summary": "別のエージェントによる事実確認を受けて、定義の訳(現時点で最良)、論説の言葉とこのサービスの読みの区別、「査読」の削除、一次・二次の判定問題の修正、出典の記録(第三者の写し)を直した"
       }
     ]
+  },
+  "st-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "NIST/SEMATECH の統計ハンドブック(EDA とは、平均と中央値、散布図、用語集の相関・外れ値)を、ページを読んで確認し、引用した文言(15 か所)は、生の HTML を直接取得して、逐語で照合しました。4 組のデータの値は、公開データセット(seaborn-data の anscombe.csv)から取り、要約の数字(平均・分散・相関係数・回帰直線、外れ値を除いた計算、中央値)は、その値から自分で計算した値です。Anscombe(1973)の論文は、書誌(題名・雑誌・巻号・ページ)だけを Crossref の記録で確認し、本文は読んでいません(論文の主張は、本文で使っていません)。分散と標準偏差の関係など、数学上の定義は、出典を取っていません。「3 つの問い」は、このサービスの整理で、文献の主張ではありません。このレッスンは、Markdown 形式(src/content/st-1.md)で書いた最初のレッスンです。 別のエージェントによる事実確認の結果は、docs/verify/st-1.md にあります。",
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook: 1.1.1 What is EDA?",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section1/eda11.htm",
+        "how": "read",
+        "use": "探索的データ分析は、データ分析への考え方。技法の多くは、図を使うもの"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook: 1.3.5.1 Measures of Location",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm",
+        "how": "read",
+        "use": "平均の定義、両端(裾)の極端な値が平均をゆがめること、分布が偏っていると平均は偏りの方向に引っぱられること、中央値は順位にもとづき、裾に極端な値があるデータでは、よりよい位置の推定になること"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook: 1.3.3.26 Scatter Plot",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/scatterp.htm",
+        "how": "read",
+        "use": "散布図は、2 つの量の関係(直線的か、そうでないか)や外れ値を確かめる"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook: 用語集(correlation・outlier)",
+        "url": "https://www.itl.nist.gov/div898/handbook/glossary.htm",
+        "how": "read",
+        "use": "相関は、2 つの量の関係の強さ(ふつうは直線的)、-1 から 1。外れ値の定義"
+      },
+      {
+        "title": "Graphs in Statistical Analysis(Anscombe, The American Statistician 27(1):17-21, 1973)の書誌",
+        "url": "https://api.crossref.org/works/10.1080/00031305.1973.10478966",
+        "how": "search",
+        "use": "題名・雑誌・巻号・ページ・年の確認。論文の本文は未読"
+      },
+      {
+        "title": "seaborn-data: anscombe.csv(公開データセット)",
+        "url": "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/anscombe.csv",
+        "how": "read",
+        "use": "4 組のデータの値(各 11 点)"
+      },
+      {
+        "title": "e2e/anscombe.spec.ts(要約の数字の手計算との照合)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/anscombe.spec.ts",
+        "how": "repo",
+        "use": "平均・分散・相関係数・回帰直線、外れ値を除いた計算、中央値を、別の実装で照合"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した(Markdown 形式の最初のレッスン)"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、Anscombe の帰属を弱め、曲線でも相関係数が高くなることがあるという言い方に直し、判定問題の条件(裾・両端)を揃え、標本分散の注記と出典の使った箇所を足した"
+      }
+    ]
   }
 }

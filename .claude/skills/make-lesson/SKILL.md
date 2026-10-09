@@ -10,11 +10,11 @@ description: 独習アカデミアの講座・レッスンを新しく書く(ま
 ## 進め方
 1. **設計**: 対象の講座を `src/data/catalog.ts` で確認する(根拠の基準、前提、`why`、`tiers`、`writingPlan` の優先度)。レッスンの問い・構成を決める。講座の構成や優先度を変えるなら、先に本人に確認する(方針は本人が決める)。
 2. **調査**: 一次情報を取得して、**本文を読む**。読めなかった(遮断、有料、途中で切れた)事実は、そのまま記録し、読めた範囲の主張だけ使う。別の公開経路(Europe PMC の API、公式の写し)を試す。
-3. **執筆**: 既存のレッスン(例: `src/lessons/EvidenceIntro.tsx`)の型に合わせる。
+3. **執筆**: 形式は、**Markdown を基本**にする(`docs/lesson-format.md`。例: `src/content/st-1.md`)。専用の部品が要るときだけ TSX(例: `src/lessons/EvidenceIntro.tsx`)。
    - 本文に「言えること」と「言えないこと」を分ける。独自の整理・他分野への移し替え・助言は、レッスンの中に「このサービスの整理」と明記する。
    - 判定問題(`ClassifyItems` など)とクイズ(3〜4問、解説つき)を付ける。
    - 法令・基準の講座は、「全体像と考え方」に限り、条文・確認した日・専門家に確認する線引きを、本文に書く。
-4. **登録**: `src/lessons/index.ts`(loaders)、`src/data/curriculum.ts`(ステージ。LLM 以外は `course`)、`src/data/catalog.ts`(`tiers.stageIds`)、`src/data/glossary.ts`、`src/data/lesson-sources.json`(状況・確認日・出典・`note`)。
+4. **登録**: `src/lessons/index.ts`(loaders。Markdown は `md('<ID>')`)、`src/data/curriculum.ts`(ステージ。LLM 以外は `course`)、`src/data/catalog.ts`(`tiers.stageIds`)、`src/data/glossary.ts`、`src/data/lesson-sources.json`(状況・確認日・出典・`note`)。
 5. **テスト**: `e2e/` に、表示・出典・判定問題・クイズを確かめるテストを足す。
 6. **別の目の確認**: `verify-lesson` スキルで、執筆とは別のエージェントに、本文の主張と出典を突き合わせさせる。指摘は直すか、本文を弱める。
 7. **検査**: `npx tsc --noEmit`、`npm run typecheck:e2e`、`npm run build`、`npx playwright test`、まっさらな環境でのビルド(`git ls-files -co --exclude-standard` を別の場所に写して `npm ci && npm run build`)。

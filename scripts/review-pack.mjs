@@ -14,6 +14,7 @@ import { courses, evidenceInfo, levelLabel, priorityOf, statusLabel, courseStatu
 import { stages } from '../src/data/curriculum.ts'
 import { ageDays, lawLessonErrors, maxAgeDays } from '../src/data/gates.ts'
 import { checkLinks } from './lib/links.mjs'
+import { readLessonFiles } from './lib/lessons.mjs'
 
 const args = process.argv.slice(2)
 const opt = (name) => (args.includes(name) ? args[args.indexOf(name) + 1] : undefined)
@@ -31,7 +32,7 @@ const today = now.toISOString().slice(0, 10)
 const sources = JSON.parse(readFileSync('src/data/lesson-sources.json', 'utf8'))
 const history = JSON.parse(readFileSync('src/data/lesson-history.json', 'utf8'))
 const stats = existsSync('src/data/lesson-stats.json') ? JSON.parse(readFileSync('src/data/lesson-stats.json', 'utf8')) : {}
-const loaders = new Map([...readFileSync('src/lessons/index.ts', 'utf8').matchAll(/'([0-9a-z-]+)': \(\) => import\('\.\/([A-Za-z0-9]+)'\)/g)].map((m) => [m[1], m[2]]))
+const loaders = readLessonFiles() // レッスン ID → 本文のファイル
 
 const statusText = { verified: '原典・公式で確認', partial: '一部を確認', original: 'このアプリ独自の整理', unverified: '未確認' }
 const kindText = { read: '原文を読んだ', search: '検索で確認', skill: 'スキル', repo: 'リポジトリ', calc: '計算' }
@@ -54,7 +55,7 @@ for (const l of lessons) {
   const e = sources[l.id]
   const h = history[l.id]
   const st = stats[l.id]
-  const file = `src/lessons/${loaders.get(l.id)}.tsx`
+  const file = loaders.get(l.id)
   const lessonDate = git('log', '-1', '--format=%cs', '--', file) || today
   const out = [`### ${l.label ?? l.id} ${l.title}`, '']
   if (!e) {

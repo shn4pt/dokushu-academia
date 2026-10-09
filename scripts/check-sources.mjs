@@ -3,13 +3,14 @@
 //    レッスンを足したら、出典の記録も足す。まだ確認できていないなら、status を "unverified" と明記する(隠さない)。
 //  - 明記された「未確認」と、確認日が古いこと(180日以上)は、警告にとどめる。
 import { readFileSync } from 'node:fs'
+import { readLessonFiles } from './lib/lessons.mjs'
 
 const STALE_DAYS = 180
 const STATUSES = ['verified', 'partial', 'original', 'unverified']
 const HOWS = ['read', 'search', 'skill', 'repo', 'calc']
 const PARTIAL_WORDS = ['要旨のみ', '要旨だけ', '本文は未読', '未読', '原文は未取得', '見出しのみ']
 
-const ids = [...readFileSync('src/lessons/index.ts', 'utf8').matchAll(/'([0-9a-z-]+)': \(\) => import\(/g)].map((m) => m[1])
+const ids = [...readLessonFiles().keys()]
 const sources = JSON.parse(readFileSync('src/data/lesson-sources.json', 'utf8'))
 const history = JSON.parse(readFileSync('src/data/lesson-history.json', 'utf8'))
 const errors = []
