@@ -97,8 +97,8 @@ export const courses: Course[] = [
     },
     summary: '指標の見方、ばらつきと誤差、A/B テストなど、意思決定に使うデータの基礎。',
     tiers: [
-      { level: 'basic', scope: 'データと確率の基礎', stageIds: ['st0'], planned: ['平均・ばらつき・分布'] },
-      { level: 'practice', scope: '推定と検定', planned: ['信頼区間と、誤差の見方', '仮説検定の考え方と落とし穴'] },
+      { level: 'basic', scope: 'データと確率の基礎', stageIds: ['st0'] },
+      { level: 'practice', scope: '推定と検定', stageIds: ['st1'] },
       { level: 'advanced', scope: '実験と因果', planned: ['A/B テストの設計', '観察データから因果を考える'] },
     ],
   },

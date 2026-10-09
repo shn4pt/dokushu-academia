@@ -119,4 +119,11 @@ export const glossary: Term[] = [
   { term: 'GRADE', description: '根拠の確実性を、出発点・下げる要因・上げる要因から、高・中・低・非常に低の 4 段階で評価する手順。医療の介入の評価のために作られ、Cochrane などが採用している。', lessonId: 'e-4' },
   { term: '確実性', reading: 'certainty', description: '効果(または関連)の推定値が、知りたい量に近いと、どれだけ確信できるか(GRADE の定義)。', lessonId: 'e-4' },
   { term: '根拠にもとづく経営', reading: 'evidence-based management', description: '科学的な根拠・組織のデータ・実務家の経験・関係者の価値観という複数の源から、最良の根拠を吟味して、判断すること。批判もある。', lessonId: 'e-5' },
+  { term: '点推定・区間推定', description: '標本から、母集団の値を、1 つの値で推定するのが点推定。推定値の不確かさを、区間で表すのが区間推定(信頼区間)。', lessonId: 'st-2' },
+  { term: '標準偏差', reading: 'standard deviation', description: '分散(平均からの隔たりの 2 乗の合計を N − 1 で割ったもの)の平方根。元のデータと同じ単位になる。裾の極端な値に左右される。', lessonId: 'st-2' },
+  { term: '中央絶対偏差', reading: 'MAD', description: '中央値からの隔たりの絶対値の、中央値。順位にもとづくので、裾の極端な値の影響を受けにくい。', lessonId: 'st-2' },
+  { term: 'ヒストグラム', reading: 'histogram', description: 'データの範囲を等しい幅の区間に分け、各区間に入る点の数を示した図。中心・ばらつき・偏り・外れ値・山の数を見る。', lessonId: 'st-2' },
+  { term: '信頼区間', reading: 'confidence interval', description: '母集団の値を含むと見込む区間。95% は、同じ方法で標本を取り直して区間を作ったとき、長い目で約 95% が真の値を含む、という約束。', lessonId: 'st-3' },
+  { term: '帰無仮説・対立仮説', description: '検定で、疑う主張が帰無仮説(H0)、信じる主張が対立仮説(Ha)。帰無仮説を棄却できるかを調べる。', lessonId: 'st-4' },
+  { term: '第 1 種・第 2 種の誤り', description: '第 1 種は、帰無仮説が正しいのに棄却する誤り(確率 α)。第 2 種は、間違っているのに棄却しない誤り(確率 β)。', lessonId: 'st-4' },
 ]

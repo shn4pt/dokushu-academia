@@ -440,3 +440,5 @@ a.concept-chip:hover { border-color: var(--accent); }
 .plot-svg { display: block; width: 100%; max-width: 420px; height: auto; margin: 8px 0; color: var(--muted); }
 .ucb-table .bar-track { display: inline-block; width: 110px; vertical-align: middle; }
 .ucb-table .bar-fill { display: block; }
+.ci-hit { stroke: var(--accent); }
+.ci-miss { stroke: var(--danger); }

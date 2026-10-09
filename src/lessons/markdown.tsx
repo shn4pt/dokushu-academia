@@ -5,6 +5,9 @@ import AnscombeDemo from '../ui/AnscombeDemo'
 import UcbDemo from '../ui/UcbDemo'
 import PpvLab from '../ui/PpvLab'
 import GradeLab from '../ui/GradeLab'
+import SpreadLab from '../ui/SpreadLab'
+import CiLab from '../ui/CiLab'
+import PowerLab from '../ui/PowerLab'
 import { parseLesson } from './mdparse'
 import type { LessonContent } from './types'
 
@@ -17,6 +20,9 @@ const registry: Record<string, ComponentType<any>> = {
   ucb: UcbDemo,
   ppv: PpvLab,
   grade: GradeLab,
+  spread: SpreadLab,
+  ci: CiLab,
+  power: PowerLab,
 }
 
 /** Markdown のレッスンを読み込む。index.ts の loaders から、loadMarkdown('id', import('../content/id.md?raw')) の形で使う。 */

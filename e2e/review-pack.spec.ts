@@ -27,7 +27,7 @@ test.describe('確認の材料', () => {
     expect(md).toContain('学術 — 査読された論文')
     expect(md).toContain('同じデータが、見方で逆になる') // 公開済みの、ほかのレッスンも載る
     expect(md).toContain('根拠が少ない分野での判断')
-    expect(pack(['statistics'])).toContain('準備中: 平均・ばらつき・分布') // 目次の案も載る
+    expect(pack(['statistics'])).toContain('準備中: A/B テストの設計') // 目次の案も載る
   })
 
   test('別の目の確認が未実施なら、黄色の目印が出る。実施済みなら、結果が取り込まれる', () => {
@@ -35,7 +35,7 @@ test.describe('確認の材料', () => {
     const done = pack(['statistics'], { 'st-1': '# 別の目の確認: st-1(2099-01-01)\n\n| 主張 | 判定 |\n|---|---|\n| 例の主張 | 裏づく |\n' })
     expect(done).toContain('別の目の確認: **実施済み**(2099-01-01)')
     expect(done).toContain('| 例の主張 | 裏づく |')
-    expect(done).not.toContain('別の目の確認が未実施です')
+    expect(done).not.toContain('st-1: 別の目の確認が未実施です') // st-1 は実施済み。ほかのレッスンは、未実施のまま
   })
 
   test('本文が、別の目の確認のあとに変更されていたら、警告する', () => {

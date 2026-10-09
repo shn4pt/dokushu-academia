@@ -2281,5 +2281,164 @@
         "summary": "別のエージェントによる事実確認を受けて、定義の注、組織の根拠の例、「妥当」の訳、誤解 5 と「最良の入手できる根拠」の節の区別、批判の整理(体系的レビューへの批判、レビューの応答、Ioannidis への言及、主語、Learmonth の引用の続き)を直した"
       }
     ]
+  },
+  "st-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "NIST/SEMATECH の統計ハンドブックの 1.3.5(概説: 母集団の値と点推定、標本ごとの揺れ)、1.3.5.1(位置)、1.3.5.6(ばらつきの尺度と、4 つの分布の例の数値)、1.3.3.14(ヒストグラム)を、生の HTML を取得して、テキストで読んで確認しました。デモの数字(平均・中央値・標準偏差・範囲・MAD)は、定義どおりに自分で計算した値で、e2e/descriptive.spec.ts で、手計算(Python の statistics で出した値)と照合しています(分散と標準偏差は、別の式でも照合)。四分位範囲は、定義の紹介だけで、計算はしていません(パーセンタイルの求め方に、複数の流儀があるためで、この事情は、NIST のページには書かれていません)。「標本分散」という呼び方は、NIST の語ではなく、このレッスンの付記です。「確かめ方」の整理は、このサービスの整理で、NIST の主張ではありません。 別のエージェントによる事実確認の結果は、docs/verify/st-2.md にあります。",
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 1.3.5 Quantitative Techniques",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35.htm",
+        "how": "read",
+        "use": "母集団の値(真の値)と点推定、標本ごとに標本の平均が変わること、区間推定"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 1.3.5.1 Measures of Location",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda351.htm",
+        "how": "read",
+        "use": "平均と中央値の定義、裾の極端な値が平均をゆがめること(統計-1 と同じ)"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 1.3.5.6 Measures of Scale",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda356.htm",
+        "how": "read",
+        "use": "分散(N − 1)・標準偏差・範囲・平均絶対偏差・中央絶対偏差・四分位範囲の定義と性質、4 つの分布の例(標準偏差・MAD・範囲)、尺度の選び方"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 1.3.3.14 Histogram",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/histogra.htm",
+        "how": "read",
+        "use": "ヒストグラムの目的(中心・ばらつき・偏り・外れ値・複数の山)と、定義"
+      },
+      {
+        "title": "e2e/descriptive.spec.ts(記述統計の、手計算との照合)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/descriptive.spec.ts",
+        "how": "repo",
+        "use": "平均・中央値・標準偏差・範囲・MAD を、手計算と、別の実装で照合"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、ヒストグラムの「一目で」を削り、コーシー分布の説明(理由と「わずかに」の帰属)、確かめ方の言い方、クイズの問い、出典の記録の説明を直した"
+      }
+    ]
+  },
+  "st-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "NIST/SEMATECH の統計ハンドブックの 1.3.5(区間推定)、1.3.5.2(平均の信頼限界、式、幅を決める要因、95% の意味の注意、例、検定との対応)、7.1.4(信頼区間とは)、7.1.5(検定と信頼区間の関係)、1.3.6.7.2(t 分布の臨界値の表)を、生の HTML を取得して、テキストで読んで確認しました。デモが使う t 分布の臨界値は、表の 0.975 の列(自由度 1〜100)を、そのまま書き写したもので、e2e/ci.spec.ts で、表と照合しています。デモが、「95 個の前後が真の平均を含む」ことは、シミュレーションで確認しています(多数の乱数の種で平均した割合)。割合・中央値の区間への言及は、NIST(ブートストラップ)と、20-2(Wilson)へのリンクだけで、ここでは、教えていません。 ハンドブックに書かれていない、本文の補足は、次のとおりです: 平均の信頼区間の式が、母集団が正規分布に近いことを前提にすること、「標本を 4 倍にすると、幅がおおよそ半分」(√N から導いた計算)、デモの説明(正規分布の母集団と、t 分布の表の値)、Wilson の区間への言及(20-2 へのリンク)、検定との対応の、「95% の区間は、有意水準 0.05 に対応」。ASA の囲みは、根拠-3 の内容です。別のエージェントによる事実確認の結果は、docs/verify/st-3.md にあります。",
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 1.3.5.2 Confidence Limits for the Mean",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda352.htm",
+        "how": "read",
+        "use": "信頼区間の式(Ȳ ± t · s/√N)、幅を決める 2 つの要因、95% の意味の注意(確率ではなく、方法についての約束)、例(195 個のデータ)、検定との対応、ブートストラップへの言及"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 7.1.4 What are confidence intervals?",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section1/prc14.htm",
+        "how": "read",
+        "use": "信頼水準の意味(標本を取り直すと、区間の約 95% が真の値を含む)、標準偏差を推定する場合は区間が広くなること"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 7.1.5 What is the relationship between a test and a confidence interval?",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section1/prc15.htm",
+        "how": "read",
+        "use": "検定と信頼区間の対応(仮説の値が区間に含まれないときに、棄却)"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 1.3.6.7.2 Critical Values of the Student's t Distribution",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda3672.htm",
+        "how": "read",
+        "use": "t 分布の臨界値の表(自由度 1〜100、0.975 の列)"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 1.3.5 Quantitative Techniques",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35.htm",
+        "how": "read",
+        "use": "区間推定は、推定値の不確かさを表す"
+      },
+      {
+        "title": "e2e/ci.spec.ts(信頼区間の計算と、t 分布の表、シミュレーションの照合)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/ci.spec.ts",
+        "how": "repo",
+        "use": "式、NIST の例、t 分布の表、乱数と、信頼の水準(約 95%)の照合"
+      },
+      {
+        "title": "ASA Releases Statement on Statistical Significance and P-Values(American Statistical Association, 2016 年 3 月 7 日のプレスリリース)",
+        "url": "https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf",
+        "how": "read",
+        "use": "p 値を補う(または置き換える)方法として、検定より推定を重視する方法(信頼区間など)に触れていること(根拠-3 で読んだ資料。声明の本文ではなく、プレスリリース)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、式の前提と補足の区別、「よくある誤解」の言い方、引用の囲みの断り、デモの説明の範囲、「4 倍で半分」の説明、検定との対応、Wilson・ブートストラップの言い方、ASA の囲みの出どころを直した"
+      }
+    ]
+  },
+  "st-4": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "NIST/SEMATECH の統計ハンドブックの 1.3.5(仮説検定、有意水準、検出力、第 2 種の誤り、棄却と受け入れの意味、統計的な有意と実質的な有意)、7.1.3(統計的検定とは、帰無仮説と対立仮説、有意水準、第 2 種の誤り)を、生の HTML を取得して、テキストで読んで確認しました。ASA の 6 つの原則は、根拠-3 で読んだ、ASA のプレスリリースの文言です。デモの検出力の式(母集団の標準偏差が既知の、平均についての両側 z 検定)は、標準的な式で、NIST の本文から取ったものではありません(NIST 7.1.5 が使う、標準偏差が既知の型と同じ型)。e2e/power.spec.ts で、手計算と、モンテカルロ・シミュレーションとの照合をしています。検定の数についての 64% は、1 − 0.95²⁰ の計算(検定が独立で、帰無仮説がすべて正しいという仮定)で、出典の主張ではありません。 ハンドブックに書かれていない、本文の補足・整理は、次のとおりです: 検出力の式、「有意でなかったことは、差がない証拠ではない」という言い方、「β は標本の大きさにも左右される」という補足、「落とし穴」の整理と、64% の計算。ASA の原則は、プレスリリースにある、見出しの文言だけです(各原則の補足の段落は、声明の本文にあり、読んでいません)。別のエージェントによる事実確認の結果は、docs/verify/st-4.md にあります。",
+    "sources": [
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 1.3.5 Quantitative Techniques",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/eda35.htm",
+        "how": "read",
+        "use": "仮説検定(帰無仮説・対立仮説、検定統計量、有意水準と第 1 種の誤り、検出力と第 2 種の誤り、棄却域)、受け入れの意味、統計的な有意と実質的な有意"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 7.1.3 What are statistical tests?",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section1/prc13.htm",
+        "how": "read",
+        "use": "帰無仮説と対立仮説(片側・両側)、有意水準、第 2 種の誤り(β は差の大きさで決まり、α を小さくすると大きくなる)、棄却しないことの意味"
+      },
+      {
+        "title": "NIST/SEMATECH e-Handbook of Statistical Methods: 7.1.5 What is the relationship between a test and a confidence interval?",
+        "url": "https://www.itl.nist.gov/div898/handbook/prc/section1/prc15.htm",
+        "how": "read",
+        "use": "検定と信頼区間の対応。本文の主張の直接の根拠ではなく、検出力の式の、検定の型(母集団の標準偏差が既知の z 検定)の参照に使った"
+      },
+      {
+        "title": "ASA Releases Statement on Statistical Significance and P-Values(American Statistical Association, 2016 年 3 月 7 日のプレスリリース)",
+        "url": "https://www.amstat.org/asa/files/pdfs/p-valuestatement.pdf",
+        "how": "read",
+        "use": "p 値についての原則 2・3・4・5 の文言(根拠-3 で読んだ資料。声明の本文ではなく、プレスリリースにある見出しの文言)"
+      },
+      {
+        "title": "Why Most Published Research Findings Are False(Ioannidis, PLoS Medicine 2(8): e124, 2005)",
+        "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.0020124",
+        "how": "read",
+        "use": "系 3(ある分野で、検証される関係の数が多く、選び抜かれていないほど、その分野の研究結果が真である見込みが低い)。分野についての議論で、64% の計算とは別の論点(根拠-3 で読んだ資料)"
+      },
+      {
+        "title": "e2e/power.spec.ts(検出力の式の、手計算とシミュレーションとの照合)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/power.spec.ts",
+        "how": "repo",
+        "use": "検出力の式、標準正規分布の累積分布関数、モンテカルロ・シミュレーション、検定の数の計算(64%)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、検定の書式と手順の言い方、β の補足、棄却できないことの言い方、整理と出典の主張の区別、Ioannidis の系 3 の位置づけ、慣習的な呼び名の削除を直した"
+      }
+    ]
   }
 }
