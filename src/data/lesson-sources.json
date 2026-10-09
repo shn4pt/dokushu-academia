@@ -849,13 +849,13 @@
     "sources": [
       {
         "title": "src/capstone/ の型チェック(tsc)",
-        "url": "https://github.com/shn4pt/mygame1/tree/main/src/capstone",
+        "url": "https://github.com/shn4pt/dokushu-academia/tree/main/src/capstone",
         "how": "repo",
         "use": "掲載するコードを、実際の SDK の型で検査している"
       },
       {
         "title": "e2e/capstone.spec.ts(通信を差し替えたテスト)",
-        "url": "https://github.com/shn4pt/mygame1/blob/main/e2e/capstone.spec.ts",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/capstone.spec.ts",
         "how": "repo",
         "use": "ループ・承認待ちと再開・止める条件・引数の検証・利用者 ID での絞り込み・重複防止のキー・使用量の合計を、台本の応答で実行して確認"
       }
@@ -1019,7 +1019,7 @@
       },
       {
         "title": "このリポジトリのコミット履歴(しおり機能の事例)",
-        "url": "https://github.com/shn4pt/mygame1/commits/main",
+        "url": "https://github.com/shn4pt/dokushu-academia/commits/main",
         "how": "repo",
         "use": "事例の流れ"
       }
@@ -1224,7 +1224,7 @@
     "sources": [
       {
         "title": "このリポジトリのコミット履歴",
-        "url": "https://github.com/shn4pt/mygame1/commits/main",
+        "url": "https://github.com/shn4pt/dokushu-academia/commits/main",
         "how": "repo",
         "use": "年表・出来事の時刻と内容"
       }
@@ -1956,7 +1956,7 @@
       },
       {
         "title": "e2e/capstone2.spec.ts(MCP サーバーのテスト)",
-        "url": "https://github.com/shn4pt/mygame1/blob/main/e2e/capstone2.spec.ts",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/capstone2.spec.ts",
         "how": "repo",
         "use": "実物のクライアントとの接続、一覧、isError、引数の検証、利用者の絞り込み"
       }
@@ -1975,7 +1975,7 @@
       },
       {
         "title": "e2e/capstone2.spec.ts(統計と判定のテスト)",
-        "url": "https://github.com/shn4pt/mygame1/blob/main/e2e/capstone2.spec.ts",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/capstone2.spec.ts",
         "how": "repo",
         "use": "Wilson 8/10、対応のある比較 1対7 の p=0.0703125、κ=0.667 を手計算と照合。判定の順序入れ替え"
       }
@@ -1994,7 +1994,7 @@
       },
       {
         "title": "src/capstone2/cost.ts の計算(手計算との照合テスト)",
-        "url": "https://github.com/shn4pt/mygame1/blob/main/e2e/capstone2.spec.ts",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/capstone2.spec.ts",
         "how": "repo",
         "use": "費用・命中率・損益分岐を、手計算の値と照合"
       }

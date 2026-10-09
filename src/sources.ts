@@ -42,4 +42,4 @@ const history = rawHistory as Record<string, { created: string; commits: Commit[
 const missing: LessonSources = { status: 'unverified', sources: [] }
 export const sourcesFor = (id: string): LessonSources => sources[id] ?? missing
 export const historyFor = (id: string) => history[id]
-export const REPO = 'https://github.com/shn4pt/mygame1'
+export const REPO = 'https://github.com/shn4pt/dokushu-academia'
