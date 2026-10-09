@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { findLesson, lessonNo, stageLabel, stages } from '../data/curriculum'
+import { findLesson, lessonNo, llmStages as stages, stageLabel } from '../data/curriculum'
 import { formatMinutes, lessonMinutes } from '../time'
 import type { LessonContent } from './types'
 

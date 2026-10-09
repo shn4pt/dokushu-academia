@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
-import { findLesson, stageLabel, stages } from '../data/curriculum'
+import { findLesson, llmStages, stageLabel } from '../data/curriculum'
 import { nextLessonId, overallMinutes, overallStats, stageStats } from '../data/stats'
 import { useDueKeys } from '../review'
 import { formatMinutes, lessonMinutes } from '../time'
@@ -19,7 +19,7 @@ export default function Home() {
     <>
       <h1>LLMのしくみを、段階的に学ぶ</h1>
       <p className="lead">
-        プログラミング経験者向けに、序論と{stages.length - 1}のステージで学びます。第1部では、前提となる数学から Transformer、学習、推論まで、
+        プログラミング経験者向けに、序論と{llmStages.length - 1}のステージで学びます。第1部では、前提となる数学から Transformer、学習、推論まで、
         LLM の内部を理解します。第2部では、Claude API を使って、ツールを使うエージェントの機能を設計・実装・評価できるようになります。
         第3部では、AI を使った開発のやり方を、補完から AI ネイティブな開発まで段階的に進化させる方法を学びます。
         進捗はこのブラウザにだけ保存されます。
@@ -62,7 +62,7 @@ export default function Home() {
 
       <h2>ステージ別</h2>
       <div className="stage-list">
-        {stages.map((s) => {
+        {llmStages.map((s) => {
           const st = stageStats(s, p)
           const pct = st.total === 0 ? 0 : Math.round((st.done / st.total) * 100)
           return (

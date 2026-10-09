@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { ProgressBar } from '../components'
-import { courseStageIds, courses, evidenceInfo, groups, isAvailable, plannedCount } from '../data/catalog'
+import { courseStageIds, courses, evidenceInfo, courseStatus, groups, isAvailable, plannedCount, statusLabel } from '../data/catalog'
 import { findLesson, findStage } from '../data/curriculum'
 import { nextLessonId, overallStats, stageStats } from '../data/stats'
 import { formatMinutes, lessonMinutes } from '../time'
@@ -20,7 +20,7 @@ export default function CatalogPage() {
         どの記述にも、根拠の種類と確認の程度が見えるようにします。講座の関係と、この構成の理由は、<Link to="/map">全体の地図</Link>で見られます。
       </p>
       <p className="notice" role="note">
-        <strong>構成案です。</strong>「公開中」の講座以外は目次の案だけで、本文はまだありません。題名は話題の案で、本文を書くときに出典を確認して決め直します。
+        <strong>構成案です。</strong>「公開中」「一部公開」の講座以外は目次の案だけで、本文はまだありません。題名は話題の案で、本文を書くときに出典を確認して決め直します。
       </p>
       {nextLesson && (
         <section className="card" aria-label="続きから学ぶ">
@@ -56,14 +56,14 @@ export default function CatalogPage() {
                 <Link key={c.id} to={`/course/${c.id}`} className="card course-card">
                   <div className="row between">
                     <strong>{c.title}</strong>
-                    <span className={`badge ${available ? 'badge-doing' : ''}`}>{available ? '公開中' : '目次のみ'}</span>
+                    <span className={`badge ${available ? 'badge-doing' : ''}`}>{statusLabel[courseStatus(c)]}</span>
                   </div>
                   <span className="muted">{c.summary}</span>
                   <span className="evidence-tag">根拠: {evidenceInfo[c.evidence].label}</span>
                   {available ? (
                     <>
                       <ProgressBar value={pct} label={`${c.title}の進捗`} />
-                      <span className="muted">{done} / {total} レッスン</span>
+                      <span className="muted">{done} / {total} レッスン{plannedCount(c) > 0 && ` ・ 目次の案 ${plannedCount(c)} 件`}</span>
                     </>
                   ) : (
                     <span className="muted">目次の案 {plannedCount(c)} 件</span>

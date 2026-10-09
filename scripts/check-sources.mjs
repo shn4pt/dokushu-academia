@@ -8,7 +8,7 @@ const STALE_DAYS = 180
 const STATUSES = ['verified', 'partial', 'original', 'unverified']
 const HOWS = ['read', 'search', 'skill', 'repo', 'calc']
 
-const ids = [...readFileSync('src/lessons/index.ts', 'utf8').matchAll(/'([0-9i-]+)': \(\) => import\(/g)].map((m) => m[1])
+const ids = [...readFileSync('src/lessons/index.ts', 'utf8').matchAll(/'([0-9a-z-]+)': \(\) => import\(/g)].map((m) => m[1])
 const sources = JSON.parse(readFileSync('src/data/lesson-sources.json', 'utf8'))
 const history = JSON.parse(readFileSync('src/data/lesson-history.json', 'utf8'))
 const errors = []

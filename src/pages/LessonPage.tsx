@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
+import { findCourse } from '../data/catalog'
 import { allLessons, findLesson, findStage, lessonNo } from '../data/curriculum'
 import { questionKey } from '../review'
 import { formatMinutes, lessonTime } from '../time'
@@ -154,7 +155,8 @@ export default function LessonPage() {
   const content = loaded.content
 
   const stage = findStage(lesson.stageId)!
-  const readyLessons = allLessons.filter((l) => isReady(l.id))
+  // 前後のレッスンは、同じ講座の中だけで辿る
+  const readyLessons = allLessons.filter((l) => isReady(l.id) && findStage(l.stageId)?.course === stage.course)
   const idx = readyLessons.findIndex((l) => l.id === lesson.id)
   const prev = readyLessons[idx - 1]
   const next = readyLessons[idx + 1]
@@ -165,7 +167,15 @@ export default function LessonPage() {
   return (
     <article key={lesson.id}>
       <p className="crumb">
-        <Link to="/roadmap">ロードマップ</Link> / <Link to={`/stage/${stage.id}`}>{stage.title}</Link>
+        {stage.course ? (
+          <>
+            <Link to="/catalog">講座一覧</Link> / <Link to={`/course/${stage.course}`}>{findCourse(stage.course)?.title}</Link> / <Link to={`/stage/${stage.id}`}>{stage.title}</Link>
+          </>
+        ) : (
+          <>
+            <Link to="/roadmap">ロードマップ</Link> / <Link to={`/stage/${stage.id}`}>{stage.title}</Link>
+          </>
+        )}
       </p>
       <h1>{lessonNo(lesson)} {lesson.title}</h1>
       <p className="lead">{lesson.summary}</p>

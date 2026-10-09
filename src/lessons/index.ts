@@ -68,6 +68,7 @@ const loaders: Record<string, () => Promise<{ default: LessonContent }>> = {
   '20-1': () => import('./McpServerBuild'),
   '20-2': () => import('./EvalAutomation'),
   '20-3': () => import('./CacheCost'),
+  'e-1': () => import('./EvidenceIntro'),
   '4-1': () => import('./WhyAttention'),
   '4-2': () => import('./SelfAttention'),
   '4-3': () => import('./PositionalEncoding'),

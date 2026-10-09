@@ -101,4 +101,8 @@ export const glossary: Term[] = [
   { term: 'κ(カッパ)', reading: 'Cohen\'s kappa', description: '2者の判断の一致から、偶然の一致を引いた指標。採点者と人の一致を見る。', lessonId: '20-2' },
   { term: 'LLM-as-a-judge', description: 'LLM を採点者にして、文章などを自動で評価する方法。順序の偏りなどに備える。', lessonId: '20-2' },
   { term: 'cache_read_input_tokens', description: 'キャッシュから読み取った入力トークンの数。基本の入力料金より安い。', lessonId: '20-3' },
+  { term: '一次情報', description: '出来事や物についての、直接の証拠を与える情報。何を知りたいかによって、区分は変わる。', lessonId: 'e-1' },
+  { term: '二次情報', description: '一次情報を解釈・論評・分析した情報。全体をつかむ入口になるが、判断の前に元の一次情報で確かめる。', lessonId: 'e-1' },
+  { term: 'ランダム化比較試験', description: '参加者を無作為に群へ分けて、治療などの効果を比べる試験。治療の効果の問いで、誤りにくい根拠とされる。', lessonId: 'e-1' },
+  { term: '再現性', description: '同じ方法でやり直したときに、同じ結果が得られること。査読を通った研究でも、再現されないことがある。', lessonId: 'e-1' },
 ]

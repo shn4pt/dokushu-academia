@@ -44,7 +44,7 @@ export default function MapPage() {
           </section>
         ))}
       </div>
-      <p className="muted">太い枠の講座は、本文がある(公開中)講座です。</p>
+      <p className="muted">太い枠の講座は、本文がある(公開中・一部公開)講座です。</p>
 
       <h2>なぜ、この構成なのか</h2>
       <ul>

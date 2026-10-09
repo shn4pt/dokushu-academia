@@ -1,5 +1,5 @@
 import { go, expect, test } from './fixtures'
-import { ids, stageIds } from './lessons'
+import { ids, llmLessonIds, llmStageIds, stageIds } from './lessons'
 
 test('レッスンは67本以上ある(定義の読み取りが壊れていない)', () => {
   expect(ids.length).toBeGreaterThanOrEqual(67)
@@ -36,12 +36,12 @@ test('存在しないレッスン・不明な URL でも、起動してホーム
   await expect(page.locator('h1')).toContainText('LLM')
 })
 
-test('ロードマップに、すべてのレッスンが並ぶ', async ({ page }) => {
+test('ロードマップに、LLM の講座のすべてのレッスンが並ぶ', async ({ page }) => {
   await page.goto(go('/roadmap'))
-  await expect(page.locator('a.lesson-chip')).toHaveCount(ids.length)
+  await expect(page.locator('a.lesson-chip')).toHaveCount(llmLessonIds.length)
 })
 
 test('ホームのステージ数の表示が、定義と一致する', async ({ page }) => {
   await page.goto(go('/'))
-  await expect(page.locator('main')).toContainText(`序論と${stageIds.length - 1}のステージ`)
+  await expect(page.locator('main')).toContainText(`序論と${llmStageIds.length - 1}のステージ`)
 })

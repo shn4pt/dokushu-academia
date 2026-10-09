@@ -84,7 +84,7 @@ export const courses: Course[] = [
     why: "「〜という研究がある」と言われたときに、どこまで信じてよいかを、自分で判断できるようになるためです。このサービスの根拠の表示の意味も、ここで分かります。",
     summary: '論文や資料の読み方、エビデンスの強さ、実験と相関の違い。このサービスの根拠の表示の意味も、ここで学ぶ。',
     tiers: [
-      { level: 'basic', scope: '根拠とは何か、情報の種類', planned: ['序論:根拠があるとは、どういうことか', '一次情報と二次情報'] },
+      { level: 'basic', scope: '根拠とは何か、情報の種類', stageIds: ['e0'] },
       { level: 'practice', scope: '研究の読み方', planned: ['実験・観察・相関と因果', '再現性と、結果が割れている研究'] },
       { level: 'advanced', scope: '実務での使い方', planned: ['エビデンスの強さの比べ方', '根拠が少ない分野での判断'] },
     ],
@@ -315,8 +315,15 @@ export const courses: Course[] = [
 ]
 
 export const findCourse = (id: string) => courses.find((c) => c.id === id)
-/** 公開中(既存のステージに対応する)講座か */
-export const isAvailable = (c: Course) => c.tiers.some((t) => t.stageIds)
+/** 講座の状態: すべての段階に本文がある(open)、一部だけある(partial)、目次の案だけ(outline) */
+export type CourseStatus = 'open' | 'partial' | 'outline'
+export const courseStatus = (c: Course): CourseStatus => {
+  const n = c.tiers.filter((t) => t.stageIds?.length).length
+  return n === 0 ? 'outline' : n === c.tiers.length ? 'open' : 'partial'
+}
+export const statusLabel: Record<CourseStatus, string> = { open: '公開中', partial: '一部公開', outline: '目次のみ' }
+/** 本文が(一部でも)ある講座か */
+export const isAvailable = (c: Course) => courseStatus(c) !== 'outline'
 export const courseStageIds = (c: Course) => c.tiers.flatMap((t) => t.stageIds ?? [])
 export const plannedCount = (c: Course) => c.tiers.reduce((n, t) => n + (t.planned?.length ?? 0), 0)
 

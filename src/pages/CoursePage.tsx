@@ -1,6 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
-import { evidenceInfo, findCourse, groups, isAvailable, levelLabel, prerequisites, usedBy } from '../data/catalog'
+import { evidenceInfo, findCourse, courseStatus, groups, levelLabel, statusLabel, prerequisites, usedBy } from '../data/catalog'
 import { findStage, stageLabel } from '../data/curriculum'
 import { stageStats } from '../data/stats'
 import CourseLinks from '../ui/CourseLinks'
@@ -13,7 +13,7 @@ export default function CoursePage() {
   if (!course) return <Navigate to="/catalog" replace />
   const ev = evidenceInfo[course.evidence]
   const group = groups.find((g) => g.id === course.group)
-  const available = isAvailable(course)
+  const status = courseStatus(course)
   const before = prerequisites(course).map((c) => ({ course: c, note: course.needs?.[c.id] }))
   const after = usedBy(course)
 
@@ -22,7 +22,7 @@ export default function CoursePage() {
       <p className="crumb"><Link to="/catalog">講座一覧</Link> / {group?.title}</p>
       <div className="row between">
         <h1>{course.title}</h1>
-        <span className={`badge ${available ? 'badge-doing' : ''}`}>{available ? '公開中' : '目次のみ'}</span>
+        <span className={`badge ${status !== 'outline' ? 'badge-doing' : ''}`}>{statusLabel[status]}</span>
       </div>
       <p className="lead">{course.summary}</p>
 
@@ -56,9 +56,14 @@ export default function CoursePage() {
         </section>
       )}
 
-      {!available && (
+      {status === 'outline' && (
         <p className="notice" role="note">
           この講座は<strong>目次の案</strong>です。本文はまだありません。話題の案であり、内容の主張ではありません。
+        </p>
+      )}
+      {status === 'partial' && (
+        <p className="notice" role="note">
+          この講座は<strong>一部だけ公開中</strong>です。「準備中」の項目は目次の案で、本文はまだありません。話題の案であり、内容の主張ではありません。
         </p>
       )}
 

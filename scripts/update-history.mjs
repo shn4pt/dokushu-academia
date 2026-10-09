@@ -4,7 +4,7 @@ import { execFileSync } from 'node:child_process'
 import { readFileSync, writeFileSync } from 'node:fs'
 
 const index = readFileSync('src/lessons/index.ts', 'utf8')
-const map = [...index.matchAll(/'([0-9i-]+)': \(\) => import\('\.\/([A-Za-z0-9]+)'\)/g)].map((m) => [m[1], m[2]])
+const map = [...index.matchAll(/'([0-9a-z-]+)': \(\) => import\('\.\/([A-Za-z0-9]+)'\)/g)].map((m) => [m[1], m[2]])
 if (map.length === 0) throw new Error('src/lessons/index.ts からレッスンの対応を読み取れませんでした')
 
 const out = {}

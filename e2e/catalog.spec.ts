@@ -1,5 +1,5 @@
 import { go, expect, test } from './fixtures'
-import { courseStageIds, courses, groups, isAvailable, layers } from '../src/data/catalog'
+import { courseStageIds, courseStatus, courses, groups, isAvailable, layers } from '../src/data/catalog'
 import { stages } from '../src/data/curriculum'
 
 test.describe('講座一覧のデータ', () => {
@@ -46,12 +46,11 @@ test.describe('講座一覧のデータ', () => {
     const inLayers = layers.flatMap((l) => [...l.groupIds]).sort()
     expect(inLayers).toEqual(groups.map((g) => g.id).sort())
   })
-  test('公開中の講座は、全段階にステージがあり、目次のみの講座は、全段階にレッスンの案がある', () => {
+  test('各段階に、ステージか目次の案があり、状態(公開中・一部公開・目次のみ)と一致する', () => {
     for (const c of courses) {
-      for (const t of c.tiers) {
-        if (isAvailable(c)) expect(t.stageIds?.length, `${c.id}/${t.level}`).toBeGreaterThan(0)
-        else expect(t.planned?.length, `${c.id}/${t.level}`).toBeGreaterThan(0)
-      }
+      for (const t of c.tiers) expect((t.stageIds?.length ?? 0) + (t.planned?.length ?? 0), `${c.id}/${t.level}`).toBeGreaterThan(0)
+      const withStage = c.tiers.filter((t) => t.stageIds?.length).length
+      expect(courseStatus(c), c.id).toBe(withStage === 0 ? 'outline' : withStage === c.tiers.length ? 'open' : 'partial')
     }
   })
   test('法令・基準の講座は、条文などの根拠の基準が、全体像と考え方に限ると明記される', async () => {
@@ -67,8 +66,9 @@ test('講座一覧: 4つの分野に、全講座が並び、構成案である�
   await expect(page.getByRole('note')).toContainText('構成案です')
   await expect(page.locator('section[aria-labelledby^=group-]')).toHaveCount(groups.length)
   await expect(page.locator('.course-card')).toHaveCount(courses.length)
-  await expect(page.locator('.course-card', { hasText: '公開中' })).toHaveCount(courses.filter(isAvailable).length)
-  await expect(page.locator('.course-card', { hasText: '目次のみ' })).toHaveCount(courses.filter((c) => !isAvailable(c)).length)
+  for (const [label, status] of [['公開中', 'open'], ['一部公開', 'partial'], ['目次のみ', 'outline']] as const) {
+    await expect(page.locator('.course-card .badge', { hasText: new RegExp(`^${label}$`) })).toHaveCount(courses.filter((c) => courseStatus(c) === status).length)
+  }
 })
 
 test('講座の目次(公開中): 既存のステージに移れる', async ({ page }) => {
@@ -146,4 +146,58 @@ test('講座の目次: 「なぜ学ぶのか」が先頭に出る', async ({ pag
   await expect(why).toContainText('判断の根拠を自分で組み立てられる')
   const rel = page.getByRole('region', { name: '講座の関係' })
   await expect(rel).toContainText('指標の設計と、実験')
+})
+
+test.describe('根拠の読み方・序論(最初の、LLM 以外のレッスン)', () => {
+  test('講座の目次: 一部公開で、ステージから、レッスンに移れる', async ({ page }) => {
+    await page.goto(go('/course/evidence'))
+    await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
+    await expect(page.getByRole('note')).toContainText('一部だけ公開中')
+    await page.locator('.stage-card', { hasText: '序論:根拠とは何か' }).click()
+    await expect(page.locator('.crumb')).toContainText('根拠の読み方')
+    await expect(page.locator('.notice')).toHaveCount(0) // LLM の最後のステージが、前提として出ない
+    await page.locator('.lesson-list a').first().click()
+    await expect(page.locator('article h1')).toContainText('根拠があるとは、どういうことか')
+  })
+
+  test('レッスン: 講座のパンくず、前後のレッスンは講座の中だけ、出典は原典で確認', async ({ page }) => {
+    await page.goto(go('/lesson/e-1'))
+    await expect(page.locator('.crumb')).toContainText('講座一覧')
+    await expect(page.locator('.crumb a', { hasText: '根拠の読み方' })).toBeVisible()
+    await expect(page.locator('.pager a')).toHaveCount(0) // 他の講座の最後のレッスンに続かない
+    await expect(page.locator('.source-note summary')).toContainText('原典・公式で確認')
+    await page.locator('.source-note summary').click()
+    await expect(page.locator('.source-note')).toContainText('Evidence based medicine')
+    await expect(page.locator('.source-note')).toContainText('Open Science Collaboration')
+    await expect(page.locator('.source-note')).toContainText('第三者')
+  })
+
+  test('レッスン: 読んだ数字だけを使い、医療の例であることと、独自の整理が明記される', async ({ page }) => {
+    await page.goto(go('/lesson/e-1'))
+    const body = page.locator('article')
+    for (const t of ['97%', '36%', '100 件', 'これは医療の話です', 'このサービス独自の整理です']) await expect(body).toContainText(t)
+  })
+
+  test('レッスン: 一次情報・二次情報の判定と、考え方の判定に、答え合わせできる', async ({ page }) => {
+    await page.goto(go('/lesson/e-1'))
+    const demos = page.locator('.demo').filter({ has: page.getByRole('button', { name: '答え合わせ' }) })
+    await expect(demos).toHaveCount(2)
+    const first = demos.nth(0)
+    const answers = ['一次情報', '二次情報', '二次情報', '一次情報', '二次情報', '一次情報']
+    for (let i = 0; i < answers.length; i++) await first.locator('.task-row').nth(i).getByRole('button', { name: answers[i], exact: true }).click()
+    await first.getByRole('button', { name: '答え合わせ' }).click()
+    await expect(first).toContainText('6 / 6')
+    const second = demos.nth(1)
+    const ok = ['適切でない', '適切', '適切でない', '適切でない', '適切でない']
+    for (let i = 0; i < ok.length; i++) await second.locator('.task-row').nth(i).getByRole('button', { name: ok[i], exact: true }).click()
+    await second.getByRole('button', { name: '答え合わせ' }).click()
+    await expect(second).toContainText('5 / 5')
+  })
+
+  test('進捗: 完了すると、全体の進捗と講座一覧の進捗に反映される', async ({ page }) => {
+    await page.goto(go('/lesson/e-1'))
+    await page.getByRole('button', { name: /完了/ }).first().click()
+    await page.goto(go('/catalog'))
+    await expect(page.locator('.course-card', { hasText: '根拠の読み方' })).toContainText('1 / 1 レッスン')
+  })
 })

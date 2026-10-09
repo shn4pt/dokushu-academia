@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
+import { findCourse } from '../data/catalog'
 import { findLesson, findStage, lessonNo, stageLabel, stages } from '../data/curriculum'
 import { stageMinutes, stageStats } from '../data/stats'
 import { isReady } from '../lessons'
@@ -12,8 +13,9 @@ export default function StagePage() {
   const stage = id ? findStage(id) : undefined
   if (!stage) return <Navigate to="/roadmap" replace />
 
-  const index = stages.indexOf(stage)
-  const prev = index > 0 ? stages[index - 1] : undefined
+  const peers = stages.filter((x) => x.course === stage.course) // 同じ講座のステージだけ
+  const index = peers.indexOf(stage)
+  const prev = index > 0 ? peers[index - 1] : undefined
   const prevStats = prev ? stageStats(prev, p) : undefined
   const st = stageStats(stage, p)
   const sm = stageMinutes(stage, p)
@@ -21,7 +23,13 @@ export default function StagePage() {
 
   return (
     <>
-      <p className="crumb"><Link to="/roadmap">ロードマップ</Link> / {stageLabel(stage)}</p>
+      <p className="crumb">
+        {stage.course ? (
+          <><Link to="/catalog">講座一覧</Link> / <Link to={`/course/${stage.course}`}>{findCourse(stage.course)?.title}</Link></>
+        ) : (
+          <><Link to="/roadmap">ロードマップ</Link> / {stageLabel(stage)}</>
+        )}
+      </p>
       <div className="row between">
         <h1>{stage.title}</h1>
         <StatusBadge status={st.status} />

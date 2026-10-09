@@ -1999,5 +1999,36 @@
         "use": "費用・命中率・損益分岐を、手計算の値と照合"
       }
     ]
+  },
+  "e-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "note": "Sackett らの論説は全文を読んで確認しました(BMJ 掲載のものの、第三者が公開している PDF の写しで読みました)。Open Science Collaboration(2015)は、Europe PMC の書誌記録にある要旨の数字だけを使っています(本文は未読)。一次情報・二次情報の定義は、図書館の案内で確認しました。「3つの問い」、医療の考え方の他分野への移し替え、二次情報から一次情報へ確かめる進め方は、このサービスの整理で、文献の主張ではありません。",
+    "sources": [
+      {
+        "title": "Evidence based medicine: what it is and what it isn't(Sackett ら, BMJ 1996;312:71-72)",
+        "url": "https://www.bmj.com/content/312/7023/71",
+        "how": "read",
+        "use": "定義、外部の根拠と経験の両方が要ること、問いによって適した根拠が違うこと、次善の根拠をたどること(全文は、第三者が公開する PDF の写しで確認)"
+      },
+      {
+        "title": "Estimating the reproducibility of psychological science(Open Science Collaboration, Science 2015)",
+        "url": "https://doi.org/10.1126/science.aac4716",
+        "how": "read",
+        "use": "100 件の再現の試み、元の研究 97% が有意・再現で 36%、効果の大きさは約半分(要旨のみ。Europe PMC の記録で確認)"
+      },
+      {
+        "title": "Primary vs. Secondary Sources(Columbia College Chicago 図書館)",
+        "url": "https://libguides.colum.edu/PrimarySources",
+        "how": "read",
+        "use": "一次情報と二次情報の説明。区分は、調べる問いで決まること"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

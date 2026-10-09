@@ -7,6 +7,10 @@ export type LessonMeta = {
 }
 export type Stage = {
   id: string
+  /** LLM の講座以外の講座に属するステージは、その講座の id(src/data/catalog.ts)。LLM の講座(第1〜3部)は省略する */
+  course?: string
+  /** 表示名(省略すると「Stage 番号」) */
+  label?: string
   /** 表示用の番号(「序」または「0」〜) */
   num: string
   title: string
@@ -373,6 +377,18 @@ export const stages: Stage[] = [
       { id: '20-3', title: 'プロンプトキャッシュの費用を実測する', summary: 'usage の読み方、損益分岐、キャッシュが壊れる原因、費用の記録と見張り。' },
     ],
   },
+  {
+    id: 'e0',
+    num: 'E0',
+    course: 'evidence',
+    label: '根拠の読み方・序論',
+    title: '序論:根拠とは何か',
+    why: '「研究で示されている」「データがある」と言われたときに、どこまで信じてよいかを自分で判断するための、最初の一歩です。このサービスの根拠の表示の意味も、ここで分かります。',
+    goal: '根拠の強さと種類は問いによって違うことを説明でき、一次情報と二次情報を見分けられるようになる。',
+    lessons: [
+      { id: 'e-1', label: '根拠-1', title: '根拠があるとは、どういうことか', summary: '根拠は白か黒かではない。最良の根拠と、判断の関係。一次情報と二次情報。査読された研究が再現されなかった例。' },
+    ],
+  },
 ]
 
 export const allLessons = stages.flatMap((s) =>
@@ -383,7 +399,9 @@ export const findLesson = (id: string) => allLessons.find((l) => l.id === id)
 export const findStage = (id: string) => stages.find((s) => s.id === id)
 
 /** 「Stage 0」「序論」のような、ステージの表示名 */
-export const stageLabel = (s: Stage) => (s.num === '序' ? '序論' : `Stage ${s.num}`)
+export const stageLabel = (s: Stage) => s.label ?? (s.num === '序' ? '序論' : `Stage ${s.num}`)
+/** LLM の講座(序論と Stage 0〜20)のステージ。第1〜3部の説明や一覧は、これだけを対象にする */
+export const llmStages = stages.filter((s) => !s.course)
 /** レッスンの表示用の番号(「0-1」「序-1」など) */
 export const lessonNo = (l: { id: string; label?: string }) => l.label ?? l.id
 
