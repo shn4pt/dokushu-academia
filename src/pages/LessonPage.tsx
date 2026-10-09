@@ -6,6 +6,7 @@ import { formatMinutes, lessonTime } from '../time'
 import { currentSection, findHeading, scrollToHeading } from '../reading'
 import { isReady, loadLessonContent } from '../lessons'
 import type { LessonContent, QuizQuestion } from '../lessons/types'
+import SourceNote from '../ui/SourceNote'
 import { progressActions, useProgress } from '../progress'
 
 function Quiz({ lessonId, questions }: { lessonId: string; questions: QuizQuestion[] }) {
@@ -202,6 +203,8 @@ export default function LessonPage() {
       )}
 
       <div className="prose"><Body /></div>
+
+      <SourceNote lessonId={lesson.id} />
 
       <Quiz key={lesson.id} lessonId={lesson.id} questions={content.quiz} />
 

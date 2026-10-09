@@ -1,11 +1,12 @@
 import { Suspense, lazy } from 'react'
-import { NavLink, Navigate, Route, Routes } from 'react-router-dom'
+import { Link, NavLink, Navigate, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import Roadmap from './pages/Roadmap'
 import StagePage from './pages/StagePage'
 import LessonPage from './pages/LessonPage'
 import Glossary from './pages/Glossary'
 import ProgressPage from './pages/ProgressPage'
+import SourcesPage from './pages/SourcesPage'
 import SearchPage from './pages/SearchPage'
 import ReviewPage from './pages/ReviewPage'
 import { useDueKeys } from './review'
@@ -42,9 +43,13 @@ export default function App() {
           <Route path="/review" element={<ReviewPage />} />
           <Route path="/api-key" element={<Suspense fallback={<p className="muted">読み込み中…</p>}><ApiKeyPage /></Suspense>} />
           <Route path="/progress" element={<ProgressPage />} />
+          <Route path="/sources" element={<SourcesPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+      <footer className="site-footer">
+        このアプリは AI(Claude Code)が執筆しています。<Link to="/sources">出典と確認の状況</Link>
+      </footer>
     </>
   )
 }

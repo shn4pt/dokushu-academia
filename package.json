@@ -7,9 +7,11 @@
     "index": "node scripts/build-search-index.mjs",
     "predev": "npm run index",
     "dev": "vite",
-    "prebuild": "npm run index",
+    "prebuild": "npm run index && npm run sources:check",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "sources:check": "node scripts/check-sources.mjs",
+    "history": "node scripts/update-history.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.132.0",

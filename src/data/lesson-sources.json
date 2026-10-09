@@ -1,0 +1,667 @@
+{
+  "i-1": {
+    "status": "original",
+    "note": "全体像の整理は、このアプリの構成に合わせて書いた説明です。",
+    "sources": []
+  },
+  "i-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "年表のほかの項目(パーセプトロン、word2vec など)の年と内容は、原典との照合がまだです。",
+    "sources": [
+      {
+        "title": "Attention Is All You Need(Vaswani ら, 2017)",
+        "url": "https://arxiv.org/abs/1706.03762",
+        "how": "read",
+        "use": "Transformer の発表(2017年)の記述"
+      },
+      {
+        "title": "Training language models to follow instructions with human feedback(InstructGPT, 2022)",
+        "url": "https://arxiv.org/abs/2203.02155",
+        "how": "read",
+        "use": "InstructGPT の発表(2022年)の記述"
+      }
+    ]
+  },
+  "4-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "ほかの記述は、原典との照合がまだです。",
+    "sources": [
+      {
+        "title": "Attention Is All You Need(Vaswani ら, 2017)",
+        "url": "https://arxiv.org/abs/1706.03762",
+        "how": "read",
+        "use": "Transformer が RNN を使わず attention だけで系列を処理することの記述"
+      }
+    ]
+  },
+  "5-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "「約20トークン/パラメータ」は論文が明記した定数ではなく、70B・1.4T の比から導いた概算です。",
+    "sources": [
+      {
+        "title": "Training Compute-Optimal Large Language Models(Hoffmann ら, 2022, Chinchilla)",
+        "url": "https://arxiv.org/abs/2203.15556",
+        "how": "read",
+        "use": "損失の近似式の係数、70B・1.4T トークンの比"
+      },
+      {
+        "title": "Scaling Laws for Neural Language Models(Kaplan ら, 2020)",
+        "url": "https://arxiv.org/abs/2001.08361",
+        "how": "read",
+        "use": "スケーリング則の最初の報告"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-08",
+        "summary": "原典との照合に基づき、約20トークン/パラメータが概算であることを明記した"
+      }
+    ]
+  },
+  "6-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "ほかの記述は、原典との照合がまだです。",
+    "sources": [
+      {
+        "title": "Lost in the Middle(Liu ら, 2023)",
+        "url": "https://arxiv.org/abs/2307.03172",
+        "how": "read",
+        "use": "長い文脈の中央の情報が使われにくい傾向"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-08",
+        "summary": "原典との照合に基づき、根拠を確認できなかった「差は小さくなっている」の記述を削除した"
+      }
+    ]
+  },
+  "7-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "ほかの記述は、原典との照合がまだです。",
+    "sources": [
+      {
+        "title": "LIMA: Less Is More for Alignment(Zhou ら, 2023)",
+        "url": "https://arxiv.org/abs/2305.11206",
+        "how": "read",
+        "use": "少量(1,000件)の質の高いデータでも効果があること"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-08",
+        "summary": "原典との照合に基づき、SFT のデータ量の目安を LIMA(1,000件)に合わせて修正した"
+      }
+    ]
+  },
+  "7-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "ほかの記述は、原典との照合がまだです。",
+    "sources": [
+      {
+        "title": "Training language models to follow instructions with human feedback(InstructGPT, 2022)",
+        "url": "https://arxiv.org/abs/2203.02155",
+        "how": "read",
+        "use": "RLHF の流れ(SFT・報酬モデル・強化学習)"
+      },
+      {
+        "title": "Direct Preference Optimization(Rafailov ら, 2023)",
+        "url": "https://arxiv.org/abs/2305.18290",
+        "how": "read",
+        "use": "DPO の考え方"
+      }
+    ]
+  },
+  "7-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "ほかの記述は、原典との照合がまだです。",
+    "sources": [
+      {
+        "title": "Constitutional AI: Harmlessness from AI Feedback(Bai ら, 2022)",
+        "url": "https://arxiv.org/abs/2212.08073",
+        "how": "read",
+        "use": "AI のフィードバックを使う方法"
+      }
+    ]
+  },
+  "8-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "ほかの記述は、原典との照合がまだです。",
+    "sources": [
+      {
+        "title": "ReAct: Synergizing Reasoning and Acting in Language Models(Yao ら, 2022)",
+        "url": "https://arxiv.org/abs/2210.03629",
+        "how": "read",
+        "use": "ReAct パターンの記述"
+      }
+    ]
+  },
+  "9-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "versions": "@anthropic-ai/sdk 0.132.0。本文の「2026年10月時点」の記述は、この確認の時点",
+    "note": "公式サイトの各ページとの照合は、一部のみです。",
+    "sources": [
+      {
+        "title": "anthropic-sdk-typescript(公式 SDK のリポジトリ)",
+        "url": "https://github.com/anthropics/anthropic-sdk-typescript",
+        "how": "read",
+        "use": "SDK の導入と基本の呼び出し"
+      },
+      {
+        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
+        "how": "skill",
+        "use": "API の呼び出し方・パラメータ・応答の形"
+      }
+    ]
+  },
+  "9-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。料金・上限・モデルの仕様など、変わりやすい値は公式の最新の情報を確かめてください。",
+    "sources": [
+      {
+        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
+        "how": "skill",
+        "use": "API の呼び出し方・パラメータ・応答の形"
+      }
+    ]
+  },
+  "9-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。料金・上限・モデルの仕様など、変わりやすい値は公式の最新の情報を確かめてください。",
+    "sources": [
+      {
+        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
+        "how": "skill",
+        "use": "API の呼び出し方・パラメータ・応答の形"
+      }
+    ]
+  },
+  "11-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。料金・上限・モデルの仕様など、変わりやすい値は公式の最新の情報を確かめてください。",
+    "sources": [
+      {
+        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
+        "how": "skill",
+        "use": "API の呼び出し方・パラメータ・応答の形"
+      }
+    ]
+  },
+  "12-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。料金・上限・モデルの仕様など、変わりやすい値は公式の最新の情報を確かめてください。",
+    "sources": [
+      {
+        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
+        "how": "skill",
+        "use": "API の呼び出し方・パラメータ・応答の形"
+      }
+    ]
+  },
+  "9-4": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "sources": [
+      {
+        "title": "Structured outputs(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/structured-outputs.md",
+        "how": "read",
+        "use": "JSON Schema による構造化出力の指定方法"
+      },
+      {
+        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
+        "how": "skill",
+        "use": "API の呼び出し方・パラメータ・応答の形"
+      }
+    ]
+  },
+  "10-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。",
+    "sources": [
+      {
+        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
+        "how": "skill",
+        "use": "API の呼び出し方・パラメータ・応答の形"
+      }
+    ]
+  },
+  "10-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。",
+    "sources": [
+      {
+        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
+        "how": "skill",
+        "use": "API の呼び出し方・パラメータ・応答の形"
+      }
+    ]
+  },
+  "10-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "sources": [
+      {
+        "title": "Writing tools for agents(Anthropic Engineering)",
+        "url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+        "how": "read",
+        "use": "ツールの設計の指針"
+      },
+      {
+        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
+        "how": "skill",
+        "use": "API の呼び出し方・パラメータ・応答の形"
+      }
+    ]
+  },
+  "10-4": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "note": "プロトコルの版によって細部が変わります。本文の例は仕様の 2026-07-28 版をもとにしています。",
+    "sources": [
+      {
+        "title": "MCP: Architecture(Model Context Protocol)",
+        "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+        "how": "read",
+        "use": "ホスト・クライアント・サーバーの構成、やりとりの流れ"
+      },
+      {
+        "title": "MCP connector(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/mcp-connector.md",
+        "how": "read",
+        "use": "API から MCP サーバーを使う方法"
+      }
+    ]
+  },
+  "11-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "note": "本文の「2024年12月」は、この記事の公開時期です。",
+    "sources": [
+      {
+        "title": "Building effective agents(Anthropic Engineering)",
+        "url": "https://www.anthropic.com/engineering/building-effective-agents",
+        "how": "read",
+        "use": "ワークフローとエージェントの区別、各パターン"
+      }
+    ]
+  },
+  "11-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "sources": [
+      {
+        "title": "Building effective agents(Anthropic Engineering)",
+        "url": "https://www.anthropic.com/engineering/building-effective-agents",
+        "how": "read",
+        "use": "エージェントのループと、止める条件の考え方"
+      },
+      {
+        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
+        "how": "skill",
+        "use": "API の呼び出し方・パラメータ・応答の形"
+      }
+    ]
+  },
+  "11-4": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "sources": [
+      {
+        "title": "Introducing Contextual Retrieval(Anthropic)",
+        "url": "https://www.anthropic.com/news/contextual-retrieval",
+        "how": "read",
+        "use": "文脈付きのチャンク、再ランキング(2024年9月)"
+      },
+      {
+        "title": "Embeddings(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/embeddings.md",
+        "how": "read",
+        "use": "埋め込みの使い方"
+      }
+    ]
+  },
+  "11-5": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "sources": [
+      {
+        "title": "How we built our multi-agent research system(Anthropic Engineering)",
+        "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+        "how": "read",
+        "use": "オーケストレーターとワーカーの構成、得られた知見(2025年6月)"
+      }
+    ]
+  },
+  "12-1": {
+    "status": "unverified",
+    "note": "評価の考え方は一般的な内容で、特定の資料に基づいていません。出典を追加する必要があります。",
+    "sources": []
+  },
+  "12-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "sources": [
+      {
+        "title": "OWASP Top 10 for LLM Applications",
+        "url": "https://genai.owasp.org/llm-top-10/",
+        "how": "read",
+        "use": "LLM アプリの代表的なリスク"
+      },
+      {
+        "title": "The lethal trifecta for AI agents(Simon Willison, 2025年6月)",
+        "url": "https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/",
+        "how": "read",
+        "use": "私的なデータ・信頼できない内容・外部との通信の3つ"
+      }
+    ]
+  },
+  "13-1": {
+    "status": "original",
+    "note": "総仕上げの設計は、第2部の内容を組み合わせて、このアプリが作った例です。",
+    "sources": []
+  },
+  "13-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "コードは SDK の型に対して検査済みですが、実際の API に接続した動作の確認まではしていません。",
+    "sources": [
+      {
+        "title": "src/capstone/ の型チェック(tsc)",
+        "url": "https://github.com/shn4pt/mygame1/tree/main/src/capstone",
+        "how": "repo",
+        "use": "掲載するコードを、実際の SDK の型で検査している"
+      }
+    ]
+  },
+  "13-3": {
+    "status": "original",
+    "note": "評価と改善の手順は、第2部(12-1)の考え方を、このアプリが例にまとめたものです。",
+    "sources": []
+  },
+  "14-1": {
+    "status": "original",
+    "note": "5つの水準(L1〜L5)は、このアプリが整理した枠組みで、業界の標準の分類ではありません。",
+    "sources": []
+  },
+  "14-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "METR は原文を読んで確認しました。そのほかは、検索結果での確認にとどまります。",
+    "sources": [
+      {
+        "title": "Measuring the Impact of Early-2025 AI on Experienced Open-Source Developer Productivity(METR, 2025年7月)",
+        "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
+        "how": "read",
+        "use": "19% 遅くなった、実感は 20% 速くなった"
+      },
+      {
+        "title": "METR の2026年2月の更新",
+        "url": "https://metr.org/blog/2026-02-24-uplift-update/",
+        "how": "read",
+        "use": "選択バイアスの指摘と、更新後の見方"
+      },
+      {
+        "title": "The Impact of AI on Developer Productivity: Evidence from GitHub Copilot(Peng ら, 2023)",
+        "how": "search",
+        "use": "Copilot の研究の結果(検索で確認。原文は未取得)"
+      },
+      {
+        "title": "DORA 2024 Accelerate State of DevOps レポート",
+        "how": "search",
+        "use": "AI の利用と、スループット・安定性の関係(検索で確認。原文は未取得)"
+      },
+      {
+        "title": "GitHub Copilot と Claude Code の公開時期",
+        "how": "search",
+        "use": "ツールの変遷の年表(検索で確認)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-08",
+        "summary": "METR の2025年の結果と、2026年2月の更新(選択バイアスの指摘)の両方を載せた"
+      }
+    ]
+  },
+  "14-3": {
+    "status": "original",
+    "note": "2つの軸による整理は、このアプリの説明のための枠組みです。",
+    "sources": []
+  },
+  "15-1": {
+    "status": "original",
+    "note": "例の応答は、説明用に用意したもので、実際の API の出力ではありません。",
+    "sources": []
+  },
+  "15-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-08",
+    "note": "レビュー問題のコードは、説明用にこのアプリが作った例です。",
+    "sources": [
+      {
+        "title": "We Have a Package for You!(パッケージの幻覚の研究, USENIX Security 2025)",
+        "how": "search",
+        "use": "生成コードに、存在しないパッケージ名が含まれる割合(検索で確認。原文は未取得)"
+      }
+    ]
+  },
+  "15-3": {
+    "status": "original",
+    "note": "学び方と、情報の扱いの注意は、一般的な指針をこのアプリが整理したものです。",
+    "sources": []
+  },
+  "16-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "versions": "Claude Code の公式ドキュメント(2026-10-08 時点の版)。機能・設定・コマンドは版によって変わるため、使う前に最新の情報を確かめてください。",
+    "sources": [
+      {
+        "title": "Best practices(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/best-practices.md",
+        "how": "read",
+        "use": "調べる→計画→実装→コミット、確かめる手段、軌道修正と文脈の管理"
+      },
+      {
+        "title": "このリポジトリのコミット履歴(しおり機能の事例)",
+        "url": "https://github.com/shn4pt/mygame1/commits/main",
+        "how": "repo",
+        "use": "事例の流れ"
+      }
+    ]
+  },
+  "16-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "versions": "Claude Code の公式ドキュメント(2026-10-08 時点の版)。機能・設定・コマンドは版によって変わるため、使う前に最新の情報を確かめてください。",
+    "sources": [
+      {
+        "title": "How Claude remembers your project(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/memory.md",
+        "how": "read",
+        "use": "CLAUDE.md の置き場所・読み込み・200行の目安"
+      },
+      {
+        "title": "Best practices(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/best-practices.md",
+        "how": "read",
+        "use": "CLAUDE.md の書き方、スキル、サブエージェント、仕様のインタビュー"
+      }
+    ]
+  },
+  "16-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "versions": "Claude Code の公式ドキュメント(2026-10-08 時点の版)。機能・設定・コマンドは版によって変わるため、使う前に最新の情報を確かめてください。",
+    "sources": [
+      {
+        "title": "Choose a permission mode(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/permission-modes.md",
+        "how": "read",
+        "use": "権限モード"
+      },
+      {
+        "title": "Configure permissions(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/permissions.md",
+        "how": "read",
+        "use": "ルールの書き方と評価の順序"
+      },
+      {
+        "title": "Automate actions with hooks(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/hooks-guide.md",
+        "how": "read",
+        "use": "フックの例と種類"
+      },
+      {
+        "title": "Configure the sandboxed Bash tool(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/sandboxing.md",
+        "how": "read",
+        "use": "サンドボックスの範囲"
+      }
+    ]
+  },
+  "17-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "versions": "Claude Code の公式ドキュメント(2026-10-08 時点の版)。機能・設定・コマンドは版によって変わるため、使う前に最新の情報を確かめてください。",
+    "sources": [
+      {
+        "title": "Claude Code GitHub Actions(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/github-actions.md",
+        "how": "read",
+        "use": "@claude のワークフロー、認証、コスト"
+      },
+      {
+        "title": "Best practices(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/best-practices.md",
+        "how": "read",
+        "use": "worktree、claude -p による並行・自動化"
+      }
+    ]
+  },
+  "17-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "versions": "Claude Code の公式ドキュメント(2026-10-08 時点の版)。機能・設定・コマンドは版によって変わるため、使う前に最新の情報を確かめてください。",
+    "sources": [
+      {
+        "title": "Claude Code GitHub Actions(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/github-actions.md",
+        "how": "read",
+        "use": "レビューのワークフロー例"
+      },
+      {
+        "title": "Best practices(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/best-practices.md",
+        "how": "read",
+        "use": "新しい文脈でのレビュー、指摘の扱い"
+      }
+    ]
+  },
+  "17-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "versions": "Claude Code の公式ドキュメント(2026-10-08 時点の版)。機能・設定・コマンドは版によって変わるため、使う前に最新の情報を確かめてください。 DORA の指標は、確認時点の dora.dev の記述。",
+    "sources": [
+      {
+        "title": "DORA metrics(dora.dev)",
+        "url": "https://dora.dev/guides/dora-metrics/",
+        "how": "read",
+        "use": "5つの指標の名称と定義"
+      },
+      {
+        "title": "Manage costs effectively(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/costs.md",
+        "how": "read",
+        "use": "費用の目安と抑え方"
+      }
+    ]
+  },
+  "18-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "versions": "Claude Code の公式ドキュメント(2026-10-08 時点の版)。機能・設定・コマンドは版によって変わるため、使う前に最新の情報を確かめてください。",
+    "sources": [
+      {
+        "title": "Keep Claude working toward a goal(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/goal.md",
+        "how": "read",
+        "use": "/goal の動き方と条件の書き方"
+      },
+      {
+        "title": "Best practices(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/best-practices.md",
+        "how": "read",
+        "use": "確かめる手段、Stop フック、検証役のサブエージェント"
+      }
+    ]
+  },
+  "18-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "versions": "Claude Code の公式ドキュメント(2026-10-08 時点の版)。機能・設定・コマンドは版によって変わるため、使う前に最新の情報を確かめてください。",
+    "sources": [
+      {
+        "title": "Run prompts on a schedule(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/scheduled-tasks.md",
+        "how": "read",
+        "use": "/loop・ルーチン・7日の期限"
+      },
+      {
+        "title": "Code Review(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/code-review.md",
+        "how": "read",
+        "use": "管理型のレビューの動き(研究プレビュー)"
+      },
+      {
+        "title": "Claude Code GitHub Actions(Claude Code ドキュメント)",
+        "url": "https://code.claude.com/docs/en/github-actions.md",
+        "how": "read",
+        "use": "スケジュールでの実行"
+      }
+    ]
+  },
+  "18-3": {
+    "status": "original",
+    "note": "リスクの整理は、第2部の安全の内容(12-2)をもとに、このアプリがまとめたものです。",
+    "sources": []
+  },
+  "19-1": {
+    "status": "original",
+    "note": "6つの軸と段階は、このアプリが作った簡易の目安で、正式な評価の方法ではありません。",
+    "sources": []
+  },
+  "19-2": {
+    "status": "original",
+    "note": "移行の原則と計画の例は、第3部の内容をもとにしたこのアプリの提案です。",
+    "sources": []
+  },
+  "19-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-08",
+    "note": "時刻と出来事は、コミットの記録で確認しました。役割の分担や評価は、このアプリの作者(依頼者と AI)の振り返りです。",
+    "sources": [
+      {
+        "title": "このリポジトリのコミット履歴",
+        "url": "https://github.com/shn4pt/mygame1/commits/main",
+        "how": "repo",
+        "use": "年表・出来事の時刻と内容"
+      }
+    ]
+  }
+}
