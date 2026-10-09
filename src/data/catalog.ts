@@ -175,7 +175,7 @@ export const courses: Course[] = [
     },
     summary: '顧客の課題の発見から、優先順位、計測、ロードマップまで。',
     tiers: [
-      { level: 'basic', scope: 'プロダクトマネジメントとは何か', planned: ['序論:PM の仕事の全体像', '課題と解決策を分ける'] },
+      { level: 'basic', scope: 'プロダクトマネジメントとは何か', stageIds: ['pm0'] },
       { level: 'practice', scope: '発見・優先順位・計測', planned: ['顧客の理解と調査', '優先順位のつけ方', '指標の設計'] },
       { level: 'advanced', scope: '戦略とロードマップ、組織への展開', planned: ['プロダクト戦略', 'ステークホルダーとの合意'] },
     ],
