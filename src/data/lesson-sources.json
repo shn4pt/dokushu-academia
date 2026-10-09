@@ -145,10 +145,10 @@
     ]
   },
   "9-1": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "versions": "@anthropic-ai/sdk 0.132.0。本文の「2026年10月時点」の記述は、この確認の時点",
-    "note": "公式サイトの各ページとの照合は、一部のみです。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "versions": "Claude API のドキュメント(2026-10-09 時点)。モデル・料金・パラメータ・ベータの機能は変わりやすいので、使う前に最新の情報を確かめてください。",
+    "note": "「temperature などを既定以外の値で送るとエラーになる」の挙動そのものと、思考のトークンが出力として課金されることは、API のドキュメントの該当部分で確認できていません(前者は、公式のリファレンスに「設定できない」とのみ記載。後者は Claude Code の費用のページに記載があります)。SDK(@anthropic-ai/sdk 0.132.0)の確認は 2026-10-08 です。",
     "sources": [
       {
         "title": "anthropic-sdk-typescript(公式 SDK のリポジトリ)",
@@ -157,57 +157,208 @@
         "use": "SDK の導入と基本の呼び出し"
       },
       {
-        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
-        "how": "skill",
-        "use": "API の呼び出し方・パラメータ・応答の形"
+        "title": "Models overview",
+        "url": "https://platform.claude.com/docs/en/about-claude/models/overview.md",
+        "how": "read",
+        "use": "モデルID、既定の effort(Opus 5.5 は medium)、コンテキスト1M・最大出力128K"
+      },
+      {
+        "title": "Pricing",
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing.md",
+        "how": "read",
+        "use": "モデルごとの入力・出力の単価(Haiku 5.5 は10万トークンで料金が変わる)"
+      },
+      {
+        "title": "Effort",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/effort.md",
+        "how": "read",
+        "use": "output_config.effort のレベル(low〜max)と、既定値"
+      },
+      {
+        "title": "Messages API リファレンス",
+        "url": "https://platform.claude.com/docs/en/api/messages.md",
+        "how": "read",
+        "use": "Claude Opus 4.6 より後のモデルは temperature を設定できない"
+      },
+      {
+        "title": "TypeScript SDK(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript.md",
+        "how": "read",
+        "use": "例外クラス(BadRequestError など)、自動の再試行(既定2回。408・409・429・500 系・通信エラー)、タイムアウトはミリ秒、streaming の .on(\"text\")・finalMessage()、ブラウザでは既定で無効"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、Haiku 5.5 の料金が、プロンプトの長さ(10万トークン)で変わることを追記した"
       }
     ]
   },
   "9-2": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。料金・上限・モデルの仕様など、変わりやすい値は公式の最新の情報を確かめてください。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "versions": "Claude API のドキュメント(2026-10-09 時点)。モデル・料金・パラメータ・ベータの機能は変わりやすいので、使う前に最新の情報を確かめてください。",
+    "note": "ストリーミングで大きな max_tokens を使うと、SDK が非ストリーミングの長いリクエストをエラーにすることがあります(約10分を超える見込みのとき)。本文のコードの例外クラス名・再試行・タイムアウトの単位は、TypeScript SDK のドキュメントで確認しました。",
     "sources": [
       {
-        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
-        "how": "skill",
-        "use": "API の呼び出し方・パラメータ・応答の形"
+        "title": "Handling stop reasons",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons.md",
+        "how": "read",
+        "use": "stop_reason の一覧と、それぞれの対応(max_tokens、pause_turn、refusal)"
+      },
+      {
+        "title": "Streaming Messages",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/streaming.md",
+        "how": "read",
+        "use": "イベントの流れ、ping、ストリーム途中のエラー、SDK の最終メッセージの取得"
+      },
+      {
+        "title": "Errors",
+        "url": "https://platform.claude.com/docs/en/api/errors.md",
+        "how": "read",
+        "use": "HTTP エラー(400/401/403/413/429/500/504/529)、SDK の自動再試行(既定2回)、長いリクエストはストリーミング"
+      },
+      {
+        "title": "Refusals and fallback",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback.md",
+        "how": "read",
+        "use": "refusal は HTTP 200 で返る。fallbacks: \"default\" とベータ(server-side-fallback-2026-07-01)"
+      },
+      {
+        "title": "TypeScript SDK(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript.md",
+        "how": "read",
+        "use": "例外クラス(BadRequestError など)、自動の再試行(既定2回。408・409・429・500 系・通信エラー)、タイムアウトはミリ秒、streaming の .on(\"text\")・finalMessage()、ブラウザでは既定で無効"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、stop_reason に model_context_window_exceeded を追加し、エラーの表に 413・504 を追加した。ストリームの ping と途中のエラーの説明を追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "SDK の自動再試行の対象に 408・409 を追記した"
       }
     ]
   },
   "9-3": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。料金・上限・モデルの仕様など、変わりやすい値は公式の最新の情報を確かめてください。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "versions": "Claude API のドキュメント(2026-10-09 時点)。モデル・料金・パラメータ・ベータの機能は変わりやすいので、使う前に最新の情報を確かめてください。",
+    "note": "「あるモデルで効いた工夫が別のモデルでは不要になる」「代表的な入力を数件〜数十件で比べる」は、公式のガイドの趣旨に沿った一般的な助言で、数字の根拠は特定していません。",
     "sources": [
       {
-        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
-        "how": "skill",
-        "use": "API の呼び出し方・パラメータ・応答の形"
+        "title": "Prompting best practices",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices.md",
+        "how": "read",
+        "use": "明確に伝える、例は3〜5個、XML タグ、「しない」より「する」、プリフィルの廃止、強い言葉を弱める"
+      },
+      {
+        "title": "Errors(Prefill not supported)",
+        "url": "https://platform.claude.com/docs/en/api/errors.md",
+        "how": "read",
+        "use": "Claude 4.6 以降は、最後が assistant のメッセージ(プリフィル)で 400 エラー"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、例の個数を「1〜3個」から公式のガイドの「3〜5個」に直した"
       }
     ]
   },
   "11-3": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。料金・上限・モデルの仕様など、変わりやすい値は公式の最新の情報を確かめてください。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "versions": "Claude API のドキュメント(2026-10-09 時点)。モデル・料金・パラメータ・ベータの機能は変わりやすいので、使う前に最新の情報を確かめてください。",
+    "note": "本文のコンパクションは、トークンの閾値で自動的に起きる方式です。公式には、必要なときに自分で要約を依頼する方式(オンデマンド)もあり、同じページでは、使える場合はこちらを勧めています。「入力トークンの合計は、回数のほぼ2乗で増える」は、毎回全体を送ることからの計算(デモ)です。",
     "sources": [
       {
-        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
-        "how": "skill",
-        "use": "API の呼び出し方・パラメータ・応答の形"
+        "title": "Context editing",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/context-editing.md",
+        "how": "read",
+        "use": "古いツール結果を消す(clear_tool_uses_20250919、ベータ context-management-2025-06-27)。キャッシュは無効になる"
+      },
+      {
+        "title": "Compaction at a token threshold",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/compaction-threshold.md",
+        "how": "read",
+        "use": "compact_20260112、ベータ compact-2026-01-12、既定のトリガーは15万トークン(最小5万)、compaction ブロックを履歴に残す"
+      },
+      {
+        "title": "Compaction overview",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/compaction.md",
+        "how": "read",
+        "use": "サーバー側の要約。ほかに「必要なときに要約を依頼する」方式(compact-2026-09-04)もある"
+      },
+      {
+        "title": "Memory tool",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool.md",
+        "how": "read",
+        "use": "memory_20250818、/memories、保存は自分のアプリ側、パス・秘密情報・利用者ごとの分離の注意"
+      },
+      {
+        "title": "Prompt caching",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/prompt-caching.md",
+        "how": "read",
+        "use": "先頭からの完全一致、tools→system→messages、無効になる条件、最小のトークン数(512)、読み取りの単価"
+      },
+      {
+        "title": "Pricing",
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing.md",
+        "how": "read",
+        "use": "キャッシュの読み取り(Opus 5.5 は5%)と書き込み(5分は1.25倍)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、effort や思考の設定を変えるとキャッシュが効かなくなること、最小のキャッシュ長(512トークン)を追記した"
       }
     ]
   },
   "12-3": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。料金・上限・モデルの仕様など、変わりやすい値は公式の最新の情報を確かめてください。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "versions": "Claude API のドキュメント(2026-10-09 時点)。モデル・料金・パラメータ・ベータの機能は変わりやすいので、使う前に最新の情報を確かめてください。",
+    "note": "記録と監視の項目、利用者ごとの回数制限などの運用の設計は、一般的な助言で、個別の資料は照合していません。",
     "sources": [
       {
-        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
-        "how": "skill",
-        "use": "API の呼び出し方・パラメータ・応答の形"
+        "title": "Pricing",
+        "url": "https://platform.claude.com/docs/en/about-claude/pricing.md",
+        "how": "read",
+        "use": "モデルごとの単価、キャッシュの読み取り(Opus 5.5・Sonnet 5.5 は5%)、バッチ(半額)"
+      },
+      {
+        "title": "Batch processing",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/batch-processing.md",
+        "how": "read",
+        "use": "バッチは半額。結果は順不同で、custom_id で対応づける。ほとんどは1時間以内、最大24時間"
+      },
+      {
+        "title": "Errors",
+        "url": "https://platform.claude.com/docs/en/api/errors.md",
+        "how": "read",
+        "use": "SDK の自動再試行、リクエストの大きさの上限、長いリクエストはストリーミング、思考を無効にできない・forced tool use ができないモデル"
+      },
+      {
+        "title": "Models overview",
+        "url": "https://platform.claude.com/docs/en/about-claude/models/overview.md",
+        "how": "read",
+        "use": "モデルIDは固定のスナップショット。提供終了の予定"
+      },
+      {
+        "title": "Refusals and fallback",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback.md",
+        "how": "read",
+        "use": "fallbacks: \"default\""
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、月額費用の見積もりのデモの単価を直した(Sonnet 5.5 のキャッシュ読み取りは、$0.20 ではなく $0.10。Haiku 5.5 の $0.01 は公式の値)"
       }
     ]
   },
@@ -229,32 +380,78 @@
     ]
   },
   "10-1": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "versions": "Claude API のドキュメント(2026-10-09 時点)。モデル・料金・パラメータ・ベータの機能は変わりやすいので、使う前に最新の情報を確かめてください。",
+    "note": "「引数は信用しない入力として検証する」は、安全面の一般的な助言です。",
     "sources": [
       {
-        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
-        "how": "skill",
-        "use": "API の呼び出し方・パラメータ・応答の形"
+        "title": "Define tools",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools.md",
+        "how": "read",
+        "use": "ツールの定義(name・description・input_schema)、説明は詳しく、tool_choice(Opus 5.5・Sonnet 5.5 は any/tool で 400)"
+      },
+      {
+        "title": "Strict tool use",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use.md",
+        "how": "read",
+        "use": "strict: true で入力がスキーマに従う。additionalProperties: false"
+      },
+      {
+        "title": "Handle tool calls",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls.md",
+        "how": "read",
+        "use": "tool_use・tool_result の形式、ツールの結果が外部の内容を含むときの注意(間接プロンプトインジェクション)"
+      },
+      {
+        "title": "Errors(Forced tool use not supported)",
+        "url": "https://platform.claude.com/docs/en/api/errors.md",
+        "how": "read",
+        "use": "forced tool use がサポートされないモデルと、エラーの内容"
       }
     ]
   },
   "10-2": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "同梱の資料に基づいており、公式サイトのページとの直接の照合はまだです。",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "versions": "Claude API のドキュメント(2026-10-09 時点)。モデル・料金・パラメータ・ベータの機能は変わりやすいので、使う前に最新の情報を確かめてください。",
+    "note": "「並列の結果を別々のメッセージに分けると、並列の呼び出しが使われにくくなる」は、公式の並列ツール使用のページ(parallel-tool-use)を取得しておらず、未確認です。結果を1つの user メッセージにまとめる必要があること自体は、公式のページで確認しました。",
     "sources": [
       {
-        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
-        "how": "skill",
-        "use": "API の呼び出し方・パラメータ・応答の形"
+        "title": "Handle tool calls",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/handle-tool-calls.md",
+        "how": "read",
+        "use": "tool_result は直後の user メッセージで、tool_result が先頭。is_error。instructive なエラー"
+      },
+      {
+        "title": "Tool runner (SDK)",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner.md",
+        "how": "read",
+        "use": "ツールランナー(ベータ)、betaZodTool、toolRunner、各回の反復と max_iterations。承認など細かな制御には手で書くループを勧めている"
+      },
+      {
+        "title": "Stop reasons",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons.md",
+        "how": "read",
+        "use": "tool_use・max_tokens・refusal の扱い"
+      },
+      {
+        "title": "TypeScript SDK(Claude API ドキュメント)",
+        "url": "https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript.md",
+        "how": "read",
+        "use": "betaZodTool、client.beta.messages.toolRunner、ToolError(ツールの失敗をモデルに返す)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、ツールランナーの説明を、公式の案内(承認など細かな制御には手で書くループ)に合わせて直した"
       }
     ]
   },
   "10-3": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
     "sources": [
       {
         "title": "Writing tools for agents(Anthropic Engineering)",
@@ -263,11 +460,19 @@
         "use": "ツールの設計の指針"
       },
       {
-        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
-        "how": "skill",
-        "use": "API の呼び出し方・パラメータ・応答の形"
+        "title": "Building effective agents(Anthropic Engineering, 2024年12月)",
+        "url": "https://www.anthropic.com/engineering/building-effective-agents",
+        "how": "read",
+        "use": "相対パスでの誤りを、絶対パスを必須にして防いだ例(ポカヨケ)"
+      },
+      {
+        "title": "Define tools",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools.md",
+        "how": "read",
+        "use": "関連する操作をまとめる、名前の接頭辞、意味のある識別子を返す"
       }
-    ]
+    ],
+    "note": "「Claude Code では、ツールの応答を既定で25,000トークンに制限」は、Writing tools for agents(2025年9月11日)の記述です。ポカヨケの絶対パスの例は、Writing tools for agents ではなく、Building effective agents に書かれています。"
   },
   "10-4": {
     "status": "verified",
@@ -302,19 +507,45 @@
     ]
   },
   "11-2": {
-    "status": "partial",
-    "checkedAt": "2026-10-08",
+    "status": "verified",
+    "checkedAt": "2026-10-09",
+    "versions": "Claude API のドキュメント(2026-10-09 時点)。モデル・料金・パラメータ・ベータの機能は変わりやすいので、使う前に最新の情報を確かめてください。",
     "sources": [
       {
-        "title": "Building effective agents(Anthropic Engineering)",
+        "title": "Building effective agents(Anthropic Engineering, 2024年12月)",
         "url": "https://www.anthropic.com/engineering/building-effective-agents",
         "how": "read",
-        "use": "エージェントのループと、止める条件の考え方"
+        "use": "エージェントのループと、止める条件(回数の上限など)、人の確認"
       },
       {
-        "title": "Claude API スキル同梱の公式資料(モデル名・パラメータ・ストリーミング・ツール利用など)",
-        "how": "skill",
-        "use": "API の呼び出し方・パラメータ・応答の形"
+        "title": "Task budgets",
+        "url": "https://platform.claude.com/docs/en/build-with-claude/task-budgets.md",
+        "how": "read",
+        "use": "ループ全体のトークン予算をモデルに伝える(ベータ、助言であり上限ではない、最小2万トークン)"
+      },
+      {
+        "title": "Claude Agent SDK",
+        "url": "https://code.claude.com/docs/en/agent-sdk",
+        "how": "read",
+        "use": "Claude Code と同じツール・ループ・文脈管理を、Python・TypeScript から使う"
+      },
+      {
+        "title": "Claude Managed Agents",
+        "url": "https://platform.claude.com/docs/en/managed-agents/overview.md",
+        "how": "read",
+        "use": "ループの実行と作業環境を Anthropic が用意する(ベータ)"
+      },
+      {
+        "title": "Tool runner (SDK)",
+        "url": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner.md",
+        "how": "read",
+        "use": "ツールランナー(ベータ)。承認を挟むなどの制御は手で書くループ"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "原典との照合に基づき、ツールランナーの説明を、公式の案内に合わせて直した"
       }
     ]
   },

@@ -91,7 +91,7 @@ function Body() {
         <thead><tr><th>方法</th><th>書くもの</th><th>向いている場面</th></tr></thead>
         <tbody>
           <tr><td>ループを手で書く(10-2)</td><td>ループ全体</td><td>制御の流れをすべて自分で持ちたい</td></tr>
-          <tr><td>SDK のツールランナー(ベータ)</td><td>ツールの関数</td><td>自前のツールを使うエージェントの多く。承認やログも差し込める</td></tr>
+          <tr><td>SDK のツールランナー(ベータ)</td><td>ツールの関数</td><td>自前のツールを使うエージェントの多く。承認を挟むなど細かな制御が中心なら、手で書くループが向く</td></tr>
           <tr><td>Claude Agent SDK</td><td>指示と設定</td><td>ファイル操作やコマンド実行などの組み込みツール付きで、Claude Code と同じ仕組みを自分の環境で動かしたい</td></tr>
           <tr><td>Managed Agents(ベータ)</td><td>エージェントの設定</td><td>ループの実行と作業用の環境を Anthropic 側に任せたい</td></tr>
         </tbody>

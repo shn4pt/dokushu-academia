@@ -18,7 +18,8 @@ function Body() {
           <tr><td><code>stop_sequence</code></td><td>指定した停止文字列に達した</td><td>想定どおりなら使う</td></tr>
           <tr><td><code>tool_use</code></td><td>ツールを呼びたい</td><td>ツールを実行して結果を返す(Stage 10)</td></tr>
           <tr><td><code>pause_turn</code></td><td>サーバー側ツールの途中で一時停止</td><td>応答を履歴に加えて、もう一度送って続けさせる</td></tr>
-          <tr><td><code>refusal</code></td><td>安全上の理由で応答を断った</td><td>断られた旨を扱う(後述のフォールバック)</td></tr>
+          <tr><td><code>refusal</code></td><td>安全上の理由で応答を断った</td><td>断られた旨を扱う(後述のフォールバック)。エラーではなく、通常の応答(HTTP 200)として返る</td></tr>
+          <tr><td><code>model_context_window_exceeded</code></td><td>応答がモデルのコンテキストウィンドウを埋めた</td><td>切り詰められた結果として扱う</td></tr>
         </tbody>
       </table>
 
@@ -46,7 +47,10 @@ console.log(message.stop_reason, message.usage.output_tokens);`}</pre>
         <li><code>message_delta</code>:<code>stop_reason</code> と使用量</li>
         <li><code>message_stop</code>:終了</li>
       </ol>
-      <p className="muted">SDK の <code>finalMessage()</code> を使えば、イベントを自分で組み立てる必要はありません。</p>
+      <p className="muted">
+        SDK の <code>finalMessage()</code> を使えば、イベントを自分で組み立てる必要はありません。途中に、接続を保つための <code>ping</code> が混ざることがあります。
+        また、いったん 200 で始まったあとの混雑などは、エラーのイベント(<code>overloaded_error</code> など)として、ストリームの途中で届くことがあります。
+      </p>
 
       <ApiPlayground
         title="試す:ストリーミングで受け取る"
@@ -64,15 +68,15 @@ console.log(message.stop_reason, message.usage.output_tokens);`}</pre>
       <table className="calc text">
         <thead><tr><th>状況</th><th>例</th><th>対応</th></tr></thead>
         <tbody>
-          <tr><td>リクエストの誤り</td><td>400(不正なパラメータ)</td><td>再試行しても直らない。リクエストを直す</td></tr>
+          <tr><td>リクエストの誤り</td><td>400(不正なパラメータ)、413(リクエストが大きすぎる)</td><td>再試行しても直らない。リクエストを直す</td></tr>
           <tr><td>認証・権限</td><td>401、403</td><td>キーや権限を確認する</td></tr>
           <tr><td>レート制限</td><td>429</td><td>待ってから再試行(<code>retry-after</code> の秒数を目安に)</td></tr>
-          <tr><td>API 側の一時的な問題</td><td>500 系、529(混雑)</td><td>間隔を空けて再試行</td></tr>
+          <tr><td>API 側の一時的な問題</td><td>500 系、504(タイムアウト)、529(混雑)</td><td>間隔を空けて再試行。長い出力は、ストリーミングで受け取る</td></tr>
           <tr><td>通信の失敗</td><td>ネットワーク切断、タイムアウト</td><td>再試行</td></tr>
         </tbody>
       </table>
       <p>
-        SDK は、429 と 500 系、通信エラーを<strong>自動で再試行</strong>します(既定で2回、間隔を伸ばしながら)。回数やタイムアウトは
+        SDK は、429 と 500 系、通信エラー(408・409 も)を<strong>自動で再試行</strong>します(既定で2回、間隔を伸ばしながら)。回数やタイムアウトは
         クライアントの設定で変えられます。TypeScript SDK のタイムアウトはミリ秒です。
       </p>
       <pre>{`const client = new Anthropic({ maxRetries: 3, timeout: 60_000 });

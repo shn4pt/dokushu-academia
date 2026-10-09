@@ -3,8 +3,8 @@ import { Slider } from '../components'
 import { MODELS } from '../api/settings'
 import type { LessonContent } from './types'
 
-// キャッシュ読み込みの料金(100万トークンあたり)。Opus 5.5 と Sonnet 5.5 は公表値、Haiku 5.5 は入力の1割と仮定
-const cacheRead: Record<string, number> = { 'claude-opus-5-5': 0.2, 'claude-sonnet-5-5': 0.2, 'claude-haiku-5-5': 0.01 }
+// キャッシュ読み込みの料金(100万トークンあたり)。公式の料金表の値(Haiku 5.5 は、プロンプトが10万トークンまでの料金)
+const cacheRead: Record<string, number> = { 'claude-opus-5-5': 0.2, 'claude-sonnet-5-5': 0.1, 'claude-haiku-5-5': 0.01 }
 
 function CostCalc() {
   const [model, setModel] = useState(MODELS[0].id)
@@ -21,8 +21,8 @@ function CostCalc() {
     <div className="demo">
       <h4>試す:月額費用の見積もり</h4>
       <p className="muted">
-        1回の依頼(エージェントなら、ループ全体)で使うトークン数から、月の費用を見積もります。キャッシュの書き込み料金などは省いた概算で、
-        Haiku 5.5 のキャッシュ料金は仮定です。正確な料金は公式の料金表で確認してください。
+        1回の依頼(エージェントなら、ループ全体)で使うトークン数から、月の費用を見積もります。キャッシュの書き込み料金などは省いた概算です。
+        単価は公式の料金表の値(2026年10月時点。Haiku 5.5 は、プロンプトが10万トークンまでの料金)です。最新の料金は公式の料金表で確認してください。
       </p>
       <label className="field">
         <span className="muted">モデル</span>

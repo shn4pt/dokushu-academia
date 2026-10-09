@@ -101,7 +101,8 @@ async function chat(input: string) {
         <tbody>
           <tr><td>Claude Opus 5.5</td><td>$4</td><td>$20</td></tr>
           <tr><td>Claude Sonnet 5.5</td><td>$2</td><td>$10</td></tr>
-          <tr><td>Claude Haiku 5.5</td><td>$0.10</td><td>$0.50</td></tr>
+          <tr><td>Claude Haiku 5.5(プロンプトが10万トークンまで)</td><td>$0.10</td><td>$0.50</td></tr>
+          <tr><td>Claude Haiku 5.5(プロンプトが10万トークンを超えるとき)</td><td>$0.50</td><td>$2.50</td></tr>
         </tbody>
       </table>
       <p>
