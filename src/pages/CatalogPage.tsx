@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ProgressBar } from '../components'
-import { courseStageIds, courses, evidenceInfo, courseStatus, groups, isAvailable, plannedCount, statusLabel } from '../data/catalog'
+import { courseStageIds, courses, evidenceInfo, courseStatus, groups, isAvailable, plannedCount, priorityOf, statusLabel, writingPlan } from '../data/catalog'
+import { writtenCount } from '../data/writing'
 import { findLesson, findStage } from '../data/curriculum'
 import { nextLessonId, overallStats, stageStats } from '../data/stats'
 import { formatMinutes, lessonMinutes } from '../time'
@@ -35,6 +36,28 @@ export default function CatalogPage() {
           </div>
         </section>
       )}
+      <section className="card" aria-labelledby="writing-plan">
+        <h2 id="writing-plan" className="card-title">執筆の優先度</h2>
+        <p className="muted">
+          目的(プロダクトマネージャーとして学び直す)から逆算して、プロダクトマネジメントを前提から通して学べる講座を先に書きます。
+          作者の計画で、期日の約束ではありません。需要や進み具合を見て、見直します。
+        </p>
+        <ol className="plan-list">
+          {writingPlan.map((w) => (
+            <li key={w.priority}>
+              <strong>{w.title}</strong>
+              <span className="muted block">{w.reason}</span>
+              <span className="plan-chips">
+                {w.ids.map((id) => {
+                  const c = courses.find((x) => x.id === id)!
+                  return <Link key={id} className="chip" to={`/course/${id}`}>{c.title}</Link>
+                })}
+              </span>
+            </li>
+          ))}
+        </ol>
+        <span className="muted">公開済みの講座(LLM のしくみ、AI エージェント開発、AI を使った開発)は、計画の対象外です。</span>
+      </section>
       {groups.map((g) => (
         <section key={g.id} aria-labelledby={`group-${g.id}`}>
           <h2 id={`group-${g.id}`}>{g.title}</h2>
@@ -59,14 +82,14 @@ export default function CatalogPage() {
                     <span className={`badge ${available ? 'badge-doing' : ''}`}>{statusLabel[courseStatus(c)]}</span>
                   </div>
                   <span className="muted">{c.summary}</span>
-                  <span className="evidence-tag">根拠: {evidenceInfo[c.evidence].label}</span>
+                  <span className="evidence-tag">根拠: {evidenceInfo[c.evidence].label}{priorityOf(c) && courseStatus(c) !== 'open' && ` ・ 執筆の優先度: ${priorityOf(c)!.title}`}</span>
                   {available ? (
                     <>
                       <ProgressBar value={pct} label={`${c.title}の進捗`} />
-                      <span className="muted">{done} / {total} レッスン{plannedCount(c) > 0 && ` ・ 目次の案 ${plannedCount(c)} 件`}</span>
+                      <span className="muted">{done} / {total} レッスン{plannedCount(c) > 0 && ` ・ 準備中(目次の案) ${plannedCount(c)} 件`}</span>
                     </>
                   ) : (
-                    <span className="muted">目次の案 {plannedCount(c)} 件</span>
+                    <span className="muted">本文 {writtenCount(c)} ・ 目次の案 {plannedCount(c)} 件</span>
                   )}
                 </Link>
               )

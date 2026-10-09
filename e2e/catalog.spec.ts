@@ -1,5 +1,5 @@
 import { go, expect, test } from './fixtures'
-import { courseStageIds, courseStatus, courses, groups, isAvailable, layers } from '../src/data/catalog'
+import { courseStageIds, courseStatus, courses, groups, isAvailable, layers, writingPlan } from '../src/data/catalog'
 import { stages } from '../src/data/curriculum'
 
 test.describe('講座一覧のデータ', () => {
@@ -51,6 +51,23 @@ test.describe('講座一覧のデータ', () => {
       for (const t of c.tiers) expect((t.stageIds?.length ?? 0) + (t.planned?.length ?? 0), `${c.id}/${t.level}`).toBeGreaterThan(0)
       const withStage = c.tiers.filter((t) => t.stageIds?.length).length
       expect(courseStatus(c), c.id).toBe(withStage === 0 ? 'outline' : withStage === c.tiers.length ? 'open' : 'partial')
+    }
+  })
+  test('執筆の計画: 公開済み以外の全講座が、ちょうど1回ずつ入っている', () => {
+    const planned = writingPlan.flatMap((w) => w.ids)
+    expect(new Set(planned).size).toBe(planned.length)
+    const notOpen = courses.filter((c) => courseStatus(c) !== 'open').map((c) => c.id)
+    expect([...planned].sort()).toEqual(notOpen.sort())
+  })
+  test('執筆の計画: 前提の講座は、公開済みか、より先に書く', () => {
+    const order = writingPlan.flatMap((w) => w.ids)
+    const open = new Set(courses.filter((c) => courseStatus(c) === 'open').map((c) => c.id))
+    for (const id of order) {
+      const c = courses.find((x) => x.id === id)!
+      for (const r of c.requires ?? []) {
+        const ok = open.has(r) || (order.indexOf(r) >= 0 && order.indexOf(r) < order.indexOf(id))
+        expect(ok, `${id} の前提 ${r}`).toBe(true)
+      }
     }
   })
   test('法令・基準の講座は、条文などの根拠の基準が、全体像と考え方に限ると明記される', async () => {
@@ -200,4 +217,23 @@ test.describe('根拠の読み方・序論(最初の、LLM 以外のレッスン
     await page.goto(go('/catalog'))
     await expect(page.locator('.course-card', { hasText: '根拠の読み方' })).toContainText('1 / 1 レッスン')
   })
+})
+
+test('執筆の優先度と状況: 講座一覧と、講座の目次に表示される', async ({ page }) => {
+  await page.goto(go('/catalog'))
+  const plan = page.getByRole('region', { name: '執筆の優先度' })
+  await expect(plan).toContainText('作者の計画で、期日の約束ではありません')
+  for (const w of writingPlan) await expect(plan).toContainText(w.title)
+  await expect(plan.locator('.chip')).toHaveCount(writingPlan.flatMap((w) => w.ids).length)
+  await expect(page.locator('.course-card', { hasText: 'プロダクトマネジメント' })).toContainText('執筆の優先度: 最優先')
+  await expect(page.locator('.course-card', { hasText: '監査・内部統制' })).toContainText('執筆の優先度: あとで')
+  await expect(page.locator('.course-card', { hasText: 'LLM のしくみ' })).not.toContainText('執筆の優先度')
+
+  await page.goto(go('/course/pm'))
+  await expect(page.getByTestId('writing-status')).toContainText('本文 0 / 予定 7 レッスン')
+  await expect(page.getByTestId('writing-status')).toContainText('最優先')
+  await page.goto(go('/course/evidence'))
+  await expect(page.getByTestId('writing-status')).toContainText('本文 1 / 予定 5 レッスン')
+  await page.goto(go('/course/llm'))
+  await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
 })

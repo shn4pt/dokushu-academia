@@ -1,8 +1,9 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ProgressBar, StatusBadge } from '../components'
-import { evidenceInfo, findCourse, courseStatus, groups, levelLabel, statusLabel, prerequisites, usedBy } from '../data/catalog'
+import { evidenceInfo, findCourse, courseStatus, groups, levelLabel, priorityOf, statusLabel, prerequisites, usedBy } from '../data/catalog'
 import { findStage, stageLabel } from '../data/curriculum'
 import { stageStats } from '../data/stats'
+import { plannedTotal, writtenCount } from '../data/writing'
 import CourseLinks from '../ui/CourseLinks'
 import { useProgress } from '../progress'
 
@@ -25,6 +26,11 @@ export default function CoursePage() {
         <span className={`badge ${status !== 'outline' ? 'badge-doing' : ''}`}>{statusLabel[status]}</span>
       </div>
       <p className="lead">{course.summary}</p>
+      <p className="muted" data-testid="writing-status">
+        執筆の状況: 本文 {writtenCount(course)} / 予定 {plannedTotal(course)} レッスン
+        {priorityOf(course) && status !== 'open' && ` ・ 執筆の優先度: ${priorityOf(course)!.title}`}
+        {status === 'open' && ' ・ すべての段階が公開済み'}
+      </p>
 
       {course.group === 'learning' && (
         <Link to="/map" className="card stage-card">
