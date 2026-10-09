@@ -14,7 +14,9 @@
     "history": "node scripts/update-history.mjs",
     "test:e2e": "playwright test",
     "typecheck:e2e": "tsc --noEmit -p e2e/tsconfig.json",
-    "sources:report": "node scripts/sources-report.mjs"
+    "sources:report": "node scripts/sources-report.mjs",
+    "freshness": "node scripts/freshness.mjs",
+    "freshness:links": "node scripts/freshness.mjs --links"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.132.0",

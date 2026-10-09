@@ -140,3 +140,8 @@ npm run typecheck:e2e  # テストの型チェック
 - どのテストも、ページ内で未処理の例外や `console.error` が出たら失敗する(`e2e/fixtures.ts`)。
 - レッスンの件数などは、テストに書き写さず、アプリが生成するデータ(`quiz-bank.json`)から読む。レッスンを足してもテストの修正は要らない。
 - `.github/workflows/ci.yml`:プルリクエストと公開前に、ビルド → テストを実行する。失敗したときは、レポートと画面写真・トレースが成果物として保存される。`deploy.yml` は、これが通ってから公開する。
+
+## 運営(講座づくり・品質・鮮度)
+講座とレッスンの作り方は `docs/production.md`(手順書)、Claude Code のスキルは `.claude/skills/`(`make-lesson`・`verify-lesson`・`recheck-sources`)。
+- `npm run freshness` / `npm run freshness:links`: 確認日の古いレッスンと、切れた外部リンクの点検(月に1回、GitHub Actions でも実行され、問題があれば issue になる)。
+- 法令・基準の講座のレッスンには、品質ゲート(`e2e/gates.spec.ts`)がある。原典で確認済みで、確認日が 90 日以内でないと、テストが失敗し、公開できない。

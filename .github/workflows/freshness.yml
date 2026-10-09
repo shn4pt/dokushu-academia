@@ -1,0 +1,34 @@
+name: 鮮度の点検
+
+# 月に1回(と、手動で)、確認日の古いレッスンと、切れた外部リンクを調べる。AI は使わないので、費用はかからない。
+# 問題があれば、報告を issue にする。実際の再確認は、必要なときに人が(Claude Code で)行う。
+on:
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  freshness:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: node scripts/freshness.mjs --links --out report.md
+      - name: 報告を、実行の要約に出す
+        run: cat report.md >> "$GITHUB_STEP_SUMMARY"
+      - name: 問題があれば、issue を作る
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if grep -q '^<!-- has-issues -->' report.md; then
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "鮮度の点検($(date +%Y-%m))" --body-file report.md
+          else
+            echo "要対応なし"
+          fi
