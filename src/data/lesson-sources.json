@@ -844,14 +844,26 @@
   },
   "13-2": {
     "status": "partial",
-    "checkedAt": "2026-10-08",
-    "note": "コードは SDK の型に対して検査済みですが、実際の API に接続した動作の確認まではしていません。",
+    "checkedAt": "2026-10-09",
+    "note": "コードは、SDK の型に対する検査と、通信を台本どおりの応答に差し替えたテスト(14件)で、動作を確認しました。リクエストの形(キャッシュの指定、effort、フォールバックのベータなど)も、テストで確認しています。実際の API には接続しておらず、これらのパラメータの組み合わせを API が受け付けるかは、確かめていません(個々のパラメータは、公式のドキュメントで確認済み)。",
     "sources": [
       {
         "title": "src/capstone/ の型チェック(tsc)",
         "url": "https://github.com/shn4pt/mygame1/tree/main/src/capstone",
         "how": "repo",
         "use": "掲載するコードを、実際の SDK の型で検査している"
+      },
+      {
+        "title": "e2e/capstone.spec.ts(通信を差し替えたテスト)",
+        "url": "https://github.com/shn4pt/mygame1/blob/main/e2e/capstone.spec.ts",
+        "how": "repo",
+        "use": "ループ・承認待ちと再開・止める条件・引数の検証・利用者 ID での絞り込み・重複防止のキー・使用量の合計を、台本の応答で実行して確認"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "通信を差し替えたテストを追加し、動作の確認を加えた"
       }
     ]
   },
