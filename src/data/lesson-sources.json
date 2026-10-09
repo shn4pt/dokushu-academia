@@ -2556,5 +2556,63 @@
         "summary": "別のエージェントによる事実確認を受けて、税の記述の範囲、費用の分類の例の言い方(committed cost の訳)、段階費用の文、レバレッジの言い回し、バードバスの訳、サービスの補足の断り書きを直した"
       }
     ]
+  },
+  "sg-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-09",
+    "note": "OpenStax の Principles of Management の、A Firm's Micro Environment: Porter's Five Forces(m70646)を、GitHub の原稿(openstax/osbooks-principles-of-management-bundle、2026-06-11 のコミット f2b7496)の CNXML から読みました。5 つの力の説明と例(航空会社、ファストフードと食料品店、ソニーの供給元、乗り換えの費用)は教科書の記述です。Porter 自身の論文(Harvard Business Review, 2008 年 1 月 The Five Competitive Forces That Shape Strategy)は、HBR のページにある要旨だけを読み、本文は読んでいません(how: search)。要旨にもとづく記述は、利益率を決める、価値の分配、防御を築くか力の弱い位置を探す、成長の速い業界が必ずしも利益が出るとは限らない、合併の例、の範囲に限っています。教科書は、アメリカの大学の入門書です。『使うときの注意』の 4 点は、このサービス独自の整理です。教科書の他の分析道具(PESTEL、SWOT、VRIO)は、このレッスンでは扱っておらず、読んでいません。 別のエージェントによる事実確認の結果は、docs/verify/sg-3.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、A Firm's Micro Environment: Porter's Five Forces",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "業界の定義、5 つの力のそれぞれの説明と例、参入障壁、代替品と競争相手の区別、乗り換えの費用(該当節の本文)"
+      },
+      {
+        "title": "The Five Competitive Forces That Shape Strategy(Michael E. Porter, Harvard Business Review, 2008 年 1 月)",
+        "url": "https://hbr.org/2008/01/the-five-competitive-forces-that-shape-strategy",
+        "how": "search",
+        "use": "要旨(HBR のページの説明文)だけ: 5 つの力が業界の長期の利益率を決めること、価値の分配、戦略の見方、成長の速い業界と合併の注意(論文の本文は読んでいない)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、「自社の分析ではなく」の整理をサービスの整理と明示、判定問題の根拠(政府の政策)、ソニーの例の訳、SWOT の位置づけ、図の矢印の書き方、要旨の言い方を直した"
+      }
+    ]
+  },
+  "sg-4": {
+    "status": "partial",
+    "checkedAt": "2026-10-09",
+    "note": "OpenStax の Principles of Management の、Competition, Strategy, and Competitive Advantage(m70648)と Strategic Positioning(m70649)を、GitHub の原稿(コミット f2b7496、2026-06-11)の CNXML から、本文と図の代替テキストまで読みました。戦略、競争、競争優位の定義、3 つの基本戦略と例(ウォルマート、スターバックス、Flux)、どっちつかず、戦略グループ、戦略的な位置取りは、教科書の記述です。Porter の原著(Competitive Strategy など)は、読んでいません。例の企業の実態は、確認していません。『どっちつかず』の主張を実証した研究も、確認していません。会社 L と D の比較は、このサービスの例で、e2e/cvp.spec.ts の式で計算しています。教科書の他の節(外部環境の PESTEL、内部環境の VRIO、戦略の階層)は、読んでいません。 別のエージェントによる事実確認の結果は、docs/verify/sg-4.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、Competition, Strategy, and Competitive Advantage / Strategic Positioning",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "戦略・競争・競争優位の定義、3 つの基本戦略と例、どっちつかず、戦略グループ、戦略的な位置取り(該当節の本文と図の代替テキスト)"
+      },
+      {
+        "title": "e2e/cvp.spec.ts(CVP の式の、手計算との照合。会社 L と D の例を含む)",
+        "url": "https://github.com/shn4pt/dokushu-academia/blob/main/e2e/cvp.spec.ts",
+        "how": "repo",
+        "use": "会社 L と D の貢献利益、損益分岐点、営業利益の計算"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-09",
+        "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-09",
+        "summary": "別のエージェントによる事実確認を受けて、サービスの整理の切り分け、Flux の出題、本文にない出題の補足、文の構造、会社 L と D の表の断り書きを直した"
+      }
+    ]
   }
 }

@@ -135,4 +135,9 @@ export const glossary: Term[] = [
   { term: '貢献利益', reading: 'contribution margin', description: '価格から単位あたりの変動費を引いた額。固定費の支払いと利益に回せる、1 個あたりの額。', lessonId: 'sg-2' },
   { term: '損益分岐点', reading: 'break-even point', description: '総収益と総費用が等しく、利益も損失も出ない販売数(または売上高)。固定費 ÷ 単位あたりの貢献利益。', lessonId: 'sg-2' },
   { term: '営業レバレッジ', reading: 'operating leverage', description: '売上の変化が営業利益の変化に効く感度。貢献利益の合計 ÷ 営業利益。固定費が大きい構造ほど大きい。', lessonId: 'sg-2' },
+  { term: '5 つの力', reading: 'Porter\'s Five Forces', description: '業界の競争を決める 5 つの側面(業界内の競争・新規参入・代替品・供給元の力・買い手の力)。業界の利益の構造を読む道具。', lessonId: 'sg-3' },
+  { term: '参入障壁', reading: 'barriers to entry', description: '新しい会社が業界でうまく競争することを妨げる要因。費用、ブランドへの忠誠、業界の成長など。', lessonId: 'sg-3' },
+  { term: '競争優位', reading: 'competitive advantage', description: 'ライバルより多くの顧客を引きつけ、多くの利益を上げ、または株主に多くの価値を返している状態(OpenStax の定義)。', lessonId: 'sg-4' },
+  { term: '基本戦略', reading: 'generic strategies', description: 'Porter の 3 つの型。コスト・リーダーシップ、差別化、集中(前の 2 つのどちらかと組み合わせる)。', lessonId: 'sg-4' },
+  { term: '戦略グループ', reading: 'strategic group', description: '同じ業界で、似た商品やサービスを出し、同じ基本戦略をとる会社の集まり。競争が最も激しいのは、この中。', lessonId: 'sg-4' },
 ]

@@ -186,7 +186,7 @@ export const courses: Course[] = [
     summary: '事業の経済性と、競争の中での位置取りの基礎。',
     tiers: [
       { level: 'basic', scope: '事業と市場の基礎', stageIds: ['sg0'] },
-      { level: 'practice', scope: '競争と戦略の枠組み', planned: ['競争環境の分析', '差別化とコスト'] },
+      { level: 'practice', scope: '競争と戦略の枠組み', stageIds: ['sg1'] },
       { level: 'advanced', scope: '意思決定と成長', planned: ['投資の判断', '新規事業の進め方'] },
     ],
   },

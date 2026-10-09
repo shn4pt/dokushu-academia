@@ -46,6 +46,12 @@ test.describe('CVP の式', () => {
     expect([r.cmUnit, r.breakEvenUnits, r.income]).toEqual([400, 500, 80000])
     expect(r.dol).toBeCloseTo(3.5, 12)
   })
+  test('レッスンの例: 低価格の会社 L と差別化の会社 D(経営-4)', () => {
+    const L = (units: number) => cvp({ price: 80, vc: 56, fc: 240000, units })
+    const D = (units: number) => cvp({ price: 140, vc: 70, fc: 560000, units })
+    expect([L(0).cmUnit, L(0).breakEvenUnits, D(0).cmUnit, D(0).breakEvenUnits]).toEqual([24, 10000, 70, 8000])
+    expect([L(10000).income, D(10000).income, L(20000).income, D(20000).income]).toEqual([0, 140000, 240000, 840000])
+  })
   test('貢献利益が 0 以下なら、損益分岐点はなし', () => {
     expect(cvp({ price: 100, vc: 100, fc: 1000, units: 10 }).breakEvenUnits).toBeNull()
     expect(cvp({ price: 100, vc: 120, fc: 1000, units: 10 }).breakEvenRevenue).toBeNull()
