@@ -35,6 +35,13 @@ test.describe('講座一覧のデータ', () => {
     }
     for (const c of courses) visit(c.id)
   })
+  test('全講座に「なぜ学ぶのか」があり、前提の関係には、それぞれ理由がある', () => {
+    for (const c of courses) {
+      expect(c.why.length, `${c.id}: why`).toBeGreaterThan(20)
+      expect(Object.keys(c.needs ?? {}).sort(), `${c.id}: needs は requires と一致`).toEqual([...(c.requires ?? [])].sort())
+      for (const note of Object.values(c.needs ?? {})) expect(note.length).toBeGreaterThan(10)
+    }
+  })
   test('地図の層は、すべての領域をちょうど1回ずつ含む', () => {
     const inLayers = layers.flatMap((l) => [...l.groupIds]).sort()
     expect(inLayers).toEqual(groups.map((g) => g.id).sort())
@@ -77,8 +84,10 @@ test('講座の目次(公開中): 既存のステージに移れる', async ({ p
 test('講座の目次(目次のみ): 準備中のレッスンの案と、根拠の基準が表示される', async ({ page }) => {
   await page.goto(go('/course/legal'))
   await expect(page.locator('h1')).toContainText('法務')
-  await expect(page.locator('.why-card')).toContainText('法令・基準')
-  await expect(page.locator('.why-card')).toContainText('個別の事案は扱いません')
+  const basis = page.locator('.why-card', { hasText: '根拠の基準' })
+  await expect(basis).toContainText('法令・基準')
+  await expect(basis).toContainText('個別の事案は扱いません')
+  await expect(page.getByRole('region', { name: 'なぜ学ぶのか' })).toContainText('専門家に相談すべき場面')
   await expect(page.getByRole('note')).toContainText('目次の案')
   await expect(page.locator('.planned-item').first()).toContainText('準備中')
   await expect(page.locator('.planned-item a')).toHaveCount(0) // リンクではない(本文がない)
@@ -124,7 +133,17 @@ test('講座の目次: 先に学ぶとよい講座と、そのあとの講座が
   await expect(rel).toContainText('根拠の読み方')
   await expect(rel).toContainText('行動心理学・行動経済学')
   await expect(rel).toContainText('必須ではありません')
+  await expect(rel).toContainText('実験と相関、因果の違い') // 先に学ぶ理由
+  await expect(rel).toContainText('この講座の知識を使う講座')
   await page.goto(go('/course/evidence'))
   await page.getByRole('link', { name: /このサービスの地図/ }).first().click()
   await expect(page).toHaveURL(/#\/map$/)
+})
+
+test('講座の目次: 「なぜ学ぶのか」が先頭に出る', async ({ page }) => {
+  await page.goto(go('/course/pm'))
+  const why = page.getByRole('region', { name: 'なぜ学ぶのか' })
+  await expect(why).toContainText('判断の根拠を自分で組み立てられる')
+  const rel = page.getByRole('region', { name: '講座の関係' })
+  await expect(rel).toContainText('指標の設計と、実験')
 })
