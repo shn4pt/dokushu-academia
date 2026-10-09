@@ -50,6 +50,7 @@ export type Course = {
 }
 
 export const groups = [
+  { id: 'foundation', title: '学びの土台', note: '根拠の読み方と、データの見方。どの講座にも共通する土台' },
   { id: 'ai', title: 'AI・技術', note: 'LLM の中身から、AI を使ったものづくりまで' },
   { id: 'product', title: 'プロダクト・事業', note: '何を作るか、どう事業にするか' },
   { id: 'people', title: '人と組織', note: '人の行動と、チームの動かし方' },
@@ -57,6 +58,25 @@ export const groups = [
 ] as const
 
 export const courses: Course[] = [
+  // ── 学びの土台 ──
+  {
+    id: 'evidence', title: '根拠の読み方', group: 'foundation', evidence: 'academic',
+    summary: '論文や資料の読み方、エビデンスの強さ、実験と相関の違い。このサービスの根拠の表示の意味も、ここで学ぶ。',
+    tiers: [
+      { level: 'basic', scope: '根拠とは何か、情報の種類', planned: ['序論:根拠があるとは、どういうことか', '一次情報と二次情報'] },
+      { level: 'practice', scope: '研究の読み方', planned: ['実験・観察・相関と因果', '再現性と、結果が割れている研究'] },
+      { level: 'advanced', scope: '実務での使い方', planned: ['エビデンスの強さの比べ方', '根拠が少ない分野での判断'] },
+    ],
+  },
+  {
+    id: 'statistics', title: 'データ分析・統計', group: 'foundation', evidence: 'academic',
+    summary: '指標の見方、ばらつきと誤差、A/B テストなど、意思決定に使うデータの基礎。',
+    tiers: [
+      { level: 'basic', scope: 'データと確率の基礎', planned: ['序論:データから何が言えるか', '平均・ばらつき・分布'] },
+      { level: 'practice', scope: '推定と検定', planned: ['信頼区間と、誤差の見方', '仮説検定の考え方と落とし穴'] },
+      { level: 'advanced', scope: '実験と因果', planned: ['A/B テストの設計', '観察データから因果を考える'] },
+    ],
+  },
   // ── AI・技術(公開中) ──
   {
     id: 'llm', title: 'LLM のしくみ', group: 'ai', evidence: 'tech',
@@ -132,6 +152,24 @@ export const courses: Course[] = [
       { level: 'advanced', scope: 'ブランドと長期の成長', planned: ['ブランドの考え方', '成長の指標'] },
     ],
   },
+  {
+    id: 'ux', title: 'UX・ユーザーリサーチ', group: 'product', evidence: 'practice',
+    summary: '利用者の理解、調査の方法、使いやすさの検証。',
+    tiers: [
+      { level: 'basic', scope: 'UX と利用者理解の基本', planned: ['序論:使いやすさとは何か', '利用者の課題の捉え方'] },
+      { level: 'practice', scope: '調査と検証', planned: ['インタビューと観察の進め方', 'ユーザビリティの検証'] },
+      { level: 'advanced', scope: 'プロダクトへの反映', planned: ['調査結果を意思決定につなげる', '定量と定性の組み合わせ'] },
+    ],
+  },
+  {
+    id: 'planning', title: '経営企画', group: 'product', evidence: 'practice',
+    summary: '計画、予算、経営指標と、事業の意思決定の支え方。',
+    tiers: [
+      { level: 'basic', scope: '経営企画の役割', planned: ['序論:経営企画の仕事', '中期計画と予算'] },
+      { level: 'practice', scope: '指標と分析', planned: ['経営指標の設計', '事業ポートフォリオ'] },
+      { level: 'advanced', scope: '全社の意思決定', planned: ['M&A と提携の考え方', '資本政策の基礎'] },
+    ],
+  },
   // ── 人と組織 ──
   {
     id: 'psychology', title: '心理学', group: 'people', evidence: 'academic',
@@ -195,15 +233,6 @@ export const courses: Course[] = [
       { level: 'basic', scope: '監査と統制の基本', planned: ['序論:なぜ監査が必要か', '内部統制の考え方'] },
       { level: 'practice', scope: '統制の設計と運用', planned: ['リスクと統制', '証跡の残し方'] },
       { level: 'advanced', scope: '組織への展開', planned: ['IT と統制', '不正の防止の考え方'] },
-    ],
-  },
-  {
-    id: 'planning', title: '経営企画', group: 'office', evidence: 'practice',
-    summary: '計画、予算、経営指標と、事業の意思決定の支え方。',
-    tiers: [
-      { level: 'basic', scope: '経営企画の役割', planned: ['序論:経営企画の仕事', '中期計画と予算'] },
-      { level: 'practice', scope: '指標と分析', planned: ['経営指標の設計', '事業ポートフォリオ'] },
-      { level: 'advanced', scope: '全社の意思決定', planned: ['M&A と提携の考え方', '資本政策の基礎'] },
     ],
   },
 ]
