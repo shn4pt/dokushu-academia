@@ -177,7 +177,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: 'プロダクトマネジメントとは何か', stageIds: ['pm0'] },
       { level: 'practice', scope: '発見・優先順位・計測', stageIds: ['pm1'] },
-      { level: 'advanced', scope: '戦略とロードマップ、組織への展開', planned: ['プロダクト戦略', 'ステークホルダーとの合意'] },
+      { level: 'advanced', scope: '戦略とロードマップ、組織への展開', stageIds: ['pm2'] },
     ],
   },
   {
@@ -348,15 +348,9 @@ export const usedBy = (c: Course) => courses.filter((x) => x.requires?.includes(
 export type Priority = 1 | 2 | 3
 export const writingPlan: { priority: Priority; title: string; reason: string; ids: string[] }[] = [
   {
-    priority: 1,
-    title: '最優先',
-    reason: 'プロダクトマネジメントの前提を、順にたどった講座です。(根拠の読み方、データ分析・統計、経営・戦略、心理学、UX・ユーザーリサーチは公開済み。)プロダクトマネジメントを、通して学べる状態を目指します。',
-    ids: ['pm'],
-  },
-  {
     priority: 2,
     title: '次',
-    reason: 'プロダクトマネジメントの周辺と、学び方です。最優先の講座が揃ったあとに、顧客・人・お金の理解を広げます。',
+    reason: 'プロダクトマネジメントの周辺と、学び方です。最優先の講座(プロダクトマネジメントとその前提)が揃ったので、顧客・人・お金の理解を広げます。',
     ids: ['learning', 'marketing', 'behavior', 'management', 'accounting', 'planning'],
   },
   {

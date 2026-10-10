@@ -68,13 +68,36 @@ test('PM-5: PULSE と HEART、Goals–Signals–Metrics、北極星指標、成�
   await expect(page.locator('.source-note')).toContainText('CHI 2010')
 })
 
-test('講座の目次: プロダクトマネジメントは、基礎と実践が公開され、応用が準備中', async ({ page }) => {
+test('PM-6: プロダクト戦略の 2 つの定義、4 つの要件、Atlassian、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/pm-6'))
+  await expect(page.locator('article h1')).toContainText('プロダクト戦略')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['どの問題を解くか', '焦点', '洞察', 'Rumelt', '2008 年の記事', '宣伝', '戦略を点検する問い']) await expect(art).toContainText(t)
+  await answer(page, ['2008 年の記事', '2020 年の記事', '2008 年の記事', '2020 年の記事', '2008 年の記事'], 0)
+  await answer(page, ['適切', '適切でない', '適切でない', '適切', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('SVPG')
+})
+
+test('PM-7: 利害関係者、意見の戦い、仕事を見せる、アンチパターン、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/pm-7'))
+  await expect(page.locator('article h1')).toContainText('ステークホルダーとの合意')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['HiPPO', '新しい情報', '仕事を見せる', '4 つのアンチパターン', '合意の前に確認する問い']) await expect(art).toContainText(t)
+  await answer(page, ['勧められる行動', '避けるべき行動', '避けるべき行動', '勧められる行動', '避けるべき行動', '勧められる行動'], 0)
+  await answer(page, ['適切', '適切でない', '適切でない', '適切', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Torres')
+})
+
+test('講座の目次: プロダクトマネジメントは、基礎・実践・応用のすべてが公開済み', async ({ page }) => {
   await page.goto(go('/course/pm'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 5 / 予定 7 レッスン')
-  await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
-  await expect(page.locator('.stage-card', { hasText: '序論:PM の仕事と、課題の捉え方' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(2)
+  await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
+  await expect(page.locator('.stage-card', { hasText: '応用:戦略と合意' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '実践:発見・優先順位・計測' })).toBeVisible()
-  await page.locator('.stage-card', { hasText: '序論:PM の仕事と、課題の捉え方' }).click()
+  await expect(page.locator('.planned-item')).toHaveCount(0)
+  await page.locator('.stage-card', { hasText: '応用:戦略と合意' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

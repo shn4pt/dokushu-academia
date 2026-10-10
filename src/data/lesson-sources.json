@@ -3365,5 +3365,67 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "pm-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "SVPG の Marty Cagan の記事 Product Strategy – Overview(2020)と Product Strategy in an Agile World(2008)、Atlassian の記事 Product strategy を、ウェブページの本文として読みました。実務家の資料で、主張の多くは書き手の経験にもとづきます。Cagan の『戦略を持たない会社が多い』は本人の観察で、調査ではありません。Atlassian の記事は自社製品(Jira)の宣伝を含みます。戦略の作り方が成果を高めることを示す研究は、確かめていません。Rumelt の言葉は Cagan の記事の引用を通して見ただけで、著書は読んでいません。Cagan の 2020 年の連載のうち、焦点・洞察・行動・管理の各記事、Cagan の著書は読んでいません。2008 年と 2020 年の定義の違いの読み方と、事業戦略との対応づけ、『戦略を点検する問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/pm-6.md にあります。",
+    "sources": [
+      {
+        "title": "Product Strategy – Overview(Marty Cagan, SVPG, 2020)",
+        "url": "https://www.svpg.com/product-strategy-overview/",
+        "how": "read",
+        "use": "戦略の定義、解くべき問題を選ぶこと、4 つの要件、Rumelt の引用(記事の本文)"
+      },
+      {
+        "title": "Product Strategy in an Agile World(Marty Cagan, SVPG, 2008)",
+        "url": "https://www.svpg.com/product-strategy-in-an-agile-world/",
+        "how": "read",
+        "use": "戦略はビジョンを描いたもの、事業戦略との違い、ロードマップとの関係、プロダクトの原則(記事の本文)"
+      },
+      {
+        "title": "Product strategy: Definition, best practices & how to build one(Atlassian)",
+        "url": "https://www.atlassian.com/agile/product-management/product-strategy",
+        "how": "read",
+        "use": "構成要素(ビジョン・目標・施策)、戦略の種類、手順(記事の本文。自社製品の宣伝を含む)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "pm-7": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Product Talk の Teresa Torres の記事 2 本(Stakeholder Management for Product Teams、2026 年。The Art of Managing Stakeholders Through Product Discovery、2018 年公開)を、ウェブページの本文として読みました。Cagan(SVPG)の PM-4・PM-6 の記事、Atlassian の戦略の記事は、関連する部分を参照しました。実務家の資料で、主張の多くは書き手の経験にもとづき、『仕事を見せる』が合意を高めることを示す研究は確かめていません。Product Talk は Torres のサイトで、取得した記事には有料購読の案内が載っています。2026 年の記事の CEO への説明例の数字は、例示と読めます。公開・更新の日付は、ページのメタデータ(datePublished・dateModified)によります。権力と関心の格子、RACI は、記事が名を挙げるだけで扱っていません。他の記事(Engaging Stakeholders with Opportunity Solution Trees など)、Torres の著書は読んでいません。『ほかの出典との関係』『合意の前に確認する問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/pm-7.md にあります。",
+    "sources": [
+      {
+        "title": "Stakeholder Management for Product Teams: Show Your Work, Don't Sell Your Conclusions(Teresa Torres, Product Talk, 2026)",
+        "url": "https://www.producttalk.org/stakeholder-management/",
+        "how": "read",
+        "use": "利害関係者の定義、結論を持ち込む罠、仕事を見せる手順、相手に合わせた伝え方、4 つのアンチパターン(記事の本文)"
+      },
+      {
+        "title": "The Art of Managing Stakeholders Through Product Discovery(Teresa Torres, Product Talk, 2018)",
+        "url": "https://www.producttalk.org/managing-stakeholders/",
+        "how": "read",
+        "use": "階層と意見の戦い、新しい情報を持ち込む、仕事を見せる、実務上の助言(記事の本文)"
+      },
+      {
+        "title": "Product Strategy in an Agile World(Marty Cagan, SVPG, 2008)",
+        "url": "https://www.svpg.com/product-strategy-in-an-agile-world/",
+        "how": "read",
+        "use": "戦略を作るときの、利害関係者の巻き込み(PM-6 で読んだ記事の再参照)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

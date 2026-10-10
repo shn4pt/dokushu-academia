@@ -205,4 +205,7 @@ export const glossary: Term[] = [
   { term: 'RICE', reading: 'RICE score', description: '到達・影響・確信・労力から点数を出す優先順位づけの方法。到達 × 影響 × 確信 ÷ 労力(Intercom)。', lessonId: 'pm-4' },
   { term: 'HEART', reading: 'HEART framework', description: '利用者中心の指標の 5 つの分類。Happiness、Engagement、Adoption、Retention、Task success(Google、CHI 2010)。', lessonId: 'pm-5' },
   { term: '北極星指標', reading: 'North Star Metric', description: '顧客が製品から得る価値を最もよく捉える、単一の指標(Amplitude の提案)。', lessonId: 'pm-5' },
+  { term: 'プロダクト戦略', reading: 'product strategy', description: '定義は書き手で違う。Cagan(2020)は、会社の必要を満たしながらビジョンを現実にする取り組み方で、どの問題を解くかを選ぶもの。Cagan(2008)は、2〜5 年先のビジョンを描いたもの。', lessonId: 'pm-6' },
+  { term: 'HiPPO', reading: 'highest paid person\'s opinion', description: '最も高い報酬の人の意見。意見の戦いでは、上位の人の意見が通る力学(Torres)。', lessonId: 'pm-7' },
+  { term: '利害関係者', reading: 'stakeholder', description: 'プロダクトの判断に影響を与える、または影響を受ける人。拒否権をもつ人と、意見を言える人がいる(Torres)。', lessonId: 'pm-7' },
 ]
