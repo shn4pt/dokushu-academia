@@ -4241,5 +4241,55 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "pl-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Management(CC BY 4.0)の External Sources of Technology and Innovation(m70715)、The Necessity of Global Markets(m70638。戦略的提携の部分)、Strategic Objectives and Levels of Strategy(m70654)を、GitHub の原稿(2026-06-11 のコミット f2b7496)の CNXML から、本文を読みました。会社法(平成 17 年法律第 86 号、法令 ID 417AC0000000086)の第 2 条第 27・28 号、第 748 条、第 767 条と第 774 条の 2 の冒頭を、e-Gov 法令検索の API で読みました(2026-10-10。現行の版は 2026-08-12 施行。第 2 条と第 748 条は、将来施行の 5 つの版でも現行と同じ文言であることを、版ごとの本文の比較で確認)。読んでいないもの: 合併などの手続きの要件(株主総会、債権者保護、反対株主、独占禁止法の審査など)、税。教科書の事例(Acer、Nissan と Renault、McDonald's、Walmart)の事実は確認していません。『教科書の合併・買収と日本の会社法の用語の対応』『判断の軸の表』『見る前の問い』は、このサービス独自の整理です。別のエージェントによる確認の結果は、docs/verify/pl-5.md にあります。個別の案件は扱わず、専門家に確認する線引きを本文に書きました。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、外部の技術と革新の節、世界の市場の章、戦略のレベルの節",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "M&A、ジョイント・ベンチャー、フランチャイズ、ライセンス、契約、国際的な戦略的提携、競合の買収(該当節の本文)"
+      },
+      {
+        "title": "会社法 第 2 条第 27・28 号、第 748 条ほか(e-Gov 法令検索)",
+        "url": "https://laws.e-gov.go.jp/law/417AC0000000086",
+        "how": "read",
+        "use": "吸収合併・新設合併の定義、合併契約の締結(条文の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "pl-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Finance 2e(CC BY-NC-SA 4.0)の How Firms Raise Capital の章(The Concept of Capital Structure、The Costs of Debt and Equity Capital、Calculating the WACC、Capital Structure Choices、Optimal Capital Structure、Alternative Sources of Funds)を、GitHub の原稿(openstax/osbooks-principles-finance、2026-07-06 のコミット e3e5135)の CNXML から、本文を読みました。米国の税制を前提にした本です。教科書の Greene Building Company の例は、本文の負債の利回り 7.2% と、計算式の 7.02%(9.47% はこちらの値)が合っていません。会社法(平成 17 年法律第 86 号)の第 199 条と第 676 条の冒頭を、e-Gov 法令検索の API で読みました(2026-10-10。第 199 条と第 676 条は、将来施行の 5 つの版でも現行と同じ文言であることを、版ごとの本文の比較で確認)。読んでいないもの: 株式や社債の募集の手続きの要件、金融商品取引法の開示、日本の税制。『架空の会社の WACC の表』『負債と純資産の対応』『見る前の問い』は、このサービス独自の整理です。別のエージェントによる確認の結果は、docs/verify/pl-6.md にあります。個別の案件は扱わず、専門家に確認する線引きを本文に書きました。",
+    "sources": [
+      {
+        "title": "Principles of Finance 2e(OpenStax、CC BY-NC-SA 4.0)、資金調達の章",
+        "url": "https://openstax.org/details/books/principles-finance",
+        "how": "read",
+        "use": "資本構成、資本の費用、税引後の負債の費用、WACC、MM の命題、利息の税の盾、財務上の困難、最適な資本構成、優先株式、新株の発行(該当節の本文。米国の本)"
+      },
+      {
+        "title": "会社法 第 199 条、第 676 条(e-Gov 法令検索)",
+        "url": "https://laws.e-gov.go.jp/law/417AC0000000086",
+        "how": "read",
+        "use": "株式の募集事項の決定、社債の募集事項の決定(条文の冒頭)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

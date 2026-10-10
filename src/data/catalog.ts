@@ -227,7 +227,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: '経営企画の役割', stageIds: ['pl0'] },
       { level: 'practice', scope: '指標と分析', stageIds: ['pl1'] },
-      { level: 'advanced', scope: '全社の意思決定', planned: ['M&A と提携の考え方', '資本政策の基礎'] },
+      { level: 'advanced', scope: '全社の意思決定', stageIds: ['pl2'] },
     ],
   },
   // ── 人と組織 ──
@@ -347,12 +347,6 @@ export const usedBy = (c: Course) => courses.filter((x) => x.requires?.includes(
  */
 export type Priority = 1 | 2 | 3
 export const writingPlan: { priority: Priority; title: string; reason: string; ids: string[] }[] = [
-  {
-    priority: 2,
-    title: '次',
-    reason: 'プロダクトマネジメントの周辺と、学び方です。最優先の講座(プロダクトマネジメントとその前提)が揃ったので、顧客・人・お金の理解を広げます。',
-    ids: ['planning'],
-  },
   {
     priority: 3,
     title: 'あとで',

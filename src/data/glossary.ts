@@ -290,4 +290,10 @@ export const glossary: Term[] = [
   { term: 'バランスト・スコアカード', reading: 'balanced scorecard', description: '財務、顧客、内部業務、学習と成長の4つの視点で、財務と非財務、短期と長期の指標を組み合わせる方法。', lessonId: 'pl-3' },
   { term: '事業ポートフォリオ', reading: 'business portfolio', description: '会社が持つ製品、サービス、事業単位の全体。', lessonId: 'pl-4' },
   { term: '成長の4つの方向', reading: 'growth directions', description: '市場浸透、製品開発、市場開発、多角化(教科書の説明を、表に整理したもの)。', lessonId: 'pl-4' },
+  { term: '外部の力を取り込む方法', reading: 'external sources of innovation', description: '合併・買収(M&A)、ジョイント・ベンチャー、フランチャイズ、ライセンス、正式・非公式の契約(教科書の整理)。利点は速さ、欠点は混ぜ合わせの難しさ。', lessonId: 'pl-5' },
+  { term: '戦略の漂流', reading: 'strategic drift', description: 'ジョイント・ベンチャーが、作った目的への焦点を失うこと。', lessonId: 'pl-5' },
+  { term: '吸収合併と新設合併', reading: 'absorption-type and consolidation-type mergers', description: '会社法第2条の定義。吸収合併は、消滅する会社の権利義務を存続する会社に承継させる。新設合併は、新しく設立する会社に承継させる。', lessonId: 'pl-5' },
+  { term: '資本構成', reading: 'capital structure', description: '会社が事業の資金を、負債と株式でどう調達しているかの割合。', lessonId: 'pl-6' },
+  { term: '加重平均資本コスト(WACC)', reading: 'weighted average cost of capital', description: '負債、優先株式、普通株式の費用を、それぞれの割合(時価)で加重平均したもの。負債の費用は税引後。', lessonId: 'pl-6' },
+  { term: '利息の税の盾', reading: 'interest tax shield', description: '利息が税金の控除の対象になることによる節税額。法人税率 × 利息の支払い。', lessonId: 'pl-6' },
 ]
