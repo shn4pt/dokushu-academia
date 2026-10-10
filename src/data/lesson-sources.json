@@ -4109,5 +4109,49 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ac-5": {
+    "status": "verified",
+    "checkedAt": "2026-10-10",
+    "note": "教科書は、OpenStax の Principles of Accounting, Volume 2: Managerial Accounting(CC BY-NC-SA 4.0)の Budgeting の章(予算の目的、総合予算、作り方の型、変動予算、予算による評価と倫理)を、GitHub の原稿(openstax/osbooks-principles-accounting-bundle、2026-04-23 のコミット 2165bf6)の CNXML から読みました。米国の管理会計の本で、日本の法令・基準ではありません。この3つの法令・規則は、予算の形を定めていません。会社法、会社計算規則、財務諸表等規則の現行の版の全文(e-Gov 法令検索の API で取得、2026-10-10)を検索して、『予算』の語が出てこないことを確認しました。読んでいないもの: 標準原価と差異の詳しい分析、教科書が引く研究(Walker らなど)の原典。『架空の会社の数字』『固定予算と変動予算の 2 段階の分解』『見る前の問い』は、このサービス独自の整理です。別のエージェントによる確認の結果は、docs/verify/ac-5.md にあります。個別の事案は扱わず、専門家に確認する線引きを本文に書きました。",
+    "sources": [
+      {
+        "title": "Principles of Accounting, Volume 2: Managerial Accounting(OpenStax、CC BY-NC-SA 4.0)",
+        "url": "https://openstax.org/details/books/principles-managerial-accounting",
+        "how": "read",
+        "use": "予算の目的、総合予算、作り方の型、固定予算と変動予算、差異、倫理(該当節の本文。米国の本)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ac-6": {
+    "status": "verified",
+    "checkedAt": "2026-10-10",
+    "note": "教科書は、OpenStax の Principles of Accounting, Volume 2: Managerial Accounting(CC BY-NC-SA 4.0)の Capital Budgeting Decisions の章(資本的支出の判断、回収期間、会計上の収益率、時間価値、NPV と IRR、4 つの方法の比較)を、GitHub の原稿(2026-04-23 のコミット 2165bf6)の CNXML から読みました。一般式は本文のテキストでは取り出せなかったので、例の式と数字から読み取りました。米国の本で、日本の法令・基準ではありません。投資の評価は、法令が形を定めていません。会計との接点として、会社計算規則(平成 18 年法務省令第 13 号)の第 5 条第 1 項(取得価額)を、e-Gov 法令検索の API で読みました(2026-10-10。現行の版は 2025-03-31 施行、版の一覧に施行前の版なし)。読んでいないもの: 税、減価償却、インフレを織り込んだ評価、実証研究。『架空の投資案の数字』『年金係数の計算』『見る前の問い』は、このサービス独自の整理です。別のエージェントによる確認の結果は、docs/verify/ac-6.md にあります。個別の事案は扱わず、専門家に確認する線引きを本文に書きました。",
+    "sources": [
+      {
+        "title": "Principles of Accounting, Volume 2: Managerial Accounting(OpenStax、CC BY-NC-SA 4.0)",
+        "url": "https://openstax.org/details/books/principles-managerial-accounting",
+        "how": "read",
+        "use": "資本的支出、回収期間、会計上の収益率、時間価値、NPV と IRR、4 つの方法の比較(該当節の本文。米国の本)"
+      },
+      {
+        "title": "会社計算規則 第 5 条(e-Gov 法令検索)",
+        "url": "https://laws.e-gov.go.jp/law/418M60000010013",
+        "how": "read",
+        "use": "資産に取得価額を付すという原則(条文の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

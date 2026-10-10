@@ -1,6 +1,6 @@
 import { go, expect, test } from './fixtures'
 
-// 会計(法令・基準の講座)の序論(会計-1〜4)の画面。
+// 会計(法令・基準の講座)の序論(会計-1〜6)の画面。
 async function answer(page: import('@playwright/test').Page, answers: string[], index: number) {
   const ex = page.locator('.demo').filter({ has: page.getByRole('button', { name: '答え合わせ' }) }).nth(index)
   for (let i = 0; i < answers.length; i++) await ex.locator('.task-row').nth(i).getByRole('button', { name: answers[i], exact: true }).click()
@@ -58,12 +58,36 @@ test('会計-4: 変動費と固定費、貢献利益、損益分岐点、前提�
   await expect(page.locator('.source-note')).toContainText('Managerial Accounting')
 })
 
-test('講座の目次: 会計は、基礎・実践が公開され、応用が準備中。後続の講座の前提として働く', async ({ page }) => {
+test('会計-5: 予算の目的、総合予算、固定予算と変動予算、差異、架空の会社の数字、判定問題、クイズ、出典、法令の線引き', async ({ page }) => {
+  await page.goto(go('/lesson/ac-5'))
+  await expect(page.locator('article h1')).toContainText('予算と実績の管理')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['全体像と考え方', '専門家', '確認した日', '総合予算', '変動予算', '固定予算', '差異', '架空の会社', '「予算」という語は', '個別の事案は扱いません']) await expect(art).toContainText(t)
+  await answer(page, ['営業予算', '財務予算', '営業予算', '財務予算'], 0)
+  await answer(page, ['適切でない', '適切でない', '適切', '適切', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Managerial Accounting')
+})
+
+test('会計-6: 回収期間、時間価値、NPV と IRR、4 つの方法の比較、架空の案の数字、判定問題、クイズ、出典、法令の線引き', async ({ page }) => {
+  await page.goto(go('/lesson/ac-6'))
+  await expect(page.locator('article h1')).toContainText('投資の評価')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['全体像と考え方', '専門家', '確認した日', '回収期間', '正味現在価値', '内部収益率', '時間価値', '架空の投資案', '個別の事案は扱いません']) await expect(art).toContainText(t)
+  await answer(page, ['考えない方法', '考える方法', '考えない方法', '考える方法'], 0)
+  await answer(page, ['適切でない', '適切', '適切', '適切でない', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Managerial Accounting')
+})
+
+test('講座の目次: 会計は、基礎・実践・応用のすべてが公開済み', async ({ page }) => {
   await page.goto(go('/course/accounting'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
-  await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
-  await expect(page.locator('.stage-card', { hasText: '序論:会計の基礎' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(2)
-  await page.locator('.stage-card', { hasText: '序論:会計の基礎' }).click()
+  await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
+  await expect(page.locator('.stage-card', { hasText: '応用:予算と投資の判断' })).toBeVisible()
+  await expect(page.locator('.stage-card', { hasText: '実践:キャッシュフローと損益分岐' })).toBeVisible()
+  await expect(page.locator('.planned-item')).toHaveCount(0)
+  await page.locator('.stage-card', { hasText: '応用:予算と投資の判断' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

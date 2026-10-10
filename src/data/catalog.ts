@@ -296,7 +296,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: '会計の基礎', stageIds: ['ac0'] },
       { level: 'practice', scope: '財務諸表の読み方', stageIds: ['ac1'] },
-      { level: 'advanced', scope: '経営への活用', planned: ['予算と実績の管理', '投資の評価'] },
+      { level: 'advanced', scope: '経営への活用', stageIds: ['ac2'] },
     ],
   },
   {
@@ -351,7 +351,7 @@ export const writingPlan: { priority: Priority; title: string; reason: string; i
     priority: 2,
     title: '次',
     reason: 'プロダクトマネジメントの周辺と、学び方です。最優先の講座(プロダクトマネジメントとその前提)が揃ったので、顧客・人・お金の理解を広げます。',
-    ids: ['accounting', 'planning'],
+    ids: ['planning'],
   },
   {
     priority: 3,

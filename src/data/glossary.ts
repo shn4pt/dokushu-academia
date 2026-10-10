@@ -272,4 +272,10 @@ export const glossary: Term[] = [
   { term: '貢献利益', reading: 'contribution margin', description: '売上から変動費を引いた額。固定費を回収し、そのあとで利益になる分。', lessonId: 'ac-4' },
   { term: '損益分岐点', reading: 'break-even point', description: '総費用と総収益が等しく、利益も損失も生じない販売量または売上高。販売量では、固定費 ÷ 1 個あたりの貢献利益。', lessonId: 'ac-4' },
   { term: '安全余裕', reading: 'margin of safety', description: '現在の売上と、損益分岐点の売上の差。売上がどれだけ減っても赤字にならないかを示す。', lessonId: 'ac-4' },
+  { term: '総合予算', reading: 'master budget', description: '営業予算(予定の損益計算書につながる)と財務予算(予定の貸借対照表につながる)から成る、組織全体の予算。販売予算が土台になる。', lessonId: 'ac-5' },
+  { term: '固定予算と変動予算', reading: 'static and flexible budget', description: '固定予算は、期間の前に1つの活動水準で作る。変動予算は、実際の活動水準に合わせて調整し、費用の管理を評価しやすくする。', lessonId: 'ac-5' },
+  { term: '差異', reading: 'variance', description: '実績と予算(標準)の差。収益が多い・費用が少ないのが有利、逆が不利。問題の場所を示すもので、問題そのものではない。', lessonId: 'ac-5' },
+  { term: '回収期間', reading: 'payback period', description: '最初の投資額を、毎年の純キャッシュ・フローで取り戻すのにかかる年数。時間価値を考えず、回収後も見ない。', lessonId: 'ac-6' },
+  { term: '正味現在価値(NPV)', reading: 'net present value', description: '将来のキャッシュ・フローを必要な収益率で現在価値に直した合計から、最初の投資額を引いた額。', lessonId: 'ac-6' },
+  { term: '内部収益率(IRR)', reading: 'internal rate of return', description: '正味現在価値がちょうどゼロになる収益率。必要な収益率や借入の費用と比べる。', lessonId: 'ac-6' },
 ]
