@@ -250,4 +250,9 @@ export const glossary: Term[] = [
   { term: '管理職の役割(Mintzberg)', reading: 'managerial roles', description: '対人関係(看板・リーダー・連絡)、情報(監視者・周知者・広報担当)、意思決定(起業家・障害処理者・資源配分者・交渉者)の 3 つのまとまり、10 の役割。', lessonId: 'mg-1' },
   { term: '目標設定の理論', reading: 'goal-setting theory', description: '難しく、具体的で、受け入れられた目標が、よい成績につながるという理論(Locke)。コミットと参加も重要とされる。', lessonId: 'mg-2' },
   { term: '目標による管理(MBO)', reading: 'management by objectives', description: '管理職と従業員が目標を一緒に決める、管理の哲学、計画と統制の技法、従業員参加の仕組み(Drucker を起源とする)。', lessonId: 'mg-2' },
+  { term: '業績評価の誤り', reading: 'rating errors', description: '中心化傾向、厳格化・寛大化、ハロー効果、直近の誤り、個人的な偏りの 5 つ(教科書の整理)。', lessonId: 'mg-3' },
+  { term: '成果に応じた報酬', reading: 'pay for performance', description: '個人の成績の水準を、報酬の水準に結びつける仕組み。', lessonId: 'mg-3' },
+  { term: '限定合理性', reading: 'bounded rationality', description: '複雑な問題では、すべての選択肢と結果を把握できず、完全には合理的に決められないという考え。', lessonId: 'mg-4' },
+  { term: 'コミットメントのエスカレーション', reading: 'escalation of commitment', description: '悪い判断だと分かっても、そのまま続けてしまう傾向。', lessonId: 'mg-4' },
+  { term: '集団浅慮', reading: 'groupthink', description: '実質的な議論なしに、集団がすぐ合意に達する傾向(教科書の定義)。', lessonId: 'mg-4' },
 ]

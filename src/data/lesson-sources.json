@@ -3906,13 +3906,57 @@
   "mg-2": {
     "status": "partial",
     "checkedAt": "2026-10-10",
-    "note": "OpenStax の Principles of Management(CC BY 4.0)を、GitHub の原稿(openstax/osbooks-principles-of-management-bundle、2026-06-11 のコミット f2b7496)の CNXML から読みました。Goals or Outcome Statements(m70707)、Management by Objectives(m70710)、動機づけの章の Process Theories of Motivation(m70688)の目標設定の理論の部分、Is Planning Important(m70704)の本文です。教科書は、Locke、Rodgers と Hunter(1991)、Kondrasuk(1981)、Mitchell と Silver(1990)などの研究を引いています。これらの原典は読んでいません。『目標設定の理論はほぼ無謬』は、教科書の評価の言葉で、根拠は本文に示されていません。MBO の効果の研究(70 事例のうち 68 で改善、185 の研究で状況による)は、教科書の中で食い違っています。『目標を立てる前の問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/mg-2.md にあります。",
+    "note": "OpenStax の Principles of Management(CC BY 4.0)を、GitHub の原稿(openstax/osbooks-principles-of-management-bundle、2026-06-11 のコミット f2b7496)の CNXML から読みました。Goals or Outcome Statements(m70707)、Management by Objectives(m70710)、動機づけの章の Process Theories of Motivation(m70688)の目標設定の理論の部分、Is Planning Important(m70704)の本文です。教科書は、Locke、Rodgers と Hunter(1991)、Kondrasuk(1981)、Mitchell と Silver(1990)などの研究を引いています。これらの原典は読んでいません。『目標設定の理論はほぼ無謬』は、教科書の評価の言葉で、根拠は本文に示されていません。MBO の効果の研究(70 事例のうち 68 で改善、185 の研究で状況による)は、教科書は対立するものとしては扱っておらず、「おおむね肯定的で、条件つき」と読みました。『目標を立てる前の問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/mg-2.md にあります。",
     "sources": [
       {
         "title": "Principles of Management(OpenStax、CC BY 4.0)、計画と統制の章(目標、MBO)と動機づけの章(目標設定の理論)",
         "url": "https://openstax.org/details/books/principles-management",
         "how": "read",
         "use": "公式・運用の目標、目標の階層、目標設定の理論と注意、MBO の過程と効果の研究(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "mg-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Management(CC BY 4.0)の Performance Management(m70664)と Influencing Employee Performance and Motivation(m70665)、Organizational Behavior(CC BY-NC-SA 4.0)の Performance Appraisal Systems(m73795)と Feedback(m73797)、および意思決定の章の Barriers to Effective Decision-Making(m70723。関係の対立の部分)を、GitHub の原稿(openstax/osbooks-principles-of-management-bundle、2026-06-11 のコミット f2b7496)の CNXML から、本文を読みました。後者(CC BY-NC-SA)は、要約・翻訳(改変あり)として、原典とライセンスを本文に明記しました。教科書は、Harvard Business Review の記事(Cappelli と Tavis、Buckingham と Goodall、Goler ら)、CEB・SHRM・World at Work の調査、Taylor らの制御理論のモデルなどを引いています。これらの原典は読んでおらず、調査の方法も本文に示されていません。章の執筆者の経験にもとづく助言は、研究の結論とは区別しました。日本の人事制度・労働法は扱いません。『評価の前に確かめたい問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/mg-3.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、業績管理の節と報酬の節",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "業績管理の歴史、どんな仕組みにも付きまとう課題、成果に応じた報酬の調査、総合的な報酬(該当節の本文)"
+      },
+      {
+        "title": "Organizational Behavior(OpenStax、CC BY-NC-SA 4.0)、人事評価の節とフィードバックの節",
+        "url": "https://openstax.org/details/books/organizational-behavior",
+        "how": "read",
+        "use": "評価の用途、評価の誤りと減らす方法、フィードバックの受け止められ方(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "mg-4": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Management(CC BY 4.0)の意思決定の章から、Overview of Managerial Decision-Making(m70732)、Barriers to Effective Decision-Making(m70723)、Improving the Quality of Decision-Making(m70614)、Group Decision-Making(m70616)の本文を、GitHub の原稿(openstax/osbooks-principles-of-management-bundle、2026-06-11 のコミット f2b7496)の CNXML から読みました。教科書が引く研究(Stout、Aberson ら、Jehn と Mannix、Rest、Trevino と Brown)の原典は読んでいません。個人・集団の判断を改善する方法は、教科書の助言であり、効果の検証は示されていません。事例の囲み記事の事実は確認していません。『会議の前に確かめたい問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/mg-4.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、意思決定の章(概観、障害、個人の判断の改善、集団の意思決定)",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "意思決定の特徴、6 つの壁、定型・非定型の判断、論理の誤り、倫理的判断のモデル、集団の利点と落とし穴(該当節の本文)"
       }
     ],
     "changes": [

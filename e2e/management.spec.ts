@@ -1,6 +1,6 @@
 import { go, expect, test } from './fixtures'
 
-// マネジメントの序論(マネジメント-1、マネジメント-2)の画面。
+// マネジメントの序論・実践(マネジメント-1〜4)の画面。
 async function answer(page: import('@playwright/test').Page, answers: string[], index: number) {
   const ex = page.locator('.demo').filter({ has: page.getByRole('button', { name: '答え合わせ' }) }).nth(index)
   for (let i = 0; i < answers.length; i++) await ex.locator('.task-row').nth(i).getByRole('button', { name: answers[i], exact: true }).click()
@@ -20,24 +20,48 @@ test('マネジメント-1: 管理職の観察研究、10 の役割、能力、�
   await expect(page.locator('.source-note')).toContainText('Principles of Management')
 })
 
-test('マネジメント-2: 目標の種類と階層、目標設定の理論、MBO と効果の割れ方、判定問題、クイズ、出典', async ({ page }) => {
+test('マネジメント-2: 目標の種類と階層、目標設定の理論、MBO と効果の証拠、判定問題、クイズ、出典', async ({ page }) => {
   await page.goto(go('/lesson/mg-2'))
   await expect(page.locator('article h1')).toContainText('目標は、計画の出発点')
   await expect(page.locator('.quiz fieldset')).toHaveCount(4)
   const art = page.locator('article')
-  for (const t of ['公式の目標', '運用の目標', '難しく、具体的で', 'MBO', '70 の事例', '185', '食い違って']) await expect(art).toContainText(t)
+  for (const t of ['公式の目標', '運用の目標', '難しく、具体的で', 'MBO', '70 の事例', '185', '条件つき']) await expect(art).toContainText(t)
   await answer(page, ['公式の目標', '運用の目標', '公式の目標', '運用の目標'], 0)
   await answer(page, ['適切', '適切でない', '適切でない', '適切', '適切', '適切でない'], 1)
   await page.locator('.source-note summary').click()
   await expect(page.locator('.source-note')).toContainText('Principles of Management')
 })
 
-test('講座の目次: マネジメントは、基礎が公開され、実践・応用が準備中', async ({ page }) => {
+test('マネジメント-3: 評価の歴史、評価の誤り、フィードバック、成果報酬の調査、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/mg-3'))
+  await expect(page.locator('article h1')).toContainText('業績の評価とフィードバック')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['強制ランキング', 'Deloitte', '58%', '中心化傾向', 'ハロー効果', '72%', '私の経験では', '日本の人事制度']) await expect(art).toContainText(t)
+  await answer(page, ['中心化傾向', 'ハロー効果', '直近の誤り', '個人的な偏り'], 0)
+  await answer(page, ['適切でない', '適切', '適切でない', '適切', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Organizational Behavior')
+})
+
+test('マネジメント-4: 意思決定の壁、6 つのステップ、集団の利点と落とし穴、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/mg-4'))
+  await expect(page.locator('article h1')).toContainText('意思決定と、集団で決めること')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['限定合理性', '満足化', 'Rest', '悪魔の代弁者', '集団浅慮', '効果の検証']) await expect(art).toContainText(t)
+  await answer(page, ['限定合理性', 'エスカレーション', '確証バイアス', '関係の対立'], 0)
+  await answer(page, ['適切', '適切でない', '適切', '適切でない', '適切', '適切'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Principles of Management')
+})
+
+test('講座の目次: マネジメントは、基礎・実践が公開され、応用が準備中', async ({ page }) => {
   await page.goto(go('/course/management'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 2 / 予定 6 レッスン')
+  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
   await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '序論:マネジメントと目標' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(4)
+  await expect(page.locator('.planned-item')).toHaveCount(2)
   await page.locator('.stage-card', { hasText: '序論:マネジメントと目標' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

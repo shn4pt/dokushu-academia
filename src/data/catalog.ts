@@ -264,7 +264,7 @@ export const courses: Course[] = [
     summary: 'チームと組織を動かす基礎。目標、フィードバック、育成。',
     tiers: [
       { level: 'basic', scope: 'マネジメントの基本', stageIds: ['mg0'] },
-      { level: 'practice', scope: 'チームの運営', planned: ['1on1 とフィードバック', '会議と意思決定'] },
+      { level: 'practice', scope: 'チームの運営', stageIds: ['mg1'] },
       { level: 'advanced', scope: '組織の設計と変革', planned: ['組織構造', '変革の進め方'] },
     ],
   },
