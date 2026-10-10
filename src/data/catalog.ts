@@ -75,7 +75,7 @@ export const courses: Course[] = [
     summary: '大人の学び方、記憶と習慣、続けるための工夫。学習科学の知見にもとづく。',
     tiers: [
       { level: 'basic', scope: '学ぶとはどういうことか', stageIds: ['ln0'] },
-      { level: 'practice', scope: '効果的な学び方', planned: ['復習の間隔と、思い出す練習', '習慣にして続ける'] },
+      { level: 'practice', scope: '効果的な学び方', stageIds: ['ln1'] },
       { level: 'advanced', scope: '仕事の中での学び', planned: ['経験から学ぶ', 'チームで学ぶ'] },
     ],
   },

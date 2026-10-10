@@ -3483,5 +3483,73 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ln-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Roediger と Karpicke(2006)の論文と、Bjork と Bjork の章を、PDF の全文として読みました。Karpicke と Roediger(2008)、Cepeda ら(2006、2008)の論文は、要旨(Europe PMC)だけを読みました。本文の細部は確かめていません。Bjork と Bjork の章が引く実験(Smith ら、Shea と Morgan、Rohrer と Taylor、Kornell と Bjork)の元の論文は読んでいません。研究の被験者は主に大学生で、課題は事実の記憶です。『自分の学びに使うときの問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/ln-3.md にあります。",
+    "sources": [
+      {
+        "title": "Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention(Roediger & Karpicke, Psychological Science, 2006)",
+        "url": "https://doi.org/10.1111/j.1467-9280.2006.01693.x",
+        "how": "read",
+        "use": "実験 1・2 の方法と結果、考察と限界(論文の全文)"
+      },
+      {
+        "title": "Making Things Hard on Yourself, But in a Good Way(Bjork & Bjork, Psychology and the Real World 第 5 章)",
+        "url": "https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf",
+        "how": "read",
+        "use": "望ましい困難、分散、交互練習、条件を変える(章の全文)"
+      },
+      {
+        "title": "The critical importance of retrieval for learning(Karpicke & Roediger, Science, 2008)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/18276894",
+        "how": "search",
+        "use": "一度正しく言えたあとの学習とテストの比較(要旨のみ)"
+      },
+      {
+        "title": "Distributed practice in verbal recall tasks: A review and quantitative synthesis(Cepeda, Pashler, Vul, Wixted, Rohrer, Psychological Bulletin, 2006)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/16719566",
+        "how": "search",
+        "use": "分散学習のメタ分析の規模と結論(要旨のみ)"
+      },
+      {
+        "title": "Spacing effects in learning: a temporal ridgeline of optimal retention(Cepeda, Vul, Rohrer, Wixted, Pashler, Psychological Science, 2008)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19076480",
+        "how": "search",
+        "use": "最適な復習の間隔とテストまでの期間(要旨のみ)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ln-4": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Wang ら(2021)のメタ分析 A Meta-Analysis of the Effects of Mental Contrasting With Implementation Intentions on Goal Attainment(Frontiers in Psychology、オープンアクセス)を、全文として読みました。Lally ら(2010)の論文は、要旨(Crossref)だけを読みました。実行意図の過去のメタ分析(Gollwitzer と Sheeran、Presseau ら、Adriaanse ら)、Kizilcec と Cohen(2017)、Da Silva ら(2018)、Parks-Stamm ら(2007)は、Wang らの論文が引いた結果で、元の論文は読んでいません。メタ分析は、広い領域の目標の達成を扱い、仕事の学びの習慣を直接調べたものではありません。『学びの習慣に使うときの考え方』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/ln-4.md にあります。",
+    "sources": [
+      {
+        "title": "A Meta-Analysis of the Effects of Mental Contrasting With Implementation Intentions on Goal Attainment(Wang, Wang, Gai, Frontiers in Psychology, 2021)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8149892/",
+        "how": "read",
+        "use": "実行意図の説明、MCII のメタ分析の結果、出版バイアス、調整変数、限界(論文の全文)"
+      },
+      {
+        "title": "How are habits formed: Modelling habit formation in the real world(Lally, van Jaarsveld, Potts, Wardle, European Journal of Social Psychology, 2010)",
+        "url": "https://doi.org/10.1002/ejsp.674",
+        "how": "search",
+        "use": "習慣になるまでの日数の個人差(要旨のみ)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

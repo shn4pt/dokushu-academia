@@ -212,4 +212,9 @@ export const glossary: Term[] = [
   { term: '学習スタイル', reading: 'learning styles', description: '人によって効果的な教え方が違うという考え。学習者の好みに合わせて教えると成果が上がる、という仮説の証拠は十分でない(Pashler ら、2008)。', lessonId: 'ln-1' },
   { term: '節約率', reading: 'savings', description: 'Ebbinghaus の指標。覚え直しで、最初の学習に比べて節約できた時間の割合。覚えている割合とは違う。', lessonId: 'ln-2' },
   { term: '忘却曲線', reading: 'forgetting curve', description: '学んでからの時間と保持の関係。Ebbinghaus の結果は追試で似た形に再現されたが、被験者は少なく、材料は無意味綴りである(Murre と Dros、2015)。', lessonId: 'ln-2' },
+  { term: 'テスト効果', reading: 'testing effect', description: '思い出すテストを受けること自体が、のちの保持を高める効果。直後は再学習が高く、数日後はテストが高かった(Roediger と Karpicke、2006)。', lessonId: 'ln-3' },
+  { term: '分散学習', reading: 'distributed practice / spacing effect', description: '同じ回数を学ぶなら、一度に詰め込むより間隔をあけたほうが長く残る。最適な間隔は、テストまでの期間が長いほど長い(Cepeda ら)。', lessonId: 'ln-3' },
+  { term: '望ましい困難', reading: 'desirable difficulties', description: '学習中は難しく感じるが、長期の保持と転移を高める条件(間隔、テスト、交互練習、条件を変える)。基礎知識がないと望ましくない困難になる(Bjork と Bjork)。', lessonId: 'ln-3' },
+  { term: '実行意図', reading: 'implementation intention', description: 'いつ、どこで、どのように行動するかを決める「もし〜なら、〜する」の計画。', lessonId: 'ln-4' },
+  { term: '心的対比', reading: 'mental contrasting', description: '望む未来を思い描いたあと、その実現を妨げる現実の障害を考える方法。実行意図と組み合わせたものが MCII。', lessonId: 'ln-4' },
 ]
