@@ -3883,5 +3883,43 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "mg-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Management(CC BY 4.0)を、GitHub の原稿(openstax/osbooks-principles-of-management-bundle、2026-06-11 のコミット f2b7496)の CNXML から読みました。What Do Managers Do?(m72854)、The Roles Managers Play(m70722)、Major Characteristics of the Manager's Job(m70606)、Is Planning Important(m70704)の本文です。教科書は、Mintzberg(1973)、Kotter(1999)、Sproull(1984)、Stewart(1967)、Eccles と Nohria(1992)、Katz(1974)などの研究を引いています。これらの原典は読んでいません。引用された研究は数十年前の、主に欧米の管理職の観察で、研究ごとの対象の人数は(Stewart の 160 人を除いて)教科書に書かれていません。『部下は最大 7 人』『現在は 20〜30 人』の数字に、出典は示されていません。『自分の仕事を見直す問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/mg-1.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、第 1 章 Managing and Performing と 第 13 章の計画の節",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "定義、管理職の仕事の観察研究、10 の役割、3 つの能力、レベルの違い、計画をめぐる意見の違い(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "mg-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Management(CC BY 4.0)を、GitHub の原稿(openstax/osbooks-principles-of-management-bundle、2026-06-11 のコミット f2b7496)の CNXML から読みました。Goals or Outcome Statements(m70707)、Management by Objectives(m70710)、動機づけの章の Process Theories of Motivation(m70688)の目標設定の理論の部分、Is Planning Important(m70704)の本文です。教科書は、Locke、Rodgers と Hunter(1991)、Kondrasuk(1981)、Mitchell と Silver(1990)などの研究を引いています。これらの原典は読んでいません。『目標設定の理論はほぼ無謬』は、教科書の評価の言葉で、根拠は本文に示されていません。MBO の効果の研究(70 事例のうち 68 で改善、185 の研究で状況による)は、教科書の中で食い違っています。『目標を立てる前の問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/mg-2.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、計画と統制の章(目標、MBO)と動機づけの章(目標設定の理論)",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "公式・運用の目標、目標の階層、目標設定の理論と注意、MBO の過程と効果の研究(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

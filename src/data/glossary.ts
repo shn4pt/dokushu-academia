@@ -246,4 +246,8 @@ export const glossary: Term[] = [
   { term: 'ダークパターン', reading: 'dark patterns', description: 'オンラインのサービスに利益をもたらすために、利用者を強制し、誘導し、または欺いて、意図しない、害になりうる決定をさせる、ユーザーインターフェースの設計(Mathur ら)。', lessonId: 'bh-5' },
   { term: 'OEC(総合評価基準)', reading: 'overall evaluation criterion', description: 'オンライン実験の目的を数値にした指標。短期の数字が長期の目標と食い違わないように選ぶ(Kohavi ら)。', lessonId: 'bh-6' },
   { term: '持ち越し効果', reading: 'carryover effect', description: '前の実験の影響が、同じ利用者を使う次の実験に残ること。', lessonId: 'bh-6' },
+  { term: 'マネジメント', reading: 'management', description: '組織の目標を達成するために、他の資源とともに、従業員の活動を、計画し、組織し、指揮し、統制する過程(教科書の定義)。', lessonId: 'mg-1' },
+  { term: '管理職の役割(Mintzberg)', reading: 'managerial roles', description: '対人関係(看板・リーダー・連絡)、情報(監視者・周知者・広報担当)、意思決定(起業家・障害処理者・資源配分者・交渉者)の 3 つのまとまり、10 の役割。', lessonId: 'mg-1' },
+  { term: '目標設定の理論', reading: 'goal-setting theory', description: '難しく、具体的で、受け入れられた目標が、よい成績につながるという理論(Locke)。コミットと参加も重要とされる。', lessonId: 'mg-2' },
+  { term: '目標による管理(MBO)', reading: 'management by objectives', description: '管理職と従業員が目標を一緒に決める、管理の哲学、計画と統制の技法、従業員参加の仕組み(Drucker を起源とする)。', lessonId: 'mg-2' },
 ]

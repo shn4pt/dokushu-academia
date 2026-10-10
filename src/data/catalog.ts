@@ -263,7 +263,7 @@ export const courses: Course[] = [
     why: "チームの成果は、目標の立て方、フィードバック、育成で変わります。人と組織を動かす基礎を知るためです。",
     summary: 'チームと組織を動かす基礎。目標、フィードバック、育成。',
     tiers: [
-      { level: 'basic', scope: 'マネジメントの基本', planned: ['序論:マネジメントとは', '目標の立て方'] },
+      { level: 'basic', scope: 'マネジメントの基本', stageIds: ['mg0'] },
       { level: 'practice', scope: 'チームの運営', planned: ['1on1 とフィードバック', '会議と意思決定'] },
       { level: 'advanced', scope: '組織の設計と変革', planned: ['組織構造', '変革の進め方'] },
     ],
