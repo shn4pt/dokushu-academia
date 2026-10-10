@@ -3715,5 +3715,49 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "bh-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Kahneman と Tversky(1979)の論文 Prospect Theory: An Analysis of Decision under Risk(Econometrica)を、PDF の全文(MIT のページの写し)として読みました。Tversky と Kahneman(1974)の論文 Judgment under Uncertainty: Heuristics and Biases(Science)は、要旨(Europe PMC)だけを読みました。1979 年の論文は、仮想の選択の問題で、主な被験者はイスラエルの学生と教員です。論文以降の再現や、損失回避についての批判は、読んでいません。『自分の判断に使うための問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/bh-1.md にあります。",
+    "sources": [
+      {
+        "title": "Prospect Theory: An Analysis of Decision under Risk(Kahneman & Tversky, Econometrica, 1979)",
+        "url": "https://doi.org/10.2307/1914185",
+        "how": "read",
+        "use": "方法、確実性効果、反射効果、孤立効果、価値関数、決定の重み(論文の全文)"
+      },
+      {
+        "title": "Judgment under Uncertainty: Heuristics and Biases(Tversky & Kahneman, Science, 1974)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/17835457",
+        "how": "search",
+        "use": "3 つのヒューリスティック(要旨のみ)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "bh-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Klein ら(2018)の論文 Many Labs 2: Investigating Variation in Replicability Across Samples and Settings(Advances in Methods and Practices in Psychological Science)を、PDF の全文(出版社版の写し)として読みました。28 の結果は、無作為でも代表的でもない選び方で、心理学全体の再現率を示すものではありません。意思決定の例の数字は、論文の表 2 と、各効果の説明によります。効果量が小さくなった原因は、この論文から言えません。1974 年のヒューリスティックそのものの検証ではありません。『研究の結果を使うときの問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/bh-2.md にあります。",
+    "sources": [
+      {
+        "title": "Many Labs 2: Investigating Variation in Replicability Across Samples and Settings(Klein ら, Advances in Methods and Practices in Psychological Science, 2018)",
+        "url": "https://doi.org/10.1177/2515245918810225",
+        "how": "read",
+        "use": "設計、結果の要約、意思決定の例、異質性、限界(論文の全文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

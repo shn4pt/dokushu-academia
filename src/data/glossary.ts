@@ -235,4 +235,9 @@ export const glossary: Term[] = [
   { term: 'ブランド資産', reading: 'brand equity', description: '同様の代替品に対して、そのブランドが持つ追加の価値。同じような製品に、ブランドのためにより多く払う差(教科書)。', lessonId: 'ma-5' },
   { term: '製品ライフサイクル', reading: 'product life cycle', description: '製品の売上と収益の推移を、導入・成長・成熟・衰退の段階で示すモデル。すべての製品がすべての段階を順に通るとは限らない(教科書)。', lessonId: 'ma-6' },
   { term: '採用の過程(普及の理論)', reading: 'consumer adoption process / diffusion of innovation', description: '認知・関心・評価・試用・採用の 5 段階と、革新の 5 つの特徴、採用者の 5 分類(教科書、Rogers)。', lessonId: 'ma-6' },
+  { term: 'プロスペクト理論', reading: 'prospect theory', description: '価値を最終的な資産でなく、基準点からの利益と損失に割り当て、確率を決定の重みに置き換える、リスク下の選択の記述理論(Kahneman と Tversky、1979)。', lessonId: 'bh-1' },
+  { term: '確実性効果', reading: 'certainty effect', description: '確実な結果を、ただ確からしいだけの結果より重く扱う傾向。', lessonId: 'bh-1' },
+  { term: '反射効果', reading: 'reflection effect', description: '利益ではリスクを避け、損失ではリスクを求める傾向。損失の選好が、利益の選好の鏡像になる。', lessonId: 'bh-1' },
+  { term: 'ヒューリスティック', reading: 'heuristic', description: '判断のための経験則。代表性、利用可能性、調整とアンカー。経済的で通常有効だが、体系的な誤りにつながりうる(Tversky と Kahneman、1974 の要旨)。', lessonId: 'bh-1' },
+  { term: 'Many Labs 2', reading: 'Many Labs 2', description: '28 の発表済みの結果を、125 の標本、15,305 人、36 の国と地域で事前登録して追試した大規模研究(Klein ら、2018)。', lessonId: 'bh-2' },
 ]
