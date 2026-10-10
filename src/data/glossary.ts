@@ -240,4 +240,7 @@ export const glossary: Term[] = [
   { term: '反射効果', reading: 'reflection effect', description: '利益ではリスクを避け、損失ではリスクを求める傾向。損失の選好が、利益の選好の鏡像になる。', lessonId: 'bh-1' },
   { term: 'ヒューリスティック', reading: 'heuristic', description: '判断のための経験則。代表性、利用可能性、調整とアンカー。経済的で通常有効だが、体系的な誤りにつながりうる(Tversky と Kahneman、1974 の要旨)。', lessonId: 'bh-1' },
   { term: 'Many Labs 2', reading: 'Many Labs 2', description: '28 の発表済みの結果を、125 の標本、15,305 人、36 の国と地域で事前登録して追試した大規模研究(Klein ら、2018)。', lessonId: 'bh-2' },
+  { term: '選択の設計(ナッジ)', reading: 'choice architecture / nudge', description: '人の選択の自由を制限せずに、望ましい選択を促すように、選択の環境を設計すること(Mertens ら)。', lessonId: 'bh-3' },
+  { term: 'デフォルト(初期設定)', reading: 'default', description: '何もしないときに適用される選択。臓器提供では、オプトイン(登録しないと提供者でない)とオプトアウト(拒否しないと提供者)がある。', lessonId: 'bh-3' },
+  { term: '出版バイアス', reading: 'publication bias', description: '有意で大きな効果の結果ほど、発表されやすい偏り。メタ分析の効果量を大きく見せる。', lessonId: 'bh-4' },
 ]

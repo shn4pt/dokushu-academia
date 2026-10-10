@@ -3759,5 +3759,85 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "bh-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Johnson と Goldstein(2003)の論文 Do Defaults Save Lives?(Science、Policy Forum)を、著者のサイトの PDF の全文として読みました。国別のグラフの値は図にあり、本文には載せていません。Mertens ら(2022)のナッジの定義の記述を、全文で読みました。Scheibehenne, Greifeneder, Todd(2010)の論文 Can There Ever Be Too Many Options?(Journal of Consumer Research)は、要旨(OpenAlex から取得)だけを読みました。国の比較は観察データで、デフォルトの効果の理由(3 つ)のどれが主かは、論文自身が未確定とします。『選択の設計を考える問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/bh-3.md にあります。",
+    "sources": [
+      {
+        "title": "Do Defaults Save Lives?(Johnson & Goldstein, Science, 2003)",
+        "url": "https://doi.org/10.1126/science.1091721",
+        "how": "read",
+        "use": "臓器提供のオンライン実験、ヨーロッパの国の比較、効く理由、誤分類と倫理(論文の全文)"
+      },
+      {
+        "title": "The effectiveness of nudging: A meta-analysis of choice architecture interventions across behavioral domains(Mertens ら, PNAS, 2022)",
+        "url": "https://doi.org/10.1073/pnas.2107346118",
+        "how": "read",
+        "use": "ナッジ(選択の設計)の定義(論文の全文)"
+      },
+      {
+        "title": "Can There Ever Be Too Many Options? A Meta-Analytic Review of Choice Overload(Scheibehenne, Greifeneder, Todd, Journal of Consumer Research, 2010)",
+        "url": "https://doi.org/10.1086/651235",
+        "how": "search",
+        "use": "選択過多のメタ分析の規模と結論(要旨のみ)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "bh-4": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Mertens ら(2022、PNAS)のメタ分析とその訂正(Correction)、Maier ら(2022、PNAS)の寄稿、Szaszi ら(2022、PNAS)の寄稿、Mertens らの返答(Reply)を、全文で読みました(Maier らと Szaszi らは短い寄稿で、詳しい手順は補足にあり、読んでいません)。DellaVigna と Linos の RCTs to Scale は、NBER のワーキングペーパー(No. 27594、2020 年 7 月)の全文を読み、出版版(Econometrica、2022 年)は要旨だけを読みました。ワーキングペーパーと出版版では、効果の割合や差の説明の表現が違います。数字は訂正後のものです。この論争には決着がなく、数字は各論文が採った方法の結果です。『自分のプロダクトに使うときの問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/bh-4.md にあります。",
+    "sources": [
+      {
+        "title": "The effectiveness of nudging: A meta-analysis of choice architecture interventions across behavioral domains(Mertens, Herberz, Hahnel, Brosch, PNAS, 2022)と訂正",
+        "url": "https://doi.org/10.1073/pnas.2107346118",
+        "how": "read",
+        "use": "全体の効果、種類と領域による違い、出版バイアスの感度分析、訂正後の数字(論文の全文)"
+      },
+      {
+        "title": "No evidence for nudging after adjusting for publication bias(Maier ら, PNAS, 2022)",
+        "url": "https://doi.org/10.1073/pnas.2200300119",
+        "how": "read",
+        "use": "ロバストなベイズ流メタ分析による再分析(寄稿の全文)"
+      },
+      {
+        "title": "No reason to expect large and consistent effects of nudge interventions(Szaszi ら, PNAS, 2022)",
+        "url": "https://doi.org/10.1073/pnas.2200732119",
+        "how": "read",
+        "use": "別の補正法による再分析と主張(寄稿の全文)"
+      },
+      {
+        "title": "Reply to Maier et al., Szaszi et al., and Bakdash and Marusich(Mertens ら, PNAS, 2022)",
+        "url": "https://doi.org/10.1073/pnas.2202928119",
+        "how": "read",
+        "use": "著者の返答(全文)"
+      },
+      {
+        "title": "RCTs to Scale: Comprehensive Evidence From Two Nudge Units(DellaVigna & Linos, NBER Working Paper 27594, 2020)",
+        "url": "https://www.nber.org/papers/w27594",
+        "how": "read",
+        "use": "政府ナッジ部隊の 126 の試験と学術誌の論文の比較(ワーキングペーパーの全文)"
+      },
+      {
+        "title": "RCTs to Scale: Comprehensive Evidence From Two Nudge Units(DellaVigna & Linos, Econometrica, 2022)",
+        "url": "https://doi.org/10.3982/ECTA18709",
+        "how": "search",
+        "use": "出版版の結果の要約(要旨のみ)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

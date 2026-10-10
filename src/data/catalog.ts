@@ -254,7 +254,7 @@ export const courses: Course[] = [
     summary: '人の選択の偏りと、行動の変え方。結果が割れている研究も扱う。',
     tiers: [
       { level: 'basic', scope: '意思決定のくせ', stageIds: ['bh0'] },
-      { level: 'practice', scope: '行動の設計', planned: ['選択の設計', '習慣をつくる'] },
+      { level: 'practice', scope: '行動の設計', stageIds: ['bh1'] },
       { level: 'advanced', scope: 'プロダクトと組織への応用', planned: ['プロダクトの行動設計と倫理', '実験による検証'] },
     ],
   },
