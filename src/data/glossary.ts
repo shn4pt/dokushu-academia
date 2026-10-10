@@ -226,4 +226,10 @@ export const glossary: Term[] = [
   { term: 'セグメント化', reading: 'market segmentation', description: '市場を、共通の必要をもち、同じような施策に同じように反応すると見込まれる小さな集団に分けること。', lessonId: 'ma-2' },
   { term: 'ADAMS', reading: 'ADAMS', description: '良いセグメントの 5 つの基準。到達でき、区別でき、行動に移せ、測れ、十分な大きさ(教科書)。', lessonId: 'ma-2' },
   { term: 'ペルソナ(バイヤー・ペルソナ)', reading: 'buyer persona', description: '理想の顧客の半架空の像。名前、年齢、関心、メディアの利用などを含む(教科書)。', lessonId: 'ma-2' },
+  { term: 'STP', reading: 'segmenting, targeting, positioning', description: '市場を分け(segmenting)、狙う集団を選び(targeting)、どう思ってもらうかを決める(positioning)、顧客主導のマーケティング戦略の 3 段階。', lessonId: 'ma-3' },
+  { term: 'ポジショニング', reading: 'product positioning', description: '市場に、製品やサービスをどう考え、どう感じてほしいかを決め、伝える過程。真っ向勝負と差別化の方法がある(教科書)。', lessonId: 'ma-3' },
+  { term: '知覚マップ', reading: 'perceptual map', description: '消費者が自社製品を競合の製品と比べてどう知覚しているかを、決定的な属性 2 つの軸で示す図。', lessonId: 'ma-3' },
+  { term: 'KPI(重要業績評価指標)', reading: 'key performance indicator', description: '事業の目標に直結し、目標値と期限をもつ指標。特定の過程の成績を測る指標(metrics)とは区別される(教科書)。', lessonId: 'ma-4' },
+  { term: '顧客生涯価値(CLV)', reading: 'customer lifetime value', description: '1 人の顧客が顧客でいる期間にもたらす価値の見積り。年間利益 × 年数 − 獲得費用(教科書の簡単な式)。', lessonId: 'ma-4' },
+  { term: '広告費用対効果(ROAS)', reading: 'return on ad spend', description: '売上 ÷ 広告費。利益ではなく売上で計算する。', lessonId: 'ma-4' },
 ]

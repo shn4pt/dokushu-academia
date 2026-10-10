@@ -32,12 +32,37 @@ test('マーケティング-2: セグメント化の軸、B2B、ADAMS、ター�
   await expect(page.locator('.source-note')).toContainText('OpenStax')
 })
 
-test('講座の目次: マーケティングは、基礎が公開され、実践・応用が準備中', async ({ page }) => {
+test('マーケティング-3: STP、2 つの方法、位置づけの文、知覚マップ、倫理、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ma-3'))
+  await expect(page.locator('article h1')).toContainText('ポジショニング')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['STP', '真っ向勝負', '差別化', '知覚マップ', '位置づけの文', '確かめられているかは']) await expect(art).toContainText(t)
+  await answer(page, ['真っ向勝負', '真っ向勝負', '差別化', '真っ向勝負', '差別化'], 0)
+  await answer(page, ['適切', '適切でない', '適切でない', '適切でない', '適切でない', '適切'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('OpenStax')
+})
+
+test('マーケティング-4: 指標と KPI、計算、CLV、教科書の計算の誤り、基準、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ma-4'))
+  await expect(page.locator('article h1')).toContainText('効果測定の考え方')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['KPI', '119,250', '215,250', '270,400', '20%', '62.5%', '教科書の計算の誤り']) await expect(art).toContainText(t)
+  await answer(page, ['指標', 'KPI', '指標', 'KPI'], 0)
+  await answer(page, ['適切', '適切でない', '適切でない', '適切', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('OpenStax')
+})
+
+test('講座の目次: マーケティングは、基礎と実践が公開され、応用が準備中', async ({ page }) => {
   await page.goto(go('/course/marketing'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 2 / 予定 6 レッスン')
+  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
   await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '序論:価値を届けるとは' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(4)
+  await expect(page.locator('.planned-item')).toHaveCount(2)
+  await expect(page.locator('.stage-card', { hasText: '実践:位置づけと効果測定' })).toBeVisible()
   await page.locator('.stage-card', { hasText: '序論:価値を届けるとは' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

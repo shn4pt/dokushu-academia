@@ -3639,5 +3639,43 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ma-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Marketing(CC BY-NC-SA 4.0)を、GitHub の原稿(openstax/osbooks-principles-marketing、2026-05-05 のコミット a6d7372)の CNXML から読みました。Product Positioning(m00032)と Ethical Concerns and Target Marketing(m00137)の本文です。Avis の損益の数字は、この節に出典がありません。知覚マップの得点の測り方は、本文にありません。各社の位置づけの文の例が、各社の実際の文かは確認していません。倫理の節の数字や事例(Facebook の提訴、米国心理学会、Subway など)は、教科書が外部から引いたもので、元の資料は読んでいません。『ポジショニングを点検する問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/ma-3.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Marketing(OpenStax、CC BY-NC-SA 4.0)、第 5 章 Market Segmentation, Targeting, and Positioning(ポジショニングと倫理の節)",
+        "url": "https://openstax.org/details/books/principles-marketing",
+        "how": "read",
+        "use": "STP、ポジショニングの定義、2 つの方法、位置づけの文、知覚マップ、ターゲット設定の倫理(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ma-4": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Marketing(CC BY-NC-SA 4.0)を、GitHub の原稿(openstax/osbooks-principles-marketing、2026-05-05 のコミット a6d7372)の CNXML から読みました。Marketing Plan Progress Using Metrics(m00018)、The Use of Metrics to Measure Advertising Campaign Effectiveness(m00091)、Metrics Used to Evaluate the Success of Online Marketing(m00107)の本文です。教科書の計算例を検算し、コンバージョン率(100,000 ÷ 500,000 は 20% で、教科書は 2.0% と書く)と相対市場シェア(5% ÷ 8% は 62.5% で、教科書は 66% と書く。競合の 150 万ドルが 8% というシェアとも食い違う)の 2 か所に誤りがあることを、元の CNXML の数式で確かめました。コンバージョン率の基準(2〜5%、10% 超)と直帰率の基準(40% 未満)は、教科書が出典と条件を示していません。教科書が引く外部の資料(ブログ、企業の事例)は読んでいません。『解釈の注意』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/ma-4.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Marketing(OpenStax、CC BY-NC-SA 4.0)、マーケティング計画、広告の効果、オンラインマーケティングの指標の節",
+        "url": "https://openstax.org/details/books/principles-marketing",
+        "how": "read",
+        "use": "指標と KPI、事業・売上・市場シェア・顧客満足・広告・オンラインの指標と計算、CLV(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }
