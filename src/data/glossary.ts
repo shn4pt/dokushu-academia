@@ -261,4 +261,9 @@ export const glossary: Term[] = [
   { term: 'Lewin の変革モデル', reading: "Lewin's change model", description: '解凍、変化、再凍結の 3 段階で変革を説明するモデル。', lessonId: 'mg-6' },
   { term: 'Kotter の変革モデル', reading: "Kotter's change model", description: '危機感を高める、推進連合、ビジョン、伝達、障害の除去、小さな成功、改善の定着、変革の定着の 8 段階。', lessonId: 'mg-6' },
   { term: 'Appreciative Inquiry', reading: 'appreciative inquiry', description: '強みや最高のときを探る対話で、組織の「語り」を変えて変革を起こす、豊かさに基づく手法(定義、発見、夢、設計、実現の 5D)。', lessonId: 'mg-6' },
+  { term: '財務会計と管理会計', reading: 'financial and managerial accounting', description: '財務会計は、組織の外の人も使う報告で、標準的な約束事に従う。管理会計は、組織の中の意思決定のための情報で、決まった約束事はない(教科書の整理)。', lessonId: 'ac-1' },
+  { term: '計算書類', reading: 'financial documents under the Companies Act', description: '会社法・会社計算規則が定める、貸借対照表、損益計算書、株主資本等変動計算書、個別注記表。', lessonId: 'ac-1' },
+  { term: '発生主義と現金主義', reading: 'accrual and cash basis', description: '発生主義は、取引が起きたときに記録する。現金主義は、現金を受け取ったとき、払ったときに記録する。', lessonId: 'ac-1' },
+  { term: '貸借対照表', reading: 'balance sheet', description: 'ある日の資産、負債、純資産を示す報告書。資産 = 負債 + 純資産。', lessonId: 'ac-2' },
+  { term: '損益計算書', reading: 'income statement', description: 'ある期間の成果を、売上総利益、営業利益、経常利益、税引前当期純利益、当期純利益の段階で示す報告書。', lessonId: 'ac-2' },
 ]

@@ -4003,5 +4003,61 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ac-1": {
+    "status": "verified",
+    "checkedAt": "2026-10-10",
+    "note": "法令の原文を、e-Gov 法令検索の API(laws.e-gov.go.jp/api/2)で読みました(2026-10-10)。会社法(平成 17 年法律第 86 号、法令 ID 417AC0000000086)の第 431・432・435 条と、会社計算規則(平成 18 年法務省令第 13 号、法令 ID 418M60000010013)の第 1・3・59 条です。会社法の現行の版は 2026-08-12 施行で、将来施行の 5 つの改正の版(2027-04-01、2027-07-22、2027-12-05、2028-06-13、2028-12-23)でも、第 431・432・435 条の文言が現行と同じであることを、版ごとの本文の比較で確認しました。会社計算規則の現行の版は 2025-03-31 施行で、将来施行の改正は見当たりませんでした。教科書は、OpenStax の Principles of Accounting, Volume 1(CC BY-NC-SA 4.0)の Role of Accounting in Society と Introduction to Financial Statements の本文を、GitHub の原稿(openstax/osbooks-principles-accounting-bundle、2026-04-23 のコミット 2165bf6)の CNXML から読みました。米国の基準(GAAP、FASB)を前提にしており、日本の制度の根拠にはしていません。『一般に公正妥当と認められる企業会計の慣行』の中身(各会計基準)、金融商品取引法の制度、キャッシュ・フロー計算書の作成の規定は、読んでいません。企業会計審議会・企業会計基準委員会のサイトは、取得できず(接続できない、または日本語 PDF の文字を取り出せない)、使っていません。『会計を見る前の問い』と、日米の計算書類の対応表は、このサービス独自の整理です。別のエージェントによる確認の結果は、docs/verify/ac-1.md にあります。個別の事案は扱わず、専門家に確認する線引きを本文に書きました。",
+    "sources": [
+      {
+        "title": "会社法(平成 17 年法律第 86 号)第 431 条、第 432 条、第 435 条(e-Gov 法令検索)",
+        "url": "https://laws.e-gov.go.jp/law/417AC0000000086",
+        "how": "read",
+        "use": "株式会社の会計の原則、会計帳簿の作成と保存、計算書類の作成と保存(条文の本文)"
+      },
+      {
+        "title": "会社計算規則(平成 18 年法務省令第 13 号)第 1 条、第 3 条、第 59 条(e-Gov 法令検索)",
+        "url": "https://laws.e-gov.go.jp/law/418M60000010013",
+        "how": "read",
+        "use": "会計慣行のしん酌、計算書類の範囲(条文の本文)"
+      },
+      {
+        "title": "Principles of Accounting, Volume 1: Financial Accounting(OpenStax、CC BY-NC-SA 4.0)、会計の役割と財務諸表の節",
+        "url": "https://openstax.org/details/books/principles-financial-accounting",
+        "how": "read",
+        "use": "会計の定義、財務会計と管理会計、財務諸表の概要、発生主義と現金主義(該当節の本文。米国の基準が前提)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ac-2": {
+    "status": "verified",
+    "checkedAt": "2026-10-10",
+    "note": "会社計算規則(平成 18 年法務省令第 13 号、法令 ID 418M60000010013)の第 5・6 条、第 73〜76 条、第 88〜94 条の本文を、e-Gov 法令検索の API で読みました(2026-10-10)。現行の版は 2025-03-31 施行で、将来施行の改正は見当たりませんでした。教科書は、OpenStax の Principles of Accounting, Volume 1(CC BY-NC-SA 4.0)の Introduction to Financial Statements(income statement、balance sheet、accounting equation の部分)を、GitHub の原稿(2026-04-23 のコミット 2165bf6)から読みました。米国の基準を前提としています。資産・負債の評価の例外の要件、減価償却の方法、連結、上場会社の開示制度、中小企業向けの扱い、税務上の利益、企業会計の基準の中身は、読んでいません。教科書の用語と日本の規則の区分の対応、架空の会社の数字(貸借対照表と損益計算書)、『数字を見る前の問い』は、このサービス独自の整理です。別のエージェントによる確認の結果は、docs/verify/ac-2.md にあります。個別の事案は扱わず、専門家に確認する線引きを本文に書きました。",
+    "sources": [
+      {
+        "title": "会社計算規則(平成 18 年法務省令第 13 号)第 5・6 条、第 73〜76 条、第 88〜94 条(e-Gov 法令検索)",
+        "url": "https://laws.e-gov.go.jp/law/418M60000010013",
+        "how": "read",
+        "use": "資産・負債の評価の原則、貸借対照表の区分、損益計算書の区分と 5 つの段階の利益(条文の本文)"
+      },
+      {
+        "title": "Principles of Accounting, Volume 1: Financial Accounting(OpenStax、CC BY-NC-SA 4.0)、財務諸表の節",
+        "url": "https://openstax.org/details/books/principles-financial-accounting",
+        "how": "read",
+        "use": "損益計算書、貸借対照表、会計等式の説明(該当節の本文。米国の基準が前提)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

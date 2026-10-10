@@ -294,7 +294,7 @@ export const courses: Course[] = [
     why: "お金の流れを読めると、事業の健康状態と、計画の現実味を、自分で判断できます。",
     summary: '財務諸表の読み方と、お金の流れの基礎。',
     tiers: [
-      { level: 'basic', scope: '会計の基礎', planned: ['序論:会計は何を伝えるか', '貸借対照表と損益計算書'] },
+      { level: 'basic', scope: '会計の基礎', stageIds: ['ac0'] },
       { level: 'practice', scope: '財務諸表の読み方', planned: ['キャッシュフローの見方', '原価と損益分岐'] },
       { level: 'advanced', scope: '経営への活用', planned: ['予算と実績の管理', '投資の評価'] },
     ],
