@@ -266,4 +266,10 @@ export const glossary: Term[] = [
   { term: '発生主義と現金主義', reading: 'accrual and cash basis', description: '発生主義は、取引が起きたときに記録する。現金主義は、現金を受け取ったとき、払ったときに記録する。', lessonId: 'ac-1' },
   { term: '貸借対照表', reading: 'balance sheet', description: 'ある日の資産、負債、純資産を示す報告書。資産 = 負債 + 純資産。', lessonId: 'ac-2' },
   { term: '損益計算書', reading: 'income statement', description: 'ある期間の成果を、売上総利益、営業利益、経常利益、税引前当期純利益、当期純利益の段階で示す報告書。', lessonId: 'ac-2' },
+  { term: 'キャッシュ・フロー計算書', reading: 'statement of cash flows', description: 'ある期間の現金及び現金同等物の動きを、営業活動、投資活動、財務活動に分けて示す報告書(財務諸表等規則第 112 条)。', lessonId: 'ac-3' },
+  { term: '現金及び現金同等物', reading: 'cash and cash equivalents', description: '現金と、容易に換金でき、価値の変動のリスクが低い短期的な投資(財務諸表等規則第 8 条)。', lessonId: 'ac-3' },
+  { term: '変動費と固定費', reading: 'variable and fixed costs', description: '変動費は量に比例して増える費用、固定費は関連する範囲で量が変わっても変わらない費用(教科書の整理)。', lessonId: 'ac-4' },
+  { term: '貢献利益', reading: 'contribution margin', description: '売上から変動費を引いた額。固定費を回収し、そのあとで利益になる分。', lessonId: 'ac-4' },
+  { term: '損益分岐点', reading: 'break-even point', description: '総費用と総収益が等しく、利益も損失も生じない販売量または売上高。販売量では、固定費 ÷ 1 個あたりの貢献利益。', lessonId: 'ac-4' },
+  { term: '安全余裕', reading: 'margin of safety', description: '現在の売上と、損益分岐点の売上の差。売上がどれだけ減っても赤字にならないかを示す。', lessonId: 'ac-4' },
 ]

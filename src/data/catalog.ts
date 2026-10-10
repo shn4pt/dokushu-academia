@@ -295,7 +295,7 @@ export const courses: Course[] = [
     summary: '財務諸表の読み方と、お金の流れの基礎。',
     tiers: [
       { level: 'basic', scope: '会計の基礎', stageIds: ['ac0'] },
-      { level: 'practice', scope: '財務諸表の読み方', planned: ['キャッシュフローの見方', '原価と損益分岐'] },
+      { level: 'practice', scope: '財務諸表の読み方', stageIds: ['ac1'] },
       { level: 'advanced', scope: '経営への活用', planned: ['予算と実績の管理', '投資の評価'] },
     ],
   },

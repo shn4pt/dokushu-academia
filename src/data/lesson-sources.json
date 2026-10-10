@@ -4059,5 +4059,55 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ac-3": {
+    "status": "verified",
+    "checkedAt": "2026-10-10",
+    "note": "財務諸表等の用語、様式及び作成方法に関する規則(財務諸表等規則。昭和 38 年大蔵省令第 59 号、法令 ID 338M50000040059)の第 1 条、第 8 条(第 18・19 項)、第 110〜119 条の本文を、e-Gov 法令検索の API(laws.e-gov.go.jp/api/2)で読みました(2026-10-10)。現行の版は 2026-08-07 施行で、版の一覧に、施行前の版はありません。教科書は、OpenStax の Principles of Accounting, Volume 1 の Statement of Cash Flows の章(目的、3 つの活動、間接法、フリー・キャッシュ・フローの比率)を、GitHub の原稿(openstax/osbooks-principles-accounting-bundle、2026-04-23 のコミット 2165bf6)の CNXML から読みました。米国の基準(GAAP、IFRS)を前提にしており、日本の制度の根拠にはしていません。教科書が使う Amazon などの数字は、確認していないので、使っていません。読んでいないもの: 自分の会社が規則の対象(財務諸表提出会社)にあたるか(第 111 条は読んだが、金融商品取引法の対象の範囲は読んでいない)、連結財務諸表規則、企業会計審議会の『連結キャッシュ・フロー計算書等の作成基準』(サイトに接続できず、日本語 PDF の文字を取り出せない)、法人税等の支払の表示。『規則の 2 つの方法と、教科書の直接法・間接法の対応』『架空の会社の数字』『見る前の問い』は、このサービス独自の整理です。別のエージェントによる確認の結果は、docs/verify/ac-3.md にあります。個別の事案は扱わず、専門家に確認する線引きを本文に書きました。",
+    "sources": [
+      {
+        "title": "財務諸表等の用語、様式及び作成方法に関する規則 第 1 条、第 8 条、第 110〜119 条(e-Gov 法令検索)",
+        "url": "https://laws.e-gov.go.jp/law/338M50000040059",
+        "how": "read",
+        "use": "キャッシュ・フロー、資金の定義、表示区分、営業活動の 2 つの表示方法、利息・配当金の記載方法、注記事項(条文の本文)"
+      },
+      {
+        "title": "Principles of Accounting, Volume 1: Financial Accounting(OpenStax、CC BY-NC-SA 4.0)、キャッシュ・フロー計算書の章",
+        "url": "https://openstax.org/details/books/principles-financial-accounting",
+        "how": "read",
+        "use": "目的、3 つの活動、間接法の説明、フリー・キャッシュ・フロー(該当節の本文。米国の基準が前提)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ac-4": {
+    "status": "verified",
+    "checkedAt": "2026-10-10",
+    "note": "教科書は、OpenStax の Principles of Accounting, Volume 2: Managerial Accounting(CC BY-NC-SA 4.0)の Cost-Volume-Profit Analysis の章(貢献利益、損益分岐点の計算、前提、安全余裕と営業レバレッジ)を、GitHub の原稿(openstax/osbooks-principles-accounting-bundle、2026-04-23 のコミット 2165bf6)の CNXML から読みました。式は図で、本文のテキストでは取り出せなかったので、本文の説明と数字の例から読み取りました。米国の管理会計の本で、日本の法令・基準ではありません。管理会計は、法令が形を定めていません。対比のため、会社計算規則(平成 18 年法務省令第 13 号)の第 88〜90 条の本文を、e-Gov 法令検索の API で読みました(2026-10-10。現行の版は 2025-03-31 施行、版の一覧に施行前の版なし)。読んでいないもの: 原価計算基準、変動費と固定費の分け方の実務、税務。『架空の会社の数字』『見る前の問い』『条文の区分の読み』は、このサービス独自の整理です。別のエージェントによる確認の結果は、docs/verify/ac-4.md にあります。個別の事案は扱わず、専門家に確認する線引きを本文に書きました。",
+    "sources": [
+      {
+        "title": "Principles of Accounting, Volume 2: Managerial Accounting(OpenStax、CC BY-NC-SA 4.0)、費用・数量・利益の分析の章",
+        "url": "https://openstax.org/details/books/principles-managerial-accounting",
+        "how": "read",
+        "use": "変動費と固定費、貢献利益、損益分岐点、前提、安全余裕、営業レバレッジ(該当節の本文。米国の本)"
+      },
+      {
+        "title": "会社計算規則 第 88〜90 条(e-Gov 法令検索)",
+        "url": "https://laws.e-gov.go.jp/law/418M60000010013",
+        "how": "read",
+        "use": "損益計算書の区分(売上原価、販売費及び一般管理費など)の対比(条文の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }
