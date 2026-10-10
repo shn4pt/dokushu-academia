@@ -284,4 +284,10 @@ export const glossary: Term[] = [
   { term: '戦略計画・戦術計画・業務計画', reading: 'strategic, tactical and operational planning', description: '戦略計画は経営陣が会社全体の方向を、戦術計画は事業部門の管理職が広い方針を、業務計画は現場の管理職が具体的な活動を決める。', lessonId: 'pl-2' },
   { term: 'SMART', reading: 'SMART goals', description: '具体的、測定できる、達成できる、関連がある、期限がある、という良い目標の特徴を表す枠組み。', lessonId: 'pl-2' },
   { term: 'BCG マトリクス', reading: 'BCG matrix', description: '複数の事業を持つ会社が、各事業の貢献を見る道具。スター、金のなる木、問題児、負け犬に分ける。単一の事業の会社には当てはまらない。', lessonId: 'pl-2' },
+  { term: '責任センター', reading: 'responsibility center', description: '管理職が責任を持つ範囲で分けた組織の単位。収益センター、費用センター、利益センター、投資センターの4種類(教科書の整理)。', lessonId: 'pl-3' },
+  { term: '目標の一致', reading: 'goal congruence', description: '会社の目標と管理職の目標をそろえること。管理できる範囲で評価することが原則とされる。', lessonId: 'pl-3' },
+  { term: 'ROI と残余利益', reading: 'ROI and residual income', description: 'ROI は利益を資産で割った収益率。残余利益は、最低の収益率を超えて稼いだ利益の額。', lessonId: 'pl-3' },
+  { term: 'バランスト・スコアカード', reading: 'balanced scorecard', description: '財務、顧客、内部業務、学習と成長の4つの視点で、財務と非財務、短期と長期の指標を組み合わせる方法。', lessonId: 'pl-3' },
+  { term: '事業ポートフォリオ', reading: 'business portfolio', description: '会社が持つ製品、サービス、事業単位の全体。', lessonId: 'pl-4' },
+  { term: '成長の4つの方向', reading: 'growth directions', description: '市場浸透、製品開発、市場開発、多角化(教科書の説明を、表に整理したもの)。', lessonId: 'pl-4' },
 ]

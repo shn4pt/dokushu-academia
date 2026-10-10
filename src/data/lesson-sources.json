@@ -4191,5 +4191,55 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "pl-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Accounting, Volume 2: Managerial Accounting(CC BY-NC-SA 4.0)の業績測定の章(Explain the Importance of Performance Measurement、Identify the Characteristics of an Effective Performance Measure、ROI・残余利益・EVA、Balanced Scorecard)を、GitHub の原稿(openstax/osbooks-principles-accounting-bundle、2026-04-23 のコミット 2165bf6)の CNXML から、本文を読みました。戦略から指標への展開の表は、Principles of Management の Measuring and Evaluating Strategic Performance(m70656)の本文です。式は図で、本文のテキストでは取り出せなかったので、例の数字と説明から読み取りました。米国の本で、日本の会社の評価制度は扱いません。『架空の事業部の数字』『目標の一致の例』『見る前の問い』は、このサービス独自の整理です。教科書の事例(Gearhead Outfitters など)の事実は確認していません。別のエージェントによる確認の結果は、docs/verify/pl-3.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Accounting, Volume 2: Managerial Accounting(OpenStax、CC BY-NC-SA 4.0)、業績測定の章",
+        "url": "https://openstax.org/details/books/principles-managerial-accounting",
+        "how": "read",
+        "use": "業績測定の重要性、良い指標の特徴、ROI・残余利益・EVA、バランスト・スコアカード(該当節の本文。米国の本)"
+      },
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、戦略の測定と評価の節 / 戦略の目的と階層の節",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "戦略から指標への展開の表、ベンチマーキング(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "pl-4": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Management(CC BY 4.0)の Strategic Objectives and Levels of Strategy(m70654。全社レベルの戦略、BCG マトリクス、3 つの大きな戦略)と、Principles of Marketing(CC BY-NC-SA 4.0)の The Role of Marketing in the Strategic Planning Process(事業ポートフォリオ、BCG マトリクス、成長の戦略、多角化の型)の本文を、GitHub の原稿(Management は 2026-06-11 のコミット f2b7496)の CNXML から読みました。BCG マトリクスの図は本文のテキストに含まれません。Principles of Marketing の本文は、スターと問題児の両方を『左上』と書いていて、位置の記述が合っていません。教科書の事例(Apple、Microsoft、Walmart、Ford、Harley-Davidson)の事実と数字は、確認していないので、使っていません。『成長の 4 つの方向』の表と、架空の会社の分類(境目の数字、相対シェア)は、このサービス独自の整理です。別のエージェントによる確認の結果は、docs/verify/pl-4.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、戦略の測定と評価の節 / 戦略の目的と階層の節",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "全社レベルの戦略、投資ポートフォリオのたとえ、BCG マトリクス、3 つの大きな戦略(該当節の本文)"
+      },
+      {
+        "title": "Principles of Marketing(OpenStax、CC BY-NC-SA 4.0)、戦略計画でのマーケティングの役割の節",
+        "url": "https://openstax.org/details/books/principles-marketing",
+        "how": "read",
+        "use": "事業ポートフォリオ、BCG マトリクス、成長の戦略、多角化の型(該当節の本文。図は取り出せていない)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }
