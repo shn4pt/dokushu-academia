@@ -217,4 +217,7 @@ export const glossary: Term[] = [
   { term: '望ましい困難', reading: 'desirable difficulties', description: '学習中は難しく感じるが、長期の保持と転移を高める条件(間隔、テスト、交互練習、条件を変える)。基礎知識がないと望ましくない困難になる(Bjork と Bjork)。', lessonId: 'ln-3' },
   { term: '実行意図', reading: 'implementation intention', description: 'いつ、どこで、どのように行動するかを決める「もし〜なら、〜する」の計画。', lessonId: 'ln-4' },
   { term: '心的対比', reading: 'mental contrasting', description: '望む未来を思い描いたあと、その実現を妨げる現実の障害を考える方法。実行意図と組み合わせたものが MCII。', lessonId: 'ln-4' },
+  { term: '意図的練習', reading: 'deliberate practice', description: '現在の成績を上げるために特別に設計された、構造化された、努力を要する活動。仕事や遊びとは区別される(Ericsson ら、1993)。', lessonId: 'ln-5' },
+  { term: '心理的安全', reading: 'psychological safety', description: 'チームは対人関係のリスクをとっても安全だという、メンバーに共有された信念(Edmondson、1999)。', lessonId: 'ln-6' },
+  { term: 'チームの学習行動', reading: 'team learning behavior', description: '質問をする、フィードバックを求める、試す、結果を振り返る、誤りや予想外の結果を話し合う、といった継続的な過程(Edmondson)。', lessonId: 'ln-6' },
 ]

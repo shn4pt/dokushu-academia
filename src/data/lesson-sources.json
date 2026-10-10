@@ -3551,5 +3551,55 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ln-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Ericsson ら(1993)の論文と、Wisniewski ら(2020)のメタ分析(Frontiers in Psychology、オープンアクセス)を、全文として読みました。表の数字は、論文の表によります。Macnamara ら(2014)のメタ分析は、要旨(Europe PMC)だけを読みました。この論文には 2018 年に訂正の通知があり、訂正の内容は確認していません。Hattie と Timperley(2007)、Kluger と DeNisi(1996)は、Wisniewski らが引いた結果で、元の論文は読んでいません。Ericsson らの研究は、音楽学生などの小さな群の相関で、才能と練習量の関係は扱っていません。Wisniewski らは、生徒・学生の学習を調べた研究を集めたものです。『仕事の学びに移すときの考え方』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/ln-5.md にあります。",
+    "sources": [
+      {
+        "title": "The Role of Deliberate Practice in the Acquisition of Expert Performance(Ericsson, Krampe, Tesch-Römer, Psychological Review, 1993)",
+        "url": "https://doi.org/10.1037/0033-295X.100.3.363",
+        "how": "read",
+        "use": "仕事・遊び・意図的練習の区別、意図的練習の特徴、研究1・2 の結果と限界(論文の全文)"
+      },
+      {
+        "title": "Deliberate practice and performance in music, games, sports, education, and professions: a meta-analysis(Macnamara, Hambrick, Oswald, Psychological Science, 2014)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/24986855",
+        "how": "search",
+        "use": "領域ごとの説明される分散の割合(要旨のみ)"
+      },
+      {
+        "title": "The Power of Feedback Revisited: A Meta-Analysis of Educational Feedback Research(Wisniewski, Zierer, Hattie, Frontiers in Psychology, 2020)",
+        "url": "https://doi.org/10.3389/fpsyg.2019.03087",
+        "how": "read",
+        "use": "全体の効果、フィードバックの種類・成果の種類による違い、限界(論文の全文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ln-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Edmondson(1999)の論文 Psychological Safety and Learning Behavior in Work Teams(Administrative Science Quarterly)を、PDF の全文(JSTOR の写し)として読みました。論文は、1 つの会社の 51 チームの横断的な質問紙調査と質的調査で、因果は示せず、概念の区別(信頼との違い)も決定的には示せなかったと、論文自身が述べます。論文以降の研究(追試、メタ分析、他の組織での検証)は、読んでいません。『チームの学びを点検する問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/ln-6.md にあります。",
+    "sources": [
+      {
+        "title": "Psychological Safety and Learning Behavior in Work Teams(Amy Edmondson, Administrative Science Quarterly, 1999)",
+        "url": "https://doi.org/10.2307/2666999",
+        "how": "read",
+        "use": "学習行動と心理的安全の定義、調査の方法、結果、限界(論文の全文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

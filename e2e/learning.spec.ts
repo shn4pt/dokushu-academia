@@ -56,13 +56,36 @@ test('学び方-4: 実行意図、MCII のメタ分析、出版バイアス、�
   await expect(page.locator('.source-note')).toContainText('Wang')
 })
 
-test('講座の目次: 学び方は、基礎と実践が公開され、応用が準備中', async ({ page }) => {
+test('学び方-5: 仕事と意図的練習、研究の結果と限界、領域による違い、フィードバックの種類、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ln-5'))
+  await expect(page.locator('article h1')).toContainText('経験から学ぶ')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['意図的練習', '7,410', '1% 未満', '0.99', '435 の研究', '要旨だけを読みました']) await expect(art).toContainText(t)
+  await answer(page, ['仕事', '意図的練習', '仕事', '意図的練習'], 0)
+  await answer(page, ['適切', '適切でない', '適切', '適切でない', '適切でない', '適切'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Ericsson')
+})
+
+test('学び方-6: 学習行動と心理的安全、51 チームの調査、結果、限界、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ln-6'))
+  await expect(page.locator('article h1')).toContainText('チームで学ぶ')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['心理的安全', '51 チーム', '.63', 'B = .60', '横断的', '言えないこと']) await expect(art).toContainText(t)
+  await answer(page, ['学習行動', '学習行動', '学習行動ではない', '学習行動ではない', '学習行動'], 0)
+  await answer(page, ['適切', '適切でない', '適切', '適切でない', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Edmondson')
+})
+
+test('講座の目次: 学び方は、基礎・実践・応用のすべてが公開済み', async ({ page }) => {
   await page.goto(go('/course/learning'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
-  await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
-  await expect(page.locator('.stage-card', { hasText: '序論:学び方にも根拠がある' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(2)
+  await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
+  await expect(page.locator('.stage-card', { hasText: '応用:仕事の中で学ぶ' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '実践:復習と習慣' })).toBeVisible()
-  await page.locator('.stage-card', { hasText: '序論:学び方にも根拠がある' }).click()
+  await expect(page.locator('.planned-item')).toHaveCount(0)
+  await page.locator('.stage-card', { hasText: '応用:仕事の中で学ぶ' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

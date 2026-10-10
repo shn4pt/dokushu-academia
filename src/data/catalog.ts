@@ -76,7 +76,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: '学ぶとはどういうことか', stageIds: ['ln0'] },
       { level: 'practice', scope: '効果的な学び方', stageIds: ['ln1'] },
-      { level: 'advanced', scope: '仕事の中での学び', planned: ['経験から学ぶ', 'チームで学ぶ'] },
+      { level: 'advanced', scope: '仕事の中での学び', stageIds: ['ln2'] },
     ],
   },
   {
@@ -351,7 +351,7 @@ export const writingPlan: { priority: Priority; title: string; reason: string; i
     priority: 2,
     title: '次',
     reason: 'プロダクトマネジメントの周辺と、学び方です。最優先の講座(プロダクトマネジメントとその前提)が揃ったので、顧客・人・お金の理解を広げます。',
-    ids: ['learning', 'marketing', 'behavior', 'management', 'accounting', 'planning'],
+    ids: ['marketing', 'behavior', 'management', 'accounting', 'planning'],
   },
   {
     priority: 3,
