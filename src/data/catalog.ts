@@ -200,7 +200,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: 'マーケティングの基本概念', stageIds: ['mk0'] },
       { level: 'practice', scope: '施策の設計と効果測定', stageIds: ['mk1'] },
-      { level: 'advanced', scope: 'ブランドと長期の成長', planned: ['ブランドの考え方', '成長の指標'] },
+      { level: 'advanced', scope: 'ブランドと長期の成長', stageIds: ['mk2'] },
     ],
   },
   {
@@ -351,7 +351,7 @@ export const writingPlan: { priority: Priority; title: string; reason: string; i
     priority: 2,
     title: '次',
     reason: 'プロダクトマネジメントの周辺と、学び方です。最優先の講座(プロダクトマネジメントとその前提)が揃ったので、顧客・人・お金の理解を広げます。',
-    ids: ['marketing', 'behavior', 'management', 'accounting', 'planning'],
+    ids: ['behavior', 'management', 'accounting', 'planning'],
   },
   {
     priority: 3,

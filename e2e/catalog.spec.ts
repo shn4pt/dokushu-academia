@@ -232,7 +232,7 @@ test('執筆の優先度と状況: 講座一覧と、講座の目次に表示さ
 
   await page.goto(go('/course/pm'))
   await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
-  await page.goto(go('/course/marketing'))
+  await page.goto(go('/course/behavior'))
   await expect(page.getByTestId('writing-status')).toContainText('次')
   await page.goto(go('/course/evidence'))
   await expect(page.getByTestId('writing-status')).toContainText('本文 5 / 予定 5 レッスン')

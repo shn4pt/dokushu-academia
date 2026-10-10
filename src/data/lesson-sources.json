@@ -3677,5 +3677,43 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ma-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Marketing(CC BY-NC-SA 4.0)を、GitHub の原稿(openstax/osbooks-principles-marketing、2026-05-05 のコミット a6d7372)の CNXML から読みました。Branding and Brand Development(m00058)と Forms of Brand Development, Brand Loyalty, and Brand Metrics(m00059)の本文です。価値観によるポジショニングが『最も堅固』、ブランドの選好が売上を『最も正確に予測』は、教科書が根拠を示していない主張です。Keller のモデル、McKinsey の調査(45%)は、教科書が引いた結果で、元の資料は読んでいません。サンドイッチ店の利益率の計算は教科書の例で、売上を 5.50 ドルにした場合の値(約 36%、約 14%)は、このサービスの検算です。『ブランドを点検する問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/ma-5.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Marketing(OpenStax、CC BY-NC-SA 4.0)、第 7 章 Products: Consumer Offerings(ブランドの節)",
+        "url": "https://openstax.org/details/books/principles-marketing",
+        "how": "read",
+        "use": "ブランド、ブランド資産、Keller のモデル、ポジショニングの型、所有の形、ブランドの広げ方、忠誠、測り方、利益率(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ma-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Marketing(CC BY-NC-SA 4.0)を、GitHub の原稿(openstax/osbooks-principles-marketing、2026-05-05 のコミット a6d7372)の CNXML から読みました。The Product Life Cycle(m00056)、Marketing Strategies at Each Stage of the Product Life Cycle(m00057)、The Use of Metrics in Evaluating New Products(m00066)、Stages in the Consumer Adoption Process for New Products(m00068)の本文です。採用者の分類ごとの収入・学歴の傾向、Tesla などの企業の戦略の記述は、教科書が根拠を示していない、または外部から引いたものです。Rogers の原著は読んでいません。ROI の例(400%)は計算が合っていますが、『売上』を使っており、利益ではありません。『成長を点検する問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/ma-6.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Marketing(OpenStax、CC BY-NC-SA 4.0)、製品ライフサイクル、新製品の指標、採用の過程の節",
+        "url": "https://openstax.org/details/books/principles-marketing",
+        "how": "read",
+        "use": "製品ライフサイクルと戦略、新製品の指標、採用の 5 段階、革新の特徴、採用者の分類(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

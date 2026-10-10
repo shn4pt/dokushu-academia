@@ -232,4 +232,7 @@ export const glossary: Term[] = [
   { term: 'KPI(重要業績評価指標)', reading: 'key performance indicator', description: '事業の目標に直結し、目標値と期限をもつ指標。特定の過程の成績を測る指標(metrics)とは区別される(教科書)。', lessonId: 'ma-4' },
   { term: '顧客生涯価値(CLV)', reading: 'customer lifetime value', description: '1 人の顧客が顧客でいる期間にもたらす価値の見積り。年間利益 × 年数 − 獲得費用(教科書の簡単な式)。', lessonId: 'ma-4' },
   { term: '広告費用対効果(ROAS)', reading: 'return on ad spend', description: '売上 ÷ 広告費。利益ではなく売上で計算する。', lessonId: 'ma-4' },
+  { term: 'ブランド資産', reading: 'brand equity', description: '同様の代替品に対して、そのブランドが持つ追加の価値。同じような製品に、ブランドのためにより多く払う差(教科書)。', lessonId: 'ma-5' },
+  { term: '製品ライフサイクル', reading: 'product life cycle', description: '製品の売上と収益の推移を、導入・成長・成熟・衰退の段階で示すモデル。すべての製品がすべての段階を順に通るとは限らない(教科書)。', lessonId: 'ma-6' },
+  { term: '採用の過程(普及の理論)', reading: 'consumer adoption process / diffusion of innovation', description: '認知・関心・評価・試用・採用の 5 段階と、革新の 5 つの特徴、採用者の 5 分類(教科書、Rogers)。', lessonId: 'ma-6' },
 ]

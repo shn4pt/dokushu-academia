@@ -56,13 +56,36 @@ test('マーケティング-4: 指標と KPI、計算、CLV、教科書の計算
   await expect(page.locator('.source-note')).toContainText('OpenStax')
 })
 
-test('講座の目次: マーケティングは、基礎と実践が公開され、応用が準備中', async ({ page }) => {
+test('マーケティング-5: ブランド資産、Keller のモデル、型、忠誠、測り方、利益率の計算、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ma-5'))
+  await expect(page.locator('article h1')).toContainText('ブランドの考え方')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['ブランド資産', 'Keller', '共鳴', '44%', '24%', '約 36%', '根拠を示していない']) await expect(art).toContainText(t)
+  await answer(page, ['属性', '便益', '価値観'], 0)
+  await answer(page, ['適切', '適切でない', '適切でない', '適切', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('OpenStax')
+})
+
+test('マーケティング-6: 製品ライフサイクル、採用の過程、新製品の指標、ROI の前提、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/ma-6'))
+  await expect(page.locator('article h1')).toContainText('成長の指標')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['製品ライフサイクル', '分割可能性', '400%', 'Rogers', '利益ではありません']) await expect(art).toContainText(t)
+  await answer(page, ['導入', '成長', '成熟', '衰退'], 0)
+  await answer(page, ['適切でない', '適切', '適切でない', '適切でない', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('OpenStax')
+})
+
+test('講座の目次: マーケティングは、基礎・実践・応用のすべてが公開済み', async ({ page }) => {
   await page.goto(go('/course/marketing'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
-  await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
-  await expect(page.locator('.stage-card', { hasText: '序論:価値を届けるとは' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(2)
+  await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
+  await expect(page.locator('.stage-card', { hasText: '応用:ブランドと成長' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '実践:位置づけと効果測定' })).toBeVisible()
-  await page.locator('.stage-card', { hasText: '序論:価値を届けるとは' }).click()
+  await expect(page.locator('.planned-item')).toHaveCount(0)
+  await page.locator('.stage-card', { hasText: '応用:ブランドと成長' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })
