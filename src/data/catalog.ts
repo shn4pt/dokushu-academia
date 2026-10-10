@@ -198,7 +198,7 @@ export const courses: Course[] = [
     },
     summary: '顧客の理解、価値の伝え方、施策の効果の見方。',
     tiers: [
-      { level: 'basic', scope: 'マーケティングの基本概念', planned: ['序論:価値を届けるとは', '市場とセグメント'] },
+      { level: 'basic', scope: 'マーケティングの基本概念', stageIds: ['mk0'] },
       { level: 'practice', scope: '施策の設計と効果測定', planned: ['ポジショニング', '効果測定の考え方'] },
       { level: 'advanced', scope: 'ブランドと長期の成長', planned: ['ブランドの考え方', '成長の指標'] },
     ],

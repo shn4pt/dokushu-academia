@@ -3601,5 +3601,43 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ma-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Marketing(CC BY-NC-SA 4.0)を、GitHub の原稿(openstax/osbooks-principles-marketing、2026-05-05 のコミット a6d7372)の CNXML から読みました。第 1 章の、Marketing and the Marketing Process(m00007)、The Marketing Mix and the 4Ps(m00008)、Evolution of the Marketing Concept(m00010)、Determining Consumer Needs and Wants(m00011)、Customer Relationship Management(m00012)の本文です。教科書は、定義、枠組み、説明用の例を整理したもので、枠組みの効果を示す研究ではありません。教科書が引く外部の資料(AMA の定義、Levitt の著書、ブログ記事)は読んでいません。CRM の 84%・66% は教科書が引くブログ記事の数字で、方法は書かれていません。時代区分は教科書の簡略な整理です。『言えること、言えないこと』は、このサービスの整理です。別のエージェントによる事実確認の結果は、docs/verify/ma-1.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Marketing(OpenStax、CC BY-NC-SA 4.0)、第 1 章 Marketing and Customer Value",
+        "url": "https://openstax.org/details/books/principles-marketing",
+        "how": "read",
+        "use": "マーケティングの定義、価値、5 段階の過程、4P、5 つの志向、顧客の必要の 5 種類、CRM(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ma-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Marketing(CC BY-NC-SA 4.0)を、GitHub の原稿(openstax/osbooks-principles-marketing、2026-05-05 のコミット a6d7372)の CNXML から読みました。Market Segmentation and Consumer Markets(m00027)、Segmentation of B2B Markets(m00028)、Essential Factors in Effective Market Segmentation(m00030)、Selecting Target Markets(m00031)と、第 1 章の m00007 の、セグメント化と多様性の記述の本文です。教科書が根拠を示していない主張(80:20、性格と購買の関連、毎日の広告数、Mailchimp の 14.3%、ADAMS の有効性)は、本文でそう明記しました。教科書が引く外部の資料(ブログ、Forbes、VALS の元の資料)は読んでいません。教科書の例は説明用です。『市場を分けるときの問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/ma-2.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Marketing(OpenStax、CC BY-NC-SA 4.0)、第 5 章 Market Segmentation, Targeting, and Positioning(セグメント化と目標市場の節)",
+        "url": "https://openstax.org/details/books/principles-marketing",
+        "how": "read",
+        "use": "セグメント化の定義と利点、消費者市場の 4 つの軸、B2B の分け方、ADAMS、目標市場、ペルソナ、4 つの戦略(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

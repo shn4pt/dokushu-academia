@@ -220,4 +220,10 @@ export const glossary: Term[] = [
   { term: '意図的練習', reading: 'deliberate practice', description: '現在の成績を上げるために特別に設計された、構造化された、努力を要する活動。仕事や遊びとは区別される(Ericsson ら、1993)。', lessonId: 'ln-5' },
   { term: '心理的安全', reading: 'psychological safety', description: 'チームは対人関係のリスクをとっても安全だという、メンバーに共有された信念(Edmondson、1999)。', lessonId: 'ln-6' },
   { term: 'チームの学習行動', reading: 'team learning behavior', description: '質問をする、フィードバックを求める、試す、結果を振り返る、誤りや予想外の結果を話し合う、といった継続的な過程(Edmondson)。', lessonId: 'ln-6' },
+  { term: 'マーケティング・ミックス(4P)', reading: 'marketing mix', description: '製品(product)、価格(price)、場所(place)、販促(promotion)。企業が市場で使える戦術の組み合わせ(OpenStax の教科書)。', lessonId: 'ma-1' },
+  { term: '価値提案', reading: 'value proposition', description: '顧客が欲しいものと、自社が競合よりよく満たす方法を、簡潔にまとめた価値の約束。', lessonId: 'ma-1' },
+  { term: '顧客資産', reading: 'customer equity', description: '現在と将来の顧客から会社が得る見込みの利益の合計。CRM の中心的な指標(教科書)。', lessonId: 'ma-1' },
+  { term: 'セグメント化', reading: 'market segmentation', description: '市場を、共通の必要をもち、同じような施策に同じように反応すると見込まれる小さな集団に分けること。', lessonId: 'ma-2' },
+  { term: 'ADAMS', reading: 'ADAMS', description: '良いセグメントの 5 つの基準。到達でき、区別でき、行動に移せ、測れ、十分な大きさ(教科書)。', lessonId: 'ma-2' },
+  { term: 'ペルソナ(バイヤー・ペルソナ)', reading: 'buyer persona', description: '理想の顧客の半架空の像。名前、年齢、関心、メディアの利用などを含む(教科書)。', lessonId: 'ma-2' },
 ]
