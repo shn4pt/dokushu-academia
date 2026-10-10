@@ -278,4 +278,10 @@ export const glossary: Term[] = [
   { term: '回収期間', reading: 'payback period', description: '最初の投資額を、毎年の純キャッシュ・フローで取り戻すのにかかる年数。時間価値を考えず、回収後も見ない。', lessonId: 'ac-6' },
   { term: '正味現在価値(NPV)', reading: 'net present value', description: '将来のキャッシュ・フローを必要な収益率で現在価値に直した合計から、最初の投資額を引いた額。', lessonId: 'ac-6' },
   { term: '内部収益率(IRR)', reading: 'internal rate of return', description: '正味現在価値がちょうどゼロになる収益率。必要な収益率や借入の費用と比べる。', lessonId: 'ac-6' },
+  { term: '計画の種類', reading: 'types of plans', description: '階層(戦略・管理・業務)、使用頻度(常設・単発)、期間、範囲、不測の事態への備え、の観点で分けられる(教科書の整理)。', lessonId: 'pl-1' },
+  { term: '目標型の計画と領域型の計画', reading: 'goal planning and domain planning', description: '目標型は具体的な目標を立ててから行動を考える。領域型はある方向に進み、個別の目標は進みながら絞る。両方を組み合わせるのがハイブリッド型。', lessonId: 'pl-1' },
+  { term: 'Deming サイクル', reading: 'Deming (Shewhart) cycle', description: '計画、実行、確認、改善を繰り返し、学習を計画に組み込む考え方。', lessonId: 'pl-1' },
+  { term: '戦略計画・戦術計画・業務計画', reading: 'strategic, tactical and operational planning', description: '戦略計画は経営陣が会社全体の方向を、戦術計画は事業部門の管理職が広い方針を、業務計画は現場の管理職が具体的な活動を決める。', lessonId: 'pl-2' },
+  { term: 'SMART', reading: 'SMART goals', description: '具体的、測定できる、達成できる、関連がある、期限がある、という良い目標の特徴を表す枠組み。', lessonId: 'pl-2' },
+  { term: 'BCG マトリクス', reading: 'BCG matrix', description: '複数の事業を持つ会社が、各事業の貢献を見る道具。スター、金のなる木、問題児、負け犬に分ける。単一の事業の会社には当てはまらない。', lessonId: 'pl-2' },
 ]

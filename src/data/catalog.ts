@@ -225,7 +225,7 @@ export const courses: Course[] = [
     },
     summary: '計画、予算、経営指標と、事業の意思決定の支え方。',
     tiers: [
-      { level: 'basic', scope: '経営企画の役割', planned: ['序論:経営企画の仕事', '中期計画と予算'] },
+      { level: 'basic', scope: '経営企画の役割', stageIds: ['pl0'] },
       { level: 'practice', scope: '指標と分析', planned: ['経営指標の設計', '事業ポートフォリオ'] },
       { level: 'advanced', scope: '全社の意思決定', planned: ['M&A と提携の考え方', '資本政策の基礎'] },
     ],

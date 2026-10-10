@@ -4153,5 +4153,43 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "pl-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Management(CC BY 4.0)の The Planning Process(m70705)、Types of Plans(m70706)、Formal Organizational Planning in Practice(m70708)を、GitHub の原稿(openstax/osbooks-principles-of-management-bundle、2026-06-11 のコミット f2b7496)の CNXML から、本文を読みました。教科書は、Koontz と O'Donnell(1972)、Smith ら(1986。脚注では公刊されていない原稿)、Reitz と Jewell(1985)、Bowman(1976)、Wood と LaForge(1979)などを引いています。これらの原典は読んでいません。計画の普及率(8.3%、83% など)は 1985 年の教科書の引用で、今日の数字ではなく、米国の数字です。『計画をする企業のほうが成果がよい』は 1970 年代の研究で、教科書は証拠は多くないと断っており、因果とは述べていません。日本の会社の経営企画部の仕事は述べていません。『問い』は、このサービス独自の整理です。別のエージェントによる確認の結果は、docs/verify/pl-1.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、計画の過程、計画の種類、実際の組織の計画の各節",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "計画の種類、5 つのステップ、目標型・領域型、Deming サイクル、計画の普及、計画と成果の研究、計画の専門家(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "pl-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Management(CC BY 4.0)の Strategic Objectives and Levels of Strategy(m70654)、Planning Firm Actions to Implement Strategies(m70655)、Measuring and Evaluating Strategic Performance(m70656)、Types of Plans(m70706)を、GitHub の原稿(2026-06-11 のコミット f2b7496)の CNXML から、本文を読みました。会計-5 の予算は、OpenStax の Managerial Accounting の本文を読んだものです。『中期計画』という言葉は、教科書の戦略の章に出てきません。『中期計画から予算への展開』の表、架空の会社の数字(10 億円を 3 年で 25% 増)、年平均の伸び率の計算は、このサービス独自の整理です。教科書の事例(Tesla、Disney、Walmart など)の事実は、確認していません。教科書が引く文献の原典は読んでいません。別のエージェントによる確認の結果は、docs/verify/pl-2.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、戦略の目的と階層、戦略を実行する計画、測定と評価の各節",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "戦略の目的、事業レベルと全社レベルの戦略、BCG マトリクス、計画の 3 つの階層、SMART、測定と評価(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }
