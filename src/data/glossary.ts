@@ -208,4 +208,8 @@ export const glossary: Term[] = [
   { term: 'プロダクト戦略', reading: 'product strategy', description: '定義は書き手で違う。Cagan(2020)は、会社の必要を満たしながらビジョンを現実にする取り組み方で、どの問題を解くかを選ぶもの。Cagan(2008)は、2〜5 年先のビジョンを描いたもの。', lessonId: 'pm-6' },
   { term: 'HiPPO', reading: 'highest paid person\'s opinion', description: '最も高い報酬の人の意見。意見の戦いでは、上位の人の意見が通る力学(Torres)。', lessonId: 'pm-7' },
   { term: '利害関係者', reading: 'stakeholder', description: 'プロダクトの判断に影響を与える、または影響を受ける人。拒否権をもつ人と、意見を言える人がいる(Torres)。', lessonId: 'pm-7' },
+  { term: '成績と学習', reading: 'performance vs learning', description: '成績は練習中に観察できるその場の出来、学習は知識や理解のある程度恒久的な変化で、推測するしかない。成績は学習の当てにならない指標になりうる(Bjork と Bjork)。', lessonId: 'ln-1' },
+  { term: '学習スタイル', reading: 'learning styles', description: '人によって効果的な教え方が違うという考え。学習者の好みに合わせて教えると成果が上がる、という仮説の証拠は十分でない(Pashler ら、2008)。', lessonId: 'ln-1' },
+  { term: '節約率', reading: 'savings', description: 'Ebbinghaus の指標。覚え直しで、最初の学習に比べて節約できた時間の割合。覚えている割合とは違う。', lessonId: 'ln-2' },
+  { term: '忘却曲線', reading: 'forgetting curve', description: '学んでからの時間と保持の関係。Ebbinghaus の結果は追試で似た形に再現されたが、被験者は少なく、材料は無意味綴りである(Murre と Dros、2015)。', lessonId: 'ln-2' },
 ]

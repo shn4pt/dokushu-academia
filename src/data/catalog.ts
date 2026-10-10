@@ -74,7 +74,7 @@ export const courses: Course[] = [
     why: "限られた隙間時間を、何に、どう使うかを選べるようになるためです。忘れ方と続け方のしくみを知ると、学び方を自分で組み立て直せます。",
     summary: '大人の学び方、記憶と習慣、続けるための工夫。学習科学の知見にもとづく。',
     tiers: [
-      { level: 'basic', scope: '学ぶとはどういうことか', planned: ['序論:なぜ学び直すのか', '記憶と忘却のしくみ'] },
+      { level: 'basic', scope: '学ぶとはどういうことか', stageIds: ['ln0'] },
       { level: 'practice', scope: '効果的な学び方', planned: ['復習の間隔と、思い出す練習', '習慣にして続ける'] },
       { level: 'advanced', scope: '仕事の中での学び', planned: ['経験から学ぶ', 'チームで学ぶ'] },
     ],

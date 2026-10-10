@@ -3427,5 +3427,61 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "ln-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Bjork と Bjork の章(Psychology and the Real World 第 5 章)と、Roediger と Karpicke(2006)の論文を、PDF の全文として読みました。Pashler ら(2008)と Dunlosky ら(2013)の論文は、要旨(Europe PMC)だけを読みました。本文の細部や、他の学習方法の評価の根拠は確かめていません。Bjork と Bjork の章は、研究者の解説で、実験の直接の報告ではありません。研究の多くは大学生が対象で、社会人が仕事で学ぶ場面に当てはまるかは確かめていません。『この講座の使い方』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/ln-1.md にあります。",
+    "sources": [
+      {
+        "title": "Making Things Hard on Yourself, But in a Good Way: Creating Desirable Difficulties to Enhance Learning(Bjork & Bjork, Psychology and the Real World 第 5 章)",
+        "url": "https://bjorklab.psych.ucla.edu/wp-content/uploads/sites/13/2016/04/EBjork_RBjork_2011.pdf",
+        "how": "read",
+        "use": "学習と成績の区別、主観的な印象のずれ(章の全文)"
+      },
+      {
+        "title": "Test-Enhanced Learning: Taking Memory Tests Improves Long-Term Retention(Roediger & Karpicke, Psychological Science, 2006)",
+        "url": "https://doi.org/10.1111/j.1467-9280.2006.01693.x",
+        "how": "read",
+        "use": "実験 2 の条件、自信の評定、1 週間後の再生(論文の全文)"
+      },
+      {
+        "title": "Learning Styles: Concepts and Evidence(Pashler, McDaniel, Rohrer, Bjork, Psychological Science in the Public Interest, 2008)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26162104",
+        "how": "search",
+        "use": "かみ合わせ仮説と、検証に要る実験、結論(要旨のみ)"
+      },
+      {
+        "title": "Improving Students' Learning With Effective Learning Techniques(Dunlosky, Rawson, Marsh, Nathan, Willingham, Psychological Science in the Public Interest, 2013)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26173288",
+        "how": "search",
+        "use": "10 の学習方法の有用性の評価(要旨のみ)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "ln-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Murre と Dros(2015)の論文 Replication and Analysis of Ebbinghaus' Forgetting Curve(PLoS ONE、オープンアクセス)を、全文として読みました。表の数字は、論文の表 3 によります。論文は、1 人の被験者による追試で、過去の追試のデータを比較するものです。被験者は Ebbinghaus と追試の 3 人の計 4 人で、材料は無意味綴りです。心理学-3 の教科書の記述との対応づけと、『学び方への示唆』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/ln-2.md にあります。",
+    "sources": [
+      {
+        "title": "Replication and Analysis of Ebbinghaus' Forgetting Curve(Murre & Dros, PLoS ONE, 2015)",
+        "url": "https://doi.org/10.1371/journal.pone.0120644",
+        "how": "read",
+        "use": "節約率、追試の方法と結果、正答率との違い、位置による違い、24 時間後のジャンプ(論文の全文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }
