@@ -3965,5 +3965,43 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "mg-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Management(CC BY 4.0)の Organizational Structures and Design(m70658)、Organizational Designs and Structures(m70624)、The Internal Organization and External Environments(m70728)の本文を、GitHub の原稿(openstax/osbooks-principles-of-management-bundle、2026-06-11 のコミット f2b7496)の CNXML から読みました。教科書は、Weber、Burns と Stalker、Daft、Anand と Daft、Katz と Kahn、Deloitte の調査、各種のサイトや分析記事を引いています。これらの原典は読んでいません。構造どうしの成果を比べた結果は、本文で報告されていません(引用先に含まれるかは確認していません)。6 つの型の節の出典は学術系と実務家向けが混在し、個々の記述の出典は分かりません。官僚制の 5 つの要素が Weber 自身の列挙かどうかは確認していません。Amazon などの事例は 2018 年前後の記述で、現在の姿とは限りません。『組織の形を考える前の問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/mg-5.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、組織構造と設計の節、組織の設計と構造の節、内部の組織と外部の環境の節",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "公式・非公式の組織、官僚制の 5 つの要素、機械的・有機的、6 つの構造の型、オープンシステム、7S(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "mg-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "OpenStax の Principles of Management(CC BY 4.0)の Organizational Change(m70659)と Managing Change(m70660)の本文を、GitHub の原稿(openstax/osbooks-principles-of-management-bundle、2026-06-11 のコミット f2b7496)の CNXML から読みました。教科書は、Lewin、Kotter、Cooperrider、Olson と Eoyang、Quinn、Brown と Eisenhardt、Kotter と Schlesinger などを引いています。これらの原典は読んでいません。モデルの成功率や比較の研究は本文にありません。事例の囲み記事(NHL)の事実は確認していません。『変革を始める前の問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/mg-6.md にあります。",
+    "sources": [
+      {
+        "title": "Principles of Management(OpenStax、CC BY 4.0)、組織の変革の節と変革の管理の節",
+        "url": "https://openstax.org/details/books/principles-management",
+        "how": "read",
+        "use": "変革の種類と次元、成長段階、変革の 3 つの問い、Lewin・Kotter・AI・CAS の 4 モデル(該当節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

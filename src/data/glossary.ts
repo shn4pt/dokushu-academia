@@ -255,4 +255,10 @@ export const glossary: Term[] = [
   { term: '限定合理性', reading: 'bounded rationality', description: '複雑な問題では、すべての選択肢と結果を把握できず、完全には合理的に決められないという考え。', lessonId: 'mg-4' },
   { term: 'コミットメントのエスカレーション', reading: 'escalation of commitment', description: '悪い判断だと分かっても、そのまま続けてしまう傾向。', lessonId: 'mg-4' },
   { term: '集団浅慮', reading: 'groupthink', description: '実質的な議論なしに、集団がすぐ合意に達する傾向(教科書の定義)。', lessonId: 'mg-4' },
+  { term: '公式の組織と非公式の組織', reading: 'formal and informal organization', description: '公式は、定められた関係と責任(組織図)。非公式は、日々の関係から自然に生まれる人間関係の網で、組織図とは違う形になることが多い。', lessonId: 'mg-5' },
+  { term: '機械的な構造と有機的な構造', reading: 'mechanistic and organic structures', description: '機械的は、階層が高く、公式化・集権化が強い形で、安定した環境に向く。有機的は、平らで分権的な形で、不安定で変化の速い環境に向く(教科書の整理)。', lessonId: 'mg-5' },
+  { term: 'マトリクス構造', reading: 'matrix structure', description: '機能別の縦の線と、製品やプロジェクトの横の線を組み合わせ、二重の報告関係を持つ構造。', lessonId: 'mg-5' },
+  { term: 'Lewin の変革モデル', reading: "Lewin's change model", description: '解凍、変化、再凍結の 3 段階で変革を説明するモデル。', lessonId: 'mg-6' },
+  { term: 'Kotter の変革モデル', reading: "Kotter's change model", description: '危機感を高める、推進連合、ビジョン、伝達、障害の除去、小さな成功、改善の定着、変革の定着の 8 段階。', lessonId: 'mg-6' },
+  { term: 'Appreciative Inquiry', reading: 'appreciative inquiry', description: '強みや最高のときを探る対話で、組織の「語り」を変えて変革を起こす、豊かさに基づく手法(定義、発見、夢、設計、実現の 5D)。', lessonId: 'mg-6' },
 ]

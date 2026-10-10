@@ -265,7 +265,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: 'マネジメントの基本', stageIds: ['mg0'] },
       { level: 'practice', scope: 'チームの運営', stageIds: ['mg1'] },
-      { level: 'advanced', scope: '組織の設計と変革', planned: ['組織構造', '変革の進め方'] },
+      { level: 'advanced', scope: '組織の設計と変革', stageIds: ['mg2'] },
     ],
   },
   // ── バックオフィス・法令(全体像と考え方に限る) ──
@@ -351,7 +351,7 @@ export const writingPlan: { priority: Priority; title: string; reason: string; i
     priority: 2,
     title: '次',
     reason: 'プロダクトマネジメントの周辺と、学び方です。最優先の講座(プロダクトマネジメントとその前提)が揃ったので、顧客・人・お金の理解を広げます。',
-    ids: ['management', 'accounting', 'planning'],
+    ids: ['accounting', 'planning'],
   },
   {
     priority: 3,

@@ -1,6 +1,6 @@
 import { go, expect, test } from './fixtures'
 
-// マネジメントの序論・実践(マネジメント-1〜4)の画面。
+// マネジメントの序論・実践(マネジメント-1〜6)の画面。
 async function answer(page: import('@playwright/test').Page, answers: string[], index: number) {
   const ex = page.locator('.demo').filter({ has: page.getByRole('button', { name: '答え合わせ' }) }).nth(index)
   for (let i = 0; i < answers.length; i++) await ex.locator('.task-row').nth(i).getByRole('button', { name: answers[i], exact: true }).click()
@@ -56,12 +56,37 @@ test('マネジメント-4: 意思決定の壁、6 つのステップ、集団�
   await expect(page.locator('.source-note')).toContainText('Principles of Management')
 })
 
-test('講座の目次: マネジメントは、基礎・実践が公開され、応用が準備中', async ({ page }) => {
+test('マネジメント-5: 公式と非公式、機械的と有機的、6 つの構造の型、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/mg-5'))
+  await expect(page.locator('article h1')).toContainText('組織の形は、どう選ぶのか')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['非公式の組織', '管理の幅', '機械的', '有機的', 'マトリクス', 'サイロ', 'Weber 自身の列挙かどうかは確認していません']) await expect(art).toContainText(t)
+  await answer(page, ['機械的', '有機的', '機械的', '有機的'], 0)
+  await answer(page, ['機能別', 'マトリクス', 'バーチャル'], 1)
+  await answer(page, ['適切でない', '適切でない', '適切でない', '適切', '適切', '適切でない'], 2)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Principles of Management')
+})
+
+test('マネジメント-6: 変革の種類と次元、成長段階、3 つの問い、4 つのモデル、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/mg-6'))
+  await expect(page.locator('article h1')).toContainText('変革の進め方')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['文化の変革', 'Lewin', 'Kotter', 'Appreciative Inquiry', '複雑適応系', '成功率']) await expect(art).toContainText(t)
+  await answer(page, ['Lewin', 'Kotter', 'Appreciative Inquiry', '複雑適応系(CAS)'], 0)
+  await answer(page, ['適切', '適切でない', '適切', '適切', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Principles of Management')
+})
+
+test('講座の目次: マネジメントは、基礎・実践・応用のすべてが公開済み', async ({ page }) => {
   await page.goto(go('/course/management'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
-  await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
-  await expect(page.locator('.stage-card', { hasText: '序論:マネジメントと目標' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(2)
-  await page.locator('.stage-card', { hasText: '序論:マネジメントと目標' }).click()
+  await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
+  await expect(page.locator('.stage-card', { hasText: '応用:組織の形と変革' })).toBeVisible()
+  await expect(page.locator('.stage-card', { hasText: '実践:評価と意思決定' })).toBeVisible()
+  await expect(page.locator('.planned-item')).toHaveCount(0)
+  await page.locator('.stage-card', { hasText: '応用:組織の形と変革' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })
