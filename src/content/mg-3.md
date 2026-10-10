@@ -5,7 +5,7 @@
 このレッスンの出典は、2 冊の OpenStax の教科書です。
 
 - *Principles of Management*(CC BY 4.0): 業績管理の歴史と課題、報酬の仕組み。この教科書の該当部分は、章の執筆者の経験談と、*Harvard Business Review* などの記事を、多く引いています。**研究の集計ではなく、執筆者の見方と、調査の紹介が中心**です。
-- *Organizational Behavior*(CC BY-NC-SA 4.0): 評価の用途と誤り、フィードバック。**このレッスンの該当部分は、その要約・翻訳(改変あり)です**。原典は OpenStax の *Organizational Behavior*(CC BY-NC-SA 4.0、https://openstax.org/details/books/organizational-behavior)で、ライセンスは非営利・継承です。
+- *Organizational Behavior*(CC BY-NC-SA 4.0): 評価の用途と誤り、フィードバック。**このレッスンの該当部分は、その要約・翻訳(改変あり)です**。原典は OpenStax の *Organizational Behavior*([CC BY-NC-SA 4.0](https://openstax.org/details/books/organizational-behavior))で、ライセンスは非営利・継承です。
 
 どちらも米国の教科書で、**日本の人事制度や労働法の話ではありません**。
 
