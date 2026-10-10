@@ -200,4 +200,9 @@ export const glossary: Term[] = [
   { term: '発見(ディスカバリー)', reading: 'discovery', description: '作る前に、利用者、問題、制約を理解し、解くべき問題について合意する段階。発見の段階では、作り始めない(GOV.UK)。', lessonId: 'pm-2' },
   { term: '機会解決策ツリー', reading: 'opportunity solution tree', description: '望ましい成果を根に、機会(満たされていない必要・困りごと・願望)、解決策、仮定のテストを枝にして、道筋を描く図(Torres)。', lessonId: 'pm-2' },
   { term: '機会', reading: 'opportunity', description: '満たされていない顧客の必要、困りごと、願望。対処する方法が複数ある。解決策は、それに対して提供する製品・サービス・機能。', lessonId: 'pm-2' },
+  { term: '継続的な発見', reading: 'continuous discovery', description: '何を作るかを決めるために、少なくとも毎週、顧客と関わり続ける発見のやり方。プロジェクト型の発見と対比される(Torres)。', lessonId: 'pm-3' },
+  { term: '仮定のテスト', reading: 'assumption test', description: 'アイデア全体でなく、アイデアが成功するために真である必要のある仮定を、構造をもって試す活動。実験(A/B テスト)とは区別される(Torres)。', lessonId: 'pm-3' },
+  { term: 'RICE', reading: 'RICE score', description: '到達・影響・確信・労力から点数を出す優先順位づけの方法。到達 × 影響 × 確信 ÷ 労力(Intercom)。', lessonId: 'pm-4' },
+  { term: 'HEART', reading: 'HEART framework', description: '利用者中心の指標の 5 つの分類。Happiness、Engagement、Adoption、Retention、Task success(Google、CHI 2010)。', lessonId: 'pm-5' },
+  { term: '北極星指標', reading: 'North Star Metric', description: '顧客が製品から得る価値を最もよく捉える、単一の指標(Amplitude の提案)。', lessonId: 'pm-5' },
 ]

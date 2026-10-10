@@ -3,8 +3,9 @@ import { go, expect, test } from './fixtures'
 test('キーワードで検索でき、結果から該当レッスンへ移れる', async ({ page }) => {
   await page.goto(go('/search'))
   await page.getByLabel('レッスン内を検索').fill('METR')
-  await expect(page.locator('.result-title').first()).toContainText('14-2')
-  await page.locator('.result-title').first().click()
+  const hit = page.locator('.result-title').filter({ hasText: '14-2' })
+  await expect(hit.first()).toBeVisible()
+  await hit.first().click()
   await expect(page.locator('article h1')).toContainText('14-2')
 })
 

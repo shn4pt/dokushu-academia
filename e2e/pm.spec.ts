@@ -1,6 +1,6 @@
 import { go, expect, test } from './fixtures'
 
-// プロダクトマネジメントの序論(PM-1、PM-2)の画面。
+// プロダクトマネジメントの序論・実践(PM-1〜PM-5)の画面。
 async function answer(page: import('@playwright/test').Page, answers: string[], index: number) {
   const ex = page.locator('.demo').filter({ has: page.getByRole('button', { name: '答え合わせ' }) }).nth(index)
   for (let i = 0; i < answers.length; i++) await ex.locator('.task-row').nth(i).getByRole('button', { name: answers[i], exact: true }).click()
@@ -32,12 +32,49 @@ test('PM-2: 依頼を問題に直す、機会と解決策、成果、利用者�
   await expect(page.locator('.source-note')).toContainText('GOV.UK')
 })
 
-test('講座の目次: プロダクトマネジメントは、基礎が公開され、実践・応用が準備中', async ({ page }) => {
+test('PM-3: 継続的な発見、顧客インタビュー、仮定のテスト、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/pm-3'))
+  await expect(page.locator('article h1')).toContainText('顧客の理解と調査')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['継続的な発見', '知識の呪い', 'プロダクトトリオ', '過去の具体的な話', '最もリスクの高い仮定', '発見の問い']) await expect(art).toContainText(t === '発見の問い' ? '判断につなげる、問い' : t)
+  await answer(page, ['顧客インタビューである', '顧客インタビューではない', '顧客インタビューではない', '顧客インタビューではない', '顧客インタビューである'], 0)
+  await answer(page, ['適切', '適切', '適切でない', '適切でない', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Product Talk')
+})
+
+test('PM-4: RICE の計算、6 つの方法、Torres の観点、Cagan の批判、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/pm-4'))
+  await expect(page.locator('article h1')).toContainText('優先順位のつけ方')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['RICE', '675', '800', 'Atlassian', '宣伝', '労力を入れません', 'Cagan', '意見の違いを並べる']) await expect(art).toContainText(t)
+  await answer(page, ['Intercom の RICE の記事', 'Cagan の Product Roadmaps', 'Cagan の Product Roadmaps', 'Intercom の RICE の記事'], 0)
+  await answer(page, ['適切', '適切でない', '適切', '適切でない', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Intercom')
+})
+
+test('PM-5: PULSE と HEART、Goals–Signals–Metrics、北極星指標、成果の種類、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/pm-5'))
+  await expect(page.locator('article h1')).toContainText('指標の設計')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['PULSE', 'HEART', 'Goals–Signals–Metrics', '北極星指標', 'ベンダー', 'プロダクトの成果']) await expect(art).toContainText(t)
+  await answer(page, ['Happiness', 'Engagement', 'Retention', 'Task success', 'Task success'], 0)
+  await answer(page, ['適切', '適切', '適切でない', '適切でない', '適切でない', '適切'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('CHI 2010')
+})
+
+test('講座の目次: プロダクトマネジメントは、基礎と実践が公開され、応用が準備中', async ({ page }) => {
   await page.goto(go('/course/pm'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 2 / 予定 7 レッスン')
+  await expect(page.getByTestId('writing-status')).toContainText('本文 5 / 予定 7 レッスン')
   await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '序論:PM の仕事と、課題の捉え方' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(5)
+  await expect(page.locator('.planned-item')).toHaveCount(2)
+  await expect(page.locator('.stage-card', { hasText: '実践:発見・優先順位・計測' })).toBeVisible()
   await page.locator('.stage-card', { hasText: '序論:PM の仕事と、課題の捉え方' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

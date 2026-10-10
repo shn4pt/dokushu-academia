@@ -559,6 +559,20 @@ export const stages: Stage[] = [
     ],
   },
   {
+    id: 'pm1',
+    num: 'M1',
+    course: 'pm',
+    label: 'プロダクトマネジメント・実践',
+    title: '実践:発見・優先順位・計測',
+    why: '機会を見つけ、何を先にやるかを決め、うまくいったかを知る。この 3 つが、PM の日々の判断です。実務家の意見が分かれる分野もあるので、違いを並べて見ます。',
+    goal: '継続的な発見(インタビューと仮定のテスト)の考え方、優先順位づけの方法とその批判、指標の設計(HEART、Goals–Signals–Metrics、北極星指標)を、出典の立場とともに説明できるようになる。',
+    lessons: [
+      { id: 'pm-3', label: 'PM-3', title: '顧客の理解と調査', summary: '継続的な発見、顧客インタビュー(過去の具体的な話)、仮定の 5 つの種類とテスト、最もリスクの高い仮定。' },
+      { id: 'pm-4', label: 'PM-4', title: '優先順位のつけ方', summary: 'RICE の計算、6 つの方法の概観、機会の評価の観点、Cagan による点数表への批判、意見の違い。' },
+      { id: 'pm-5', label: 'PM-5', title: '指標の設計', summary: 'PULSE と HEART、Goals–Signals–Metrics、北極星指標、成果の 3 つの種類、数字との付き合い方。' },
+    ],
+  },
+  {
     id: 'e1',
     num: 'E1',
     course: 'evidence',

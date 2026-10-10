@@ -231,7 +231,7 @@ test('執筆の優先度と状況: 講座一覧と、講座の目次に表示さ
   await expect(page.locator('.course-card', { hasText: 'LLM のしくみ' })).not.toContainText('執筆の優先度')
 
   await page.goto(go('/course/pm'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 2 / 予定 7 レッスン')
+  await expect(page.getByTestId('writing-status')).toContainText('本文 5 / 予定 7 レッスン')
   await expect(page.getByTestId('writing-status')).toContainText('最優先')
   await page.goto(go('/course/evidence'))
   await expect(page.getByTestId('writing-status')).toContainText('本文 5 / 予定 5 レッスン')

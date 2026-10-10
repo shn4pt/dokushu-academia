@@ -3260,5 +3260,110 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "pm-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Product Talk(Teresa Torres)の記事 3 本(What is product discovery?、Customer Interviews、Assumption Testing)を、ウェブページの本文として読みました。実務家の資料(この講座の根拠の基準)で、主張の多くは書き手の経験にもとづき、独立した研究で確かめられたかは確認していません。Product Talk は Torres の研修と著書を提供するサイトで、記事には案内が載っています。Torres の著書 Continuous Discovery Habits、David Bland の著書は、記事の記述を通した範囲で、読んでいません。『選択肢を比べると、よりよい判断をする』は、記事が直観的な前提として述べるもので、研究の裏づけは示されていません。『発見の問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/pm-3.md にあります。",
+    "sources": [
+      {
+        "title": "What is Product Discovery?(Teresa Torres, Product Talk)",
+        "url": "https://www.producttalk.org/product-discovery/",
+        "how": "read",
+        "use": "発見の定義、プロジェクト型と継続的な発見、知識の呪い、毎週の活動、プロダクトトリオ(記事の本文)"
+      },
+      {
+        "title": "Customer Interviews: How to Ask Better Questions and Learn Your Customers' Needs(Teresa Torres, Product Talk)",
+        "url": "https://www.producttalk.org/customer-interviews/",
+        "how": "read",
+        "use": "顧客インタビューの定義、誰に聞くか、頻度、過去の具体的な話、スナップショット(記事の本文)"
+      },
+      {
+        "title": "Assumption Testing: Everything You Need to Know to Get Started(Teresa Torres, Product Talk)",
+        "url": "https://www.producttalk.org/assumption-testing/",
+        "how": "read",
+        "use": "仮定の 5 つの種類、4 つのテスト、最もリスクの高い仮定、失敗の扱い、実験との違い(記事の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "pm-4": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Intercom のブログ記事 RICE(McBride、2018)、Atlassian の記事 Six product prioritization frameworks、SVPG(Marty Cagan)の記事 Product Roadmaps(2009)と Assessing Product Opportunities(2006)、Product Talk の記事 Opportunity Solution Trees を、ウェブページの本文として読みました。実務家の資料で、主張の多くは書き手の経験にもとづきます。Atlassian の記事は自社製品(Jira Product Discovery)の宣伝を含みます。RICE などの方法が、より良い結果をもたらすことを示す研究は、確かめていません。Intercom の記事の式は図で、本文の文字からは取れないため、要素の説明と例の数字から組み立てました。RICE の点数(675・400・800)は、このサービスが記事の数字から計算した値です。Cagan の記事は 2006・2009 年のもので、その後の見解の変化は確かめていません。Kano の原論文、機会スコアリングの原典、Torres の著書は読んでいません。『優先順位づけの前に確認する問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/pm-4.md にあります。",
+    "sources": [
+      {
+        "title": "RICE: Simple prioritization for product managers(Sean McBride, Intercom, 2018)",
+        "url": "https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/",
+        "how": "read",
+        "use": "RICE の 4 つの要素、評価の目盛り、3 つの例、点数の使い方(記事の本文)"
+      },
+      {
+        "title": "Six product prioritization frameworks and how to pick the right one(Atlassian)",
+        "url": "https://www.atlassian.com/agile/product-management/prioritization-framework",
+        "how": "read",
+        "use": "6 つの方法の長所と短所、選び方(記事の本文。自社製品の宣伝を含む)"
+      },
+      {
+        "title": "Product Roadmaps(Marty Cagan, SVPG, 2009)",
+        "url": "https://www.svpg.com/product-roadmaps/",
+        "how": "read",
+        "use": "機能要望の点数表への批判、ロードマップの考え方、日付は望み(記事の本文)"
+      },
+      {
+        "title": "Assessing Product Opportunities(Marty Cagan, SVPG, 2006)",
+        "url": "https://www.svpg.com/assessing-product-opportunities/",
+        "how": "read",
+        "use": "機会の評価の 10 の問い(記事の本文)"
+      },
+      {
+        "title": "Opportunity Solution Trees: Visualize Your Discovery to Stay Focused on Customer Needs(Teresa Torres, Product Talk)",
+        "url": "https://www.producttalk.org/opportunity-solution-tree/",
+        "how": "read",
+        "use": "機会の評価の 4 つの観点、労力を入れない理由(記事の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "pm-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Rodden, Hutchinson, Fu(Google)の CHI 2010 の論文 Measuring the User Experience on a Large Scale: User-Centered Metrics for Web Applications を、PDF の本文として全文読みました。論文は同社内の適用経験にもとづく提案で、指標の妥当性を独立に検証した研究ではありません(論文自身も、どの指標が体験の質を最も正確に映すかは今後の研究課題と述べます)。Amplitude のブログ記事 Product North Star Metric(Sholtz)は、ベンダーのブログで、自社の分析製品への誘導を含み、北極星指標が成果を高めることを示す研究は示されていません。Product Talk の記事 Opportunity Solution Trees(Torres)の成果の 3 つの種類を、記事の本文として読みました。Torres の著書、Amplitude のプレイブックは読んでいません。『指標を決める前の問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/pm-5.md にあります。",
+    "sources": [
+      {
+        "title": "Measuring the User Experience on a Large Scale: User-Centered Metrics for Web Applications(Rodden, Hutchinson, Fu, CHI 2010)",
+        "url": "https://research.google/pubs/measuring-the-user-experience-on-a-large-scale-user-centered-metrics-for-web-applications",
+        "how": "read",
+        "use": "PULSE の欠点、HEART の 5 つの分類と例、Goals–Signals–Metrics の手順、論文の限界(論文の全文)"
+      },
+      {
+        "title": "Product North Star Metric(Julia Sholtz, Amplitude)",
+        "url": "https://amplitude.com/blog/product-north-star-metric",
+        "how": "read",
+        "use": "北極星指標の定義、良い指標の特徴、入力、3 つのゲーム(記事の本文。ベンダーのブログ)"
+      },
+      {
+        "title": "Opportunity Solution Trees: Visualize Your Discovery to Stay Focused on Customer Needs(Teresa Torres, Product Talk)",
+        "url": "https://www.producttalk.org/opportunity-solution-tree/",
+        "how": "read",
+        "use": "成果の 3 つの種類(記事の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }
