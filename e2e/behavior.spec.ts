@@ -56,13 +56,36 @@ test('行動心理学-4: ナッジのメタ分析と訂正、異論、返答、�
   await expect(page.locator('.source-note')).toContainText('Nudge')
 })
 
-test('講座の目次: 行動心理学・行動経済学は、基礎と実践が公開され、応用が準備中', async ({ page }) => {
+test('行動心理学-5: ダークパターンの定義、調査の結果、効果の実験、点検の問い、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/bh-5'))
+  await expect(page.locator('article h1')).toContainText('プロダクトの行動設計と倫理')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['1,818', '11.1%', 'カウントダウンタイマー', '下限', '要旨だけ', '読んでいません']) await expect(art).toContainText(t)
+  await answer(page, ['解約しにくい', 'カウントダウンタイマー', '確認での恥', '在庫わずかのメッセージ'], 0)
+  await answer(page, ['適切', '適切でない', '適切', '適切でない', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Dark Patterns')
+})
+
+test('行動心理学-6: オンライン実験、アイデアの成功率、5 つの予想外の結果、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/bh-6'))
+  await expect(page.locator('article h1')).toContainText('実験による検証')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['OEC', '持ち越し効果', 'A/A', '3 分の 1', 'Microsoft']) await expect(art).toContainText(t)
+  await answer(page, ['OEC の選び方', 'クリックの記録', '初期の傾向', '持ち越し効果'], 0)
+  await answer(page, ['適切', '適切でない', '適切でない', '適切', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Trustworthy')
+})
+
+test('講座の目次: 行動心理学・行動経済学は、基礎・実践・応用のすべてが公開済み', async ({ page }) => {
   await page.goto(go('/course/behavior'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
-  await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
-  await expect(page.locator('.stage-card', { hasText: '序論:人は合理的か' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(2)
+  await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
+  await expect(page.locator('.stage-card', { hasText: '応用:行動設計の倫理と検証' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '実践:選択の設計とナッジ' })).toBeVisible()
-  await page.locator('.stage-card', { hasText: '序論:人は合理的か' }).click()
+  await expect(page.locator('.planned-item')).toHaveCount(0)
+  await page.locator('.stage-card', { hasText: '応用:行動設計の倫理と検証' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

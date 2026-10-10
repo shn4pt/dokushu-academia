@@ -243,4 +243,7 @@ export const glossary: Term[] = [
   { term: '選択の設計(ナッジ)', reading: 'choice architecture / nudge', description: '人の選択の自由を制限せずに、望ましい選択を促すように、選択の環境を設計すること(Mertens ら)。', lessonId: 'bh-3' },
   { term: 'デフォルト(初期設定)', reading: 'default', description: '何もしないときに適用される選択。臓器提供では、オプトイン(登録しないと提供者でない)とオプトアウト(拒否しないと提供者)がある。', lessonId: 'bh-3' },
   { term: '出版バイアス', reading: 'publication bias', description: '有意で大きな効果の結果ほど、発表されやすい偏り。メタ分析の効果量を大きく見せる。', lessonId: 'bh-4' },
+  { term: 'ダークパターン', reading: 'dark patterns', description: 'オンラインのサービスに利益をもたらすために、利用者を強制し、誘導し、または欺いて、意図しない、害になりうる決定をさせる、ユーザーインターフェースの設計(Mathur ら)。', lessonId: 'bh-5' },
+  { term: 'OEC(総合評価基準)', reading: 'overall evaluation criterion', description: 'オンライン実験の目的を数値にした指標。短期の数字が長期の目標と食い違わないように選ぶ(Kohavi ら)。', lessonId: 'bh-6' },
+  { term: '持ち越し効果', reading: 'carryover effect', description: '前の実験の影響が、同じ利用者を使う次の実験に残ること。', lessonId: 'bh-6' },
 ]

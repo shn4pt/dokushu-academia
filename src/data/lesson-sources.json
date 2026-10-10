@@ -3839,5 +3839,49 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "bh-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Mathur ら(2019)の論文 Dark Patterns at Scale: Findings from a Crawl of 11K Shopping Websites(Proc. ACM Hum.-Comput. Interact. 3, CSCW)を、arXiv の PDF の全文として読みました。Luguri と Strahilevitz(2021)の論文 Shining a Light on Dark Patterns(Journal of Legal Analysis)は、要旨(OpenAlex から取得)だけを読みました。米国連邦取引委員会(FTC)のダークパターンの報告書(2022 年)は、入手できず、読んでいません。調査の件数は、自動の方法で見つかった下限で、論文の発表時点のショッピングサイトに限ります。欺きの判断は著者の基準です。各型が働く認知バイアスの対応は、論文の分類で、検証ではありません。論文の法的な議論は、著者の見解で、法的な助言ではありません。『プロダクトの行動設計を点検する問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/bh-5.md にあります。",
+    "sources": [
+      {
+        "title": "Dark Patterns at Scale: Findings from a Crawl of 11K Shopping Websites(Mathur, Acar, Friedman, Lucherini, Mayer, Chetty, Narayanan, 2019)",
+        "url": "https://doi.org/10.1145/3359183",
+        "how": "read",
+        "use": "定義、調査の方法と結果、表 1 の型と件数、欺き、第三者、分類(論文の全文)"
+      },
+      {
+        "title": "Shining a Light on Dark Patterns(Luguri & Strahilevitz, Journal of Legal Analysis, 2021)",
+        "url": "https://doi.org/10.1093/jla/laaa006",
+        "how": "search",
+        "use": "2 つの大規模実験の結果の要約(要旨のみ)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "bh-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-10",
+    "note": "Kohavi ら(2012)の論文 Trustworthy Online Controlled Experiments: Five Puzzling Outcomes Explained(KDD 2012)を、PDF の全文として読みました。Microsoft(主に Bing)の、大量のトラフィックの環境での経験で、対策の効果を比較した研究ではありません。アイデアの成功率の数字(3 分の 1、10%、90% など)は、論文が引いた他の資料の記述で、元は読んでいません。『初期の傾向の多くは見かけ』は、著者の経験にもとづく主張です。『実験を始める前の問い』は、このサービス独自の整理です。別のエージェントによる事実確認の結果は、docs/verify/bh-6.md にあります。",
+    "sources": [
+      {
+        "title": "Trustworthy Online Controlled Experiments: Five Puzzling Outcomes Explained(Kohavi, Deng, Frasca, Longbotham, Walker, Xu, KDD 2012)",
+        "url": "https://doi.org/10.1145/2339530.2339653",
+        "how": "read",
+        "use": "オンライン実験、OEC、アイデアの成功率、5 つの予想外の結果と対策(論文の全文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-10",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }
