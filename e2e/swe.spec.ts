@@ -1,6 +1,6 @@
 import { go, expect, test } from './fixtures'
 
-// ソフトウェアエンジニアリングの序論と実践(SWE-1〜4)の画面。
+// ソフトウェアエンジニアリングの講座(SWE-1〜6)の画面。
 async function answer(page: import('@playwright/test').Page, answers: string[], index: number) {
   const ex = page.locator('.demo').filter({ has: page.getByRole('button', { name: '答え合わせ' }) }).nth(index)
   for (let i = 0; i < answers.length; i++) await ex.locator('.task-row').nth(i).getByRole('button', { name: answers[i], exact: true }).click()
@@ -56,12 +56,35 @@ test('SWE-4: 技術的負債の起源、利子と元本、4 つの象限、機�
   await expect(page.locator('.source-note')).toContainText('WyCash')
 })
 
-test('講座の目次: ソフトウェアエンジニアリングは、基礎と実践が公開され、応用が準備中', async ({ page }) => {
+test('SWE-5: 情報隠蔽、コンウェイの法則、3 つの向き合い方、マイクロサービスの上乗せ、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/sw-5'))
+  await expect(page.locator('article h1')).toContainText('システムの分割と境界')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['情報隠蔽', '流れ図', 'コミュニケーションの構造', '5 段階', '逆コンウェイ戦略', 'マイクロサービス', '証拠は乏しい', 'このサービスの整理']) await expect(art).toContainText(t)
+  await answer(page, ['手順ごとに分ける', '変わりそうな判断を隠す', '変わりそうな判断を隠す', '手順ごとに分ける'], 0)
+  await answer(page, ['適切でない', '適切', '適切でない', '適切でない', '適切でない', '適切'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('Parnas')
+})
+
+test('SWE-6: 生産性は測れない、4 つの問い、GSM、QUANTS、DORA の 5 つの指標と落とし穴、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/sw-6'))
+  await expect(page.locator('article h1')).toContainText('開発の指標と改善')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['出力が測れない', 'GSM', 'QUANTS', '三角測量', '個人の評価', 'デプロイのやり直し率', 'グッドハートの法則', 'このサービスの整理']) await expect(art).toContainText(t)
+  await answer(page, ['目的', '兆し', '指標', '指標'], 0)
+  await answer(page, ['適切でない', '適切', '適切でない', '適切でない', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('DORA')
+})
+
+test('講座の目次: ソフトウェアエンジニアリングは、基礎・実践・応用のすべてが公開されている', async ({ page }) => {
   await page.goto(go('/course/swe'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
-  await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
-  await expect(page.locator('.stage-card', { hasText: '序論:ソフトウェアはどう作られるか' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(2)
-  await page.locator('.stage-card', { hasText: '序論:ソフトウェアはどう作られるか' }).click()
+  await expect(page.getByTestId('writing-status')).toContainText('本文 6 / 予定 6 レッスン')
+  await expect(page.locator('.planned-item')).toHaveCount(0)
+  await expect(page.locator('.stage-card', { hasText: 'システムの境界と、開発の測り方' })).toBeVisible()
+  await page.locator('.stage-card', { hasText: 'システムの境界と、開発の測り方' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

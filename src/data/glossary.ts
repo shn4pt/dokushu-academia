@@ -309,4 +309,11 @@ export const glossary: Term[] = [
   { term: 'コードカバレッジ', reading: 'code coverage', description: 'テストがコードのどの行(や分岐)を実行したかの割合。結果が正しいかは確かめないので、テストの質の指標としては限界がある。', lessonId: 'sw-3' },
   { term: '技術的負債', reading: 'technical debt', description: '内部の質の欠陥を借金にたとえる考え方。Ward Cunningham が 1992 年に使った。欠陥のために余計にかかる手間が利子、整理が元本の返済にあたる。厳密に測れる量ではない。', lessonId: 'sw-4' },
   { term: '技術的負債の 4 つの象限', reading: 'technical debt quadrant', description: '負債を、無謀か慎重か、意図したか意図しないかで分ける Martin Fowler の整理。慎重で意図しない負債は、優れたチームでも避けられないとする。', lessonId: 'sw-4' },
+  { term: '情報隠蔽', reading: 'information hiding', description: '難しい、または変わりそうな設計の判断を 1 つのモジュールに閉じ込め、ほかからは見えないようにする分け方。Parnas が 1972 年に提案した。', lessonId: 'sw-5' },
+  { term: 'コンウェイの法則', reading: "Conway's law", description: 'システムを設計する組織は、その組織のコミュニケーションの構造を写した設計を作る、という Melvin Conway(1968)の主張。', lessonId: 'sw-5' },
+  { term: '逆コンウェイ戦略', reading: 'inverse Conway maneuver', description: '望むシステムの形に合わせて、チームの組み方を変えること。既存の硬いシステムでは万能ではない。', lessonId: 'sw-5' },
+  { term: 'マイクロサービス', reading: 'microservices', description: '1 つのアプリケーションを、独立して動き、軽い仕組みで通信し、独立して公開できる小さなサービスの集まりとして作るやり方。分散ならではの複雑さが上乗せの費用になる。', lessonId: 'sw-5' },
+  { term: 'GSM(目的・兆し・指標)', reading: 'Goals / Signals / Metrics', description: '目的から兆し、指標の順に考えて、測りやすいものから指標を選んでしまうことを防ぐ、Google の指標づくりの枠組み。', lessonId: 'sw-6' },
+  { term: 'QUANTS', reading: 'QUANTS', description: '開発の生産性を、コードの質、技術者の注意、知的な複雑さ、ペースと速さ、満足の 5 つの要素で見る、Google の整理。要素どうしは引き換えの関係にある。', lessonId: 'sw-6' },
+  { term: 'DORA の指標', reading: 'DORA software delivery performance metrics', description: '変更のリードタイム、デプロイの頻度、失敗したデプロイからの復旧時間(流れの量)と、変更の失敗率、デプロイのやり直し率(不安定さ)の 5 つ(2026 年時点のガイド)。', lessonId: 'sw-6' },
 ]

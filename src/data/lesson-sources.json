@@ -4445,5 +4445,91 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "sw-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "Parnas(1972)On the Criteria To Be Used in Decomposing Systems into Modules の全文(Communications of the ACM の掲載版。アイントホーフェン工科大学の教員ページにある写し)、Conway(1968)How Do Committees Invent? の全文(著者のサイトにある再掲版)、Martin Fowler の記事 Conway's Law(2022)、Microservice Premium(2015)、Monolith First(2015)の本文、Lewis と Fowler の記事 Microservices(2014)の冒頭の定義と『Organized around Business Capabilities』の節を読みました。Lewis と Fowler の記事のほかの節は読んでいません。Parnas と Conway は例と推論による主張で、多くのシステムや組織を比べた研究ではありません。Monolith First は本人が聞いた話にもとづく仮の結論で、本人が証拠は乏しいと書いています。コンウェイの法則を実データで確かめた研究や、Team Topologies などの本は扱っていません。Hyrum の法則との対応づけと『PM が分割の相談で使える問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/sw-5.md にあります。",
+    "sources": [
+      {
+        "title": "On the Criteria To Be Used in Decomposing Systems into Modules(D. L. Parnas, Communications of the ACM 15(12), 1972)",
+        "url": "https://www.win.tue.nl/~wstomv/edu/2ip30/references/criteria_for_modularization.pdf",
+        "how": "read",
+        "use": "モジュール化の 3 つの利点、KWIC 索引の 2 つの分け方、情報隠蔽、結論、効率の注意、自らの設計の誤り(論文の全文。第三者の大学のページにある掲載版の写し)"
+      },
+      {
+        "title": "How Do Committees Invent?(Melvin E. Conway, Datamation, 1968)",
+        "url": "https://www.melconway.com/Home/Committees_Paper.html",
+        "how": "read",
+        "use": "論文の結論の主張、グラフによる推論、コンパイラの例、組織と偏り、2 人と 100 人、柔軟さ(著者のサイトの再掲版の全文)"
+      },
+      {
+        "title": "Conway's Law(Martin Fowler, 2022)",
+        "url": "https://martinfowler.com/bliki/ConwaysLaw.html",
+        "how": "read",
+        "use": "3 つの向き合い方、層や工程で分ける食い違い、逆コンウェイ戦略の限界、少人数ならモノリス(記事の本文)"
+      },
+      {
+        "title": "Microservices(James Lewis, Martin Fowler, 2014)",
+        "url": "https://martinfowler.com/articles/microservices.html",
+        "how": "read",
+        "use": "マイクロサービスの定義(冒頭)と、事業の機能ごとに組織すること(該当の節)"
+      },
+      {
+        "title": "Microservice Premium(Martin Fowler, 2015)",
+        "url": "https://martinfowler.com/bliki/MicroservicePremium.html",
+        "how": "read",
+        "use": "上乗せの費用、モノリスで扱えない複雑さがない限り考えない、モノリスでも継続的な公開ができる例(記事の本文)"
+      },
+      {
+        "title": "Monolith First(Martin Fowler, 2015)",
+        "url": "https://martinfowler.com/bliki/MonolithFirst.html",
+        "how": "read",
+        "use": "成功例の多くはモノリスから、境界を最初から引く難しさ、反対の意見、証拠が乏しいこと(記事の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "sw-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "Martin Fowler の記事 Cannot Measure Productivity(2003)、Software Engineering at Google の第 7 章(Ciera Jaspan『Measuring Engineering Productivity』)の全文、DORA のガイド DORA's software delivery performance metrics(Nathen Harvey、2026-01-05 更新)の本文、第 16 章の脚注(DORA の買収)を読みました。ファンクションポイントの『3 倍』は Fowler が聞いた話として書いているものです。第 7 章の可読性の評価の詳しい数字は章に示されておらず、使っていません。DORA のガイドが述べる『研究が示している』は要約で、元の調査の報告書(State of DevOps Report など)と方法は読んでいません。SPACE(Forsgren ほか 2021, ACM Queue)は 403 で取得できず、扱っていません。DORA の指標は、AI を使った開発の 17-3 でも扱っています。『PM が指標の相談で使える問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/sw-6.md にあります。",
+    "sources": [
+      {
+        "title": "Cannot Measure Productivity(Martin Fowler, 2003)",
+        "url": "https://martinfowler.com/bliki/CannotMeasureProductivity.html",
+        "how": "read",
+        "use": "出力が測れないこと、行数とファンクションポイントの限界、事業の価値、個人の貢献、言い逃れへの批判(記事の本文)"
+      },
+      {
+        "title": "Software Engineering at Google(Titus Winters, Tom Manshreck, Hyrum Wright のとりまとめ, 2020, Abseil で公開のウェブ版, CC BY-NC-ND 4.0) 第 7 章 Measuring Engineering Productivity(Ciera Jaspan)",
+        "url": "https://abseil.io/resources/swe-book/html/ch07.html",
+        "how": "read",
+        "use": "測る前の 4 つの問い、測らないほうがよい場合、GSM、QUANTS、三角測量、個人の評価に使わない(章の本文と脚注)"
+      },
+      {
+        "title": "Software Engineering at Google(Titus Winters, Tom Manshreck, Hyrum Wright のとりまとめ, 2020, Abseil で公開のウェブ版, CC BY-NC-ND 4.0) 第 16 章 Version Control and Branch Management(Titus Winters)",
+        "url": "https://abseil.io/resources/swe-book/html/ch16.html",
+        "how": "read",
+        "use": "DORA を Google が買収したこと(脚注 1)"
+      },
+      {
+        "title": "DORA's software delivery performance metrics(Nathen Harvey, DORA Guides, 2026-01-05 更新)",
+        "url": "https://dora.dev/guides/dora-metrics/",
+        "how": "read",
+        "use": "5 つの指標と 2 つのまとまり、速さと安定の関係、アプリケーションごとに使うこと、落とし穴、変更を小さくすること(ガイドの本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }
