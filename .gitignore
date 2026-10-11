@@ -7,3 +7,6 @@ src/data/lesson-stats.json
 playwright-report
 test-results
 reviews
+
+# Claude Code の個人の設定
+.claude/settings.local.json
