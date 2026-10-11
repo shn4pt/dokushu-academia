@@ -4291,5 +4291,91 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "sw-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "Software Engineering at Google の第 1 章(Titus Winters『What Is Software Engineering?』)の全文、1968 年の NATO の会議の報告書(Naur と Randell 編。編者の Randell が公開している OCR の版。編者のページは http でしか取得できないため、出典の URL には、本文が同一であることを確かめた第三者のサイト(Scrum Manager)の https の写しを記録しています)の序文・第 1〜2 章・第 3.1 節・第 7.1.2 節、アジャイルソフトウェア開発宣言と 12 の原則(agilemanifesto.org)を、本文として読みました。これらは、実務家の著作と歴史的な文書(この講座の根拠の基準)で、比較の研究ではありません。Google の本は 1 社の非常に大きな規模の経験で、本自身が読者の状況に合わないかもしれないと断っています。シフトレフトの費用の比率の数字は、章に示されていません。NATO の報告書は議論の記録で、合意をまとめたものではなく、OCR の版なので細部に誤りがありうると版の注記にあります。報告書のほかの節は読んでいません。アジャイル宣言は価値の表明で、効果の証拠ではありません。Royce(1970)の論文は、公開の写しを取得できず(403)、使っていません。『PM が開発の会話で使える問い』は、このサービス独自の整理です。Google の本は CC BY-NC-ND 4.0 なので、引用は短い一文(Hyrum の法則)の翻訳にとどめ、ほかは要約しました。 別のエージェントによる事実確認の結果は、docs/verify/sw-1.md にあります。",
+    "sources": [
+      {
+        "title": "Software Engineering at Google(Titus Winters, Tom Manshreck, Hyrum Wright のとりまとめ, 2020, Abseil で公開のウェブ版, CC BY-NC-ND 4.0) 第 1 章 What Is Software Engineering?(Titus Winters)",
+        "url": "https://abseil.io/resources/swe-book/html/ch01.html",
+        "how": "read",
+        "use": "時間・規模・トレードオフ、持続可能性、Hyrum の法則、コンパイラの更新の例、シフトレフト、費用の種類と決め方(章の本文)"
+      },
+      {
+        "title": "Software Engineering: Report on a conference sponsored by the NATO Science Committee, Garmisch, 1968(Peter Naur, Brian Randell 編, 1969)",
+        "url": "https://www.scrummanager.com/files/nato1968e.pdf",
+        "how": "read",
+        "use": "言葉が挑発的に選ばれた経緯、参加者の発言、『ソフトウェアの危機』をめぐる意見の割れ(序文、第 1〜2 章、第 3.1 節、第 7.1.2 節)"
+      },
+      {
+        "title": "Manifesto for Agile Software Development(2001)",
+        "url": "https://agilemanifesto.org/",
+        "how": "read",
+        "use": "4 つの価値と署名者(本文)"
+      },
+      {
+        "title": "Principles behind the Agile Manifesto",
+        "url": "https://agilemanifesto.org/principles.html",
+        "how": "read",
+        "use": "12 の原則のうち 6 つ(本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "sw-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "Pro Git(Scott Chacon, Ben Straub, CC BY-NC-SA 3.0)の 1.1 節、Software Engineering at Google の第 9 章(Code Review)の全文と第 16 章(Version Control and Branch Management)の『What Is Version Control?』『Why Is Version Control Important?』『Branch Management』『(Nearly) No Long-Lived Branches』『What About Release Branches?』の節と TL;DR、Google Engineering Practices の The Standard of Code Review と Small CLs(CC BY 3.0)、Sadowski ほか(2018)の論文の全文(共著者 Bacchelli のサイトにある著者版)を読みました。第 16 章のほかの節(集中型と分散型、One Version、モノレポなど)は読んでいません。トランクベース開発と成績の関係は、本が DORA の研究として紹介しているもので、DORA の報告書や Accelerate は読んでいません。事例研究は 1 社の探索的な研究で、レビューの効果を比較したものではありません。論文が引く Rigby と Bird(2013)、Bacchelli と Bird(2013)などは読んでいません(Microsoft の PDF は 403 で取得できませんでした)。『PM が気にかけられること』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/sw-2.md にあります。",
+    "sources": [
+      {
+        "title": "Pro Git 1.1 About Version Control(Scott Chacon, Ben Straub, CC BY-NC-SA 3.0)",
+        "url": "https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control",
+        "how": "read",
+        "use": "バージョン管理の定義と、ローカル・集中型・分散型の説明(節の本文)"
+      },
+      {
+        "title": "Software Engineering at Google(Titus Winters, Tom Manshreck, Hyrum Wright のとりまとめ, 2020, Abseil で公開のウェブ版, CC BY-NC-ND 4.0) 第 16 章 Version Control and Branch Management(Titus Winters)",
+        "url": "https://abseil.io/resources/swe-book/html/ch16.html",
+        "how": "read",
+        "use": "(ファイル名, 時点, ブランチ)の対応、バージョン管理の意義、開発ブランチとトランクベース開発、リリースブランチ(読んだ節の本文)"
+      },
+      {
+        "title": "Software Engineering at Google(Titus Winters, Tom Manshreck, Hyrum Wright のとりまとめ, 2020, Abseil で公開のウェブ版, CC BY-NC-ND 4.0) 第 9 章 Code Review(Tom Manshreck, Caitlin Sadowski)",
+        "url": "https://abseil.io/resources/swe-book/html/ch09.html",
+        "how": "read",
+        "use": "レビューの流れ、6 つの利点、コードは負債、小さな変更(約 200 行)、変更の説明(章の本文)"
+      },
+      {
+        "title": "The Standard of Code Review(Google Engineering Practices, CC BY 3.0)",
+        "url": "https://google.github.io/eng-practices/review/reviewer/standard.html",
+        "how": "read",
+        "use": "レビューの目的、最上位の原則、Nit、意見が合わないときの解決(本文)"
+      },
+      {
+        "title": "Small CLs(Google Engineering Practices, CC BY 3.0)",
+        "url": "https://google.github.io/eng-practices/review/developer/small-cls.html",
+        "how": "read",
+        "use": "小さな変更の利点、大きさの目安、大きくてよい場合、リファクタリングを分けること(本文)"
+      },
+      {
+        "title": "Modern Code Review: A Case Study at Google(Sadowski, Söderberg, Church, Sipko, Bacchelli, ICSE-SEIP 2018, DOI 10.1145/3183519.3183525)",
+        "url": "https://sback.it/publications/icse2018seip.pdf",
+        "how": "read",
+        "use": "研究の方法、期待される役割、変更の大きさ・レビュー数・時間の数字、満足、うまくいかないこと、限界(著者版の全文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

@@ -296,4 +296,11 @@ export const glossary: Term[] = [
   { term: '資本構成', reading: 'capital structure', description: '会社が事業の資金を、負債と株式でどう調達しているかの割合。', lessonId: 'pl-6' },
   { term: '加重平均資本コスト(WACC)', reading: 'weighted average cost of capital', description: '負債、優先株式、普通株式の費用を、それぞれの割合(時価)で加重平均したもの。負債の費用は税引後。', lessonId: 'pl-6' },
   { term: '利息の税の盾', reading: 'interest tax shield', description: '利息が税金の控除の対象になることによる節税額。法人税率 × 利息の支払い。', lessonId: 'pl-6' },
+  { term: 'ソフトウェアエンジニアリング', reading: 'software engineering', description: 'コードを書くこと(プログラミング)に、使われる期間のあいだ保守し、チームで協力することを加えた営み。Google の本は「時間で積分したプログラミング」と表す。', lessonId: 'sw-1' },
+  { term: 'Hyrum の法則', reading: "Hyrum's Law", description: 'API の利用者が十分に多ければ、契約で何を約束したかに関係なく、観察できるふるまいはすべて誰かに依存される、という経験則。', lessonId: 'sw-1' },
+  { term: 'シフトレフト', reading: 'shift left', description: '問題の発見を、開発の流れの早い段階(左)に寄せるほど、直す費用が安くなることが多い、という考え方。', lessonId: 'sw-1' },
+  { term: 'アジャイルソフトウェア開発宣言', reading: 'Manifesto for Agile Software Development', description: '2001 年の宣言。プロセスやツールより個人と対話、包括的なドキュメントより動くソフトウェア、などの 4 つの価値と、12 の原則を掲げる。', lessonId: 'sw-1' },
+  { term: 'バージョン管理', reading: 'version control', description: 'ファイルの変更を時間に沿って記録し、あとで特定の版を呼び出せるようにする仕組み。ローカル、集中型、分散型がある。', lessonId: 'sw-2' },
+  { term: 'トランクベース開発', reading: 'trunk-based development', description: '長い開発ブランチを避け、テストと CI に頼って、本流(trunk)に小さく頻繁に変更を入れる進め方。', lessonId: 'sw-2' },
+  { term: 'コードレビュー', reading: 'code review', description: '書いた本人以外の人が、取り込む前にコードを確かめる過程。正しさのほか、理解できること、一貫性、知識の共有などの目的がある。', lessonId: 'sw-2' },
 ]
