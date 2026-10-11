@@ -1,3 +1,4 @@
 - [学習プラットフォーム構想](project-learning-platform-concept.md) — LLM アプリを多分野の独習プラットフォームに広げる方針(docs/concept.md)
 - [運営の制約](project-operations-constraints.md) — 週3〜5時間・月数千円・人の確認は高リスク分野と方針だけ・講座単位で公開
+- [記憶の写しの同期](feedback-sync-memory-copy.md) — 記憶を更新したら docs/memory/ にも写して commit・push
 - [執筆の進み具合](project-writing-progress.md) — 公開済みの講座・次の一手・push の約束(2026-10-10 更新: 対話中は承認なしで push)
