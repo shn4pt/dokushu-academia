@@ -303,4 +303,10 @@ export const glossary: Term[] = [
   { term: 'バージョン管理', reading: 'version control', description: 'ファイルの変更を時間に沿って記録し、あとで特定の版を呼び出せるようにする仕組み。ローカル、集中型、分散型がある。', lessonId: 'sw-2' },
   { term: 'トランクベース開発', reading: 'trunk-based development', description: '長い開発ブランチを避け、テストと CI に頼って、本流(trunk)に小さく頻繁に変更を入れる進め方。', lessonId: 'sw-2' },
   { term: 'コードレビュー', reading: 'code review', description: '書いた本人以外の人が、取り込む前にコードを確かめる過程。正しさのほか、理解できること、一貫性、知識の共有などの目的がある。', lessonId: 'sw-2' },
+  { term: 'テストの大きさと範囲', reading: 'test size and scope', description: '大きさはテストを動かすのに要る資源(1 プロセス・1 台・複数台)、範囲は確かめるコードの広さ(単体・結合・E2E)。Google の本は、この 2 つを分けて考える。', lessonId: 'sw-3' },
+  { term: 'テストピラミッド', reading: 'test pyramid', description: '単体テストを多く、画面を通す端から端までのテストを少なくする、という自動テストの配分の考え方。広い範囲のテストが遅く高く壊れやすい、という前提に立つ。', lessonId: 'sw-3' },
+  { term: 'フレーキーなテスト', reading: 'flaky test', description: 'コードを変えていないのに、成功したり失敗したりするテスト。増えると、テストへの信頼が失われる。', lessonId: 'sw-3' },
+  { term: 'コードカバレッジ', reading: 'code coverage', description: 'テストがコードのどの行(や分岐)を実行したかの割合。結果が正しいかは確かめないので、テストの質の指標としては限界がある。', lessonId: 'sw-3' },
+  { term: '技術的負債', reading: 'technical debt', description: '内部の質の欠陥を借金にたとえる考え方。Ward Cunningham が 1992 年に使った。欠陥のために余計にかかる手間が利子、整理が元本の返済にあたる。厳密に測れる量ではない。', lessonId: 'sw-4' },
+  { term: '技術的負債の 4 つの象限', reading: 'technical debt quadrant', description: '負債を、無謀か慎重か、意図したか意図しないかで分ける Martin Fowler の整理。慎重で意図しない負債は、優れたチームでも避けられないとする。', lessonId: 'sw-4' },
 ]

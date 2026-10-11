@@ -4377,5 +4377,73 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "sw-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "Software Engineering at Google の第 11 章(Adam Bender『Testing Overview』)の全文と、Martin Fowler の記事 Test Pyramid(2012、2017 改訂)を、本文として読みました。これらは実務家の著作(この講座の根拠の基準)で、比較の研究ではありません。GWS の事例は 1 つのプロジェクトの前後の比較で、ほかの要因を切り分けた研究ではありません。80/15/5 の比率とフレーキーの率の目安は Google の経験からの数字です。章が引く『後で見つかるバグほど指数的に高くつく』の資料と、テストピラミッドの起源の Mike Cohn の本は読んでおらず、前者は使っていません。第 12〜14 章は読んでいません。『PM がテストの話で使える問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/sw-3.md にあります。",
+    "sources": [
+      {
+        "title": "Software Engineering at Google(Titus Winters, Tom Manshreck, Hyrum Wright のとりまとめ, 2020, Abseil で公開のウェブ版, CC BY-NC-ND 4.0) 第 11 章 Testing Overview(Adam Bender)",
+        "url": "https://abseil.io/resources/swe-book/html/ch11.html",
+        "how": "read",
+        "use": "テストの目的と利点、GWS の事例、大きさと範囲、80/15/5、アイスクリームコーンと砂時計、フレーキー、カバレッジ、自動テストの限界(章の本文)"
+      },
+      {
+        "title": "Test Pyramid(Martin Fowler, 2012)",
+        "url": "https://martinfowler.com/bliki/TestPyramid.html",
+        "how": "read",
+        "use": "ピラミッドの主張、前提と例外、結合テストを重視する立場への見方、起源(記事の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "sw-4": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "Ward Cunningham の OOPSLA '92 の経験報告 The WyCash Portfolio Management System(c2.com の全文)、Martin Fowler の記事 Technical Debt(2019 年の書き直し版)と Technical Debt Quadrant(2009)、Software Engineering at Google の第 1 章の脚注、Sculley ほか(2015)Hidden Technical Debt in Machine Learning Systems(NeurIPS の公開 PDF の全文)を読みました。技術的負債はたとえで、厳密に測れる量ではありません(出典自身がそう述べています)。Fowler の日数の例は架空の数字で、『数週間で境目に達する』は本人が仮説と呼ぶ考えにもとづく主張です(DesignStaminaHypothesis の記事は読んでいません)。象限の表の説明は、記事の本文をこのサービスが短くまとめたもので、記事の図の文言ではありません。Sculley ほかは Google の経験にもとづく問題提起で、負債を測った研究ではありません。Knight Capital の金額は論文の記述によるもので、引かれている SEC の発表は読んでいません。Jaspan と Green(2023, IEEE Software)は本文を取得できず、使っていません。3 機能の場合の日数の計算と『PM が負債の話で使える問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/sw-4.md にあります。",
+    "sources": [
+      {
+        "title": "The WyCash Portfolio Management System(Ward Cunningham, OOPSLA '92 Experience Report)",
+        "url": "https://c2.com/doc/oopsla92.html",
+        "how": "read",
+        "use": "借金のたとえの原文、返さないときの危険、前払いのたとえ(報告の全文)"
+      },
+      {
+        "title": "Technical Debt(Martin Fowler, 2019 年に全面改訂)",
+        "url": "https://martinfowler.com/bliki/TechnicalDebt.html",
+        "how": "read",
+        "use": "利子と元本、日数の例、測れないこと、少しずつ返す、たとえの合わない点、言い訳への警告(記事の本文)"
+      },
+      {
+        "title": "Technical Debt Quadrant(Martin Fowler, 2009)",
+        "url": "https://martinfowler.com/bliki/TechnicalDebtQuadrant.html",
+        "how": "read",
+        "use": "無謀と慎重、意図したと意図しない、慎重で意図しない負債(記事の本文)"
+      },
+      {
+        "title": "Software Engineering at Google(Titus Winters, Tom Manshreck, Hyrum Wright のとりまとめ, 2020, Abseil で公開のウェブ版, CC BY-NC-ND 4.0) 第 1 章 What Is Software Engineering?(Titus Winters)",
+        "url": "https://abseil.io/resources/swe-book/html/ch01.html",
+        "how": "read",
+        "use": "技術的負債の大まかな定義(脚注 2)、先送りの費用をはっきりさせる(本文)"
+      },
+      {
+        "title": "Hidden Technical Debt in Machine Learning Systems(Sculley ほか, NIPS 2015。現在の NeurIPS)",
+        "url": "https://papers.nips.cc/paper_files/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf",
+        "how": "read",
+        "use": "機械学習のシステムの負債の例(CACE、申告されていない利用者、データの依存、つなぎのコード、死んだ実験の分岐)、測れないこと、問い(論文の全文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }

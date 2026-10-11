@@ -146,7 +146,7 @@ export const courses: Course[] = [
     summary: '設計、テスト、保守、チーム開発の基礎。PM が開発の会話に加われる土台。',
     tiers: [
       { level: 'basic', scope: '開発の流れと、設計・テストの考え方', stageIds: ['sw0'] },
-      { level: 'practice', scope: '品質と、変更を安全に進める仕組み', planned: ['テストの種類と使い分け', '技術的負債の考え方'] },
+      { level: 'practice', scope: '品質と、変更を安全に進める仕組み', stageIds: ['sw1'] },
       { level: 'advanced', scope: '大きなシステムと、チームの開発プロセス', planned: ['システムの分割と境界', '開発の指標と改善'] },
     ],
   },
