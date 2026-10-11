@@ -316,4 +316,9 @@ export const glossary: Term[] = [
   { term: 'GSM(目的・兆し・指標)', reading: 'Goals / Signals / Metrics', description: '目的から兆し、指標の順に考えて、測りやすいものから指標を選んでしまうことを防ぐ、Google の指標づくりの枠組み。', lessonId: 'sw-6' },
   { term: 'QUANTS', reading: 'QUANTS', description: '開発の生産性を、コードの質、技術者の注意、知的な複雑さ、ペースと速さ、満足の 5 つの要素で見る、Google の整理。要素どうしは引き換えの関係にある。', lessonId: 'sw-6' },
   { term: 'DORA の指標', reading: 'DORA software delivery performance metrics', description: '変更のリードタイム、デプロイの頻度、失敗したデプロイからの復旧時間(流れの量)と、変更の失敗率、デプロイのやり直し率(不安定さ)の 5 つ(2026 年時点のガイド)。', lessonId: 'sw-6' },
+  { term: '機密性・完全性・可用性', reading: 'confidentiality, integrity, availability', description: '情報セキュリティの 3 つの目的。許されない開示、許されない変更や破壊、アクセスや利用の妨げを防ぐこと(FIPS 199 が米国の法律の定義を引く)。', lessonId: 'se-1' },
+  { term: '最小権限', reading: 'least privilege', description: 'プログラムや利用者に、仕事に必要な最小限の権限だけを与えるという原則。Saltzer と Schroeder(1975)の設計原則の 1 つ。', lessonId: 'se-1' },
+  { term: '安全側の初期値', reading: 'fail-safe defaults', description: 'アクセスの判断を、許す理由にもとづいて行い、初期状態を「アクセスできない」にするという原則。', lessonId: 'se-1' },
+  { term: '認証と認可', reading: 'authentication and authorization', description: '認証は「あなたは誰か」を確かめること、認可は「その操作をしてよいか」を確かめること。', lessonId: 'se-2' },
+  { term: 'フィッシング耐性', reading: 'phishing resistance', description: '利用者の注意深さに頼らずに、偽のサイトに認証の秘密や有効な出力を渡さないようにできる、認証のやり方の性質。手で入力するワンタイムのコードは、これを満たさない(NIST SP 800-63B-4)。', lessonId: 'se-2' },
 ]

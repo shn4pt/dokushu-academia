@@ -151,6 +151,8 @@ const loaders: Record<string, () => Promise<{ default: LessonContent }>> = {
   'sw-4': md('sw-4'),
   'sw-5': md('sw-5'),
   'sw-6': md('sw-6'),
+  'se-1': md('se-1'),
+  'se-2': md('se-2'),
   '4-1': () => import('./WhyAttention'),
   '4-2': () => import('./SelfAttention'),
   '4-3': () => import('./PositionalEncoding'),

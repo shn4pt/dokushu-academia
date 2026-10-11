@@ -158,7 +158,7 @@ export const courses: Course[] = [
     },
     summary: '脅威の考え方と、設計・運用で守る基礎。',
     tiers: [
-      { level: 'basic', scope: 'セキュリティの基本概念', planned: ['序論:何を、誰から守るか', '認証と認可'] },
+      { level: 'basic', scope: 'セキュリティの基本概念', stageIds: ['se0'] },
       { level: 'practice', scope: 'よくある脆弱性と対策', planned: ['Web アプリの代表的な脆弱性', '秘密情報の扱い'] },
       { level: 'advanced', scope: '組織としての取り組み', planned: ['脅威モデリング', 'インシデント対応'] },
     ],

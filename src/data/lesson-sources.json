@@ -4531,5 +4531,67 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "se-1": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "FIPS 199(NIST, 2004)の本文(3 つの目的の定義、影響の 3 段階、例)、Building Secure and Reliable Systems(Google の技術者らによる本、Google が公開しているウェブ版)の第 2 章 Understanding Adversaries の全文、Saltzer と Schroeder(1975)The Protection of Information in Computer Systems の要旨と第 I 節の設計原則の部分(バージニア大学の講義のページにある、Norman Hardy が作ったウェブ版の写し)を読みました。論文の第 II 節以降は読んでいません。FIPS 199 は米国の連邦政府の情報システムのための基準で、日本の法令や民間の義務を示すものではありません。第 2 章の攻撃者の分類は、章自身が説明のための一般化だと断っています。章の個別の事件の例は使っていません。Building Secure and Reliable Systems のウェブ版にはライセンスの表示が見当たらないので、引用は避け、要約にとどめました。UX・SWE-5 との対応づけと『PM がセキュリティの相談で使える問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/se-1.md にあります。",
+    "sources": [
+      {
+        "title": "FIPS PUB 199: Standards for Security Categorization of Federal Information and Information Systems(NIST, 2004)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.199.pdf",
+        "how": "read",
+        "use": "機密性・完全性・可用性の定義、影響の 3 段階、情報の種類ごと・システムごとの見積もりの例(本文)"
+      },
+      {
+        "title": "Building Secure and Reliable Systems 第 2 章 Understanding Adversaries(Heather Adkins, David Huska, with Jen Barnason)",
+        "url": "https://google.github.io/building-secure-and-reliable-systems/raw/ch02.html",
+        "how": "read",
+        "use": "攻撃者の動機、人物像、内部の人と設計の考え方、リスクの見積もりの注意(章の本文)"
+      },
+      {
+        "title": "The Protection of Information in Computer Systems(Jerome H. Saltzer, Michael D. Schroeder, 1975)",
+        "url": "https://www.cs.virginia.edu/~evans/cs551/saltzer/",
+        "how": "read",
+        "use": "8 つの設計原則と、原則は警告として働くという位置づけ(要旨と第 I 節の該当部分。講義のページにあるウェブ版の写し)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "se-2": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "NIST SP 800-63B-4 Digital Identity Guidelines: Authentication and Authenticator Management(2025 年 7 月)のウェブ版の序論、第 2 章の AAL の節(2.2.2 を含む)、パスワードの節、電話網による out-of-band の節、フィッシング耐性の節、制限付きの認証器の節(3.2.9)と、PDF の表紙・置き換えの記載を読みました。付録 A(Strength of Passwords)など、ほかの節は読んでいません。OWASP の Authorization Cheat Sheet の Introduction と Recommendations の前半(最小権限、初期値は拒否、すべての要求で確認、道具の認可の確認、属性・関係による方式)と、確認の場所(Right Location)・失敗時の安全な終了の節を読みました。ID の推測・改ざん、静的な資源、ログ、テストの節は読んでいません。OWASP が根拠に置く OWASP Top 10 2021、MITRE CWE、Veracode の報告書は読んでいません。SP 800-63B-4 は米国の連邦政府向けの指針で、日本の法令や民間の義務を示すものではありません。Saltzer と Schroeder との対応づけと『PM がログインと権限の仕様で使える問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/se-2.md にあります。",
+    "sources": [
+      {
+        "title": "NIST SP 800-63B-4: Digital Identity Guidelines — Authentication and Authenticator Management(2025 年 7 月)",
+        "url": "https://pages.nist.gov/800-63-4/sp800-63b.html",
+        "how": "read",
+        "use": "認証の定義、知っているもの・持っているもの・本人の特徴、パスワードの規則、フィッシング耐性、AAL2 でフィッシングに強い選択肢を提供する要件(2.2.2)、制限付きの認証器(3.2.9)と電話網による方式(読んだ節の本文)"
+      },
+      {
+        "title": "NIST SP 800-63B-4(PDF 版)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-63b-4.pdf",
+        "how": "read",
+        "use": "発行の年月と、置き換えた版の記載(表紙と前付け)"
+      },
+      {
+        "title": "Authorization Cheat Sheet(OWASP Cheat Sheet Series)",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
+        "how": "read",
+        "use": "認可の定義と認証との違い、アクセス制御の不備の位置づけ、水平の権限昇格、前半の 5 つの推奨、確認の場所(読んだ節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }
