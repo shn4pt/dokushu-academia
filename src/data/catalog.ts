@@ -285,7 +285,7 @@ export const courses: Course[] = [
     summary: '雇用と働き方に関わる制度の全体像と考え方。',
     tiers: [
       { level: 'basic', scope: '雇用の全体像', stageIds: ['lb0'] },
-      { level: 'practice', scope: '日々の運用', planned: ['採用から退職までの流れ', '就業規則の役割'] },
+      { level: 'practice', scope: '日々の運用', stageIds: ['lb1'] },
       { level: 'advanced', scope: '組織の課題', planned: ['ハラスメント防止の考え方', '専門家に相談すべき場面'] },
     ],
   },
