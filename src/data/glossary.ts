@@ -344,4 +344,7 @@ export const glossary: Term[] = [
   { term: '全般統制と業務処理統制', reading: 'general controls and application controls', description: 'IT に対する統制活動の 2 種類。全般統制は、業務処理統制が有効に機能する環境を保証する統制(開発・保守、運用・管理、アクセス管理、外部委託の管理など)、業務処理統制は、業務プロセスに組み込まれ、承認された業務が全て正確に処理・記録されることを確保する統制(企業会計審議会の実施基準)。', lessonId: 'au-5' },
   { term: '不正リスク要因', reading: 'fraud risk factors', description: '不正を実行する動機やプレッシャーの存在を示し、実行する機会を与え、または実行を正当化する事象や状況(企業会計審議会の不正リスク対応基準の意見書)。', lessonId: 'au-6' },
   { term: '不正による重要な虚偽の表示の疑義', reading: 'suspicion of fraud-induced material misstatement', description: '監査人が、不正による重要な虚偽の表示を示唆する状況について、経営者の説明に合理性がないと判断した場合などに、そう扱うもの。想定される不正の態様に直接対応した監査手続を立案し、監査計画を修正する(不正リスク対応基準)。', lessonId: 'au-6' },
+  { term: '契約の自由', reading: 'freedom of contract', description: '法令に特別の定めがある場合を除き、契約をするかどうかを自由に決定でき(第 1 項)、法令の制限内で契約の内容を自由に決定できる(第 2 項)こと(民法第 521 条)。', lessonId: 'lg-2' },
+  { term: '定型約款', reading: 'standard terms', description: '定型取引において、契約の内容とすることを目的として、その特定の者により準備された条項の総体。一定の場合に個別の条項についても合意したものとみなされるが、相手方の利益を一方的に害する条項などは、合意しなかったものとみなされる(民法第 548 条の 2)。', lessonId: 'lg-2' },
+  { term: '消費者契約', reading: 'consumer contract', description: '消費者(個人。事業として又は事業のために契約の当事者となる場合を除く)と事業者との間で締結される契約(消費者契約法第 2 条)。', lessonId: 'lg-1' },
 ]
