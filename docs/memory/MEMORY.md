@@ -2,3 +2,4 @@
 - [運営の制約](project-operations-constraints.md) — 週3〜5時間・月数千円・人の確認は高リスク分野と方針だけ・講座単位で公開
 - [記憶の写しの同期](feedback-sync-memory-copy.md) — 記憶を更新したら docs/memory/ にも写して commit・push
 - [執筆の進み具合](project-writing-progress.md) — 公開済みの講座・次の一手・push の約束・SWE に着手(2026-10-12)・Mac は Node 22 を使う
+- [事実確認は Opus](feedback-factcheck-with-opus.md) — 本体は Sonnet、verify-lesson のエージェントだけ model: opus(2026-10-12)
