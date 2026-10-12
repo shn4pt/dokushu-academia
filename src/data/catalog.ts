@@ -275,7 +275,7 @@ export const courses: Course[] = [
     summary: '契約、知的財産、個人情報など、事業に関わる法の全体像と考え方。',
     tiers: [
       { level: 'basic', scope: '法の全体像', stageIds: ['lg0'] },
-      { level: 'practice', scope: '事業で出会う論点', planned: ['知的財産の基本', '個人情報の取り扱いの全体像'] },
+      { level: 'practice', scope: '事業で出会う論点', stageIds: ['lg1'] },
       { level: 'advanced', scope: '組織としての法務', planned: ['コンプライアンスの考え方', '専門家に相談すべき場面'] },
     ],
   },

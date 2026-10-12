@@ -347,4 +347,9 @@ export const glossary: Term[] = [
   { term: '契約の自由', reading: 'freedom of contract', description: '法令に特別の定めがある場合を除き、契約をするかどうかを自由に決定でき(第 1 項)、法令の制限内で契約の内容を自由に決定できる(第 2 項)こと(民法第 521 条)。', lessonId: 'lg-2' },
   { term: '定型約款', reading: 'standard terms', description: '定型取引において、契約の内容とすることを目的として、その特定の者により準備された条項の総体。一定の場合に個別の条項についても合意したものとみなされるが、相手方の利益を一方的に害する条項などは、合意しなかったものとみなされる(民法第 548 条の 2)。', lessonId: 'lg-2' },
   { term: '消費者契約', reading: 'consumer contract', description: '消費者(個人。事業として又は事業のために契約の当事者となる場合を除く)と事業者との間で締結される契約(消費者契約法第 2 条)。', lessonId: 'lg-1' },
+  { term: '職務著作', reading: 'work made for hire', description: '法人等の発意に基づき、その業務に従事する者が職務上作成する著作物で、法人等が自己の著作の名義の下に公表するもの(プログラムを除く)は、契約、勤務規則その他に別段の定めがない限り、法人等が著作者となる(著作権法第 15 条)。', lessonId: 'lg-3' },
+  { term: '職務発明', reading: 'employee invention', description: '使用者等の業務範囲に属し、発明をするに至った行為が従業者等の現在または過去の職務に属する発明。使用者等は通常実施権を有し、従業者等は相当の利益を受ける権利を有する(特許法第 35 条)。', lessonId: 'lg-3' },
+  { term: '営業秘密', reading: 'trade secret', description: '秘密として管理されている生産方法、販売方法その他の事業活動に有用な技術上または営業上の情報で、公然と知られていないもの(不正競争防止法第 2 条第 6 項)。', lessonId: 'lg-3' },
+  { term: '個人情報取扱事業者', reading: 'personal information handling business operator', description: '個人情報データベース等を事業の用に供している者(国の機関、地方公共団体、独立行政法人等、地方独立行政法人を除く)(個人情報保護法第 16 条第 2 項)。', lessonId: 'lg-4' },
+  { term: '要配慮個人情報', reading: 'special care-required personal information', description: '本人の人種、信条、社会的身分、病歴、犯罪の経歴などで、不当な差別、偏見その他の不利益が生じないよう取扱いに特に配慮を要するものとして政令で定める記述等が含まれる個人情報。原則として、あらかじめ本人の同意を得ないで取得してはならない(個人情報保護法第 2 条第 3 項、第 20 条第 2 項)。', lessonId: 'lg-4' },
 ]
