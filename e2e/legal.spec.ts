@@ -1,6 +1,6 @@
 import { go, expect, test } from './fixtures'
 
-// 法務の序論(法務-1、法務-2)と実践(法務-3、法務-4)の画面。
+// 法務の序論(法務-1、法務-2)、実践(法務-3、法務-4)、応用(法務-5、法務-6)の画面。
 async function answer(page: import('@playwright/test').Page, answers: string[], index: number) {
   const ex = page.locator('.demo').filter({ has: page.getByRole('button', { name: '答え合わせ' }) }).nth(index)
   for (let i = 0; i < answers.length; i++) await ex.locator('.task-row').nth(i).getByRole('button', { name: answers[i], exact: true }).click()
@@ -56,13 +56,38 @@ test('法務-4: 個人情報と用語、個人情報取扱事業者、取り扱�
   await expect(page.locator('.source-note')).toContainText('個人情報')
 })
 
-test('講座の目次: 法務は、基礎と実践が公開され、応用が準備中', async ({ page }) => {
+test('法務-5: 法令等の遵守の 3 区分、会社法の責任、内部通報、公益通報者保護法、2026-12-01 の改正、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/lg-5'))
+  await expect(page.locator('article h1')).toContainText('コンプライアンスの考え方')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['全体像と考え方', '専門家', '確認した日', '法令等の遵守', '第 355 条', '公益通報者保護法', '300 人以下', '2026-12-01']) await expect(art).toContainText(t)
+  await answer(page, ['法令', '基準等', '基準等', '自社内外の行動規範', '自社内外の行動規範', '法令'], 0)
+  await answer(page, ['適切', '適切でない', '適切', '適切でない', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('公益通報者保護法')
+})
+
+test('法務-6: 専門家の業務、資格のない者への制限、守秘と窓口、場面の整理、改正の予定、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/lg-6'))
+  await expect(page.locator('article h1')).toContainText('専門家に相談すべき場面')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['全体像と考え方', '専門家', '確認した日', '弁護士法第 72 条', '行政書士', '税理士', '日本司法支援センター', '判断しません']) await expect(art).toContainText(t)
+  await answer(page, ['弁護士', '司法書士', '行政書士', '弁理士', '社会保険労務士', '税理士', '公認会計士'], 0)
+  await answer(page, ['適切', '適切でない', '適切', '適切でない', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('弁護士法')
+})
+
+test('講座の目次: 法務は、すべての段階が公開されている', async ({ page }) => {
   await page.goto(go('/course/legal'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
-  await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
+  await expect(page.getByTestId('writing-status')).toContainText('本文 6 / 予定 6 レッスン')
+  await expect(page.locator('.badge', { hasText: '公開中' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '序論:事業と法の関わり、契約の基本' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '実践:知的財産、個人情報' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(2)
-  await page.locator('.stage-card', { hasText: '実践:知的財産、個人情報' }).click()
+  await expect(page.locator('.stage-card', { hasText: '応用:コンプライアンス、専門家への相談' })).toBeVisible()
+  await expect(page.locator('.planned-item')).toHaveCount(0)
+  await page.locator('.stage-card', { hasText: '応用:コンプライアンス、専門家への相談' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

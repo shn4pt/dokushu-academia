@@ -99,12 +99,12 @@ test('講座の目次(公開中): 既存のステージに移れる', async ({ p
 })
 
 test('講座の目次(目次のみ): 準備中のレッスンの案と、根拠の基準が表示される', async ({ page }) => {
-  await page.goto(go('/course/legal'))
-  await expect(page.locator('h1')).toContainText('法務')
+  await page.goto(go('/course/labor'))
+  await expect(page.locator('h1')).toContainText('労務')
   const basis = page.locator('.why-card', { hasText: '根拠の基準' })
   await expect(basis).toContainText('法令・基準')
   await expect(basis).toContainText('個別の事案は扱いません')
-  await expect(page.getByRole('region', { name: 'なぜ学ぶのか' })).toContainText('専門家に相談すべき場面')
+  await expect(page.getByRole('region', { name: 'なぜ学ぶのか' })).toContainText('専門家に確認すべき点')
   await expect(page.getByRole('note')).toContainText('目次の案')
   await expect(page.locator('.planned-item').first()).toContainText('準備中')
   await expect(page.locator('.planned-item a')).toHaveCount(0) // リンクではない(本文がない)

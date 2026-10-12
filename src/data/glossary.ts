@@ -352,4 +352,7 @@ export const glossary: Term[] = [
   { term: '営業秘密', reading: 'trade secret', description: '秘密として管理されている生産方法、販売方法その他の事業活動に有用な技術上または営業上の情報で、公然と知られていないもの(不正競争防止法第 2 条第 6 項)。', lessonId: 'lg-3' },
   { term: '個人情報取扱事業者', reading: 'personal information handling business operator', description: '個人情報データベース等を事業の用に供している者(国の機関、地方公共団体、独立行政法人等、地方独立行政法人を除く)(個人情報保護法第 16 条第 2 項)。', lessonId: 'lg-4' },
   { term: '要配慮個人情報', reading: 'special care-required personal information', description: '本人の人種、信条、社会的身分、病歴、犯罪の経歴などで、不当な差別、偏見その他の不利益が生じないよう取扱いに特に配慮を要するものとして政令で定める記述等が含まれる個人情報。原則として、あらかじめ本人の同意を得ないで取得してはならない(個人情報保護法第 2 条第 3 項、第 20 条第 2 項)。', lessonId: 'lg-4' },
+  { term: '公益通報', reading: 'whistleblowing', description: '労働者などが、不正の目的でなく、事業者などに、通報対象事実を通報すること。通報者は、解雇の無効や不利益な取扱いの禁止で保護される(公益通報者保護法第 2〜5 条。2026-12-01 から保護の仕組みが変わる予定)。', lessonId: 'lg-5' },
+  { term: '法令等の遵守', reading: 'compliance', description: '事業活動に関わる法令その他の規範の遵守を促進すること。法令、基準等(取引所の規則、会計基準等)、自社内外の行動規範(定款、内部規程、業界の行動規範等)から構成される(企業会計審議会の内部統制の基準)。', lessonId: 'lg-5' },
+  { term: '弁護士法第 72 条', reading: 'restriction on non-lawyer legal services', description: '弁護士または弁護士法人でない者は、報酬を得る目的で、訴訟事件その他一般の法律事件に関して鑑定、代理、和解その他の法律事務を取り扱い、またはその周旋をすることを業とできない(この法律または他の法律に別段の定めがある場合を除く)。', lessonId: 'lg-6' },
 ]
