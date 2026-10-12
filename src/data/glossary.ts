@@ -341,4 +341,7 @@ export const glossary: Term[] = [
   { term: '統制上の要点', reading: 'key control', description: '財務報告の信頼性に重要な影響を及ぼす内部統制のうち、経営者が評価の対象として選ぶもの。虚偽記載が発生するリスクを十分に低減しているかを評価する(企業会計審議会の実施基準)。', lessonId: 'au-3' },
   { term: '職務の分掌', reading: 'segregation of duties', description: '職務を複数の者の間で分担または分離させること。取引の承認、取引の記録、資産の管理を別の者に担当させ、相互牽制を働かせる例が挙げられている(企業会計審議会の実施基準)。', lessonId: 'au-3' },
   { term: '縦覧', reading: 'public inspection', description: '金融商品取引法第 25 条が定める、有価証券報告書や内部統制報告書などを、受理した日から一定の期間(多くは 5 年)公衆の閲覧に供すること。会社の記録の保存義務とは別の制度。', lessonId: 'au-4' },
+  { term: '全般統制と業務処理統制', reading: 'general controls and application controls', description: 'IT に対する統制活動の 2 種類。全般統制は、業務処理統制が有効に機能する環境を保証する統制(開発・保守、運用・管理、アクセス管理、外部委託の管理など)、業務処理統制は、業務プロセスに組み込まれ、承認された業務が全て正確に処理・記録されることを確保する統制(企業会計審議会の実施基準)。', lessonId: 'au-5' },
+  { term: '不正リスク要因', reading: 'fraud risk factors', description: '不正を実行する動機やプレッシャーの存在を示し、実行する機会を与え、または実行を正当化する事象や状況(企業会計審議会の不正リスク対応基準の意見書)。', lessonId: 'au-6' },
+  { term: '不正による重要な虚偽の表示の疑義', reading: 'suspicion of fraud-induced material misstatement', description: '監査人が、不正による重要な虚偽の表示を示唆する状況について、経営者の説明に合理性がないと判断した場合などに、そう扱うもの。想定される不正の態様に直接対応した監査手続を立案し、監査計画を修正する(不正リスク対応基準)。', lessonId: 'au-6' },
 ]
