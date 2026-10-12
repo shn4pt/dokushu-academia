@@ -338,4 +338,7 @@ export const glossary: Term[] = [
   { term: '内部統制', reading: 'internal control', description: '業務の有効性及び効率性、報告の信頼性、事業活動に関わる法令等の遵守、資産の保全の 4 つの目的が達成されているとの合理的な保証を得るために、業務に組み込まれ、組織内の全ての者が遂行するプロセス。統制環境・リスクの評価と対応・統制活動・情報と伝達・モニタリング・IT への対応の 6 つの基本的要素から成る(企業会計審議会の基準)。', lessonId: 'au-2' },
   { term: '開示すべき重要な不備', reading: 'material weakness to be disclosed', description: '財務報告に重要な影響を及ぼす可能性が高い、財務報告に係る内部統制の不備。これがなければ、内部統制は有効とされる(企業会計審議会の基準)。', lessonId: 'au-2' },
   { term: '内部統制報告書', reading: 'internal control report', description: '経営者が、財務報告に係る内部統制の有効性を評価した結果をまとめる報告書。金融商品取引法第 24 条の 4 の 4 で提出が定められ、監査証明を受ける。', lessonId: 'au-2' },
+  { term: '統制上の要点', reading: 'key control', description: '財務報告の信頼性に重要な影響を及ぼす内部統制のうち、経営者が評価の対象として選ぶもの。虚偽記載が発生するリスクを十分に低減しているかを評価する(企業会計審議会の実施基準)。', lessonId: 'au-3' },
+  { term: '職務の分掌', reading: 'segregation of duties', description: '職務を複数の者の間で分担または分離させること。取引の承認、取引の記録、資産の管理を別の者に担当させ、相互牽制を働かせる例が挙げられている(企業会計審議会の実施基準)。', lessonId: 'au-3' },
+  { term: '縦覧', reading: 'public inspection', description: '金融商品取引法第 25 条が定める、有価証券報告書や内部統制報告書などを、受理した日から一定の期間(多くは 5 年)公衆の閲覧に供すること。会社の記録の保存義務とは別の制度。', lessonId: 'au-4' },
 ]

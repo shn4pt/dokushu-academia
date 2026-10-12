@@ -1,6 +1,6 @@
 import { go, expect, test } from './fixtures'
 
-// 監査・内部統制の序論(監査-1、監査-2)の画面。
+// 監査・内部統制の序論(監査-1、監査-2)と実践(監査-3、監査-4)の画面。
 async function answer(page: import('@playwright/test').Page, answers: string[], index: number) {
   const ex = page.locator('.demo').filter({ has: page.getByRole('button', { name: '答え合わせ' }) }).nth(index)
   for (let i = 0; i < answers.length; i++) await ex.locator('.task-row').nth(i).getByRole('button', { name: answers[i], exact: true }).click()
@@ -32,12 +32,37 @@ test('監査-2: 内部統制の定義と基本的要素、限界、評価と報�
   await expect(page.locator('.source-note')).toContainText('内部統制')
 })
 
-test('講座の目次: 監査・内部統制は、基礎が公開され、実践・応用が準備中', async ({ page }) => {
+test('監査-3: リスクの評価の流れ、4 つの対応、統制活動、6 つの要件、リスクと統制の対応、整備と運用、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/au-3'))
+  await expect(page.locator('article h1')).toContainText('リスクと統制')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['全体像と考え方', '専門家', '確認した日', '動機とプレッシャー', '職務の分掌', '統制上の要点', '期間配分の適切性', '内部統制の実施記録の検証', '必ずしもこの様式による必要はなく']) await expect(art).toContainText(t)
+  await answer(page, ['回避', '低減', '移転', '受容'], 0)
+  await answer(page, ['適切でない', '適切でない', '適切', '適切でない', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('実施基準')
+})
+
+test('監査-4: 記録の範囲、既存の記録の活用、保存の考え方、縦覧と保存の違い、改正の予定、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/au-4'))
+  await expect(page.locator('article h1')).toContainText('証跡の残し方')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['全体像と考え方', '専門家', '確認した日', '第三者による検証', '第 25 条', '第 432 条', '第二十六条第一項', '痕跡が残りにくい']) await expect(art).toContainText(t)
+  await answer(page, ['内部統制の実施基準', '金融商品取引法 第 25 条', '会社法 第 432・435 条', '内部統制の実施基準', '会社法 第 432・435 条', '金融商品取引法 第 25 条'], 0)
+  await answer(page, ['適切でない', '適切', '適切でない', '適切', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('第 25 条')
+})
+
+test('講座の目次: 監査・内部統制は、基礎と実践が公開され、応用が準備中', async ({ page }) => {
   await page.goto(go('/course/audit'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 2 / 予定 6 レッスン')
+  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
   await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '序論:監査と内部統制の役割' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(4)
-  await page.locator('.stage-card', { hasText: '序論:監査と内部統制の役割' }).click()
+  await expect(page.locator('.stage-card', { hasText: '実践:リスクと統制、証跡' })).toBeVisible()
+  await expect(page.locator('.planned-item')).toHaveCount(2)
+  await page.locator('.stage-card', { hasText: '実践:リスクと統制、証跡' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

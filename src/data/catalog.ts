@@ -308,7 +308,7 @@ export const courses: Course[] = [
     summary: '会計監査と内部統制の考え方。',
     tiers: [
       { level: 'basic', scope: '監査と統制の基本', stageIds: ['au0'] },
-      { level: 'practice', scope: '統制の設計と運用', planned: ['リスクと統制', '証跡の残し方'] },
+      { level: 'practice', scope: '統制の設計と運用', stageIds: ['au1'] },
       { level: 'advanced', scope: '組織への展開', planned: ['IT と統制', '不正の防止の考え方'] },
     ],
   },
