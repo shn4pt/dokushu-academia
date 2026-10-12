@@ -332,4 +332,10 @@ export const glossary: Term[] = [
   { term: 'サイバーセキュリティの事故(インシデント)', reading: 'cybersecurity incident', description: '情報または情報システムの完全性・機密性・可用性を、法的な権限なしに実際に、または差し迫って損なう出来事など(FISMA 2014 の定義)。', lessonId: 'se-6' },
   { term: '事故指揮官(IC)', reading: 'incident commander', description: '事故の対応で、戦略の目標を決めて指揮する役割。事故の宣言で、明示して引き受ける。', lessonId: 'se-6' },
   { term: '責めないポストモーテム', reading: 'blameless postmortem', description: '事故の記録と振り返りで、個人やチームを責めずに、寄与した原因に注目する文化。人を直すことはできないが、システムや手順は直せる、という考え方。', lessonId: 'se-6' },
+  { term: '財務諸表監査', reading: 'audit of financial statements', description: '経営者の作成した財務諸表が、一般に公正妥当と認められる企業会計の基準に準拠して、全ての重要な点において適正に表示しているかについて、監査人が自ら入手した監査証拠に基づいて判断した結果を、意見として表明すること(監査基準)。', lessonId: 'au-1' },
+  { term: '合理的な保証', reading: 'reasonable assurance', description: '絶対の保証ではなく、財務諸表に全体として重要な虚偽の表示がないことについて、意見表明に十分かつ適切な証拠を得たという監査人の判断。', lessonId: 'au-1' },
+  { term: '会計監査人', reading: 'accounting auditor', description: '会社法上、計算書類などを監査して会計監査報告を作成する、公認会計士又は監査法人。大会社などが置く(会社法第 328・337・396 条)。', lessonId: 'au-1' },
+  { term: '内部統制', reading: 'internal control', description: '業務の有効性及び効率性、報告の信頼性、事業活動に関わる法令等の遵守、資産の保全の 4 つの目的が達成されているとの合理的な保証を得るために、業務に組み込まれ、組織内の全ての者が遂行するプロセス。統制環境・リスクの評価と対応・統制活動・情報と伝達・モニタリング・IT への対応の 6 つの基本的要素から成る(企業会計審議会の基準)。', lessonId: 'au-2' },
+  { term: '開示すべき重要な不備', reading: 'material weakness to be disclosed', description: '財務報告に重要な影響を及ぼす可能性が高い、財務報告に係る内部統制の不備。これがなければ、内部統制は有効とされる(企業会計審議会の基準)。', lessonId: 'au-2' },
+  { term: '内部統制報告書', reading: 'internal control report', description: '経営者が、財務報告に係る内部統制の有効性を評価した結果をまとめる報告書。金融商品取引法第 24 条の 4 の 4 で提出が定められ、監査証明を受ける。', lessonId: 'au-2' },
 ]
