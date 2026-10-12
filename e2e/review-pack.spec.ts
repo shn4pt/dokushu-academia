@@ -27,7 +27,7 @@ test.describe('確認の材料', () => {
     expect(md).toContain('学術 — 査読された論文')
     expect(md).toContain('同じデータが、見方で逆になる') // 公開済みの、ほかのレッスンも載る
     expect(md).toContain('根拠が少ない分野での判断')
-    expect(pack(['labor'])).toContain('準備中: 序論:雇用の基本的な仕組み') // 目次の案も載る
+    expect(pack(['labor'])).toContain('準備中: 採用から退職までの流れ') // 目次の案も載る
   })
 
   test('別の目の確認が未実施なら、黄色の目印が出る。実施済みなら、結果が取り込まれる', () => {
@@ -49,8 +49,8 @@ test.describe('確認の材料', () => {
   })
 
   test('段階を絞れる(本文のない段階は、レッスンなし)', () => {
-    const md = pack(['labor', '--tier', 'basic'])
-    expect(md).toContain('# 確認の材料: 労務(基礎)')
+    const md = pack(['labor', '--tier', 'practice'])
+    expect(md).toContain('# 確認の材料: 労務(実践)')
     expect(md).toContain('公開済みのレッスンは、ありません')
   })
 
