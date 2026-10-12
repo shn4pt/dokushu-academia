@@ -57,7 +57,7 @@ test('一覧ページ: AI 執筆の説明、件数が記録と一致、絞り込
 
 test('フッターから出典ページへ移れる', async ({ page }) => {
   await page.goto(go('/llm'))
-  await page.locator('.site-footer a').click()
+  await page.locator('.site-footer').getByRole('link', { name: '出典と確認の状況' }).click()
   await expect(page).toHaveURL(/#\/sources$/)
 })
 

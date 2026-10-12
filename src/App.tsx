@@ -15,6 +15,7 @@ import ReviewPage from './pages/ReviewPage'
 import { useDueKeys } from './review'
 import { overallStats } from './data/stats'
 import { useProgress } from './progress'
+import { REPO } from './sources'
 
 // API の SDK を含むため、開いたときにだけ読み込む
 const ApiKeyPage = lazy(() => import('./pages/ApiKeyPage'))
@@ -57,6 +58,10 @@ export default function App() {
       </main>
       <footer className="site-footer">
         このアプリは AI(Claude Code)が執筆しています。<Link to="/sources">出典と確認の状況</Link>
+        <span className="muted block" data-testid="license-footer">
+          講座の文章は CC BY-SA 4.0、コードは MIT です(資料から訳した部分は、各レッスンの末尾に、その資料の条件を表示します)。
+          <a href={`${REPO}/blob/main/LICENSE-CONTENT.md`} target="_blank" rel="noreferrer">ライセンスの詳細</a>
+        </span>
       </footer>
     </>
   )

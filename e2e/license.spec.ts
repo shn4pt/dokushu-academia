@@ -51,4 +51,12 @@ test.describe('利用条件の表示', () => {
     }
     expect(n).toBeGreaterThan(20) // OWASP、Scrum Guide、OpenStax の非営利・継承の教科書
   })
+
+  test('フッター: 講座の文章は CC BY-SA 4.0、コードは MIT と、詳細へのリンクが出る', async ({ page }) => {
+    await page.goto(go('/'))
+    const f = page.getByTestId('license-footer')
+    await expect(f).toContainText('CC BY-SA 4.0')
+    await expect(f).toContainText('MIT')
+    await expect(f.getByRole('link', { name: 'ライセンスの詳細' })).toHaveAttribute('href', /LICENSE-CONTENT\.md$/)
+  })
 })
