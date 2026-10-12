@@ -321,4 +321,9 @@ export const glossary: Term[] = [
   { term: '安全側の初期値', reading: 'fail-safe defaults', description: 'アクセスの判断を、許す理由にもとづいて行い、初期状態を「アクセスできない」にするという原則。', lessonId: 'se-1' },
   { term: '認証と認可', reading: 'authentication and authorization', description: '認証は「あなたは誰か」を確かめること、認可は「その操作をしてよいか」を確かめること。', lessonId: 'se-2' },
   { term: 'フィッシング耐性', reading: 'phishing resistance', description: '利用者の注意深さに頼らずに、偽のサイトに認証の秘密や有効な出力を渡さないようにできる、認証のやり方の性質。手で入力するワンタイムのコードは、これを満たさない(NIST SP 800-63B-4)。', lessonId: 'se-2' },
+  { term: 'OWASP Top 10', reading: 'OWASP Top 10', description: 'Web アプリの最も重大なセキュリティのリスクを 10 項目にまとめた、意識を高めるための文書。2025 年版は、検査のデータと実務家へのアンケートから項目を選んでいる。', lessonId: 'se-3' },
+  { term: 'インジェクション', reading: 'injection', description: '利用者の入力が、データベースやブラウザなどの解釈する仕組みに送られ、その一部が命令として実行されてしまう弱点。データと命令を分けること(パラメータ化など)が最善の防ぎ方。', lessonId: 'se-3' },
+  { term: 'ソフトウェアのサプライチェーン', reading: 'software supply chain', description: 'ソフトウェアを作り、配り、更新する過程と、頼っている他者のコードや道具の全体。そこでの弱点や悪意のある変更が、自分のシステムを危うくする。', lessonId: 'se-3' },
+  { term: '秘密情報(シークレット)', reading: 'secrets', description: 'API キー、データベースのパスワード、暗号の鍵など、外部のサービスやシステムに接続するための秘密の値。コードに書かず、管理の仕組みで扱う。', lessonId: 'se-4' },
+  { term: '秘密の交換(ローテーション)', reading: 'secret rotation', description: '盗まれた秘密が短い時間しか使えないように、システムの秘密を定期的に新しいものに替えること。利用者のパスワードは定期的な交換の対象外とされる。', lessonId: 'se-4' },
 ]

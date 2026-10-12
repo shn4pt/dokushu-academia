@@ -4593,5 +4593,79 @@
         "summary": "新しく追加した"
       }
     ]
+  },
+  "se-3": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "OWASP Top 10:2025 のトップページ、序論(Introduction:項目、2021 年からの変化、方法、データの使い方、アンケートを使う理由、データの提供者)、A02(設定ミス)、A03(サプライチェーン)、A05(インジェクション)の項目のページの本文を読みました。A01 は、セキュリティ-2 で読んだ OWASP の Authorization Cheat Sheet と、序論の記述によります。A04・A06〜A10 の項目のページは読んでいません。文書の中で、A05 の CWE の数(序論は 38、項目のページは 37)、データとアンケートの項目の数(序論の方法の節は 12 と 2、別の節は 8 と 2)、A03 の CWE の数(5 と 6)と平均の発生率(5.19% と 5.72%)が食い違っており、本文に書きました。Top 10 の公開の日付は、読んだページに書かれていなかったので書いていません。各項目のページの個別の事件の例は使っていません。SQL インジェクション・XSS の対策の Cheat Sheet は取得しましたが、本文では使っていません。『PM がリリースの前に使える問い』と SWE-2 との対応づけは、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/se-3.md にあります。",
+    "sources": [
+      {
+        "title": "OWASP Top 10:2025(トップページ)",
+        "url": "https://owasp.org/Top10/2025/",
+        "how": "read",
+        "use": "意識を高める標準の文書で、最も重大なリスクについての広い合意を表す、という位置づけ(ページの本文)"
+      },
+      {
+        "title": "OWASP Top 10:2025 Introduction",
+        "url": "https://owasp.org/Top10/2025/0x00_2025-Introduction/",
+        "how": "read",
+        "use": "10 項目、2021 年からの変化、データとアンケートによる方法、割合による数え方、根本の原因によるまとめ方、A01 の 3.73%(序論の本文)"
+      },
+      {
+        "title": "OWASP Top 10:2025 A05 Injection",
+        "url": "https://owasp.org/Top10/2025/A05_2025-Injection/",
+        "how": "read",
+        "use": "インジェクションの定義、XSS と SQL インジェクションの性格づけ、防ぎ方、例の攻撃、LLM への言及(項目のページの本文)"
+      },
+      {
+        "title": "OWASP Top 10:2025 A02 Security Misconfiguration",
+        "url": "https://owasp.org/Top10/2025/A02_2025-Security_Misconfiguration/",
+        "how": "read",
+        "use": "設定ミスの発生の状況、弱い状態の例、防ぎ方(項目のページの本文)"
+      },
+      {
+        "title": "OWASP Top 10:2025 A03 Software Supply Chain Failures",
+        "url": "https://owasp.org/Top10/2025/A03_2025-Software_Supply_Chain_Failures/",
+        "how": "read",
+        "use": "サプライチェーンの失敗の定義、アンケートの結果、弱い状態の例、防ぎ方(項目のページの本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "se-4": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "Meli, McNiece, Reaves(2019)How Bad Can It Git? Characterizing Secret Leakage in Public GitHub Repositories(NDSS 2019 の公開 PDF)の要旨、序論、第 V 節の該当部分(収集の規模、削除の割合)、第 VI 節 A の発見までの時間の実験、第 VII 節の根本の原因、第 IX 節の対策、第 X 節の限界、結論を読みました。OWASP の Secrets Management Cheat Sheet の序論、第 2 節の一般的な管理(一元化、アクセス制御、自動化、監査、ライフサイクル)、第 3.2 節の CI/CD での置き場所、第 5.1 節のコンテナへの渡し方、第 8 節の検出、第 9 節の事故対応を読みました。クラウドごとの節や暗号の節は読んでいません。The Twelve-Factor App の III. Config の全文を読みました。GitHub の secret scanning の文書は取得しましたが、本文では使っていません。論文は 2017〜2018 年のデータで、当時の対策の評価は、その後の道具の改善を反映していません。2 つの文書の環境変数の評価の比較、失効と交換が先というまとめ、『PM が秘密の扱いで使える問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/se-4.md にあります。",
+    "sources": [
+      {
+        "title": "How Bad Can It Git? Characterizing Secret Leakage in Public GitHub Repositories(Michael Meli, Matthew R. McNiece, Bradley Reaves, NDSS 2019, DOI 10.14722/ndss.2019.23418)",
+        "url": "https://www.ndss-symposium.org/wp-content/uploads/2019/02/ndss2019_04B-3_Meli_paper.pdf",
+        "how": "read",
+        "use": "漏えいの規模、1 日あたりの件数、検索で見つかるまでの時間の実験(第 VI 節 A)、削除の割合、履歴に残ること、主な原因、当時の対策の限界、下限であること、研究の限界(読んだ節の本文)"
+      },
+      {
+        "title": "Secrets Management Cheat Sheet(OWASP Cheat Sheet Series)",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
+        "how": "read",
+        "use": "一元化、アクセス制御、自動化と動的な秘密、監査、ライフサイクル、利用者のパスワードは定期交換の対象外、ログに残さない、コンテナでの渡し方と環境変数、事故対応の手順(読んだ節の本文)"
+      },
+      {
+        "title": "The Twelve-Factor App: III. Config",
+        "url": "https://12factor.net/config",
+        "how": "read",
+        "use": "設定をコードから分けて環境変数に置く、資格情報を漏らさずにコードを公開できるかの試金石(章の全文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
   }
 }
