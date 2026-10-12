@@ -326,4 +326,10 @@ export const glossary: Term[] = [
   { term: 'ソフトウェアのサプライチェーン', reading: 'software supply chain', description: 'ソフトウェアを作り、配り、更新する過程と、頼っている他者のコードや道具の全体。そこでの弱点や悪意のある変更が、自分のシステムを危うくする。', lessonId: 'se-3' },
   { term: '秘密情報(シークレット)', reading: 'secrets', description: 'API キー、データベースのパスワード、暗号の鍵など、外部のサービスやシステムに接続するための秘密の値。コードに書かず、管理の仕組みで扱う。', lessonId: 'se-4' },
   { term: '秘密の交換(ローテーション)', reading: 'secret rotation', description: '盗まれた秘密が短い時間しか使えないように、システムの秘密を定期的に新しいものに替えること。利用者のパスワードは定期的な交換の対象外とされる。', lessonId: 'se-4' },
+  { term: '脅威モデリング', reading: 'threat modeling', description: 'システムを表した図などを分析して、セキュリティとプライバシーの懸念を浮かび上がらせること。何に取り組むか・何がうまくいかなくなりうるか・何をするか・十分にできたか、の 4 つの問いを立てる。', lessonId: 'se-5' },
+  { term: 'STRIDE', reading: 'STRIDE', description: '脅威を、なりすまし・改ざん・否認・情報の漏えい・サービス拒否・権限の昇格の 6 つに分けて、系統的に考える技術。Microsoft の人々が作った。', lessonId: 'se-5' },
+  { term: '脅威への 4 つの対応', reading: 'mitigate, eliminate, transfer, accept', description: '緩和、除去、移転、受容。移転しただけでは、起きやすさも被害も減らない。', lessonId: 'se-5' },
+  { term: 'サイバーセキュリティの事故(インシデント)', reading: 'cybersecurity incident', description: '情報または情報システムの完全性・機密性・可用性を、法的な権限なしに実際に、または差し迫って損なう出来事など(FISMA 2014 の定義)。', lessonId: 'se-6' },
+  { term: '事故指揮官(IC)', reading: 'incident commander', description: '事故の対応で、戦略の目標を決めて指揮する役割。事故の宣言で、明示して引き受ける。', lessonId: 'se-6' },
+  { term: '責めないポストモーテム', reading: 'blameless postmortem', description: '事故の記録と振り返りで、個人やチームを責めずに、寄与した原因に注目する文化。人を直すことはできないが、システムや手順は直せる、という考え方。', lessonId: 'se-6' },
 ]

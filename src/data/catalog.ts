@@ -160,7 +160,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: 'セキュリティの基本概念', stageIds: ['se0'] },
       { level: 'practice', scope: 'よくある脆弱性と対策', stageIds: ['se1'] },
-      { level: 'advanced', scope: '組織としての取り組み', planned: ['脅威モデリング', 'インシデント対応'] },
+      { level: 'advanced', scope: '組織としての取り組み', stageIds: ['se2'] },
     ],
   },
   // ── プロダクト・事業 ──
@@ -351,7 +351,7 @@ export const writingPlan: { priority: Priority; title: string; reason: string; i
     priority: 3,
     title: 'あとで',
     reason: '専門性が高く、全体像と考え方に限るべき分野や、プロダクトマネジメントの直接の前提でない分野です。需要を見て、順序を見直します。',
-    ids: ['security', 'legal', 'labor', 'audit'],
+    ids: ['legal', 'labor', 'audit'],
   },
 ]
 export const priorityOf = (c: Course) => writingPlan.find((p) => p.ids.includes(c.id))

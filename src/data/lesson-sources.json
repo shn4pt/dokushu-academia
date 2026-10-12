@@ -4581,7 +4581,7 @@
         "use": "発行の年月と、置き換えた版の記載(表紙と前付け)"
       },
       {
-        "title": "Authorization Cheat Sheet(OWASP Cheat Sheet Series)",
+        "title": "Authorization Cheat Sheet(OWASP Cheat Sheet Series、CC BY-SA 4.0)",
         "url": "https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html",
         "how": "read",
         "use": "認可の定義と認証との違い、アクセス制御の不備の位置づけ、水平の権限昇格、前半の 5 つの推奨、確認の場所(読んだ節の本文)"
@@ -4649,7 +4649,7 @@
         "use": "漏えいの規模、1 日あたりの件数、検索で見つかるまでの時間の実験(第 VI 節 A)、削除の割合、履歴に残ること、主な原因、当時の対策の限界、下限であること、研究の限界(読んだ節の本文)"
       },
       {
-        "title": "Secrets Management Cheat Sheet(OWASP Cheat Sheet Series)",
+        "title": "Secrets Management Cheat Sheet(OWASP Cheat Sheet Series、CC BY-SA 4.0)",
         "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html",
         "how": "read",
         "use": "一元化、アクセス制御、自動化と動的な秘密、監査、ライフサイクル、利用者のパスワードは定期交換の対象外、ログに残さない、コンテナでの渡し方と環境変数、事故対応の手順(読んだ節の本文)"
@@ -4659,6 +4659,62 @@
         "url": "https://12factor.net/config",
         "how": "read",
         "use": "設定をコードから分けて環境変数に置く、資格情報を漏らさずにコードを公開できるかの試金石(章の全文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "se-5": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "Threat Modeling Manifesto(threatmodelingmanifesto.org、CC BY 4.0)のトップページの全文(4 つの問い、価値、原則、パターンとアンチパターン、作業グループ)と、OWASP の Threat Modeling Cheat Sheet(CC BY-SA 4.0。要約と、表の訳です。継承の条件の扱いはサイト運営者の判断が要ります)の Introduction、Overview、Advantages、Addressing Each Question、System Modeling、Cloud Threat Modeling、Threat Identification(STRIDE の表)、技術の選び方の表、Response and Mitigations、Review and Validation、開発チームの課題の節を読みました。これらは実務家の共同の宣言と指針で、脅威モデリングが事故を減らす効果を測った研究ではありません。STRIDE の表の各行は OWASP のガイドの表の訳で、Microsoft の資料は使っていません。ガイドが根拠にしている NIST SP 800-218 と SEI の方法の比較は読んでいません。攻撃木・LINDDUN・PASTA・OCTAVE・VAST は概要の紹介にとどめました。『PM が脅威モデリングで使える問い』と SWE-1 との対応づけは、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/se-5.md にあります。",
+    "sources": [
+      {
+        "title": "Threat Modeling Manifesto(Adam Shostack ほか 15 人の作業グループ、CC BY 4.0)",
+        "url": "https://www.threatmodelingmanifesto.org/",
+        "how": "read",
+        "use": "脅威モデリングの定義、4 つの問い、誰がするか、価値、原則、パターンとアンチパターン(ページの全文)"
+      },
+      {
+        "title": "Threat Modeling Cheat Sheet(OWASP Cheat Sheet Series、CC BY-SA 4.0)",
+        "url": "https://cheatsheetseries.owasp.org/cheatsheets/Threat_Modeling_Cheat_Sheet.html",
+        "how": "read",
+        "use": "脅威モデリングの概要、4 つのステップ、DFD、STRIDE と表、技術の選び方、脅威への 4 つの対応、見直しの観点(読んだ節の本文)"
+      }
+    ],
+    "changes": [
+      {
+        "date": "2026-10-12",
+        "summary": "新しく追加した"
+      }
+    ]
+  },
+  "se-6": {
+    "status": "partial",
+    "checkedAt": "2026-10-12",
+    "note": "NIST SP 800-61r3 Incident Response Recommendations and Considerations for Cybersecurity Risk Management(2025 年 4 月、PDF)の表紙・前付け・要旨、エグゼクティブサマリー、第 1 章(用語、定義、目的と範囲)、第 2 章(ライフサイクル、役割、方針の冒頭)を読みました。第 3 章の CSF 2.0 コミュニティプロファイルの表(具体的な推奨)は読んでいません。Building Secure and Reliable Systems(Google の技術者らによる本。ウェブ版にライセンス表示がないので引用せず要約)の第 17 章 Crisis Management の、冒頭、危機の判断、冷静さ、指揮の枠組みと役割、運用上のセキュリティ、調査の過程、指揮官の役割、引き継ぎの冒頭、連絡(行き違い、ぼかし、会議、連絡の責任者)を読みました。末尾の事例の節は読んでいません。Site Reliability Engineering(Google)の Postmortem Culture の章を、本文として読みました。これらは米国の標準と Google 1 社の経験で、ほかの組織での効果を比べた研究ではありません。法的な通知の期限や報告の義務は扱っていません。セキュリティ-4 との対応づけと『PM が事故への備えで使える問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/se-6.md にあります。",
+    "sources": [
+      {
+        "title": "NIST SP 800-61r3: Incident Response Recommendations and Considerations for Cybersecurity Risk Management(Nelson, Rekhi, Souppaya, Scarfone, 2025 年 4 月)",
+        "url": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r3.pdf",
+        "how": "read",
+        "use": "用語と事故の定義、ライフサイクルの位置づけの変化、CSF 2.0 の 6 つの機能、役割、置き換えた版(読んだ節の本文)"
+      },
+      {
+        "title": "Building Secure and Reliable Systems 第 17 章 Crisis Management(Matt Linton, with Nick Soda and Gary O'Connor)",
+        "url": "https://google.github.io/building-secure-and-reliable-systems/raw/ch17.html",
+        "how": "read",
+        "use": "トリアージ、危機かの判断、慌てないこと、障害対応との違い、IMAG と役割、OpSec とよくある失敗、調査、連絡の落とし穴(読んだ節の本文)"
+      },
+      {
+        "title": "Site Reliability Engineering 第 15 章 Postmortem Culture: Learning from Failure(John Lunney, Sue Lueder)",
+        "url": "https://sre.google/sre-book/postmortem-culture/",
+        "how": "read",
+        "use": "ポストモーテムの定義と目的、書くきっかけ、責めないこと、見直しの基準(章の本文)"
       }
     ],
     "changes": [
