@@ -146,3 +146,6 @@ npm run typecheck:e2e  # テストの型チェック
 - `npm run review -- <講座の id> [--tier 段階] [--checks] [--links]`: 公開前に本人が見る「確認の材料」を、自動で1つの Markdown にまとめる(`reviews/` に出力。別の目の確認の結果は `docs/verify/`)。
 - `npm run freshness` / `npm run freshness:links`: 確認日の古いレッスンと、切れた外部リンクの点検(月に1回、GitHub Actions でも実行され、問題があれば issue になる)。
 - 法令・基準の講座のレッスンには、品質ゲート(`e2e/gates.spec.ts`)がある。原典で確認済みで、確認日が 90 日以内でないと、テストが失敗し、公開できない。
+
+## 資料のライセンス
+講座は、Creative Commons などの条件がついた資料を、訳し、要約し、再構成した部分を含みます。その条件の扱い(表示、継承、非営利、改変禁止)と、現時点の一覧は `docs/licenses.md`。各レッスンの末尾には、出典の題名にあるライセンスから、利用条件が自動で表示されます(`src/license.ts`、`e2e/license.spec.ts`)。新しい資料を使うときは、出典の記録の題名に、ライセンス(例: `CC BY-SA 4.0`)を書いてください。

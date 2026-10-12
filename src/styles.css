@@ -385,6 +385,9 @@ a.concept-chip:hover { border-color: var(--accent); }
 }
 
 /* 出典と更新記録 */
+.license-note { margin: 28px 0 8px; padding: 10px 14px; border: 1px dashed var(--border); border-radius: 8px; font-size: 0.9em; }
+.license-note p { margin: 6px 0; }
+.license-note + .source-note { margin-top: 12px; }
 .source-note { margin: 28px 0 8px; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; }
 .source-note summary { cursor: pointer; }
 .source-note ul.plain li { margin: 6px 0; overflow-wrap: anywhere; }

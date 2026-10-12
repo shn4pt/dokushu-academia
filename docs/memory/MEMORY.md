@@ -3,3 +3,4 @@
 - [記憶の写しの同期](feedback-sync-memory-copy.md) — 記憶を更新したら docs/memory/ にも写して commit・push
 - [執筆の進み具合](project-writing-progress.md) — 公開済みの講座・次の一手・push の約束・SWE に着手(2026-10-12)・Mac は Node 22 を使う
 - [事実確認は Opus](feedback-factcheck-with-opus.md) — 本体は Sonnet、verify-lesson のエージェントだけ model: opus(2026-10-12)
+- [資料のライセンスの方針](project-license-policy.md) — BY-SA/NC-SA/ND の扱い・利用条件の自動表示・広告や課金を始める前に見直す(2026-10-12)

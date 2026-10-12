@@ -4671,7 +4671,7 @@
   "se-5": {
     "status": "partial",
     "checkedAt": "2026-10-12",
-    "note": "Threat Modeling Manifesto(threatmodelingmanifesto.org、CC BY 4.0)のトップページの全文(4 つの問い、価値、原則、パターンとアンチパターン、作業グループ)と、OWASP の Threat Modeling Cheat Sheet(CC BY-SA 4.0。要約と、表の訳です。継承の条件の扱いはサイト運営者の判断が要ります)の Introduction、Overview、Advantages、Addressing Each Question、System Modeling、Cloud Threat Modeling、Threat Identification(STRIDE の表)、技術の選び方の表、Response and Mitigations、Review and Validation、開発チームの課題の節を読みました。これらは実務家の共同の宣言と指針で、脅威モデリングが事故を減らす効果を測った研究ではありません。STRIDE の表の各行は OWASP のガイドの表の訳で、Microsoft の資料は使っていません。ガイドが根拠にしている NIST SP 800-218 と SEI の方法の比較は読んでいません。攻撃木・LINDDUN・PASTA・OCTAVE・VAST は概要の紹介にとどめました。『PM が脅威モデリングで使える問い』と SWE-1 との対応づけは、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/se-5.md にあります。",
+    "note": "Threat Modeling Manifesto(threatmodelingmanifesto.org、CC BY 4.0)のトップページの全文(4 つの問い、価値、原則、パターンとアンチパターン、作業グループ)と、OWASP の Threat Modeling Cheat Sheet(CC BY-SA 4.0。要約と、表の訳です。継承の条件に従い、このレッスンの該当部分を同じ条件で提供しています。docs/licenses.md を参照)の Introduction、Overview、Advantages、Addressing Each Question、System Modeling、Cloud Threat Modeling、Threat Identification(STRIDE の表)、技術の選び方の表、Response and Mitigations、Review and Validation、開発チームの課題の節を読みました。これらは実務家の共同の宣言と指針で、脅威モデリングが事故を減らす効果を測った研究ではありません。STRIDE の表の各行は OWASP のガイドの表の訳で、Microsoft の資料は使っていません。ガイドが根拠にしている NIST SP 800-218 と SEI の方法の比較は読んでいません。攻撃木・LINDDUN・PASTA・OCTAVE・VAST は概要の紹介にとどめました。『PM が脅威モデリングで使える問い』と SWE-1 との対応づけは、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/se-5.md にあります。",
     "sources": [
       {
         "title": "Threat Modeling Manifesto(Adam Shostack ほか 15 人の作業グループ、CC BY 4.0)",
