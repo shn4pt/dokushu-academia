@@ -3,6 +3,7 @@ import { mkdtempSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { expect, test } from '@playwright/test'
+import { courses } from '../src/data/catalog'
 
 // 確認の材料の自動生成(scripts/review-pack.mjs)。ブラウザは使わない。
 const tmp = mkdtempSync(join(tmpdir(), 'pack-test-'))
@@ -27,7 +28,11 @@ test.describe('確認の材料', () => {
     expect(md).toContain('学術 — 査読された論文')
     expect(md).toContain('同じデータが、見方で逆になる') // 公開済みの、ほかのレッスンも載る
     expect(md).toContain('根拠が少ない分野での判断')
-    expect(pack(['labor'])).toContain('準備中: ハラスメント防止の考え方') // 目次の案も載る
+    const withPlanned = courses.find((c) => c.tiers.some((t) => t.planned?.length))
+    if (withPlanned) {
+      const first = withPlanned.tiers.find((t) => t.planned?.length)!.planned![0]
+      expect(pack([withPlanned.id])).toContain(`準備中: ${first}`) // 目次の案も載る
+    }
   })
 
   test('別の目の確認が未実施なら、黄色の目印が出る。実施済みなら、結果が取り込まれる', () => {
@@ -49,8 +54,11 @@ test.describe('確認の材料', () => {
   })
 
   test('段階を絞れる(本文のない段階は、レッスンなし)', () => {
-    const md = pack(['labor', '--tier', 'advanced'])
-    expect(md).toContain('# 確認の材料: 労務(応用)')
+    const tierLabel: Record<string, string> = { basic: '基礎', practice: '実践', advanced: '応用' }
+    const target = courses.flatMap((c) => c.tiers.filter((t) => !t.stageIds?.length).map((t) => ({ c, t }))).at(0)
+    test.skip(!target, '本文のない段階が、いまはない(全講座の全段階に本文がある)')
+    const md = pack([target!.c.id, '--tier', target!.t.level])
+    expect(md).toContain(`# 確認の材料: ${target!.c.title}(${tierLabel[target!.t.level]})`)
     expect(md).toContain('公開済みのレッスンは、ありません')
   })
 

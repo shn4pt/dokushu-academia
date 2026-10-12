@@ -286,7 +286,7 @@ export const courses: Course[] = [
     tiers: [
       { level: 'basic', scope: '雇用の全体像', stageIds: ['lb0'] },
       { level: 'practice', scope: '日々の運用', stageIds: ['lb1'] },
-      { level: 'advanced', scope: '組織の課題', planned: ['ハラスメント防止の考え方', '専門家に相談すべき場面'] },
+      { level: 'advanced', scope: '組織の課題', stageIds: ['lb2'] },
     ],
   },
   {
@@ -347,11 +347,5 @@ export const usedBy = (c: Course) => courses.filter((x) => x.requires?.includes(
  */
 export type Priority = 1 | 2 | 3
 export const writingPlan: { priority: Priority; title: string; reason: string; ids: string[] }[] = [
-  {
-    priority: 3,
-    title: 'あとで',
-    reason: '専門性が高く、全体像と考え方に限るべき分野や、プロダクトマネジメントの直接の前提でない分野です。需要を見て、順序を見直します。',
-    ids: ['labor'],
-  },
 ]
 export const priorityOf = (c: Course) => writingPlan.find((p) => p.ids.includes(c.id))

@@ -1,6 +1,6 @@
 import { go, expect, test } from './fixtures'
 
-// 労務の序論(労務-1、労務-2)と実践(労務-3、労務-4)の画面。
+// 労務の序論(労務-1、労務-2)、実践(労務-3、労務-4)、応用(労務-5、労務-6)の画面。
 async function answer(page: import('@playwright/test').Page, answers: string[], index: number) {
   const ex = page.locator('.demo').filter({ has: page.getByRole('button', { name: '答え合わせ' }) }).nth(index)
   for (let i = 0; i < answers.length; i++) await ex.locator('.task-row').nth(i).getByRole('button', { name: answers[i], exact: true }).click()
@@ -56,13 +56,38 @@ test('労務-4: 就業規則の作成・届出、記載事項、意見聴取、�
   await expect(page.locator('.source-note')).toContainText('就業規則')
 })
 
-test('講座の目次: 労務は、基礎と実践が公開され、応用が準備中', async ({ page }) => {
+test('労務-5: 5 つの措置義務、相談者の保護、妊娠・出産等を理由とする解雇の無効、責務、行政の援助、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/lb-5'))
+  await expect(page.locator('article h1')).toContainText('ハラスメント防止の考え方')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['全体像と考え方', '専門家', '確認した日', '「ハラスメント」という言葉', '優越的な関係を背景とした言動', '顧客等の言動', '不利益な取扱い', '指針']) await expect(art).toContainText(t)
+  await answer(page, ['優越的な関係を背景とした言動', '性的な言動', '妊娠・出産等に関する言動', '育児・介護休業等の利用に関する言動', '顧客等の言動', '顧客等の言動'], 0)
+  await answer(page, ['適切でない', '適切', '適切', '適切でない', '適切', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('労働施策')
+})
+
+test('労務-6: 専門家の業務、紛争解決の仕組み、場面の整理、改正の予定、判定問題、クイズ、出典', async ({ page }) => {
+  await page.goto(go('/lesson/lb-6'))
+  await expect(page.locator('article h1')).toContainText('専門家に相談すべき場面')
+  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  const art = page.locator('article')
+  for (const t of ['全体像と考え方', '専門家', '確認した日', '特定社会保険労務士', '労働審判', 'あっせん', '判断しません']) await expect(art).toContainText(t)
+  await answer(page, ['社会保険労務士', '弁護士', '都道府県労働局長(助言・指導・あっせん)', '労働審判', '労働基準監督官への申告', '都道府県労働局長(助言・指導・あっせん)'], 0)
+  await answer(page, ['適切', '適切', '適切でない', '適切', '適切でない', '適切でない'], 1)
+  await page.locator('.source-note summary').click()
+  await expect(page.locator('.source-note')).toContainText('社会保険労務士法')
+})
+
+test('講座の目次: 労務は、すべての段階が公開されている', async ({ page }) => {
   await page.goto(go('/course/labor'))
-  await expect(page.getByTestId('writing-status')).toContainText('本文 4 / 予定 6 レッスン')
-  await expect(page.locator('.badge', { hasText: '一部公開' })).toBeVisible()
+  await expect(page.getByTestId('writing-status')).toContainText('本文 6 / 予定 6 レッスン')
+  await expect(page.locator('.badge', { hasText: '公開中' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '序論:雇用の基本、労働時間' })).toBeVisible()
   await expect(page.locator('.stage-card', { hasText: '実践:採用から退職まで、就業規則' })).toBeVisible()
-  await expect(page.locator('.planned-item')).toHaveCount(2)
-  await page.locator('.stage-card', { hasText: '実践:採用から退職まで、就業規則' }).click()
+  await expect(page.locator('.stage-card', { hasText: '応用:ハラスメント防止、専門家への相談' })).toBeVisible()
+  await expect(page.locator('.planned-item')).toHaveCount(0)
+  await page.locator('.stage-card', { hasText: '応用:ハラスメント防止、専門家への相談' }).click()
   await expect(page.locator('.lesson-list a')).toHaveCount(2)
 })

@@ -99,12 +99,13 @@ test('講座の目次(公開中): 既存のステージに移れる', async ({ p
 })
 
 test('講座の目次(目次のみ): 準備中のレッスンの案と、根拠の基準が表示される', async ({ page }) => {
-  await page.goto(go('/course/labor'))
-  await expect(page.locator('h1')).toContainText('労務')
+  const outline = courses.find((c) => courseStatus(c) === 'outline')
+  test.skip(!outline, '目次のみの講座が、いまはない(全講座に本文がある)')
+  await page.goto(go(`/course/${outline!.id}`))
+  await expect(page.locator('h1')).toContainText(outline!.title)
   const basis = page.locator('.why-card', { hasText: '根拠の基準' })
   await expect(basis).toContainText('法令・基準')
   await expect(basis).toContainText('個別の事案は扱いません')
-  await expect(page.getByRole('region', { name: 'なぜ学ぶのか' })).toContainText('専門家に確認すべき点')
   await expect(page.getByRole('note')).toContainText('目次の案')
   await expect(page.locator('.planned-item').first()).toContainText('準備中')
   await expect(page.locator('.planned-item a')).toHaveCount(0) // リンクではない(本文がない)
@@ -223,17 +224,20 @@ test.describe('根拠の読み方・序論(最初の、LLM 以外のレッスン
 test('執筆の優先度と状況: 講座一覧と、講座の目次に表示される', async ({ page }) => {
   await page.goto(go('/catalog'))
   const plan = page.getByRole('region', { name: '執筆の優先度' })
-  await expect(plan).toContainText('作者の計画で、期日の約束ではありません')
-  for (const w of writingPlan) await expect(plan).toContainText(w.title)
-  await expect(plan.locator('.chip')).toHaveCount(writingPlan.flatMap((w) => w.ids).length)
+  if (writingPlan.length === 0) {
+    await expect(plan).toHaveCount(0) // 計画に残る講座がないときは、節を出さない
+  } else {
+    await expect(plan).toContainText('作者の計画で、期日の約束ではありません')
+    for (const w of writingPlan) await expect(plan).toContainText(w.title)
+    await expect(plan.locator('.chip')).toHaveCount(writingPlan.flatMap((w) => w.ids).length)
+  }
   await expect(page.locator('.course-card', { hasText: 'プロダクトマネジメント' })).not.toContainText('執筆の優先度')
-  await expect(page.locator('.course-card', { hasText: '労務' }).first()).toContainText('執筆の優先度: あとで')
   await expect(page.locator('.course-card', { hasText: 'LLM のしくみ' })).not.toContainText('執筆の優先度')
 
   await page.goto(go('/course/pm'))
   await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
   await page.goto(go('/course/labor'))
-  await expect(page.getByTestId('writing-status')).toContainText('あとで')
+  await expect(page.getByTestId('writing-status')).toContainText('すべての段階が公開済み')
   await page.goto(go('/course/evidence'))
   await expect(page.getByTestId('writing-status')).toContainText('本文 5 / 予定 5 レッスン')
   await page.goto(go('/course/llm'))

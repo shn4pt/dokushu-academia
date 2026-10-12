@@ -36,6 +36,7 @@ export default function CatalogPage() {
           </div>
         </section>
       )}
+      {writingPlan.length > 0 && (
       <section className="card" aria-labelledby="writing-plan">
         <h2 id="writing-plan" className="card-title">執筆の優先度</h2>
         <p className="muted">
@@ -58,6 +59,7 @@ export default function CatalogPage() {
         </ol>
         <span className="muted">公開済みの講座(LLM のしくみ、AI エージェント開発、AI を使った開発)は、計画の対象外です。</span>
       </section>
+      )}
       {groups.map((g) => (
         <section key={g.id} aria-labelledby={`group-${g.id}`}>
           <h2 id={`group-${g.id}`}>{g.title}</h2>
