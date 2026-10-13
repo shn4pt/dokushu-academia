@@ -195,7 +195,7 @@ export const glossary: Term[] = [
   { term: '三角測量', reading: 'triangulation', description: '複数のデータ源や調査方法で同じ問いを見て、一つの方法の限界を補い、結果の信頼性を高めること。', lessonId: 'ux-6' },
   { term: '形成的・総括的な調査', reading: 'formative / summative research', description: '形成的は、設計を良くするための調査。総括的は、以前の版や競合と比べて成績を測る調査。', lessonId: 'ux-6' },
   { term: 'プロダクトマネジメント', reading: 'product management', description: '製品のライフサイクルを、顧客の理解、戦略、優先順位、部門をまたぐ協力で導く仕事(Atlassian の入門記事の説明)。定義は会社によって違う。', lessonId: 'pm-1' },
-  { term: '4 つのリスク', reading: 'the four big risks', description: 'Cagan が挙げる、プロダクトの成功を阻む 4 つのリスク。価値、使いやすさ、実現可能性、事業としての成り立ち。', lessonId: 'pm-1' },
+  { term: '4 つのリスク', reading: 'the four big risks', description: 'Cagan が挙げる、プロダクトの 4 つのリスク。価値、使いやすさ、実現可能性、事業としての成り立ち。', lessonId: 'pm-1' },
   { term: 'プロダクトチームと機能チーム', reading: 'product team vs feature team', description: 'Cagan の区別。プロダクトチームは成果で測られ、問題を任される。機能チームは、機能の一覧(ロードマップ)を渡される。非標準の用語。', lessonId: 'pm-1' },
   { term: '発見(ディスカバリー)', reading: 'discovery', description: '作る前に、利用者、問題、制約を理解し、解くべき問題について合意する段階。発見の段階では、作り始めない(GOV.UK)。', lessonId: 'pm-2' },
   { term: '機会解決策ツリー', reading: 'opportunity solution tree', description: '望ましい成果を根に、機会(満たされていない必要・困りごと・願望)、解決策、仮定のテストを枝にして、道筋を描く図(Torres)。', lessonId: 'pm-2' },
