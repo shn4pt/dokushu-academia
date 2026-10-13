@@ -3184,7 +3184,7 @@
   "pm-1": {
     "status": "partial",
     "checkedAt": "2026-10-10",
-    "note": "Atlassian の入門記事 What is product management?(Max Rehkopf)、SVPG(Silicon Valley Product Group)の Marty Cagan の記事 3 本(The Four Big Risks 2017、Product Discovery 2007、Product vs Feature Teams 2019)、Scrum Guide 2020 年版(Ken Schwaber と Jeff Sutherland、CC BY-SA 4.0)の Product Owner の節を、ウェブページの本文として読みました。これらは、実務家の資料(この講座の根拠の基準)です。プロダクトマネジメントには、このサービスが本文を読めた教科書がありません。主張の多くは、書き手の経験にもとづき、独立した研究で確かめられたかは確認していません。Atlassian の記事には Jira Product Discovery の案内が、SVPG の記事には自社のワークショップの案内が載っています。Cagan の『プロダクトチームと機能チーム』は、本人が非標準の用語だと断っている区別です。Cagan の著書(INSPIRED など)は、記事の記述を通した範囲で、読んでいません。Atlassian の記事にある、プロダクトマネジメントの歴史(1931 年のメモなど)の記述は、使っていません。Cagan の最近の記事 A Fresh Definition of The Product Role(2026-08-10)は読みましたが、本文では使っていません。『PM の仕事を読む、問い』は、このサービス独自の整理です。 別のエージェントによる事実確認の結果は、docs/verify/pm-1.md にあります。",
+    "note": "Atlassian の入門記事 What is product management?(Max Rehkopf)、SVPG(Silicon Valley Product Group)の Marty Cagan の記事 3 本(The Four Big Risks 2017、Product Discovery 2007、Product vs Feature Teams 2019)、Scrum Guide 2020 年版(Ken Schwaber と Jeff Sutherland、CC BY-SA 4.0)の Product Owner の節を、ウェブページの本文として読みました。これらは、実務家の資料(この講座の根拠の基準)です。プロダクトマネジメントには、このサービスが本文を読めた教科書がありません。主張の多くは、書き手の経験にもとづき、独立した研究で確かめられたかは確認していません。Atlassian の記事には Jira Product Discovery の案内が、SVPG の記事には自社のワークショップの案内が載っています。Cagan の『プロダクトチームと機能チーム』は、本人が非標準の用語だと断っている区別です。Cagan の著書(INSPIRED など)は、記事の記述を通した範囲で、読んでいません。Atlassian の記事にある、プロダクトマネジメントの歴史(1931 年のメモなど)の記述は、使っていません。Cagan の最近の記事 A Fresh Definition of The Product Role(2026-08-10)は読みましたが、本文では使っていません。『新任 PM が出会いそうな場面』(架空の請求書サービス「ミライ請求」)、演習の回答例と自己評価の観点は、このサービスが作った独自の整理で、出典の主張ではありません。 別のエージェントによる事実確認の結果は、docs/verify/pm-1.md にあります。 2026-10-13 に、構成を編集しました(要点・具体例・詳しい説明・演習の順)。出典の主張は、確認日(2026-10-10)に読んだ範囲のままで、この編集で出典を読み直してはいません。編集後の本文は、別のエージェントによる照合をまだ受けていません。",
     "sources": [
       {
         "title": "What is product management? A guide for product managers and Agile teams(Max Rehkopf, Atlassian)",
@@ -3221,6 +3221,10 @@
       {
         "date": "2026-10-10",
         "summary": "新しく追加した"
+      },
+      {
+        "date": "2026-10-13",
+        "summary": "構成を、5分の要点・架空の具体例・詳しい説明・演習の順に編集。演習の回答例と自己評価の観点、場面を使うクイズ(5問)を追加。出典は読み直していない(確認日は据え置き)"
       }
     ]
   },

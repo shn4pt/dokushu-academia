@@ -11,13 +11,37 @@ async function answer(page: import('@playwright/test').Page, answers: string[], 
 test('PM-1: PM の責任、役割の違い、4 つのリスク、プロダクトチームと機能チーム、判定問題、クイズ、出典', async ({ page }) => {
   await page.goto(go('/lesson/pm-1'))
   await expect(page.locator('article h1')).toContainText('PM の仕事の全体像')
-  await expect(page.locator('.quiz fieldset')).toHaveCount(4)
+  await expect(page.locator('.quiz fieldset')).toHaveCount(5)
   const art = page.locator('article')
-  for (const t of ['顧客の代弁者', 'プロジェクトマネージャー', 'Scrum Guide', '4 つのリスク', '機能チーム', '非標準の用語', 'この講座の出典と限界']) await expect(art).toContainText(t)
+  for (const t of ['5分で分かる要点', '架空の例', '顧客の代弁者', 'プロジェクトマネージャー', 'Scrum Guide', '4 つのリスク', '機能チーム', '非標準の用語', '自己評価の観点', 'この講座の出典と限界']) await expect(art).toContainText(t)
   await answer(page, ['価値', '使いやすさ', '実現可能性', '事業としての成り立ち', '事業としての成り立ち'], 0)
   await answer(page, ['適切', '適切でない', '適切でない', '適切でない', '適切でない', '適切でない'], 1)
   await page.locator('.source-note summary').click()
   await expect(page.locator('.source-note')).toContainText('Scrum')
+})
+
+test('PM-1: 要点と具体例は 5 分程度(1 分 200 字の目安で)、演習の回答例は開くまで隠れている', async ({ page }) => {
+  await page.goto(go('/lesson/pm-1'))
+  const headings = page.locator('article .prose h3')
+  await expect(headings.nth(0)).toContainText('5分で分かる要点')
+  await expect(headings.nth(1)).toContainText('架空の例')
+  // 最初の 2 節(要点と具体例)の本文の字数。アプリの学習時間と同じく、部品(判定問題)は数えない。
+  const chars = await page.evaluate(() => {
+    const hs = [...document.querySelectorAll('article .prose h3')]
+    const range = document.createRange()
+    range.setStartBefore(hs[0])
+    range.setEndBefore(hs[2])
+    const clean = (t: string) => t.replace(/\s+/g, ' ').trim()
+    let n = clean(range.toString()).length
+    for (const d of document.querySelectorAll('article .prose .demo')) if (range.intersectsNode(d)) n -= clean(d.textContent ?? '').length
+    return n
+  })
+  expect(chars).toBeLessThanOrEqual(1100) // 200 字/分で 5.5 分以内
+  const example = page.locator('.prose details').filter({ hasText: '回答例を見る' })
+  await expect(example).not.toHaveAttribute('open', '')
+  await example.locator('summary').click()
+  await expect(example).toContainText('架空の組織')
+  await expect(example).toContainText('別の組織なら')
 })
 
 test('PM-2: 依頼を問題に直す、機会と解決策、成果、利用者の必要の文、判定問題、クイズ、出典', async ({ page }) => {
