@@ -38,10 +38,13 @@ test('PM-1: 要点と具体例は 5 分程度(1 分 200 字の目安で)、演�
   })
   expect(chars).toBeLessThanOrEqual(1100) // 200 字/分で 5.5 分以内
   const example = page.locator('.prose details').filter({ hasText: '回答例を見る' })
-  await expect(example).not.toHaveAttribute('open', '')
+  // 閉じている間は、回答例の表が見えず、開くと見える(toContainText は隠れた本文も拾うので、可視性で検査する)
+  const table = example.locator('table')
+  await expect(table).toBeHidden()
   await example.locator('summary').click()
-  await expect(example).toContainText('架空の組織')
-  await expect(example).toContainText('別の組織なら')
+  await expect(table).toBeVisible()
+  await expect(table).toContainText('機能チームに近い')
+  await expect(example.getByText('別の組織なら')).toBeVisible()
 })
 
 test('PM-2: 依頼を問題に直す、機会と解決策、成果、利用者の必要の文、判定問題、クイズ、出典', async ({ page }) => {
