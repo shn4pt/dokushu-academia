@@ -27,7 +27,10 @@ export default function App() {
   return (
     <>
       <header className="site-header">
-        <NavLink to="/catalog" className="brand">独習アカデミア</NavLink>
+        <div className="brand-block">
+          <NavLink to="/catalog" className="brand">独習アカデミア</NavLink>
+          <span className="tagline">AIと事業・プロダクトをつくる人の学び直し</span>
+        </div>
         <nav>
           <NavLink to="/catalog">講座</NavLink>
           <NavLink to="/roadmap">ロードマップ</NavLink>

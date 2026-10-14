@@ -43,6 +43,21 @@ test('ルート(/)は、講座一覧を表示する', async ({ page }) => {
   await expect(page.locator('.brand')).toContainText('独習アカデミア')
 })
 
+test('サイト名に説明が添えられ、レッスンへ直接来た場合も、ヘッダーとタイトルに出る', async ({ page }) => {
+  const tagline = 'AIと事業・プロダクトをつくる人の学び直し'
+  for (const path of ['/catalog', '/lesson/pm-1']) {
+    await page.goto(go(path))
+    await expect(page.locator('.site-header .brand')).toContainText('独習アカデミア')
+    await expect(page.locator('.site-header')).toContainText(tagline)
+  }
+  const title = await page.title()
+  expect(title.startsWith('独習アカデミア')).toBe(true) // 名前を先頭に置く
+  expect(title).toContain(tagline)
+  // 固定表示のヘッダーが、説明の追加で、表示領域を大きく圧迫しない(1000px 幅)
+  const h = await page.locator('.site-header').evaluate((e) => e.getBoundingClientRect().height)
+  expect(h).toBeLessThanOrEqual(80)
+})
+
 test('ロードマップに、LLM の講座のすべてのレッスンが並ぶ', async ({ page }) => {
   await page.goto(go('/roadmap'))
   await expect(page.locator('a.lesson-chip')).toHaveCount(llmLessonIds.length)

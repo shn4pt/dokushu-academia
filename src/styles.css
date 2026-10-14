@@ -54,6 +54,8 @@ h3 { margin-top: 1.8em; }
 .site-header a { text-decoration: none; color: var(--muted); }
 .site-header a.active { color: var(--accent); font-weight: 600; }
 .brand { font-weight: 700; color: var(--text) !important; }
+.brand-block { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.3; }
+.tagline { font-size: 0.8rem; color: var(--muted); }
 
 .card {
   display: block; background: var(--surface); border: 1px solid var(--border);
@@ -222,6 +224,7 @@ a, button, label, summary, select, input:not([type="range"]) { touch-action: man
 
 @media (pointer: coarse) {
   /* 指で押せる大きさ(44px)を確保する */
+  .tagline { padding-left: 4px; }
   .site-header nav a, .brand { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; min-width: 44px; padding: 0 4px; }
   .lesson-chip, .num-input, .sel-input, summary { min-height: 44px; }
   .num-input, .sel-input { padding: 8px 10px; }
