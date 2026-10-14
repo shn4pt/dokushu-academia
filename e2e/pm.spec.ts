@@ -27,7 +27,19 @@ test('PM-1: 入口・要点・見直しは 7 分程度(1 分 200 字の目安で
   await expect(headings.nth(1)).toContainText('3 つの要点')
   await expect(headings.nth(2)).toContainText('見直す')
   await expect(headings.nth(3)).toContainText('詳しい説明1')
-  await expect(page.locator('article .prose')).toContainText('ここまでが、短く読む範囲です')
+  // 止めどころの案内は、3 節目(見直し)の終わりにあり、2 節目(要点)にはない
+  const marker = 'ここまでが、短く読む範囲です'
+  const inSection = await page.evaluate((m) => {
+    const hs = [...document.querySelectorAll('article .prose h3')]
+    const text = (from: Element, to: Element) => {
+      const r = document.createRange()
+      r.setStartBefore(from)
+      r.setEndBefore(to)
+      return r.toString()
+    }
+    return { second: text(hs[1], hs[2]).includes(m), third: text(hs[2], hs[3]).includes(m) }
+  }, marker)
+  expect(inSection).toEqual({ second: false, third: true })
   // 最初の 3 節(入口・要点・見直し)の本文の字数。アプリの学習時間と同じく、部品(判定問題)は数えない。
   const chars = await page.evaluate(() => {
     const hs = [...document.querySelectorAll('article .prose h3')]
