@@ -52,22 +52,33 @@ function validateQuiz(raw: unknown, where: string): QuizQuestion[] {
   })
 }
 
-/** 本文の HTML を整える: 内部リンクをハッシュルーターの形に、表を既存の見た目に */
-export function renderMarkdown(md: string): string {
+/** 内部リンクの出力の形。既定はハッシュ版(`#/lesson/x`)。パス版は、ベース付きの正規 URL(末尾スラッシュ)と、アプリ内の移動用の data-route */
+export type LinkStyle = { base: string } | undefined
+
+function internalLinks(html: string, style: LinkStyle) {
+  if (!style) return html.replace(/<a href="\/(?!\/)/g, '<a href="#/')
+  return html.replace(/<a href="\/(?!\/)([^"#?]*)([^"]*)"/g, (_m, path: string, rest: string) => {
+    const route = '/' + path.replace(/\/$/, '')
+    const slash = path === '' || path.endsWith('/') ? '' : '/'
+    return `<a href="${style.base}${path}${slash}${rest}" data-route="${route}${rest}"`
+  })
+}
+
+/** 本文の HTML を整える: 内部リンクをルーターの形に、表を既存の見た目に */
+export function renderMarkdown(md: string, style?: LinkStyle): string {
   const html = marked.parse(md, { async: false, gfm: true }) as string
-  return html
-    .replace(/<a href="\/(?!\/)/g, '<a href="#/')
+  return internalLinks(html, style)
     .replace(/<a href="(https?:\/\/[^"]+)"/g, '<a href="$1" rel="noopener noreferrer"')
     .replace(/<table>/g, '<table class="calc text">')
 }
 
-export function parseLesson(source: string, name = 'レッスン'): ParsedLesson {
+export function parseLesson(source: string, name = 'レッスン', style?: LinkStyle): ParsedLesson {
   const segments: Segment[] = []
   let quiz: QuizQuestion[] | undefined
   let last = 0
   const opens = (source.match(/^```component/gm) ?? []).length
   const pushText = (text: string) => {
-    if (text.trim()) segments.push({ kind: 'html', html: renderMarkdown(text) })
+    if (text.trim()) segments.push({ kind: 'html', html: renderMarkdown(text, style) })
   }
   for (const m of source.matchAll(FENCE)) {
     const start = m.index ?? 0
