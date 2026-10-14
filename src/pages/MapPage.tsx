@@ -1,17 +1,25 @@
 import { Link } from 'react-router-dom'
 import CourseLinks from '../ui/CourseLinks'
 import { courses, evidenceInfo, groups, isAvailable, layers, prerequisites } from '../data/catalog'
+import { formatMinutes } from '../time'
+import { lessonLengthSummary } from '../data/course-time'
+import AudienceNote from '../ui/AudienceNote'
 
 export default function MapPage() {
   const open = courses.filter(isAvailable).length
   const withPrereq = courses.filter((c) => c.requires?.length)
+  const allOpen = open === courses.length
+  const len = lessonLengthSummary()
   return (
     <>
       <p className="crumb"><Link to="/catalog">講座一覧</Link> / 地図</p>
       <h1>このサービスの地図</h1>
       <p className="lead">
-        {courses.length} の講座が、どうつながり、なぜこの並びになっているかを、1枚で見ます。いま本文があるのは {open} 講座で、残りは目次の案です。
+        {courses.length} の講座が、どうつながり、なぜこの並びになっているかを、1枚で見ます。
+        {allOpen ? '全講座に本文があります。' : `いま本文があるのは ${open} 講座で、残りは目次の案です。`}
+        全講座を学ぶ前提ではなく、自分の困りごとに近い講座から選べます。
       </p>
+      <AudienceNote />
       <p className="notice" role="note">
         <strong>このサービス独自の整理です。</strong>
         領域の分け方は、大学の学部の区分を参考にしましたが、特定の分類表に照らして作ったものではありません。
@@ -44,7 +52,7 @@ export default function MapPage() {
           </section>
         ))}
       </div>
-      <p className="muted">太い枠の講座は、本文がある(公開中・一部公開)講座です。</p>
+      {!allOpen && <p className="muted">太い枠の講座は、本文がある(公開中・一部公開)講座です。</p>}
 
       <h2>なぜ、この構成なのか</h2>
       <ul>
@@ -84,7 +92,7 @@ export default function MapPage() {
 
       <h2>読み方の2通り</h2>
       <ul>
-        <li><strong>隙間時間に1レッスンずつ</strong>:1レッスンは、短く読み切れる単位です。進捗が残るので、続きから再開できます。</li>
+        <li><strong>隙間時間に1レッスンずつ</strong>:1レッスンの学習時間の目安は、中央値で{formatMinutes(len.median)}(最短{formatMinutes(len.min)}、最長{formatMinutes(len.max)})で、実測ではありません。短く読める入口があるレッスンは、一部です。進捗が残るので、続きから再開できます。</li>
         <li><strong>体系を順にじっくり</strong>:講座の目次を、基礎 → 実践 → 応用の順にたどります。上の「先に学ぶとよい講座」を参考にします。</li>
       </ul>
     </>

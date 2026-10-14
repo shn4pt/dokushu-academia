@@ -5,6 +5,7 @@ import { findStage, stageLabel } from '../data/curriculum'
 import { stageStats } from '../data/stats'
 import { plannedTotal, writtenCount } from '../data/writing'
 import CourseLinks from '../ui/CourseLinks'
+import CourseEntryCards from '../ui/CourseEntryCards'
 import { useProgress } from '../progress'
 
 export default function CoursePage() {
@@ -31,6 +32,8 @@ export default function CoursePage() {
         {priorityOf(course) && status !== 'open' && ` ・ 執筆の優先度: ${priorityOf(course)!.title}`}
         {status === 'open' && ' ・ すべての段階が公開済み'}
       </p>
+
+      <CourseEntryCards courseId={course.id} />
 
       {['llm', 'agents', 'aidev'].includes(course.id) && (
         <Link to="/llm" className="card stage-card">
