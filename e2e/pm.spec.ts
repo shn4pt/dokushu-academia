@@ -13,30 +13,32 @@ test('PM-1: PM の責任、役割の違い、4 つのリスク、プロダクト
   await expect(page.locator('article h1')).toContainText('PM の仕事の全体像')
   await expect(page.locator('.quiz fieldset')).toHaveCount(5)
   const art = page.locator('article')
-  for (const t of ['5分で分かる要点', '架空の例', '顧客の代弁者', 'プロジェクトマネージャー', 'Scrum Guide', '4 つのリスク', '機能チーム', '非標準の用語', '自己評価の観点', 'この講座の出典と限界']) await expect(art).toContainText(t)
+  for (const t of ['大口顧客の要望', 'まず何を確かめますか', '3 つの要点', '冒頭の場面を、4 つのリスクで見直す', '顧客の代弁者', 'プロジェクトマネージャー', 'Scrum Guide', '4 つのリスク', '機能チーム', '非標準の用語', '自己評価の観点', 'この講座の出典と限界']) await expect(art).toContainText(t)
   await answer(page, ['価値', '使いやすさ', '実現可能性', '事業としての成り立ち', '事業としての成り立ち'], 0)
   await answer(page, ['適切', '適切でない', '適切でない', '適切でない', '適切でない', '適切でない'], 1)
   await page.locator('.source-note summary').click()
   await expect(page.locator('.source-note')).toContainText('Scrum')
 })
 
-test('PM-1: 要点と具体例は 5 分程度(1 分 200 字の目安で)、演習の回答例は開くまで隠れている', async ({ page }) => {
+test('PM-1: 入口・要点・見直しは 6 分程度(1 分 200 字の目安で)、演習の回答例は開くまで隠れている', async ({ page }) => {
   await page.goto(go('/lesson/pm-1'))
   const headings = page.locator('article .prose h3')
-  await expect(headings.nth(0)).toContainText('5分で分かる要点')
-  await expect(headings.nth(1)).toContainText('架空の例')
-  // 最初の 2 節(要点と具体例)の本文の字数。アプリの学習時間と同じく、部品(判定問題)は数えない。
+  await expect(headings.nth(0)).toContainText('大口顧客の要望')
+  await expect(headings.nth(1)).toContainText('3 つの要点')
+  await expect(headings.nth(2)).toContainText('見直す')
+  await expect(headings.nth(3)).toContainText('詳しい説明1')
+  // 最初の 3 節(入口・要点・見直し)の本文の字数。アプリの学習時間と同じく、部品(判定問題)は数えない。
   const chars = await page.evaluate(() => {
     const hs = [...document.querySelectorAll('article .prose h3')]
     const range = document.createRange()
     range.setStartBefore(hs[0])
-    range.setEndBefore(hs[2])
+    range.setEndBefore(hs[3])
     const clean = (t: string) => t.replace(/\s+/g, ' ').trim()
     let n = clean(range.toString()).length
     for (const d of document.querySelectorAll('article .prose .demo')) if (range.intersectsNode(d)) n -= clean(d.textContent ?? '').length
     return n
   })
-  expect(chars).toBeLessThanOrEqual(1100) // 200 字/分で 5.5 分以内
+  expect(chars).toBeLessThanOrEqual(1200) // 200 字/分で 6 分以内
   const example = page.locator('.prose details').filter({ hasText: '回答例を見る' })
   // 閉じている間は、回答例の表が見えず、開くと見える(toContainText は隠れた本文も拾うので、可視性で検査する)
   const table = example.locator('table')
