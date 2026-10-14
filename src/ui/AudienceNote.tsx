@@ -5,9 +5,10 @@ export default function AudienceNote() {
   return (
     <section className="card audience-note" aria-label="想定する読者と約束">
       <strong>{audience.promise}</strong>
-      <p>{audience.reader}</p>
+      <p>{audience.short}</p>
       <details>
-        <summary>この設定について、約束しないこと</summary>
+        <summary>対象の読者と、約束しないこと</summary>
+        <p>{audience.reader}</p>
         <p>{audience.background}</p>
         <p>{audience.notPromised}</p>
       </details>

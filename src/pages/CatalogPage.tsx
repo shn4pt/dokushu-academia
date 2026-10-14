@@ -21,13 +21,10 @@ export default function CatalogPage() {
   return (
     <>
       <h1>講座一覧</h1>
-      <p className="lead">
-        顧客・事業・数字・開発について、自分で判断するための知識を、学問と一次情報に基づいて学べる講座集です。全講座を学ぶ前提ではなく、自分の困りごとに近い講座から選べます。
-        各講座は、基礎 → 実践 → 応用の段階で並んでいます。どの記述にも、根拠の種類と確認の程度が見えるようにしています。講座の関係と、この構成の理由は、<Link to="/map">全体の地図</Link>で見られます。
-      </p>
       <AudienceNote />
-      <p className="muted">
-        1レッスンの学習時間の目安は、中央値で{formatMinutes(len.median)}(最短{formatMinutes(len.min)}、最長{formatMinutes(len.max)})です。本文の文字数などから見積もった目安で、実測ではありません。
+      <p className="lead">
+        各講座は、基礎 → 実践 → 応用の順に並び、どの記述にも、根拠の種類と確認の程度が見えます。講座の関係と、この構成の理由は、<Link to="/map">全体の地図</Link>で見られます。
+        1レッスンの学習時間の目安は、中央値で{formatMinutes(len.median)}(最短{formatMinutes(len.min)}、最長{formatMinutes(len.max)})です。本文の文字数などからの見積もりで、実測ではありません。
       </p>
       {notAllOpen && (
         <p className="notice" role="note">
@@ -38,9 +35,10 @@ export default function CatalogPage() {
         <section className="card" aria-label="続きから学ぶ">
           <div className="row">
             <Link className="button" to={`/lesson/${nextLesson.id}`} state={{ resume: true }}>
-              {done === 0 && !position ? '学習を始める' : '続きから学ぶ'}:{nextLesson.title}
+              {done === 0 && !position ? '学習を始める(例)' : '続きから学ぶ'}:{nextLesson.title}
             </Link>
             <span className="muted">
+              {done === 0 && !position && '全講座を学ぶ前提ではありません。下の講座から選べます。 ・ '}
               {formatMinutes(lessonMinutes(nextLesson.id))}
               {position && ` ・ 前回は「${position.section}」まで読みました`}
             </span>
@@ -99,7 +97,7 @@ export default function CatalogPage() {
                   {available ? (
                     <>
                       <ProgressBar value={pct} label={`${c.title}の進捗`} />
-                      <span className="muted">{done} / {total} レッスン ・ {formatMinutes(courseMinutes(c), true)}{plannedCount(c) > 0 && ` ・ 準備中(目次の案) ${plannedCount(c)} 件`}</span>
+                      <span className="muted">{done} / {total} レッスン ・ 講座全体の目安: {formatMinutes(courseMinutes(c), true)}{plannedCount(c) > 0 && ` ・ 準備中(目次の案) ${plannedCount(c)} 件`}</span>
                     </>
                   ) : (
                     <span className="muted">本文 {writtenCount(c)} ・ 目次の案 {plannedCount(c)} 件</span>

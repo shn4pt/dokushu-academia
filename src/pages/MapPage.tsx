@@ -17,7 +17,6 @@ export default function MapPage() {
       <p className="lead">
         {courses.length} の講座が、どうつながり、なぜこの並びになっているかを、1枚で見ます。
         {allOpen ? '全講座に本文があります。' : `いま本文があるのは ${open} 講座で、残りは目次の案です。`}
-        全講座を学ぶ前提ではなく、自分の困りごとに近い講座から選べます。
       </p>
       <AudienceNote />
       <p className="notice" role="note">
