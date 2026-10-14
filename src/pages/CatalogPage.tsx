@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
 import { ProgressBar } from '../components'
 import { courseStageIds, courses, evidenceInfo, courseStatus, groups, isAvailable, plannedCount, priorityOf, statusLabel, writingPlan } from '../data/catalog'
+import { entries } from '../data/course-entry'
+import { courseMinutes, lessonLengthSummary } from '../data/course-time'
+import AudienceNote from '../ui/AudienceNote'
 import { writtenCount } from '../data/writing'
 import { findLesson, findStage } from '../data/curriculum'
 import { nextLessonId, overallStats, stageStats } from '../data/stats'
@@ -9,6 +12,8 @@ import { useProgress } from '../progress'
 
 export default function CatalogPage() {
   const p = useProgress()
+  const len = lessonLengthSummary()
+  const notAllOpen = courses.some((c) => courseStatus(c) !== 'open')
   const { done } = overallStats(p)
   const next = nextLessonId(p)
   const nextLesson = next ? findLesson(next) : undefined
@@ -17,12 +22,18 @@ export default function CatalogPage() {
     <>
       <h1>講座一覧</h1>
       <p className="lead">
-        社会人が、隙間時間に1レッスンずつ、学問と一次情報に基づいて学び直すための講座です。各講座は、基礎 → 実践 → 応用の段階で並んでいます。
-        どの記述にも、根拠の種類と確認の程度が見えるようにします。講座の関係と、この構成の理由は、<Link to="/map">全体の地図</Link>で見られます。
+        顧客・事業・数字・開発について、自分で判断するための知識を、学問と一次情報に基づいて学べる講座集です。全講座を学ぶ前提ではなく、自分の困りごとに近い講座から選べます。
+        各講座は、基礎 → 実践 → 応用の段階で並んでいます。どの記述にも、根拠の種類と確認の程度が見えるようにしています。講座の関係と、この構成の理由は、<Link to="/map">全体の地図</Link>で見られます。
       </p>
-      <p className="notice" role="note">
-        <strong>構成案です。</strong>「公開中」「一部公開」の講座以外は目次の案だけで、本文はまだありません。題名は話題の案で、本文を書くときに出典を確認して決め直します。
+      <AudienceNote />
+      <p className="muted">
+        1レッスンの学習時間の目安は、中央値で{formatMinutes(len.median)}(最短{formatMinutes(len.min)}、最長{formatMinutes(len.max)})です。本文の文字数などから見積もった目安で、実測ではありません。
       </p>
+      {notAllOpen && (
+        <p className="notice" role="note">
+          <strong>構成案を含みます。</strong>「公開中」「一部公開」の講座以外は目次の案だけで、本文はまだありません。題名は話題の案で、本文を書くときに出典を確認して決め直します。
+        </p>
+      )}
       {nextLesson && (
         <section className="card" aria-label="続きから学ぶ">
           <div className="row">
@@ -83,12 +94,12 @@ export default function CatalogPage() {
                     <strong>{c.title}</strong>
                     <span className={`badge ${available ? 'badge-doing' : ''}`}>{statusLabel[courseStatus(c)]}</span>
                   </div>
-                  <span className="muted">{c.summary}</span>
+                  <span>{entries[c.id]?.decision ?? c.summary}</span>
                   <span className="evidence-tag">根拠: {evidenceInfo[c.evidence].label}{priorityOf(c) && courseStatus(c) !== 'open' && ` ・ 執筆の優先度: ${priorityOf(c)!.title}`}</span>
                   {available ? (
                     <>
                       <ProgressBar value={pct} label={`${c.title}の進捗`} />
-                      <span className="muted">{done} / {total} レッスン{plannedCount(c) > 0 && ` ・ 準備中(目次の案) ${plannedCount(c)} 件`}</span>
+                      <span className="muted">{done} / {total} レッスン ・ {formatMinutes(courseMinutes(c), true)}{plannedCount(c) > 0 && ` ・ 準備中(目次の案) ${plannedCount(c)} 件`}</span>
                     </>
                   ) : (
                     <span className="muted">本文 {writtenCount(c)} ・ 目次の案 {plannedCount(c)} 件</span>

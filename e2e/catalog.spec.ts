@@ -77,10 +77,11 @@ test.describe('講座一覧のデータ', () => {
   })
 })
 
-test('講座一覧: 4つの分野に、全講座が並び、構成案であることが明記される', async ({ page }) => {
+test('講座一覧: 分野ごとに全講座が並び、本文のない講座があるときだけ「構成案」の案内が出る', async ({ page }) => {
   await page.goto(go('/catalog'))
   await expect(page.locator('h1')).toContainText('講座一覧')
-  await expect(page.getByRole('note')).toContainText('構成案です')
+  const notAllOpen = courses.some((c) => courseStatus(c) !== 'open')
+  await expect(page.getByRole('note').filter({ hasText: '構成案' })).toHaveCount(notAllOpen ? 1 : 0)
   await expect(page.locator('section[aria-labelledby^=group-]')).toHaveCount(groups.length)
   await expect(page.locator('.course-card')).toHaveCount(courses.length)
   for (const [label, status] of [['公開中', 'open'], ['一部公開', 'partial'], ['目次のみ', 'outline']] as const) {
