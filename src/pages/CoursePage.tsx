@@ -33,7 +33,7 @@ export default function CoursePage() {
         {status === 'open' && ' ・ すべての段階が公開済み'}
       </p>
 
-      <CourseEntryCards courseId={course.id} />
+      <CourseEntryCards courseId={course.id} why={course.why} />
 
       {['llm', 'agents', 'aidev'].includes(course.id) && (
         <Link to="/llm" className="card stage-card">
@@ -48,11 +48,6 @@ export default function CoursePage() {
           <span className="muted">講座のつながりと、この構成の理由、根拠の表示の読み方を、1枚で見ます。</span>
         </Link>
       )}
-
-      <section className="card why-card" aria-label="なぜ学ぶのか">
-        <strong>なぜ学ぶのか</strong>
-        <p>{course.why}</p>
-      </section>
 
       <section className="card why-card">
         <strong>この講座の根拠の基準: {ev.label}</strong>

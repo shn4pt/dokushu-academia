@@ -2,19 +2,23 @@ import { Link } from 'react-router-dom'
 import { entries } from '../data/course-entry'
 import { findLesson } from '../data/curriculum'
 
-/** 講座の目次の冒頭: こんな場面で読む / 学ぶと持ち帰れること / 前提と範囲。目次に進む前に、役立つ場面を把握できるようにする。 */
-export default function CourseEntryCards({ courseId }: { courseId: string }) {
+/** 講座の目次の冒頭: なぜ学ぶのか・こんな場面で読む / 学ぶと持ち帰れること / 前提と範囲。目次に進む前に、役立つ場面を把握できるようにする。 */
+export default function CourseEntryCards({ courseId, why }: { courseId: string; why: string }) {
   const e = entries[courseId]
   if (!e) return null
   return (
     <>
-      <section className="card entry-card" aria-label="こんな場面で読む">
-        <strong>こんな場面で読む</strong>
-        <p>{e.when}</p>
-        <span className="muted">考える助けになる問い</span>
-        <ul className="entry-list">
-          {e.questions.map((q) => <li key={q}>{q}</li>)}
-        </ul>
+      <section className="card why-card entry-card" aria-label="なぜ学ぶのか">
+        <strong>なぜ学ぶのか</strong>
+        <p>{why}</p>
+        <div role="group" aria-label="こんな場面で読む">
+          <strong>こんな場面で読む</strong>
+          <p>{e.when}</p>
+          <span className="muted">考える助けになる問い</span>
+          <ul className="entry-list">
+            {e.questions.map((q) => <li key={q}>{q}</li>)}
+          </ul>
+        </div>
       </section>
 
       <section className="card entry-card" aria-label="学ぶと持ち帰れること">
@@ -23,10 +27,10 @@ export default function CourseEntryCards({ courseId }: { courseId: string }) {
           {e.gains.map((g) => (
             <li key={g.text}>
               {g.text}
-              <span className="plan-chips">
+              <span className="entry-lessons">
                 {g.lessons.map((id) => {
                   const l = findLesson(id)
-                  return l ? <Link key={id} className="chip" to={`/lesson/${id}`} title={l.title}>{l.label ?? id}</Link> : null
+                  return l ? <Link key={id} className="chip entry-lesson" to={`/lesson/${id}`}>{l.label ?? id}: {l.title}</Link> : null
                 })}
               </span>
             </li>

@@ -62,8 +62,10 @@ test('講座一覧: 読者と約束、各カードの「どんな判断に役立
   await page.goto(go('/catalog'))
   const note = page.getByLabel('想定する読者と約束')
   await expect(note).toContainText(audience.promise)
+  await expect(note).toContainText(audience.short)
   await note.locator('summary').click()
   await expect(note).toContainText('約束しません')
+  await expect(note).toContainText(audience.reader)
   await expect(page.locator('.course-card')).toHaveCount(courses.length)
   for (const c of courses) await expect(page.locator('.course-card', { hasText: c.title }).first()).toContainText(entries[c.id].decision)
 })
@@ -75,14 +77,16 @@ test('講座の目次: 場面・持ち帰れること・前提が、目次より
   await expect(page.getByLabel('こんな場面で読む')).toBeVisible()
   await expect(page.getByLabel('学ぶと持ち帰れること')).toBeVisible()
   await expect(page.getByLabel('前提と範囲')).toContainText('AI と一人で取り組む場面との関係')
-  // 入口のカードは、基礎・実践・応用の見出しより前にある
+  // 入口のカードは、3 枚とも、基礎・実践・応用の見出しより前にある
   const before = await page.evaluate(() => {
-    const card = document.querySelector('.entry-card')!
     const tier = document.querySelector('.tier')!
-    return !!(card.compareDocumentPosition(tier) & Node.DOCUMENT_POSITION_FOLLOWING)
+    return [...document.querySelectorAll('.entry-card')].map((card) => !!(card.compareDocumentPosition(tier) & Node.DOCUMENT_POSITION_FOLLOWING))
   })
-  expect(before).toBe(true)
-  await page.getByLabel('学ぶと持ち帰れること').getByRole('link', { name: 'PM-1' }).click()
+  expect(before).toEqual([true, true, true])
+  // リンクには、番号だけでなく、レッスンの題名が見える
+  const link = page.getByLabel('学ぶと持ち帰れること').getByRole('link', { name: /PM-1/ })
+  await expect(link).toContainText('PM の仕事の全体像')
+  await link.click()
   await expect(page.locator('article h1')).toContainText('PM の仕事の全体像')
 })
 
