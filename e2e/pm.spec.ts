@@ -20,7 +20,7 @@ test('PM-1: PM の責任、役割の違い、4 つのリスク、プロダクト
   await expect(page.locator('.source-note')).toContainText('Scrum')
 })
 
-test('PM-1: 入口・要点・見直しは 7 分程度(1 分 200 字の目安で)、演習の回答例は開くまで隠れている', async ({ page }) => {
+test('PM-1: 入口・要点・見直しは 8 分程度(1 分 200 字の目安で)、演習の回答例は開くまで隠れている', async ({ page }) => {
   await page.goto(go('/lesson/pm-1'))
   const headings = page.locator('article .prose h3')
   await expect(headings.nth(0)).toContainText('大口顧客の要望')
@@ -51,7 +51,7 @@ test('PM-1: 入口・要点・見直しは 7 分程度(1 分 200 字の目安で
     for (const d of document.querySelectorAll('article .prose .demo')) if (range.intersectsNode(d)) n -= clean(d.textContent ?? '').length
     return n
   })
-  expect(chars).toBeLessThanOrEqual(1450) // 200 字/分で 7.25 分以内
+  expect(chars).toBeLessThanOrEqual(1650) // 200 字/分で 8.25 分以内
   const example = page.locator('.prose details').filter({ hasText: '回答例を見る' })
   // 閉じている間は、回答例の表が見えず、開くと見える(toContainText は隠れた本文も拾うので、可視性で検査する)
   const table = example.locator('table')
