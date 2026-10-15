@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { findLesson, lessonNo, llmStages as stages, stageLabel } from '../data/curriculum'
 import { formatMinutes, lessonMinutes } from '../time'
 import type { LessonContent } from './types'

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Tex } from '../Tex'
+import { alpha } from '../ui/round'
 import type { LessonContent } from './types'
 
 const D = 16
@@ -31,7 +32,7 @@ function PeDemo() {
               <div
                 key={`${p}-${i}`}
                 className={'heat-cell' + (p === pos ? ' sel' : '')}
-                style={{ background: v >= 0 ? 'var(--accent)' : 'var(--danger)', opacity: 0.15 + Math.abs(v) * 0.85 }}
+                style={{ background: v >= 0 ? 'var(--accent)' : 'var(--danger)', opacity: alpha(0.15 + Math.abs(v) * 0.85) }}
               />
             )
           }),

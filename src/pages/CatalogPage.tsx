@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { ProgressBar } from '../components'
 import { courseStageIds, courses, evidenceInfo, courseStatus, groups, isAvailable, plannedCount, priorityOf, statusLabel, writingPlan } from '../data/catalog'
 import { entries } from '../data/course-entry'

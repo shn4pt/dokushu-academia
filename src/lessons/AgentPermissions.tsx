@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import ClassifyItems from '../ui/ClassifyItems'
 import type { LessonContent } from './types'
 

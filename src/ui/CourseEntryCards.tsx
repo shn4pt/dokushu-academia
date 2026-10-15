@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from './Link'
 import { entries } from '../data/course-entry'
 import { findLesson } from '../data/curriculum'
 

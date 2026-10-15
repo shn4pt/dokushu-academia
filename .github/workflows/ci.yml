@@ -25,9 +25,14 @@ jobs:
       # パスの URL 版(試作。Issue #15)のビルド。本番のデプロイ(deploy.yml)は、ハッシュ版(npm run build の dist)のまま。ここでは、試作の検査のために、ビルドする
       - run: npm run build:path
       - run: npm run build:path:root
+      # 引き継ぎ(hydrate)の診断用の局所的な生成(Issue #19)。記録された不一致 7 件と対照の 1 件だけ。全レッスンの生成ではない
+      - run: npm run build:path:diag
       - run: npm run typecheck:e2e
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test
+      # 同じ診断を、React の開発用ビルド(属性の不一致も警告する)でも行う。本番の配信物ではない
+      - run: npm run build:path:diag:dev
+      - run: npx playwright test --project=diag
       - uses: actions/upload-artifact@v7
         if: failure()
         with:

@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { ProgressBar, StatusBadge } from '../components'
 import { stageLabel, stages } from '../data/curriculum'
 import { nextLessonId, overallMinutes, overallStats, stageMinutes, stageStats } from '../data/stats'

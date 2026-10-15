@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Plot, curvePath } from '../Plot'
 import { Slider } from '../components'
+import { px } from '../ui/round'
 import type { LessonContent } from './types'
 
 function mulberry32(seed: number) {
@@ -74,8 +75,8 @@ function FitDemo() {
           <>
             <path className="curve dashed" d={curvePath(truth, X, Y, sx, sy)} />
             <path className="curve" d={curvePath((x) => evalPoly(coef, x), X, Y, sx, sy, 200)} />
-            {test.map((d, i) => <circle key={i} className="pt-test" cx={sx(d.x)} cy={sy(d.y)} r={3} />)}
-            {train.map((d, i) => <circle key={i} className="pt" cx={sx(d.x)} cy={sy(d.y)} r={4} />)}
+            {test.map((d, i) => <circle key={i} className="pt-test" cx={px(sx(d.x))} cy={px(sy(d.y))} r={3} />)}
+            {train.map((d, i) => <circle key={i} className="pt" cx={px(sx(d.x))} cy={px(sy(d.y))} r={4} />)}
           </>
         )}
       </Plot>

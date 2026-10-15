@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from './Link'
 import type Anthropic from '@anthropic-ai/sdk'
 import { buildRequest, describeError, runMessage } from '../api/client'
 import { estimateCost, findModel, formatUsd, useApi } from '../api/settings'

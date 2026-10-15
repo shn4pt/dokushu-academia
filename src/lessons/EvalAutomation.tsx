@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import ClassifyItems from '../ui/ClassifyItems'
 import EvalStatsLab from '../ui/EvalStatsLab'
 import judgeSource from '../capstone2/judge.ts?raw'

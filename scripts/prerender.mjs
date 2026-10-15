@@ -19,6 +19,17 @@ const PAGES = [
   { route: '/__not-found__', file: '404.html', ssr: false, sitemap: false }, // 見つからないページの殻(noindex)。配信側が 404 で返す
 ]
 
+// 診断専用(Issue #19): PRERENDER_DIAG にレッスン ID(カンマ区切り)を渡すと、そのレッスンの本文入り HTML も、出力先に書く。
+// 引き継ぎの不一致を調べるための局所的な生成で、出力先の名前に `diag` を含むときだけ有効。サイトマップには載せない。全レッスンの生成ではない
+if (process.env.PRERENDER_DIAG) {
+  if (!/diag/.test(OUT)) throw new Error('PRERENDER_DIAG は、出力先(OUT_DIR)の名前に diag を含むときだけ使えます')
+  for (const id of process.env.PRERENDER_DIAG.split(',').map((x) => x.trim()).filter(Boolean)) {
+    if (!/^[\w-]+$/.test(id)) throw new Error(`レッスン ID が不正です: ${id}`)
+    if (PAGES.some((p) => p.route === `/lesson/${id}`)) continue
+    PAGES.splice(PAGES.length - 2, 0, { route: `/lesson/${id}`, file: `lesson/${id}/index.html`, ssr: true, sitemap: false })
+  }
+}
+
 const vite = await createServer({
   server: { middlewareMode: true },
   appType: 'custom',

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { lessonNo, stageLabel, stages } from '../data/curriculum'
 import { isReady } from '../lessons'
 import { REPO, sourcesFor, statusHelp, statusLabel, type SourceStatus } from '../sources'
