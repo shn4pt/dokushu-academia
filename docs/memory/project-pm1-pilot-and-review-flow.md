@@ -39,3 +39,5 @@ Codex(GPT6.1-sol)が作った Issue #1(学び直す社会人向けの改善)に�
 - マージ後は `npm run history` で `lesson-history.json` を更新して、main に push する。
 
 関連: [[project-writing-progress]]、[[project-license-policy]]
+
+**残課題とドメイン(2026-10-15):** Issue #19 / PR #21 をマージ(内部リンクの共通部品 `src/ui/Link.tsx`、SSR 不一致 7 件を修正、`HydrationMark`。残り 164 レッスンの引き継ぎは未検証)。Issue #20 / PR #22 をマージして閉じた(`docs/seo/domain.md`。推奨 dokushu-academia.com、次点 dokushuacademia.com。登録可否は保証なし、購入・アカウント作成・DNS は未実施)。親 #12 に結果を記録。次は、作者の判断(ドメイン採用・費用上限・登録業者・旧リポジトリの扱い・移行時期)待ち。
