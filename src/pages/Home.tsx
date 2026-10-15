@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { ProgressBar, StatusBadge } from '../components'
 import { findLesson, llmStages, stageLabel } from '../data/curriculum'
 import { nextLessonId, overallMinutes, overallStats, stageStats } from '../data/stats'

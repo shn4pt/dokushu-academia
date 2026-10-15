@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import CodeReview from '../ui/CodeReview'
 import CacheCalc from '../ui/CacheCalc'
 import CacheExperiment from '../ui/CacheExperiment'

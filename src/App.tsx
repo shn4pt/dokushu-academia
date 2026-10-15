@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react'
-import { Link, NavLink, Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import { Link, NavLink } from './ui/Link'
 import Home from './pages/Home'
 import Roadmap from './pages/Roadmap'
 import StagePage from './pages/StagePage'
@@ -18,6 +19,7 @@ import { useProgress } from './progress'
 import { REPO } from './sources'
 import { PATH_MODE } from './site'
 import NotFound from './ui/NotFound'
+import HydrationMark from './ui/HydrationMark'
 import MetaUpdater from './ui/MetaUpdater'
 
 // API の SDK を含むため、開いたときにだけ読み込む
@@ -30,6 +32,7 @@ export default function App() {
   return (
     <>
       {PATH_MODE && <MetaUpdater />}
+      {PATH_MODE && <HydrationMark />}
       <header className="site-header">
         <div className="brand-block">
           <NavLink to="/catalog" className="brand">独習アカデミア</NavLink>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { clearAnswers, dimensions, loadAnswers, saveAnswers, summarize, type Answers } from '../assessment'
 import type { LessonContent } from './types'
 

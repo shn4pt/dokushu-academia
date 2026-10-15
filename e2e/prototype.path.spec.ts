@@ -81,13 +81,13 @@ test.describe('生成した 3 ページ: 通常の URL の直接取得', () => {
   test('講座の目次: 入口のカードと、レッスンへの通常のリンクがある', async ({ request }) => {
     const html = await (await request.get(`${B}/course/pm/`)).text()
     expect(html).toContain('こんな場面で読む')
-    expect(html).toContain(`href="${B}/lesson/pm-1"`)
+    expect(html).toContain(`href="${B}/lesson/pm-1/"`)
   })
 
   test('講座一覧: 20 講座のカードと、各講座への通常のリンクがある', async ({ request }) => {
     const html = await (await request.get(`${B}/catalog/`)).text()
     expect(html.match(/class="card course-card"/g)?.length).toBe(20)
-    expect(html).toContain(`href="${B}/course/pm"`)
+    expect(html).toContain(`href="${B}/course/pm/"`)
   })
 
   test('/ と /index.html は、講座一覧と同じ内容で、canonical は /catalog/', async ({ request }) => {
@@ -239,10 +239,10 @@ test.describe('引き継ぎ(ハイドレーション)と進捗', () => {
         await page.goto(p.path)
         await expect(page.locator('#root[data-ssr="1"]')).toBeAttached()
         await expect(page.locator('h1').first()).toContainText(p.h1)
-        // 引き継ぎの完了を、状態で待つ(進捗あり: 保存済みの進捗の表示。進捗なし: React が root を引き継いだ印)。console.error は、フィクスチャーが失敗にする
+        // 引き継ぎの完了を、状態で待つ(進捗あり: 保存済みの進捗の表示。進捗なし: アプリが管理する印(html の data-hydrated))。console.error は、フィクスチャーが失敗にする
         if (withProgress) await expect(page.locator('.site-header')).toContainText(/進捗 [1-9]\d*%/) // 保存済みの進捗へ更新された
         else await expect(page.locator('.site-header')).toContainText('進捗 0%')
-        await page.waitForFunction(() => Object.keys(document.getElementById('root') ?? {}).some((k) => k.startsWith('__reactContainer'))) // React が root を引き継いだ印
+        await expect(page.locator('html')).toHaveAttribute('data-hydrated', '1') // アプリの効果(HydrationMark)が走った印。React の内部名には頼らない
         await page.waitForLoadState('networkidle')
         expect(await recoverable(page)).toEqual([])
       })
@@ -399,7 +399,7 @@ test.describe('生成物の整合: ベース・オリジン、サイトマップ
     expect(await recoverable(page)).toEqual([])
     const html = await (await request.get(`${ROOT}/lesson/pm-1/`)).text()
     expect(canonicalOf(html)).toBe(`${ORIGIN}/lesson/pm-1/`)
-    expect(html).toContain('href="/course/pm"')
+    expect(html).toContain('href="/course/pm/"')
     expect(html).not.toMatch(/(?:href|src)="\/dokushu-academia\//) // プロジェクト配下のベースが、混ざらない(出典の GitHub への外部リンクは、別)
     const xml = await (await request.get(`${ROOT}/sitemap.xml`)).text()
     expect(sitemapLocs(xml)).toEqual([`${ORIGIN}/catalog/`, `${ORIGIN}/course/pm/`, `${ORIGIN}/lesson/pm-1/`])
@@ -471,4 +471,54 @@ test.describe('スマホ幅 390px', () => {
       await ctx.close()
     })
   }
+})
+
+// アプリ内リンクの形と移動(Issue #19): 共通部品(src/ui/Link)により、href がスラッシュ付きの正規 URL になり、クリックは、ページ全体を取得し直さない移動になる。
+test.describe('内部リンクの末尾スラッシュ', () => {
+  const hrefs = (page: import('@playwright/test').Page) =>
+    page.$$eval('a[href]', (as) => as.map((a) => a.getAttribute('href') ?? '').filter((h) => h.startsWith('/') && !h.startsWith('//')))
+  const notSlashed = (list: string[]) => list.filter((h) => !/\.[a-z0-9]+$/i.test(h.split(/[?#]/)[0]) && !h.split(/[?#]/)[0].endsWith('/'))
+
+  for (const [label, origin, base] of [['プロジェクト配下(ベース /dokushu-academia/)', 'http://localhost:4174', `${B}/`], ['ルート配下(ベース /)', ROOT, '/']] as const) {
+    test(`${label}: 3 ページのアプリ内リンクは、ベースを保ち、スラッシュで終わる`, async ({ page }) => {
+      for (const route of ['catalog', 'course/pm', 'lesson/pm-1']) {
+        await page.goto(`${origin}${base}${route}/`)
+        await expect(page.locator('html')).toHaveAttribute('data-hydrated', '1')
+        const all = await hrefs(page)
+        const internal = base === '/' ? all : all.filter((h) => h.startsWith(base))
+        expect(internal.length, route).toBeGreaterThan(5)
+        if (base !== '/') expect(all.filter((h) => !h.startsWith(base)), `${route}: ベース外の内部リンク`).toEqual([])
+        expect(notSlashed(internal), `${route}: スラッシュで終わらないリンク`).toEqual([])
+      }
+    })
+  }
+
+  test('通常クリックは、ページ全体を取得し直さず(SPA の移動)、戻る・進むが動き、メタ情報が替わる', async ({ page }) => {
+    await page.goto(`${B}/catalog/`)
+    await expect(page.locator('html')).toHaveAttribute('data-hydrated', '1')
+    await page.evaluate(() => ((window as unknown as { __alive: number }).__alive = 1))
+    const card = page.locator('a.course-card[href$="/course/pm/"]')
+    await expect(card).toHaveAttribute('href', `${B}/course/pm/`)
+    await card.click()
+    await expect(page).toHaveURL(`http://localhost:4174${B}/course/pm/`)
+    await expect(page.locator('h1').first()).toContainText('プロダクトマネジメント')
+    expect(await page.evaluate(() => (window as unknown as { __alive?: number }).__alive)).toBe(1) // 読み込み直していない
+    await page.goBack()
+    await expect(page).toHaveURL(`http://localhost:4174${B}/catalog/`)
+    await page.goForward()
+    await expect(page).toHaveURL(`http://localhost:4174${B}/course/pm/`)
+    expect(await page.evaluate(() => (window as unknown as { __alive?: number }).__alive)).toBe(1)
+    expect(await page.evaluate(() => document.querySelector('link[rel="canonical"]')?.getAttribute('href'))).toBe(`${ORIGIN}${B}/course/pm/`)
+  })
+
+  test('修飾キー付きのクリックは、新しいタブで、同じ形の URL を開く(現在のタブは動かない)', async ({ page, context }) => {
+    await page.goto(`${B}/catalog/`)
+    await expect(page.locator('html')).toHaveAttribute('data-hydrated', '1')
+    const popup = context.waitForEvent('page')
+    await page.locator('a.course-card[href$="/course/pm/"]').click({ modifiers: ['ControlOrMeta'] })
+    const p2 = await popup
+    await p2.waitForLoadState()
+    expect(p2.url()).toBe(`http://localhost:4174${B}/course/pm/`)
+    await expect(page).toHaveURL(`http://localhost:4174${B}/catalog/`)
+  })
 })

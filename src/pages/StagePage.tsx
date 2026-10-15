@@ -1,4 +1,5 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { ProgressBar, StatusBadge } from '../components'
 import { findCourse } from '../data/catalog'
 import { findLesson, findStage, lessonNo, stageLabel, stages } from '../data/curriculum'

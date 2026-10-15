@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { ProgressBar } from '../components'
 import { stages } from '../data/curriculum'
 import { overallMinutes, overallStats, stageStats } from '../data/stats'

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from './Link'
 import { howLabel, historyFor, REPO, sourcesFor, statusHelp, statusLabel } from '../sources'
 import { licenseNotes } from '../license'
 

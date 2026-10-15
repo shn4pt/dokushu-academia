@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import CourseLinks from '../ui/CourseLinks'
 import { courses, evidenceInfo, groups, isAvailable, layers, prerequisites } from '../data/catalog'
 import { formatMinutes } from '../time'

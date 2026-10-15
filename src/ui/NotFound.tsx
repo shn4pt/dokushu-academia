@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from './Link'
 
 /** 見つからないページ(パスの URL 版)。HTTP のステータスは、配信側(404.html は 404 で返る)が決める。 */
 export default function NotFound() {

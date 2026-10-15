@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { dimensions, levelFor, loadAnswers, summarize } from '../assessment'
 import CodeOrder from '../ui/CodeOrder'
 import type { LessonContent } from './types'

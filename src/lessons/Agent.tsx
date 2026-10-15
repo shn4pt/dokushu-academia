@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import type { LessonContent } from './types'
 
 type Step = { who: 'user' | 'model' | 'tool'; text: string; note?: string }

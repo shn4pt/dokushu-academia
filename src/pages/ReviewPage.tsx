@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { findLesson, lessonNo } from '../data/curriculum'
 import { progressActions, useProgress } from '../progress'
 import { GRADUATE_STREAK, SESSION_SIZE, bankEntries, isDue, shuffle, useBank, useDueKeys, type BankEntry } from '../review'

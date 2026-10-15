@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from './Link'
 import type { Course } from '../data/catalog'
 
 type Item = Course | { course: Course; note?: string }

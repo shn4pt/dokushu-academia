@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
 import { simulateIntervals } from '../data/ci'
+import { px } from './round'
 
 const TRIALS = 100
 const MU = 50
@@ -7,7 +8,7 @@ const SIGMA = 10
 const W = 420
 const lo = 25
 const hi = 75
-const sx = (v: number) => ((Math.min(hi, Math.max(lo, v)) - lo) / (hi - lo)) * (W - 20) + 10
+const sx = (v: number) => px(((Math.min(hi, Math.max(lo, v)) - lo) / (hi - lo)) * (W - 20) + 10)
 
 /** 標本を取り直して、95% 信頼区間を 100 回作ると、何回、真の平均を含むか。 */
 export default function CiLab() {

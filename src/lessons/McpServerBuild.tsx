@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import CodeReview from '../ui/CodeReview'
 import serverSource from '../capstone2/mcpServer.ts?raw'
 import stdioSource from '../capstone2/mcpStdio.ts?raw'

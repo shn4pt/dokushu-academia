@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import StepThrough from '../ui/StepThrough'
 import TraceReading from '../ui/TraceReading'
 import type { LessonContent } from './types'

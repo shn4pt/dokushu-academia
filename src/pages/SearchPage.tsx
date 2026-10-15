@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useMemo, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { findLesson, findStage, lessonNo } from '../data/curriculum'
 import { glossary } from '../data/glossary'
 import { norm, parseTerms, search, type Section } from '../search'

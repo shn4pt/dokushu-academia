@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { glossary } from '../data/glossary'
 
 export default function Glossary() {

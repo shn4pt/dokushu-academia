@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
+import { Navigate, useLocation, useParams } from 'react-router-dom'
+import { Link } from '../ui/Link'
 import { findCourse } from '../data/catalog'
 import { allLessons, findLesson, findStage, lessonNo } from '../data/curriculum'
 import { questionKey } from '../review'
