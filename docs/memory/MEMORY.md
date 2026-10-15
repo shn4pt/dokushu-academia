@@ -5,3 +5,4 @@
 - [事実確認は Opus](feedback-factcheck-with-opus.md) — 本体は Sonnet、verify-lesson のエージェントだけ model: opus(2026-10-12)
 - [資料のライセンスの方針](project-license-policy.md) — BY-SA/NC-SA/ND の扱い・利用条件の自動表示・広告や課金を始める前に見直す(2026-10-12)
 - [PM-1 の試作とレビューの進め方](project-pm1-pilot-and-review-flow.md) — Issue #1 の PM-1 試作を採用・公開(2026-10-13)・Codex の PR レビューの流れ・残した6項目
+- [Codex への報告文](feedback-codex-handoff-text.md) — 区切りごとに貼り付け用の文まで書く(2026-10-15)
