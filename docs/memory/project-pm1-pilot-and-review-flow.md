@@ -21,9 +21,9 @@ Codex(GPT6.1-sol)が作った Issue #1(学び直す社会人向けの改善)に�
 
 **SEO・AEO の設計(Issue #13、PR #14、2026-10-14 にマージ):** `docs/seo/plan.md`。パス URL の配信設計、将来の収益化・公開範囲・GitHub Free の条件を反映。専門家の監修ではない。
 
-**パス URL の試作(Issue #15、PR #17、マージ待ち・Codex のレビュー待ち):** ビルド時の prerender と hydrateRoot、ルートごとのメタ情報、404 の殻、旧ハッシュ URL の転送、サイトマップ。本番のハッシュ版のビルドは変えていない。記録は `docs/seo/prototype.md`。全レッスンへの展開、本番公開、ドメイン購入、private 化はしていない。
+**パス URL の試作(Issue #15、PR #17、2026-10-15 にマージ。Codex 再レビュー済み。未検証は Issue #15 のコメント):** ビルド時の prerender と hydrateRoot、ルートごとのメタ情報、404 の殻、旧ハッシュ URL の転送、サイトマップ。本番のハッシュ版のビルドは変えていない。記録は `docs/seo/prototype.md`。全レッスンへの展開、本番公開、ドメイン購入、private 化はしていない。
 
-**配信先の調査(Issue #16、PR #18、文書のみ・マージ待ち・Codex のレビュー待ち):** `docs/seo/hosting.md`。推奨は Cloudflare の静的配信(Free)+ GitHub Free の private リポジトリ + GitHub Actions からのアップロード。旧サイトは公開リポジトリのまま残す案(進捗があるときは自動転送しない)。Cloudflare 規約(Free でカード情報の処理禁止、裁量で終了)など未確認が残る。アカウント作成・契約・DNS・private 化はしていない。
+**配信先の調査(Issue #16、PR #18、文書のみ、2026-10-15 にマージ。次は A: ドメイン候補の調査と試作の限界の解消。B: 作者の判断・アカウント作成は未実施):** `docs/seo/hosting.md`。推奨は Cloudflare の静的配信(Free)+ GitHub Free の private リポジトリ + GitHub Actions からのアップロード。旧サイトは公開リポジトリのまま残す案(進捗があるときは自動転送しない)。Cloudflare 規約(Free でカード情報の処理禁止、裁量で終了)など未確認が残る。アカウント作成・契約・DNS・private 化はしていない。
 
 **教訓(調査):** 「禁止が見つからない」を許可の確認にしない。ローカルのエミュレータは本番の確認ではない。Python 3.9 は長い日本語の行でトークナイザが失敗するので、文章は別ファイルから読む。
 
