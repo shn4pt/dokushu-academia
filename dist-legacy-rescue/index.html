@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'" />
+    <meta name="robots" content="noindex" />
+    <title>独習アカデミア — 移行のご案内と進捗の書き出し(ローカル試作)</title>
+    <link rel="stylesheet" href="rescue.css" />
+  </head>
+  <body>
+    <main>
+      <p class="proto" role="note">これは、ローカルで検証するための試作です。<strong>新サイトは、まだ公開されていません。</strong>下に出てくる「新サイト」の URL は、試験用の仮のもので、実在のサイトではありません。</p>
+      <h1>独習アカデミアの移行のご案内</h1>
+      <p>学習の進捗は、このブラウザの中(この URL のオリジン)にだけ保存されています。新しい URL に移ると、<strong>進捗は自動では引き継がれません</strong>。次の手順で、書き出して、新しい側で読み込みます。</p>
+
+      <section id="status" aria-live="polite" class="status">
+        <h2>このブラウザの保存データ</h2>
+        <p id="status-text">保存データの確認には、JavaScript が必要です。</p>
+        <p id="countdown" hidden></p>
+        <div class="row" id="actions" hidden>
+          <button id="btn-export" type="button" hidden>進捗を書き出す(新サイトで読み込める形式)</button>
+          <button id="btn-raw" type="button" hidden>元の保存データを、そのまま保存する(バックアップ)</button>
+          <button id="btn-stop" type="button" hidden>自動の移動を止める</button>
+        </div>
+        <p id="result" role="status"></p>
+      </section>
+
+      <noscript>
+        <p class="warn"><strong>JavaScript が無効のため、保存された進捗を確認できません。</strong>進捗を書き出すには、JavaScript を有効にして、このページを読み込み直してください。進捗が不要な場合は、下のリンクから、新サイトへ移動できます。</p>
+      </noscript>
+
+      <section>
+        <h2>手順</h2>
+        <ol>
+          <li><strong>先に、バックアップを取る。</strong>上のボタン(「進捗を書き出す」。書き出せない状態では「元の保存データを、そのまま保存する」)を押して、ファイルを保存します。移動の前に、必ず保存してください。</li>
+          <li>下の「新サイトを開く」から、新しい URL を開きます。</li>
+          <li>新サイトの「進捗と設定」で、「インポート」を押し、保存したファイルを選びます。</li>
+        </ol>
+        <p class="warn"><strong>新サイトにすでに進捗がある場合</strong>: 「インポート」は、新サイトの進捗を、読み込んだファイルの内容で<strong>置き換えます</strong>(混ぜ合わせません)。置き換える前に、新サイトの側でも「エクスポート」を押して、バックアップを取ってください。読み込んだ後は、完了数・クイズの記録が、想定どおりか確認してください。</p>
+        <p><strong>引き継がれないもの</strong>: 自己診断の回答と、API の設定(キーなど)は、書き出しの対象外です。API キーは、ファイルに含まれません。新サイトで、必要なら入力し直してください。</p>
+      </section>
+
+      <p class="newsite"><a id="link-new" href="http://localhost:4175/">新サイトを開く</a> <span class="muted">(試験用の仮の URL: <span id="new-origin">http://localhost:4175/</span>)</span></p>
+    </main>
+    <script src="rescue.js"></script>
+  </body>
+</html>
