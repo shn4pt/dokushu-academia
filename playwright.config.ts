@@ -5,6 +5,8 @@ import { defineConfig, devices } from '@playwright/test'
 const hasPathBuild = existsSync('dist-path') && existsSync('dist-path-root')
 // 引き継ぎの診断(Issue #19)は、`npm run build:path:diag` の出力があるときだけ行う
 const hasDiagBuild = existsSync('dist-path-diag')
+// 旧サイト向けの案内(ローカル専用の試作。Issue #23)の検査は、`npm run build:legacy-rescue` の出力と、新側の模擬(dist-path-root)があるときだけ行う
+const hasLegacyBuild = existsSync('dist-legacy-rescue') && hasPathBuild
 
 // 事前に npm run build を実行しておく(dist を vite preview で配信してテストする)。
 // 実行: npm run test:e2e
@@ -33,17 +35,23 @@ export default defineConfig({
           { command: 'node scripts/serve-static.mjs dist-path-root 4175 /', url: 'http://localhost:4175/', reuseExistingServer: !process.env.CI },
         ]
       : []),
+    ...(hasLegacyBuild
+      ? [{ command: 'node scripts/serve-static.mjs dist-legacy-rescue 4177 /dokushu-academia/', url: 'http://localhost:4177/dokushu-academia/', reuseExistingServer: !process.env.CI }]
+      : []),
     ...(hasDiagBuild
       ? [{ command: 'node scripts/serve-static.mjs dist-path-diag 4176 /', url: 'http://localhost:4176/', reuseExistingServer: !process.env.CI }]
       : []),
   ],
   projects: [
-    { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1000, height: 900 } }, testIgnore: /\.(mobile|path|diag)\.spec\.ts$/ },
+    { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1000, height: 900 } }, testIgnore: /\.(mobile|path|diag|legacy)\.spec\.ts$/ },
     ...(hasPathBuild
       ? [{ name: 'path', use: { ...devices['Desktop Chrome'], viewport: { width: 1000, height: 900 }, baseURL: 'http://localhost:4174' }, testMatch: /\.path\.spec\.ts$/ }]
       : []),
     ...(hasDiagBuild
       ? [{ name: 'diag', use: { ...devices['Desktop Chrome'], viewport: { width: 1000, height: 900 }, baseURL: 'http://localhost:4176' }, testMatch: /\.diag\.spec\.ts$/ }]
+      : []),
+    ...(hasLegacyBuild
+      ? [{ name: 'legacy', use: { ...devices['Desktop Chrome'], viewport: { width: 1000, height: 900 }, baseURL: 'http://localhost:4177' }, testMatch: /\.legacy\.spec\.ts$/ }]
       : []),
     // iPhone 13 の画面と、タッチ操作(pointer: coarse)で確かめる。ブラウザは Chromium を使う
     { name: 'mobile', use: { ...devices['iPhone 13'], defaultBrowserType: 'chromium' }, testMatch: /\.mobile\.spec\.ts$/ },
