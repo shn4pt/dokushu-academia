@@ -1,4 +1,6 @@
+import { spawnSync } from 'node:child_process'
 import { existsSync, readFileSync } from 'node:fs'
+import vm from 'node:vm'
 import { expect, test } from './fixtures'
 import { bank } from './lessons'
 
@@ -184,6 +186,34 @@ test.describe('旧ハッシュ URL の救済', () => {
     await page.goto(`${B}/#/lesson/nothing`)
     await expect(page.locator('h1')).toContainText('見つかりません')
   })
+  // 生成した legacy-redirect.js を、Node の vm で実行して、転送先を確かめる(外部へはアクセスしない)
+  for (const [dir, base] of [['dist-path', '/dokushu-academia/'], ['dist-path-root', '/']] as const) {
+    const run = (hash: string, pathname: string = base) => {
+      let to: string | null = null
+      const location = { hash, pathname, origin: 'http://localhost', replace: (u: string) => { to = u } }
+      vm.runInNewContext(readFileSync(`${dir}/legacy-redirect.js`, 'utf8'), { location, URL })
+      return to
+    }
+    test(`${dir}: 旧ハッシュ URL の転送は、サイト内に限り、検索語を壊さない`, () => {
+      expect(run('#/lesson/pm-1')).toBe(`${base}lesson/pm-1/`)
+      expect(run('#/lesson/nothing')).toBe(`${base}lesson/nothing/`)
+      expect(run('#/catalog/')).toBe(`${base}catalog/`)
+      expect(run('#/search?q=PM')).toBe(`${base}search/?q=PM`)
+      expect(run('#/search?q=%E5%95%86%E5%93%81%2F')).toBe(`${base}search/?q=%E5%95%86%E5%93%81%2F`)
+      expect(run('#/lesson/pm-1#top')).toBe(`${base}lesson/pm-1/#top`)
+      expect(run('#/')).toBe(base)
+      // 転送しない
+      expect(run('#//example.com')).toBeNull()
+      expect(run('#//example.com/')).toBeNull()
+      expect(run('#/\\example.com')).toBeNull()
+      expect(run('#/a\\b')).toBeNull()
+      expect(run('#/../../x')).toBeNull()
+      expect(run('#/%2e%2e/x')).toBeNull()
+      expect(run('#/a/./b')).toBeNull()
+      expect(run('#/lesson/pm-1', `${base}lesson/pm-1/`)).toBeNull() // ルートでないときは何もしない
+      expect(run('#top')).toBeNull()
+    })
+  }
   test('見出しへの通常の # は、教材の移転と誤認しない', async ({ page }) => {
     await page.goto(`${B}/lesson/pm-1/#top`)
     await expect(page).toHaveURL(`http://localhost:4174${B}/lesson/pm-1/#top`)
@@ -209,10 +239,12 @@ test.describe('引き継ぎ(ハイドレーション)と進捗', () => {
         await page.goto(p.path)
         await expect(page.locator('#root[data-ssr="1"]')).toBeAttached()
         await expect(page.locator('h1').first()).toContainText(p.h1)
-        await page.waitForTimeout(500) // 引き継ぎの完了を待つ(console.error は、フィクスチャーが失敗にする)
-        expect(await recoverable(page)).toEqual([])
+        // 引き継ぎの完了を、状態で待つ(進捗あり: 保存済みの進捗の表示。進捗なし: React が root を引き継いだ印)。console.error は、フィクスチャーが失敗にする
         if (withProgress) await expect(page.locator('.site-header')).toContainText(/進捗 [1-9]\d*%/) // 保存済みの進捗へ更新された
         else await expect(page.locator('.site-header')).toContainText('進捗 0%')
+        await page.waitForFunction(() => Object.keys(document.getElementById('root') ?? {}).some((k) => k.startsWith('__reactContainer'))) // React が root を引き継いだ印
+        await page.waitForLoadState('networkidle')
+        expect(await recoverable(page)).toEqual([])
       })
     }
   }
@@ -400,6 +432,15 @@ test.describe('生成物の整合: ベース・オリジン、サイトマップ
 })
 
 test.describe('境界: 本番のハッシュ版に、試作の出力が混ざらない', () => {
+  test('出力先の別名(./dist、dist/、絶対パス、dist 配下)は、ビルド開始前に拒否され、dist を消さない', () => {
+    const before = existsSync('dist/index.html')
+    for (const out of ['dist', './dist', 'dist/', `${process.cwd()}/dist`, 'dist/sub', 'dist/../dist']) {
+      const r = spawnSync('node', ['scripts/build-path.mjs'], { env: { ...process.env, OUT_DIR: out }, encoding: 'utf8' })
+      expect(r.status, out).toBe(1)
+      expect(r.stderr, out).toContain('出せません')
+    }
+    expect(existsSync('dist/index.html')).toBe(before)
+  })
   test('ハッシュ版の出力(dist)には、パスの URL の HTML・サイトマップがない', () => {
     test.skip(!existsSync('dist'), 'ハッシュ版のビルド(npm run build)がない')
     expect(existsSync('dist/lesson')).toBe(false)

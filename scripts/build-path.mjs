@@ -3,6 +3,7 @@
 //   npm run build:path:root   → dist-path-root/   (ベース /。独自ドメインの、ルート配下の形)
 // 環境変数: SITE_BASE(ベース。既定 /dokushu-academia/)、SITE_ORIGIN(正規 URL のオリジン。既定 https://shn4pt.github.io)、OUT_DIR(出力先。既定 dist-path)
 import { spawnSync } from 'node:child_process'
+import { isAbsolute, relative, resolve, sep } from 'node:path'
 
 const base = process.env.SITE_BASE ?? '/dokushu-academia/'
 if (!base.startsWith('/') || !base.endsWith('/')) {
@@ -16,7 +17,9 @@ const env = {
   VITE_SITE_ORIGIN: process.env.SITE_ORIGIN ?? process.env.VITE_SITE_ORIGIN ?? 'https://shn4pt.github.io',
   OUT_DIR: process.env.OUT_DIR ?? 'dist-path',
 }
-if (env.OUT_DIR === 'dist') {
+// 別名(./dist、dist/、絶対パス、dist 配下)も拒否するため、パスを解決して比べる
+const rel = relative(resolve('dist'), resolve(env.OUT_DIR))
+if (rel === '' || (rel !== '..' && !rel.startsWith('..' + sep) && !isAbsolute(rel))) {
   console.error('本番のハッシュ版の出力先(dist)には、出せません。OUT_DIR を変えてください。')
   process.exit(1)
 }

@@ -54,8 +54,16 @@ try {
   var h = location.hash;
   if (h.indexOf('#/') !== 0) return;
   if (location.pathname !== base && location.pathname !== base + 'index.html') return;
-  var route = h.slice(2).replace(/\\/+$/, '');
-  location.replace(base + (route ? route + '/' : ''));
+  // サイト内の転送に限る: 先頭が スラッシュ2つ、バックスラッシュ、制御文字は転送しない。パス部分だけにスラッシュを足し、検索語やハッシュは、そのまま渡す
+  var raw = h.slice(2);
+  if (raw.charAt(0) === '/' || /[\\\\\\u0000-\\u001f]/.test(raw)) return;
+  var m = /^([^?#]*)(.*)$/.exec(raw);
+  if (/(^|\\/)(\\.|%2e){1,2}(\\/|$)/i.test(m[1])) return; // . と .. の区間(エンコード含む)は転送しない
+  var route = m[1].replace(/\\/+$/, '');
+  var target;
+  try { target = new URL(base + (route ? route + '/' : '') + m[2], location.origin); } catch (e) { return; }
+  if (target.origin !== location.origin || target.pathname.indexOf(base) !== 0) return;
+  location.replace(target.pathname + target.search + target.hash);
 })();
 `,
   )
