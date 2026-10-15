@@ -22,6 +22,9 @@ jobs:
       - run: npm ci
       # tsc の型チェック、検索索引・クイズ・学習時間の生成、出典の記録の検査も、ここで行われる
       - run: npm run build
+      # パスの URL 版(試作。Issue #15)のビルド。本番のデプロイ(deploy.yml)は、ハッシュ版(npm run build の dist)のまま。ここでは、試作の検査のために、ビルドする
+      - run: npm run build:path
+      - run: npm run build:path:root
       - run: npm run typecheck:e2e
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test

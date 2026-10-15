@@ -8,7 +8,10 @@ import { currentSection, findHeading, scrollToHeading } from '../reading'
 import { isReady, loadLessonContent } from '../lessons'
 import type { LessonContent, QuizQuestion } from '../lessons/types'
 import SourceNote from '../ui/SourceNote'
-import { progressActions, useProgress } from '../progress'
+import NotFound from '../ui/NotFound'
+import { getPreloaded } from '../lessons/preload'
+import { PATH_MODE } from '../site'
+import { progressActions, useProgress, useProgressReady } from '../progress'
 
 function Quiz({ lessonId, questions }: { lessonId: string; questions: QuizQuestion[] }) {
   const p = useProgress()
@@ -75,7 +78,11 @@ export default function LessonPage() {
   const location = useLocation()
   const p = useProgress()
   const lesson = id ? findLesson(id) : undefined
-  const [loaded, setLoaded] = useState<{ id: string; content: LessonContent } | null>(null)
+  // パスの URL 版では、生成した HTML を引き継ぐため、事前に読み込んだ本文を、最初の描画から使う(「読み込み中…」にしない)
+  const [loaded, setLoaded] = useState<{ id: string; content: LessonContent } | null>(() => {
+    const pre = getPreloaded(id)
+    return id && pre ? { id, content: pre } : null
+  })
   const ready = !!id && isReady(id)
 
   useEffect(() => {
@@ -83,9 +90,13 @@ export default function LessonPage() {
     progressActions.visit(id)
     window.scrollTo(0, 0)
     let cancelled = false
-    loadLessonContent(id).then((content) => {
-      if (!cancelled) setLoaded({ id, content })
-    })
+    const pre = getPreloaded(id)
+    if (pre) setLoaded((cur) => (cur?.id === id ? cur : { id, content: pre }))
+    else {
+      loadLessonContent(id).then((content) => {
+        if (!cancelled) setLoaded({ id, content })
+      })
+    }
     return () => {
       cancelled = true
     }
@@ -108,10 +119,12 @@ export default function LessonPage() {
   readingRef.current = p.reading
   const completedRef = useRef(p.completed)
   completedRef.current = p.completed
+  // 生成した HTML を引き継ぐ間は、進捗が空(サーバーと同じ)なので、保存済みの進捗を読めるようになってから、続きの案内を決める
+  const progressReady = useProgressReady()
   const [resume, setResume] = useState<{ section: string; mode: 'prompt' | 'resumed' } | null>(null)
   useEffect(() => {
     setResume(null)
-    if (!shown || !id || targetSection) return
+    if (!shown || !id || targetSection || !progressReady) return
     const section = readingRef.current[id]?.section
     if (!section || completedRef.current[id]) return
     const heading = findHeading(section)
@@ -122,7 +135,7 @@ export default function LessonPage() {
       return () => cancelAnimationFrame(frame)
     }
     setResume({ section, mode: 'prompt' })
-  }, [shown, id])
+  }, [shown, id, progressReady])
 
   useEffect(() => {
     if (resume?.mode !== 'resumed') return
@@ -150,7 +163,7 @@ export default function LessonPage() {
     }
   }, [shown, id])
 
-  if (!lesson || !ready) return <Navigate to="/roadmap" replace />
+  if (!lesson || !ready) return PATH_MODE ? <NotFound /> : <Navigate to="/roadmap" replace />
   if (!loaded || loaded.id !== lesson.id) return <p className="muted">読み込み中…</p>
   const content = loaded.content
 
@@ -184,6 +197,12 @@ export default function LessonPage() {
           所要時間の目安: <strong>{formatMinutes(time.total)}</strong>
           (本文 {time.reading}分{time.demo > 0 && ` ・ デモ ${time.demo}分`} ・ クイズ {time.quiz}分)
         </p>
+      )}
+
+      {PATH_MODE && (
+        <noscript>
+          <p className="notice">判定問題・実験ツール・クイズ・進捗の保存は、JavaScript が有効なときに操作できます。本文・出典・リンクは、JavaScript なしでも読めます。</p>
+        </noscript>
       )}
 
       {resume?.mode === 'prompt' && (

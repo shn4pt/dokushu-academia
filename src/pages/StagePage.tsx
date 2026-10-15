@@ -6,12 +6,14 @@ import { stageMinutes, stageStats } from '../data/stats'
 import { isReady } from '../lessons'
 import { formatMinutes, lessonMinutes } from '../time'
 import { useProgress } from '../progress'
+import { PATH_MODE } from '../site'
+import NotFound from '../ui/NotFound'
 
 export default function StagePage() {
   const { id } = useParams()
   const p = useProgress()
   const stage = id ? findStage(id) : undefined
-  if (!stage) return <Navigate to="/roadmap" replace />
+  if (!stage) return PATH_MODE ? <NotFound /> : <Navigate to="/roadmap" replace />
 
   const peers = stages.filter((x) => x.course === stage.course) // 同じ講座のステージだけ
   const index = peers.indexOf(stage)

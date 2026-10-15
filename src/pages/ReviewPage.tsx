@@ -97,7 +97,7 @@ export default function ReviewPage() {
             <div role="status">
               <p><strong>{picked === correctIndex ? '正解です' : '不正解です'}</strong></p>
               <p className="muted">{item.q.explanation}</p>
-              <a href={`#/lesson/${item.lessonId}`} target="_blank" rel="noreferrer">レッスンの解説を読む(新しいタブ)</a>
+              <Link to={`/lesson/${item.lessonId}`} target="_blank" rel="noreferrer">レッスンの解説を読む(新しいタブ)</Link>
             </div>
           )}
           <div className="row">

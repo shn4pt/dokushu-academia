@@ -16,6 +16,9 @@ import { useDueKeys } from './review'
 import { overallStats } from './data/stats'
 import { useProgress } from './progress'
 import { REPO } from './sources'
+import { PATH_MODE } from './site'
+import NotFound from './ui/NotFound'
+import MetaUpdater from './ui/MetaUpdater'
 
 // API の SDK を含むため、開いたときにだけ読み込む
 const ApiKeyPage = lazy(() => import('./pages/ApiKeyPage'))
@@ -26,6 +29,7 @@ export default function App() {
   const due = useDueKeys().length
   return (
     <>
+      {PATH_MODE && <MetaUpdater />}
       <header className="site-header">
         <div className="brand-block">
           <NavLink to="/catalog" className="brand">独習アカデミア</NavLink>
@@ -42,7 +46,7 @@ export default function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/" element={<Navigate to="/catalog" replace />} />
+          <Route path="/" element={PATH_MODE ? <CatalogPage /> : <Navigate to="/catalog" replace />} />
           <Route path="/llm" element={<Home />} />
           <Route path="/catalog" element={<CatalogPage />} />
           <Route path="/map" element={<MapPage />} />
@@ -56,7 +60,7 @@ export default function App() {
           <Route path="/api-key" element={<Suspense fallback={<p className="muted">読み込み中…</p>}><ApiKeyPage /></Suspense>} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/sources" element={<SourcesPage />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={PATH_MODE ? <NotFound /> : <Navigate to="/" replace />} />
         </Routes>
       </main>
       <footer className="site-footer">

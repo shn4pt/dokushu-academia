@@ -15,8 +15,13 @@ const csp = [
   "form-action 'none'",
 ].join('; ')
 
+// パスの URL 版(試作。Issue #15): VITE_SITE_MODE=path のときだけ、ベースと出力先を切り替える。
+// 通常のビルド(本番のハッシュ版)は、base './'、出力先 dist のまま。
+const pathMode = process.env.VITE_SITE_MODE === 'path'
+
 export default defineConfig({
-  base: './',
+  base: pathMode ? (process.env.SITE_BASE ?? '/dokushu-academia/') : './',
+  build: pathMode ? { outDir: process.env.OUT_DIR ?? 'dist-path' } : {},
   plugins: [
     react(),
     {

@@ -7,12 +7,14 @@ import { plannedTotal, writtenCount } from '../data/writing'
 import CourseLinks from '../ui/CourseLinks'
 import CourseEntryCards from '../ui/CourseEntryCards'
 import { useProgress } from '../progress'
+import { PATH_MODE } from '../site'
+import NotFound from '../ui/NotFound'
 
 export default function CoursePage() {
   const { id } = useParams()
   const p = useProgress()
   const course = id ? findCourse(id) : undefined
-  if (!course) return <Navigate to="/catalog" replace />
+  if (!course) return PATH_MODE ? <NotFound /> : <Navigate to="/catalog" replace />
   const ev = evidenceInfo[course.evidence]
   const group = groups.find((g) => g.id === course.group)
   const status = courseStatus(course)

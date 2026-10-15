@@ -1,5 +1,7 @@
 node_modules
 dist
+dist-path
+dist-path-root
 *.local
 src/data/search-index.json
 src/data/quiz-bank.json

@@ -83,7 +83,17 @@ function subscribe(l: () => void) {
   return () => listeners.delete(l)
 }
 
-export const useProgress = () => useSyncExternalStore(subscribe, () => state)
+// サーバーでの描画と、ブラウザでの引き継ぎの初期値は、空の進捗(定数)。呼ぶたびに同じ値を返す必要がある。
+// ブラウザは、引き継ぎの後に、保存済みの進捗へ更新する(生成 HTML に、個人の進捗は含めない)。
+const serverState = empty()
+export const useProgress = () => useSyncExternalStore(subscribe, () => state, () => serverState)
+
+/**
+ * 保存済みの進捗を、読めるようになったか。ブラウザで描画したときは、最初から true。
+ * 生成した HTML を引き継ぐときは、引き継ぎの間は false(サーバーと同じ、空の進捗で描画する)で、引き継ぎの後に true になる。
+ * 保存済みの進捗を、最初の 1 回だけ読む処理(続きから読む、など)は、これが true になってから行う。
+ */
+export const useProgressReady = () => useSyncExternalStore(subscribe, () => true, () => false)
 
 export const progressActions = {
   setCompleted(lessonId: string, done: boolean) {
