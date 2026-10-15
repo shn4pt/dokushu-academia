@@ -20,7 +20,7 @@ const shifted = (n: number) => Array.from({ length: n }, (_, i) => (i + 1) % n)
 /** 並べ替え問題: コードの行を正しい順番に並べる。 */
 export default function CodeOrder({ title, description, lines, explanation }: Props) {
   // 本番(ハッシュ版)は、従来どおり、最初からランダムな並び。
-  // パスの URL 版は、サーバーの HTML をブラウザで引き継ぐため、最初の描画は決まった並びにし、描画の直後(画面に出る前)に、ランダムな並びへ替える。
+  // パスの URL 版は、サーバーの HTML をブラウザで引き継ぐため、最初の描画は決まった並びにし、引き継ぎ時の layout effect で、ランダムな並びへ替える(サーバーの HTML は JavaScript の到着前に表示されうるので、通信が遅い場合や JavaScript が無効の場合は、決まった初期の並びが見える)。
   // 答えの順に固定するのではなく、利用者が見る並びは、従来どおり毎回ランダム(最初から正解にならない)
   const [order, setOrder] = useState(() => (PATH_MODE ? shifted(lines.length) : shuffled(lines.length)))
   useLayoutEffect(() => {
