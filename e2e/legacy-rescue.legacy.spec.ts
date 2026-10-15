@@ -1,4 +1,7 @@
-import { readFileSync } from 'node:fs'
+import { spawnSync } from 'node:child_process'
+import { existsSync, mkdtempSync, readFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
 import { expect, test } from '@playwright/test'
 
 // 旧サイト向けの、移行の案内と進捗の書き出し(ローカル専用の試作。Issue #23、docs/seo/legacy-rescue.md)の検査。
@@ -71,7 +74,7 @@ test.describe('状態ごとの案内と、自動転送', () => {
     await prepare(context, JSON.stringify(full))
     const page = await context.newPage()
     await page.goto(OLD)
-    await expect(page.locator('#status-text')).toContainText('学習の進捗が保存されています')
+    await expect(page.locator('#status-text')).toContainText('が保存されています')
     await expect(page.locator('#btn-export')).toBeVisible()
     await expect(page.locator('#btn-raw')).toBeVisible()
     await expect(page.locator('#countdown')).toBeHidden()
@@ -296,6 +299,144 @@ test.describe('データの扱い(静的・実行時)', () => {
     const [dl] = await Promise.all([page.waitForEvent('download'), page.locator('#btn-export').click()])
     expect(readFileSync((await dl.path())!, 'utf8')).not.toContain('sk-TEST')
     expect(await page.evaluate(() => (window as unknown as { __get: string[] }).__get)).toEqual([KEY])
+    await context.close()
+  })
+})
+
+test.describe('既知の形式の検証(保守的)と、lastVisited(Codex のレビュー対応)', () => {
+  const lastOnly = { ...emptyOk, lastVisited: 'pm-1' }
+
+  test('lastVisited だけの正常データ: 進捗として扱い、3 秒を超えても移動せず、書き出しで、新サイトに保たれる', async ({ browser }) => {
+    const context = await browser.newContext()
+    await prepare(context, JSON.stringify(lastOnly))
+    const page = await context.newPage()
+    await page.goto(OLD)
+    await expect(page.locator('#status-text')).toContainText('学習の進捗')
+    await expect(page.locator('#btn-export')).toBeVisible()
+    await expect(page.locator('#countdown')).toBeHidden()
+    await page.waitForTimeout(4500)
+    expect(page.url()).toBe(OLD)
+    const [dl] = await Promise.all([page.waitForEvent('download'), page.locator('#btn-export').click()])
+    expect(JSON.parse(readFileSync((await dl.path())!, 'utf8'))).toEqual(lastOnly)
+    const newCtx = await browser.newContext()
+    const fresh = await newCtx.newPage()
+    await fresh.goto(`${NEW}/progress/`)
+    await fresh.locator('input[type=file]').setInputFiles((await dl.path())!)
+    await expect(fresh.getByRole('status').filter({ hasText: '進捗を読み込みました' })).toBeVisible()
+    expect(JSON.parse((await fresh.evaluate((k) => localStorage.getItem(k), KEY))!)).toEqual(lastOnly)
+    await context.close()
+    await newCtx.close()
+  })
+
+  for (const [label, value] of [
+    ['lastVisited が数値', { ...emptyOk, lastVisited: 42 }],
+    ['lastVisited が空文字', { ...emptyOk, lastVisited: '' }],
+    ['未知の追加項目(空の記録)', { ...emptyOk, future: { note: 'keep' } }],
+    ['偽の apiKey 項目(空の記録)', { ...emptyOk, apiKey: 'sk-TEST-DO-NOT-LEAK' }],
+    ['偽の apiKey 項目(記録あり)', { ...full, apiKey: 'sk-TEST-DO-NOT-LEAK' }],
+    ['completed の値が文字列でない', { ...emptyOk, completed: { 'e-1': 5 } }],
+    ['quiz の形が違う', { ...emptyOk, quiz: { 'pm-1': { best: '4', total: 5 } } }],
+    ['quiz の記録に未知の項目', { ...emptyOk, quiz: { 'pm-1': { best: 4, total: 5, extra: 1 } } }],
+    ['questions の last が不正', { ...emptyOk, questions: { k: { right: 1, wrong: 0, streak: 1, last: 'maybe', at: 'x' } } }],
+    ['reading の形が違う', { ...emptyOk, reading: { 'pm-1': { section: 3, at: 'x' } } }],
+  ] as const) {
+    test(`${label}: 既知の正常形式と認めず(unknown)、自動で移動せず、書き出しを出さず、元の文字列をそのまま保存できる`, async ({ browser }) => {
+      const seed = JSON.stringify(value)
+      const context = await browser.newContext()
+      await prepare(context, seed)
+      const page = await context.newPage()
+      await page.goto(OLD)
+      await expect(page.locator('#status-text')).toContainText('知っている形式ではありません')
+      await expect(page.locator('#btn-export')).toBeHidden()
+      await expect(page.locator('#countdown')).toBeHidden()
+      await expect(page.locator('#status-text')).toContainText('外部に共有しないでください')
+      const [dl] = await Promise.all([page.waitForEvent('download'), page.locator('#btn-raw').click()])
+      expect(readFileSync((await dl.path())!, 'utf8')).toBe(seed) // 元の文字列を、そのまま
+      await page.waitForTimeout(4000)
+      expect(page.url()).toBe(OLD)
+      expect(await stored(page)).toBe(seed)
+      await context.close()
+    })
+  }
+
+  test('正常な進捗の書き出しは、既知の項目だけで構成される(偽の apiKey 項目を含む元データは、書き出せない)', async ({ browser }) => {
+    const context = await browser.newContext()
+    await prepare(context, JSON.stringify(full))
+    const page = await context.newPage()
+    await page.goto(OLD)
+    const [dl] = await Promise.all([page.waitForEvent('download'), page.locator('#btn-export').click()])
+    const exported = JSON.parse(readFileSync((await dl.path())!, 'utf8'))
+    expect(Object.keys(exported).sort()).toEqual(['completed', 'lastVisited', 'questions', 'quiz', 'reading', 'version'])
+    await context.close()
+  })
+
+  test('待っている間に、別のタブで進捗が増えた場合: 移動せず、書き出しの表示に切り替わる(移動の直前の再確認)', async ({ browser }) => {
+    const context = await browser.newContext()
+    await prepare(context, null)
+    const page = await context.newPage()
+    await page.goto(OLD)
+    await expect(page.locator('#countdown')).toContainText('秒後に、新サイトへ移動します')
+    const other = await context.newPage() // 同じオリジンの別のタブ
+    await other.goto(OLD + 'rescue.css')
+    await other.evaluate(([k, v]) => localStorage.setItem(k, v), [KEY, JSON.stringify(full)])
+    await page.waitForTimeout(4500)
+    expect(page.url()).toBe(OLD) // 移動しない
+    await expect(page.locator('#status-text')).toContainText('学習の進捗')
+    await expect(page.locator('#btn-export')).toBeVisible()
+    await expect(page.locator('#countdown')).toBeHidden()
+    await context.close()
+  })
+})
+
+test.describe('ビルドの安全条件と、運営者の転送停止設定', () => {
+  const tmp = () => join(mkdtempSync(join(tmpdir(), 'legacy-rescue-')), 'out')
+
+  test('新サイトの URL は、localhost / 127.0.0.1 だけを許可し、外部の URL はビルドを拒否する(出力もしない)', () => {
+    for (const origin of ['https://example.com', 'http://example.com', 'http://localhost.evil.com', 'https://localhost:4175', 'http://192.168.0.1:4175']) {
+      const out = tmp()
+      const r = spawnSync('node', ['scripts/build-legacy-rescue.mjs'], { env: { ...process.env, NEW_ORIGIN: origin, OUT_DIR: out }, encoding: 'utf8' })
+      expect(r.status, origin).toBe(1)
+      expect(existsSync(out), origin).toBe(false)
+    }
+    for (const origin of ['http://localhost:4175', 'http://127.0.0.1:4175']) {
+      const out = tmp()
+      const r = spawnSync('node', ['scripts/build-legacy-rescue.mjs'], { env: { ...process.env, NEW_ORIGIN: origin, OUT_DIR: out }, encoding: 'utf8' })
+      expect(r.status, origin).toBe(0)
+      expect(readFileSync(join(out, 'rescue.js'), 'utf8')).toContain(`var NEW_ORIGIN = '${origin}'`)
+    }
+  })
+
+  test('出力先が dist の別名(./dist、dist/、絶対パス、dist 配下)なら拒否し、dist を消さない', () => {
+    const before = existsSync('dist/index.html')
+    for (const out of ['dist', './dist', 'dist/', `${process.cwd()}/dist`, 'dist/sub', 'dist/../dist']) {
+      const r = spawnSync('node', ['scripts/build-legacy-rescue.mjs'], { env: { ...process.env, OUT_DIR: out }, encoding: 'utf8' })
+      expect(r.status, out).toBe(1)
+    }
+    expect(existsSync('dist/index.html')).toBe(before)
+  })
+
+  test('運営者の設定(AUTO_FORWARD=off): 空・保存なしでも自動で移動せず、手動のリンクだけを示す', async ({ browser }) => {
+    const out = tmp()
+    const r = spawnSync('node', ['scripts/build-legacy-rescue.mjs'], { env: { ...process.env, AUTO_FORWARD: 'off', OUT_DIR: out }, encoding: 'utf8' })
+    expect(r.status).toBe(0)
+    expect(readFileSync(join(out, 'rescue.js'), 'utf8')).toContain('var AUTO_FORWARD = false')
+    const context = await browser.newContext()
+    await prepare(context, null)
+    // 一時ディレクトリの成果物を、旧サイトの URL として配る(サーバーを増やさない)
+    await context.route('http://localhost:4177/dokushu-academia/**', async (route) => {
+      const name = new URL(route.request().url()).pathname.replace('/dokushu-academia/', '') || 'index.html'
+      const file = join(out, name)
+      if (!existsSync(file)) return route.fulfill({ status: 404, body: '' })
+      const type = name.endsWith('.js') ? 'text/javascript' : name.endsWith('.css') ? 'text/css' : 'text/html'
+      return route.fulfill({ status: 200, contentType: type, body: readFileSync(file) })
+    })
+    const page = await context.newPage()
+    await page.goto(OLD)
+    await expect(page.locator('#countdown')).toContainText('自動の移動は、行いません')
+    await expect(page.locator('#btn-stop')).toBeHidden()
+    await expect(page.locator('#link-new')).toBeVisible()
+    await page.waitForTimeout(4500)
+    expect(page.url()).toBe(OLD)
     await context.close()
   })
 })

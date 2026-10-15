@@ -7,18 +7,50 @@
   var KEY = 'llm-learning:progress'
   var NEW_ORIGIN = '__NEW_ORIGIN__' // 例: http://localhost:4175(末尾のスラッシュなし)
   var DELAY_MS = 3000
+  var AUTO_FORWARD = __AUTO_FORWARD__ // 運営者の設定(ビルド時)。false なら、自動転送を一括で無効にし、手動のリンクだけにする
 
   var $ = function (id) { return document.getElementById(id) }
   var isObject = function (v) { return !!v && typeof v === 'object' && !Array.isArray(v) }
+
+  var isStr = function (v) { return typeof v === 'string' }
+  var isNum = function (v) { return typeof v === 'number' && isFinite(v) }
+  var onlyKeys = function (o, keys) { return Object.keys(o).every(function (k) { return keys.indexOf(k) !== -1 }) }
+  var every = function (o, f) { return Object.keys(o).every(function (k) { return f(o[k]) }) }
+
+  /**
+   * 保守的な、既知の形式の検証(アプリの進捗の形: src/progress.ts)。**未知の項目・型の違いは、すべて「既知でない」**とする。
+   * 既存のアプリの import は、浅い型の検査で受け入れる。移行のために、正常と確定できることとは、別。
+   */
+  function isKnownProgress(p) {
+    if (!isObject(p) || p.version !== 1) return false
+    if (!onlyKeys(p, ['version', 'completed', 'quiz', 'questions', 'reading', 'lastVisited'])) return false
+    if (!isObject(p.completed) || !every(p.completed, isStr)) return false
+    if (!isObject(p.quiz) || !every(p.quiz, function (q) { return isObject(q) && onlyKeys(q, ['best', 'total']) && isNum(q.best) && isNum(q.total) })) return false
+    if (p.questions !== undefined) {
+      if (!isObject(p.questions)) return false
+      if (!every(p.questions, function (q) {
+        return isObject(q) && onlyKeys(q, ['right', 'wrong', 'streak', 'last', 'at']) &&
+          isNum(q.right) && isNum(q.wrong) && isNum(q.streak) && (q.last === 'right' || q.last === 'wrong') && isStr(q.at)
+      })) return false
+    }
+    if (p.reading !== undefined) {
+      if (!isObject(p.reading)) return false
+      if (!every(p.reading, function (r) {
+        return isObject(r) && onlyKeys(r, ['section', 'index', 'at']) && isStr(r.section) && isStr(r.at) && (r.index === undefined || isNum(r.index))
+      })) return false
+    }
+    if (p.lastVisited !== undefined && !(isStr(p.lastVisited) && p.lastVisited.length > 0)) return false
+    return true
+  }
 
   /**
    * 保存データの状態を、区別して返す。
    *  - unreadable: 読み取りに失敗(ストレージの拒否など)。空とは扱わない
    *  - none: 保存なし(キーがない)。読み取りは成功している
    *  - corrupt: JSON として読めない
-   *  - unknown: JSON だが、既知の形式(version 1)ではない
-   *  - empty: 既知の正常な形式で、学習記録(完了・クイズ・問題・しおり)が空
-   *  - progress: 既知の正常な形式で、学習記録がある
+   *  - unknown: JSON だが、既知の形式(version 1。項目・型が既知のもの)ではない。未知の追加項目、型の違いを含む
+   *  - empty: 既知の正常な形式で、記録(完了・クイズ・問題・しおり・最後に見たレッスン)が、すべてない
+   *  - progress: 既知の正常な形式で、記録が 1 つでもある(最後に見たレッスンだけの場合を含む)
    */
   function inspect() {
     var raw
@@ -34,22 +66,16 @@
     } catch (e) {
       return { kind: 'corrupt', raw: raw }
     }
-    var ok =
-      isObject(parsed) && parsed.version === 1 && isObject(parsed.completed) && isObject(parsed.quiz) &&
-      (parsed.questions === undefined || isObject(parsed.questions)) &&
-      (parsed.reading === undefined || isObject(parsed.reading))
-    if (!ok) return { kind: 'unknown', raw: raw }
+    if (!isKnownProgress(parsed)) return { kind: 'unknown', raw: raw }
     var n = Object.keys(parsed.completed).length + Object.keys(parsed.quiz).length +
-      Object.keys(parsed.questions || {}).length + Object.keys(parsed.reading || {}).length
+      Object.keys(parsed.questions || {}).length + Object.keys(parsed.reading || {}).length + (parsed.lastVisited ? 1 : 0)
     return { kind: n === 0 ? 'empty' : 'progress', raw: raw, parsed: parsed }
   }
 
-  /** アプリの exportJson と同じ形(questions / reading を補い、整形して出力する)。新サイトの「インポート」に通る。 */
+  /** アプリの exportJson と同じ形(questions / reading を補い、整形して出力する)。**既知の進捗の項目だけ**で作る(検証済みなので、未知の項目は、ここに来ない)。新サイトの「インポート」に通る。 */
   function exportText(parsed) {
-    var state = {}
-    Object.keys(parsed).forEach(function (k) { state[k] = parsed[k] })
-    state.questions = parsed.questions || {}
-    state.reading = parsed.reading || {}
+    var state = { version: 1, completed: parsed.completed, quiz: parsed.quiz, questions: parsed.questions || {}, reading: parsed.reading || {} }
+    if (parsed.lastVisited) state.lastVisited = parsed.lastVisited
     return JSON.stringify(state, null, 2)
   }
 
@@ -83,7 +109,7 @@
 
   function isLocalOrigin(o) { return /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(o) }
 
-  var info = inspect()
+  var info
   var mapped = mapHash(location.hash)
   var newHref = mapped || NEW_ORIGIN + '/'
   $('link-new').href = newHref
@@ -94,9 +120,13 @@
   var btnExport = $('btn-export')
   var btnRaw = $('btn-raw')
   var btnStop = $('btn-stop')
+  var cd = $('countdown')
   var result = $('result')
+  var timer = null
 
   function show(el, on) { el.hidden = !on }
+
+  var RAW_NOTE = '元の保存データには、進捗以外の内容が含まれている可能性があります。このファイルは、外部に共有しないでください。'
 
   function backupButtons(withExport) {
     show(actions, true)
@@ -108,51 +138,69 @@
     }
     btnRaw.onclick = function () {
       download(info.raw, 'llm-learning-progress-raw-backup.txt', 'text/plain')
-      result.textContent = '元の保存データを、そのまま保存しました(llm-learning-progress-raw-backup.txt)。このファイルが、新サイトの「インポート」で読み込めるとは限りません。'
+      result.textContent = '元の保存データを、そのまま保存しました(llm-learning-progress-raw-backup.txt)。' + RAW_NOTE + 'このファイルが、新サイトの「インポート」で読み込めるとは限りません。'
     }
   }
 
-  switch (info.kind) {
-    case 'progress':
-      text.textContent = '学習の進捗が保存されています。自動では移動しません。先に、書き出してバックアップを取ってください。'
-      backupButtons(true)
-      break
-    case 'corrupt':
-      text.textContent = '保存されたデータを、読み取れませんでした(JSON として壊れています)。このページは、元のデータを変更・削除しません。自動では移動しません。元の保存データを、そのまま保存してください。新サイトの「インポート」で読み込めるとは限りません。'
-      backupButtons(false)
-      break
-    case 'unknown':
-      text.textContent = '保存されたデータが、この画面の知っている形式ではありません(未知の version または形式)。元のデータを変更・削除せず、自動では移動しません。元の保存データを、そのまま保存してください。新サイトの「インポート」で読み込めるとは限りません。'
-      backupButtons(false)
-      break
-    case 'unreadable':
-      text.textContent = 'このブラウザでは、保存データを読み取れませんでした(ストレージが無効か、拒否されています)。進捗の有無を確認できないので、自動では移動しません。ブラウザの設定(Cookie・サイトデータの許可、プライベートモード)を確認して、読み込み直してください。'
-      break
-    default: // none, empty
-      text.textContent = info.kind === 'none'
-        ? '保存された進捗は、見つかりませんでした。'
-        : '保存された進捗に、学習の記録はありませんでした。'
-      if (isLocalOrigin(NEW_ORIGIN)) {
-        var left = Math.round(DELAY_MS / 1000)
-        var cd = $('countdown')
-        show(cd, true)
-        show(actions, true)
-        show(btnStop, true)
-        cd.textContent = left + ' 秒後に、新サイトへ移動します。'
-        var stopped = false
-        var timer = setInterval(function () {
-          left -= 1
-          if (left <= 0) {
-            clearInterval(timer)
-            if (!stopped) location.replace(newHref)
-          } else if (!stopped) cd.textContent = left + ' 秒後に、新サイトへ移動します。'
-        }, 1000)
-        btnStop.onclick = function () {
-          stopped = true
-          clearInterval(timer)
-          show(btnStop, false)
-          cd.textContent = '自動の移動を止めました。下の「新サイトを開く」から移動できます。'
-        }
-      }
+  function stopTimer() {
+    if (timer) { clearInterval(timer); timer = null }
   }
+
+  /** 状態の表示を、最初から組み立てる(再確認で状態が変わったときにも使う)。 */
+  function render() {
+    stopTimer()
+    show(actions, false); show(btnExport, false); show(btnRaw, false); show(btnStop, false); show(cd, false)
+    result.textContent = ''
+    switch (info.kind) {
+      case 'progress':
+        text.textContent = '学習の進捗(最後に見たレッスンだけの場合を含む)が保存されています。自動では移動しません。先に、書き出してバックアップを取ってください。'
+        backupButtons(true)
+        break
+      case 'corrupt':
+        text.textContent = '保存されたデータを、読み取れませんでした(JSON として壊れています)。このページは、元のデータを変更・削除しません。自動では移動しません。元の保存データを、そのまま保存してください。新サイトの「インポート」で読み込めるとは限りません。' + RAW_NOTE
+        backupButtons(false)
+        break
+      case 'unknown':
+        text.textContent = '保存されたデータが、この画面の知っている形式ではありません(未知の version・項目、または型が違う値を含みます)。元のデータを変更・削除せず、自動では移動しません。元の保存データを、そのまま保存してください。新サイトの「インポート」で読み込めるとは限りません。' + RAW_NOTE
+        backupButtons(false)
+        break
+      case 'unreadable':
+        text.textContent = 'このブラウザでは、保存データを読み取れませんでした(ストレージが無効か、拒否されています)。進捗の有無を確認できないので、自動では移動しません。ブラウザの設定(Cookie・サイトデータの許可、プライベートモード)を確認して、読み込み直してください。'
+        break
+      default: // none, empty
+        text.textContent = info.kind === 'none'
+          ? '保存された進捗は、見つかりませんでした。'
+          : '保存された進捗に、学習の記録はありませんでした。'
+        if (AUTO_FORWARD && isLocalOrigin(NEW_ORIGIN)) startCountdown()
+        else {
+          show(cd, true)
+          cd.textContent = '自動の移動は、行いません。下の「新サイトを開く」から移動できます。'
+        }
+    }
+  }
+
+  function startCountdown() {
+    var left = Math.round(DELAY_MS / 1000)
+    show(cd, true)
+    show(actions, true)
+    show(btnStop, true)
+    cd.textContent = left + ' 秒後に、新サイトへ移動します。'
+    timer = setInterval(function () {
+      left -= 1
+      if (left > 0) { cd.textContent = left + ' 秒後に、新サイトへ移動します。'; return }
+      stopTimer()
+      // 移動の直前に、保存状態を再確認する(待っている間に、別のタブで進捗が増えた場合を守る)
+      info = inspect()
+      if (info.kind === 'none' || info.kind === 'empty') location.replace(newHref)
+      else render()
+    }, 1000)
+    btnStop.onclick = function () {
+      stopTimer()
+      show(btnStop, false)
+      cd.textContent = '自動の移動を止めました。下の「新サイトを開く」から移動できます。'
+    }
+  }
+
+  info = inspect()
+  render()
 })()
