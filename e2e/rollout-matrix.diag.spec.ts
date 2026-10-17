@@ -149,12 +149,13 @@ for (const route of TARGETS) {
       const s = page.locator('main input[type=range]').first()
       const before = await s.inputValue()
       const max = await s.getAttribute('max')
-      const lab = s.locator('xpath=ancestor::label[1]').locator('.slider-label')
+      const lab = s.locator('xpath=ancestor::label[1]') // 共通の Slider も、4-3 の『位置 {pos}』も、値がラベルの文字に入る
       const labelOf = async () => ((await lab.count()) ? lab.first().innerText() : '')
       const labelBefore = await labelOf()
       await s.fill(before === max ? String(Number(await s.getAttribute('min'))) : String(max))
       expect(await s.inputValue(), 'スライダー: 値が替わる').not.toBe(before)
       if (labelBefore) expect(await labelOf(), 'スライダー: 関連する表示(ラベルの値)も替わる').not.toBe(labelBefore)
+      else ops.push('slider-label-unchecked') // ラベルに入っていないスライダーは、表示を確認しない(承認範囲では、該当なし)
       ops.push('slider')
     }
     if (await page.locator('.task-row').count()) {

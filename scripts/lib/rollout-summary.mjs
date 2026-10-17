@@ -54,16 +54,21 @@ export function summarizeReport(report, { partial = false } = {}) {
   const missingTargets = expected.filter((id) => !rows.has(id))
   const outOfScope = [...rows.keys()].filter((id) => !expected.includes(id))
   for (const id of expected) row(id) // 欠落した対象も、行に出す(未検証)
-  const state = (c) => (c.failed ? 'NG' : c.passed && !c.skipped ? 'OK' : '未検証')
+  // 検査の状態: OK = 実際に成功(スキップなし)/ NG = 失敗(flaky を含む)/ 未検証 = スキップがある / 欠落 = その検査の結果が、そもそも無い
+  const state = (c) => (c.failed ? 'NG' : c.skipped ? '未検証' : c.passed ? 'OK' : '欠落')
   const out = [...rows.values()]
     .map((x) => {
       const checks = Object.fromEntries(CHECKS.map((c) => [c, state(x.checks[c])]))
-      const all = CHECKS.every((c) => checks[c] === 'OK')
-      return { ...x, builds: [...x.builds], checks: x.checks, state: checks, complete: all }
+      return { ...x, builds: [...x.builds], checks: x.checks, state: checks, complete: CHECKS.every((c) => checks[c] === 'OK') }
     })
     .sort((a, b) => a.id.localeCompare(b.id, 'en', { numeric: true }))
+  const inScope = out.filter((x) => expected.includes(x.id))
   const failed = out.filter((x) => x.failed)
-  const incomplete = out.filter((x) => expected.includes(x.id) && !x.complete && !x.failed)
-  const complete = failed.length === 0 && outOfScope.length === 0 && (partial || incomplete.length === 0)
-  return { rows: out, expected, missingTargets, outOfScope, failed, incomplete, complete, partial }
+  const incomplete = inScope.filter((x) => !x.complete && !x.failed)
+  const hasSkipped = inScope.some((x) => CHECKS.some((c) => x.state[c] === '未検証'))
+  // 全体の完了(allComplete): 承認済みの 10 対象 × 4 検査が、すべて実際に成功。**部分実行でも、これは true にならない**
+  const allComplete = failed.length === 0 && outOfScope.length === 0 && incomplete.length === 0
+  // 部分実行の許容(accepted): 明示した `partial` のときだけ、**欠落**を許す。失敗・スキップ・範囲外は、常に不可
+  const accepted = allComplete || (partial && failed.length === 0 && outOfScope.length === 0 && !hasSkipped)
+  return { rows: out, expected, missingTargets, outOfScope, failed, incomplete, allComplete, accepted, partial }
 }

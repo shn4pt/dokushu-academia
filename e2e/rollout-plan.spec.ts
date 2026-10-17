@@ -161,45 +161,61 @@ test.describe('結果表の集計: 承認済みの対象 × 必要な 4 検査�
   test('すべて成功: 10 対象 × 4 検査で完了', () => {
     expect(expectedIds()).toHaveLength(10)
     const r = summarizeReport(make())
-    expect(r.complete).toBe(true)
+    expect(r.allComplete).toBe(true)
+    expect(r.accepted).toBe(true)
     expect(r.rows.every((x) => x.complete)).toBe(true)
   })
-  test('引き継ぎ検査のスキップ(行列は成功)は、引き継ぎ OK にせず、未完了', () => {
+  test('引き継ぎ検査のスキップ(行列は成功)は、引き継ぎ OK にせず、未完了(--partial でも許さない)', () => {
     const r = summarizeReport(make((id, c) => (id === 'pm-1' && c.startsWith('handoff') ? 'skipped' : 'expected')))
     const row = r.rows.find((x) => x.id === 'pm-1')!
     expect(row.state.matrix).toBe('OK')
     expect(row.state.handoffNone).toBe('未検証')
     expect(row.state.handoffProgress).toBe('未検証')
-    expect(r.complete).toBe(false)
+    expect(r.allComplete).toBe(false)
+    expect(r.accepted).toBe(false)
+    expect(summarizeReport(make((id, c) => (id === 'pm-1' && c.startsWith('handoff') ? 'skipped' : 'expected')), { partial: true }).accepted, '--partial でも、スキップは許さない').toBe(false)
   })
   test('引き継ぎ検査の欠落・対象 ID の欠落・失敗(flaky を含む)・範囲外の対象は、未完了。--partial は、欠落だけ許し、失敗は許さない', () => {
     const noHandoff = make((id, c) => (id === '4-3' && c === 'handoffProgress' ? 'omit' : 'expected'))
-    expect(summarizeReport(noHandoff).complete).toBe(false)
-    expect(summarizeReport(noHandoff, { partial: true }).complete).toBe(true)
+    expect(summarizeReport(noHandoff).accepted).toBe(false)
+    const part = summarizeReport(noHandoff, { partial: true })
+    expect(part.accepted, '--partial: 欠落だけなら許す').toBe(true)
+    expect(part.allComplete, '部分実行は、全体完了にならない').toBe(false)
+    expect(part.rows.find((x) => x.id === '4-3')!.state.handoffProgress).toBe('欠落')
     const noTarget = make((id) => (id === '/catalog' ? 'omit' : 'expected'))
     const rt = summarizeReport(noTarget)
     expect(rt.missingTargets).toEqual(['/catalog'])
-    expect(rt.complete).toBe(false)
+    expect(rt.accepted).toBe(false)
+    expect(summarizeReport(noTarget, { partial: true }).allComplete).toBe(false)
     for (const bad of ['unexpected', 'flaky'] as const) {
       const f = make((id, c) => (id === '9-2' && c === 'matrix' ? bad : 'expected'))
-      expect(summarizeReport(f).complete, bad).toBe(false)
-      expect(summarizeReport(f, { partial: true }).complete, `${bad} + partial`).toBe(false)
+      expect(summarizeReport(f).accepted, bad).toBe(false)
+      expect(summarizeReport(f, { partial: true }).accepted, `${bad} + partial`).toBe(false)
     }
     const extra = make()
     extra.suites[0].specs.push({ title: '[1-1] 行列: 初期 HTML', tests: [{ status: 'expected', results: [{ annotations: [] }] }] })
     const re = summarizeReport(extra)
     expect(re.outOfScope).toEqual(['1-1'])
-    expect(re.complete).toBe(false)
+    expect(re.accepted).toBe(false)
+    expect(summarizeReport(extra, { partial: true }).accepted).toBe(false)
   })
   test('CLI: 完了は終了コード 0、スキップは 1(合成の JSON)', () => {
     const dir = mkdtempSync(join(tmpdir(), 'rollout-report-'))
     const run = (name: string, json: unknown, extra: string[] = []) => {
       const f = join(dir, `${name}.json`)
       writeFileSync(f, JSON.stringify(json))
-      return spawnSync('node', ['scripts/rollout-report.mjs', f, join(dir, name), ...extra], { encoding: 'utf8' }).status
+      return spawnSync('node', ['scripts/rollout-report.mjs', f, join(dir, `${name}-r`), ...extra], { encoding: 'utf8' }).status
     }
     expect(run('ok', make())).toBe(0)
     expect(run('skip', make((id, c) => (id === 'pm-1' && c === 'handoffNone' ? 'skipped' : 'expected')))).toBe(1)
-    expect(run('skip-partial', make((id, c) => (id === 'pm-1' && c === 'handoffNone' ? 'omit' : 'expected')), ['--partial'])).toBe(0)
+    const omit = make((id, c) => (id === 'pm-1' && c === 'handoffNone' ? 'omit' : 'expected'))
+    expect(run('omit', omit)).toBe(1)
+    expect(run('omit-partial', omit, ['--partial'])).toBe(0) // 部分実行は許容(0)でも、全体完了ではない
+    expect(run('skip-partial', make((id, c) => (id === 'pm-1' && c === 'handoffNone' ? 'skipped' : 'expected')), ['--partial'])).toBe(1)
+    const outText = (name: string, extra: string[]) => spawnSync('node', ['scripts/rollout-report.mjs', join(dir, `${name}.json`), join(dir, `${name}-o`), ...extra], { encoding: 'utf8' }).stdout
+    expect(outText('omit-partial', ['--partial'])).toContain('全体は未完了')
+    expect(outText('omit-partial', ['--partial'])).not.toContain('全体完了(')
+    expect(JSON.parse(readFileSync(join(dir, 'omit-partial-o.json'), 'utf8')).allComplete).toBe(false)
+    expect(outText('ok', [])).toContain('全体完了(')
   })
 })
