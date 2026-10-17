@@ -14,3 +14,4 @@ reviews
 .claude/settings.local.json
 dist-path-diag
 dist-public-docs-mock
+dist-legacy-rescue

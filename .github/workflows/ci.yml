@@ -27,6 +27,8 @@ jobs:
       - run: npm run build:path:root
       # 引き継ぎ(hydrate)の診断用の局所的な生成(Issue #19)。記録された不一致 7 件と対照の 1 件だけ。全レッスンの生成ではない
       - run: npm run build:path:diag
+      # 旧サイト向けの案内と進捗の書き出し(ローカル専用の試作。Issue #23)。本番の配布物ではない
+      - run: npm run build:legacy-rescue
       - run: npm run typecheck:e2e
       - run: npx playwright install --with-deps chromium
       - run: npx playwright test
