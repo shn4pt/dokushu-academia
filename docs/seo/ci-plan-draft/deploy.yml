@@ -12,6 +12,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  deployments: read # ci.yml が、最後に配信したコミットを読む
 
 jobs:
   # テストが通らないと、公開しない(ci.yml の `full` が false のときは、公開するものが変わらないので、ビルドと配信を省く)
@@ -22,7 +23,17 @@ jobs:
     needs: test
     if: needs.test.outputs.full == 'true'
     runs-on: ubuntu-24.04
+    outputs:
+      latest: ${{ steps.latest.outputs.latest }}
     steps:
+      - id: latest
+        name: 最新の main か確認する(取得に失敗したら、配信する側)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          head="$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha || true)"
+          if [ -z "$head" ] || [ "$head" = "${{ github.sha }}" ]; then echo "latest=true" >> "$GITHUB_OUTPUT"
+          else echo "latest=false" >> "$GITHUB_OUTPUT"; echo "### 配信を見送り(より新しい main がある: $head。新しい実行が、差を含めて配信する)" >> "$GITHUB_STEP_SUMMARY"; fi
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
@@ -36,12 +47,13 @@ jobs:
 
   deploy:
     needs: [test, build]
-    if: needs.test.outputs.full == 'true'
+    # 順序の逆転を防ぐ: より新しい main がある場合は、古い版を後から公開しない。**ジョブごと省く**(environment 付きのジョブは、実行すると、そのコミットを「配信済み」と記録してしまう。基準が狂う)
+    if: needs.test.outputs.full == 'true' && needs.build.outputs.latest == 'true'
     runs-on: ubuntu-24.04
-    # 配信のジョブだけに、同時実行の制御を付ける(文書だけの実行が、実際の配信を取り消さないように。従来は、workflow 全体に付いていた)
+    # 配信のジョブだけに、同時実行の制御を付ける。**取り消さない**(待機中の古い配信は、新しい実行に置き換えられるが、基準が「最後に配信したコミット」なので、新しい実行が差を含む)
     concurrency:
       group: pages
-      cancel-in-progress: true
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

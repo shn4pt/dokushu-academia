@@ -1,4 +1,7 @@
-import { readFileSync } from 'node:fs'
+import { execFileSync } from 'node:child_process'
+import { mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { dirname, join } from 'node:path'
 import { expect, test } from '@playwright/test'
 import { classifyFile, decide } from '../scripts/ci-classify.mjs'
 
@@ -60,8 +63,11 @@ test.describe('変更の分類: 文書だけと確定したときだけ、完全
     expect(ci.match(/^  [a-z]+:\s*$/gm)?.filter((x) => !/^  (pull_request|workflow_call|workflow_dispatch|test):/.test(x)) ?? []).toEqual([]) // ジョブは 1 つだけ
     expect(ci).not.toMatch(/paths-ignore|paths:/) // workflow ごと省くと、必須チェックが Pending のままになる(公式資料)
     expect(ci).toContain("cancel-in-progress: ${{ github.event_name == 'pull_request' }}") // main の実行は、取り消さない
-    expect(ci).toContain('取得に失敗した場合・基準がない場合は、完全な検査') // 安全側
-    expect(ci).toContain("'^0+$'") // push で前の基準がない場合は、完全
+    expect(ci).toContain('github.run_id') // main は実行ごとに別の group(待機中の実行が、置き換えられない)
+    expect(ci).toContain('--no-renames') // 移動元の削除を見落とさない
+    expect(ci).toContain('merge-base --is-ancestor') // 強制 push など、基準が祖先でない場合は、完全
+    expect(ci).toContain('environment=github-pages') // main の基準は、最後に配信したコミット
+    expect(ci).toContain('基準がない場合・基準が祖先でない場合は、完全な検査') // 安全側
     expect((ci.match(/if: steps\.c\.outputs\.full == 'true'/g) ?? []).length).toBeGreaterThanOrEqual(7) // 重い手順は、すべて分類の結果に従う
     expect(ci).toContain('if: failure()') // 失敗時の artifact は、従来どおり
     const deploy = strip(readFileSync('docs/seo/ci-plan-draft/deploy.yml', 'utf8'))
@@ -70,5 +76,61 @@ test.describe('変更の分類: 文書だけと確定したときだけ、完全
     expect(deploy).toMatch(/build:[\s\S]*if: needs\.test\.outputs\.full == 'true'/)
     expect(deploy).toMatch(/deploy:[\s\S]*concurrency:[\s\S]*group: pages/) // 同時実行の制御は、配信のジョブだけ
     expect(deploy.split('concurrency:').length - 1).toBe(1)
+    expect(deploy).toContain('cancel-in-progress: false') // 配信を取り消さない
+    expect(deploy).toContain("needs.build.outputs.latest == 'true'") // 順序の逆転: 古い版を後から公開しない(ジョブごと省く)
+  })
+
+  test('検査が読む文書: 検査・ビルドの中で、リポジトリの文書を直接読んでいるものは、分類で完全な検査になる(自動発見。動的なパスは見つけられない)', () => {
+    const files = ['vite.config.ts', ...readdirSync('e2e').filter((f) => f.endsWith('.ts')).map((f) => `e2e/${f}`), ...readdirSync('scripts').filter((f) => f.endsWith('.mjs')).map((f) => `scripts/${f}`)]
+    const re = /readFileSync\(\s*['"`]((?:docs|reviews)\/[^'"`$]+|README\.md|LICENSE[^'"`$]*)['"`]/g
+    const found = new Set<string>()
+    for (const f of files) for (const m of readFileSync(f, 'utf8').matchAll(re)) found.add(m[1])
+    expect(found.size).toBeGreaterThan(0)
+    // e2e/ci-classify.spec.ts 自身の読み取り(草案)も含まれる
+    for (const f of found) expect(classifyFile(f), `${f} を読む検査があるのに、文書として省かれる`).toBe('code')
+  })
+
+  test('草案(docs/seo/ci-plan-draft/)は、検査が構造を読むので、完全な検査にする', () => {
+    expect(decide(['docs/seo/ci-plan-draft/ci.yml']).fullTests).toBe(true)
+    expect(decide(['docs/seo/ci-plan-draft/deploy.yml', 'docs/seo/plan.md']).fullTests).toBe(true)
+    expect(decide(['docs/seo/ci-plan.md']).fullTests).toBe(false)
+  })
+})
+
+// 実際の Git の差分で確かめる(移動・削除。レビュー指摘: 既定の `git diff --name-only` は、移動で、移動先だけを返す)
+test.describe('実際の Git の差分の分類(一時リポジトリ)', () => {
+  const git = (cwd: string, ...a: string[]) => execFileSync('git', ['-c', 'user.email=t@example.com', '-c', 'user.name=t', ...a], { cwd, encoding: 'utf8' })
+  const run = (setup: (d: string) => void, change: (d: string) => void) => {
+    const d = mkdtempSync(join(tmpdir(), 'ci-classify-'))
+    try {
+      git(d, 'init', '-q', '-b', 'main')
+      setup(d)
+      git(d, 'add', '-A'); git(d, 'commit', '-q', '-m', 'base')
+      git(d, 'checkout', '-q', '-b', 'topic')
+      change(d)
+      git(d, 'add', '-A'); git(d, 'commit', '-q', '-m', 'change')
+      const out = execFileSync('node', [join(process.cwd(), 'scripts/ci-classify.mjs'), 'main'], { cwd: d, encoding: 'utf8' })
+      return JSON.parse(out) as { fullTests: boolean; deploy: boolean }
+    } finally { rmSync(d, { recursive: true, force: true }) }
+  }
+  const put = (d: string, p: string, c: string) => { mkdirSync(dirname(join(d, p)), { recursive: true }); writeFileSync(join(d, p), c) }
+  const mv = (d: string, a: string, b: string) => { mkdirSync(dirname(join(d, b)), { recursive: true }); git(d, 'mv', a, b) }
+  const body = Array.from({ length: 30 }, (_, i) => `line ${i}`).join('\n') // 十分に大きい内容(rename として検出される)
+
+  test('コード → docs の移動(内容が同じ)は、完全な検査', () => {
+    const r = run((d) => put(d, 'src/input.txt', body), (d) => mv(d, 'src/input.txt', 'docs/input.txt'))
+    expect(r.fullTests).toBe(true)
+  })
+  test('docs/licenses.md → 別の docs の移動は、完全な検査(ライセンス入力の削除)', () => {
+    const r = run((d) => put(d, 'docs/licenses.md', body), (d) => mv(d, 'docs/licenses.md', 'docs/archive/licenses-old.md'))
+    expect(r.fullTests).toBe(true)
+  })
+  test('docs → docs の移動だけなら、文書だけ(省く)', () => {
+    const r = run((d) => put(d, 'docs/a.md', body), (d) => mv(d, 'docs/a.md', 'docs/b/a.md'))
+    expect(r.fullTests).toBe(false)
+  })
+  test('コードの削除は、完全な検査', () => {
+    const r = run((d) => put(d, 'src/x.ts', body), (d) => rmSync(join(d, 'src/x.ts')))
+    expect(r.fullTests).toBe(true)
   })
 })

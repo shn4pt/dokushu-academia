@@ -15,10 +15,13 @@ on:
 
 permissions:
   contents: read
+  deployments: read # main の基準(最後に配信したコミット)を、配信の記録から読む
 
-# 同じ PR の古い実行は、取り消す。main(公開用)の実行は、取り消さない
+# PR: 同じ PR の古い実行は、取り消す。
+# main(公開用): **実行ごとに別の group**(待機中の実行が、新しい実行に置き換えられて、取り消されないように。置き換えられると、その実行のコードが、検査も配信もされない恐れがある)。
+#   順序の逆転(古い実行が、後から配信する)は、deploy.yml の「最新の main か」の確認で防ぐ。基準は、直前の push ではなく、**最後に配信したコミット**にする(下の分類)。
 concurrency:
-  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  group: ci-${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
@@ -35,18 +38,27 @@ jobs:
         with:
           node-version: 22
       - id: c
-        name: 変更を分類する(取得に失敗した場合・基準がない場合は、完全な検査。安全側)
+        name: 変更を分類する(取得に失敗した場合・基準がない場合・基準が祖先でない場合は、完全な検査。安全側)
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -u
           full=true
+          out=""
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             out="$(node scripts/ci-classify.mjs "origin/${{ github.base_ref }}" || true)"
           elif [ "${{ github.event_name }}" = "push" ]; then
-            before="${{ github.event.before }}"
-            if [ -n "$before" ] && ! echo "$before" | grep -Eq '^0+$' && git cat-file -e "$before^{commit}" 2>/dev/null; then
-              out="$(git diff --name-only "$before" "${{ github.sha }}" | node scripts/ci-classify.mjs - || true)"
-            else out=""; fi
-          else out=""; fi
+            # 基準 = **最後に配信に成功したコミット**(github-pages の deployment の記録)。直前の push ではない:
+            # 検査・配信されなかったコード(取り消し・失敗・配信の省略)が、あいだに入っていても、その差が含まれるので、見落とさない。強制 push も、祖先でなければ完全。
+            base=""
+            for id in $(gh api "repos/${{ github.repository }}/deployments?environment=github-pages&per_page=20" --jq '.[].id' 2>/dev/null || true); do
+              st="$(gh api "repos/${{ github.repository }}/deployments/$id/statuses?per_page=1" --jq '.[0].state' 2>/dev/null || true)"
+              if [ "$st" = "success" ]; then base="$(gh api "repos/${{ github.repository }}/deployments/$id" --jq '.sha' 2>/dev/null || true)"; break; fi
+            done
+            if [ -n "$base" ] && git cat-file -e "$base^{commit}" 2>/dev/null && git merge-base --is-ancestor "$base" "${{ github.sha }}"; then
+              out="$(git diff --no-renames --name-only "$base" "${{ github.sha }}" | node scripts/ci-classify.mjs - || true)"
+            fi
+          fi
           echo "$out"
           if echo "$out" | grep -q '"fullTests": false'; then full=false; fi
           echo "full=$full" >> "$GITHUB_OUTPUT"
