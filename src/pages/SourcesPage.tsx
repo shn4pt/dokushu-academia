@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link } from '../ui/Link'
 import { lessonNo, stageLabel, stages } from '../data/curriculum'
 import { isReady } from '../lessons'
+import { PATH_MODE } from '../site'
 import { REPO, sourcesFor, statusHelp, statusLabel, type SourceStatus } from '../sources'
 
 const order: SourceStatus[] = ['verified', 'partial', 'original', 'unverified']
@@ -23,7 +24,7 @@ export default function SourcesPage() {
         <ul>
           <li>確認した資料、確認日、確認した版を、各レッスンの末尾の「出典と更新記録」に載せています。</li>
           <li>確認が終わっていないレッスンは、隠さず「未確認」と表示します。</li>
-          <li>「原典・公式で確認」は、本文の<strong>主な</strong>事実を確かめたという意味で、すべての文が正しいという保証ではありません。誤りを見つけたら、<a href={`${REPO}/issues`} target="_blank" rel="noreferrer">リポジトリ</a>でお知らせください。</li>
+          <li>「原典・公式で確認」は、本文の<strong>主な</strong>事実を確かめたという意味で、すべての文が正しいという保証ではありません。誤りを見つけたら、{PATH_MODE ? <Link to="/report">報告のしかた</Link> : <a href={`${REPO}/issues`} target="_blank" rel="noreferrer">リポジトリ</a>}でお知らせください。</li>
           <li>Claude Code や API の仕様は版によって変わります。確認日から時間がたっている場合は、公式の最新の情報を確かめてください。</li>
         </ul>
       </section>

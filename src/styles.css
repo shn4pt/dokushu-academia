@@ -460,3 +460,8 @@ a.concept-chip:hover { border-color: var(--accent); }
 .ucb-table .bar-fill { display: block; }
 .ci-hit { stroke: var(--accent); }
 .ci-miss { stroke: var(--danger); }
+
+/* 公開文書(パスの URL 版。Issue #31): 資料の一覧の表は、狭い画面で、横にスクロールできるようにする */
+.prose.materials table, .prose[data-doc] table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-size: 0.9em; }
+.prose.materials th, .prose.materials td, .prose[data-doc] th, .prose[data-doc] td { border: 1px solid var(--border); padding: 4px 8px; vertical-align: top; }
+.source-line { overflow-wrap: anywhere; font-size: 0.85em; }
