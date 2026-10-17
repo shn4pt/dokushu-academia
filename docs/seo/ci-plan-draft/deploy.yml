@@ -1,0 +1,66 @@
+# 草案(適用していない。`.github/workflows/` には置いていない)。Issue #32、docs/seo/ci-plan.md。
+# main への push のうち、**文書だけの変更**は、ビルド・配信を省く(公開用の dist は、変わらない)。検査は、ci.yml の分類で、軽くなる。
+# コード・データ・設定、検査が読むファイル、未知のパス、基準の取得に失敗した場合は、**従来どおり、完全な検査の後に配信**する。
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+  deployments: read # ci.yml が、最後に配信したコミットを読む
+
+jobs:
+  # テストが通らないと、公開しない(ci.yml の `full` が false のときは、公開するものが変わらないので、ビルドと配信を省く)
+  test:
+    uses: ./.github/workflows/ci.yml
+
+  build:
+    needs: test
+    if: needs.test.outputs.full == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: [test, build]
+    if: needs.test.outputs.full == 'true'
+    runs-on: ubuntu-24.04
+    # **排他区間**: 配信の可否の判定(最初のステップ)から、実配信(deploy-pages)の完了まで、同じ group で直列にする。判定の後に、より新しい版が配信されることは、ない。
+    # **待機は最大 100 件(`queue: max`)**。既定(`single`)は、待機が 1 件だけで、新しい待機が古い待機を置き換えて取り消す。ビルドの完了順が逆転すると、
+    # 『X が配信中 → 新しい B が待機 → 遅れて A が到着して、待機中の B を取り消す』となり、B を配信する実行が残らない(A は先頭でないので、判定で停止する)。
+    # `queue: max` は、`cancel-in-progress: true` と併用できない(検証エラー)ので、`cancel-in-progress` は書かない(既定=取り消さない)。公式の例も、書いていない。
+    # 待機が 100 件を超えると、超えた分は取り消される(限界。docs/seo/ci-plan.md §5)。
+    # 配信のジョブだけに付ける(文書だけの実行が、配信を取り消さないように。従来は、workflow 全体に付いていた)。
+    concurrency:
+      group: pages
+      queue: max
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # 排他区間の中で、判定する。**先頭でない場合・先頭を取得できない場合は、ジョブを失敗にして、配信しない**(旧版を公開しない。
+      # 失敗した配信は、基準の読み取り(state=success だけ)に数えられない)。『省略』ではなく失敗で終えるのは、environment 付きのジョブを成功させると、配信していないコミットが『配信済み』と記録されるため。
+      - uses: actions/checkout@v7
+      - name: 配信してよいか判定する(この SHA が main の先頭のときだけ)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -o pipefail
+          head="$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha || true)"
+          node scripts/ci-publish-gate.mjs "${{ github.sha }}" "$head" | tee -a "$GITHUB_STEP_SUMMARY"
+      - id: deployment
+        uses: actions/deploy-pages@v5
