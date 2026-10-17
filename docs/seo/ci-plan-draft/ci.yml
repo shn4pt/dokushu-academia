@@ -1,0 +1,90 @@
+# 草案(適用していない。`.github/workflows/` には置いていない)。Issue #32、docs/seo/ci-plan.md。
+# 変更の分類で、文書だけのときは、重い手順を省く。**ジョブは、従来と同じ名前(`test`)の 1 つ**にする:
+#   - 必須チェックの設定(あれば)の名前が、変わらない。workflow ごと省かない(paths-ignore は、必須チェックが Pending のままになる)ので、常にジョブが実行され、成功・失敗が決まる。
+#   - 別のジョブを足さない(ジョブごとに、1 分に切り上げて課金されるため)。
+name: CI
+
+on:
+  pull_request:
+  workflow_call:
+    outputs:
+      full:
+        description: 完全な検査を実行したか(deploy.yml が、ビルド・配信の要否に使う)
+        value: ${{ jobs.test.outputs.full }}
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# 同じ PR の古い実行は、取り消す。main(公開用)の実行は、取り消さない
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    outputs:
+      full: ${{ steps.c.outputs.full }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # 分類に、基準との差分が要る
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - id: c
+        name: 変更を分類する(取得に失敗した場合・基準がない場合は、完全な検査。安全側)
+        run: |
+          set -u
+          full=true
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            out="$(node scripts/ci-classify.mjs "origin/${{ github.base_ref }}" || true)"
+          elif [ "${{ github.event_name }}" = "push" ]; then
+            before="${{ github.event.before }}"
+            if [ -n "$before" ] && ! echo "$before" | grep -Eq '^0+$' && git cat-file -e "$before^{commit}" 2>/dev/null; then
+              out="$(git diff --name-only "$before" "${{ github.sha }}" | node scripts/ci-classify.mjs - || true)"
+            else out=""; fi
+          else out=""; fi
+          echo "$out"
+          if echo "$out" | grep -q '"fullTests": false'; then full=false; fi
+          echo "full=$full" >> "$GITHUB_OUTPUT"
+          if [ "$full" = "false" ]; then
+            echo "### 完全な検査を省略(文書だけの変更)" >> "$GITHUB_STEP_SUMMARY"
+            echo "$out" | sed 's/^/    /' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### 完全な検査を実行" >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - if: steps.c.outputs.full == 'true'
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - if: steps.c.outputs.full == 'true'
+        run: npm ci
+      - if: steps.c.outputs.full == 'true'
+        run: npm run build
+      - if: steps.c.outputs.full == 'true'
+        run: |
+          npm run build:path
+          npm run build:path:root
+          npm run build:path:diag
+          npm run build:legacy-rescue
+          npm run typecheck:e2e
+      - if: steps.c.outputs.full == 'true'
+        run: npx playwright install --with-deps chromium
+      - if: steps.c.outputs.full == 'true'
+        run: npx playwright test
+      - if: steps.c.outputs.full == 'true'
+        run: |
+          npm run build:path:diag:dev
+          npx playwright test --project=diag
+      - uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report
+            test-results
+          retention-days: 7

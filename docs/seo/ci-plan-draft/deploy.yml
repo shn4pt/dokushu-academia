@@ -1,0 +1,50 @@
+# 草案(適用していない。`.github/workflows/` には置いていない)。Issue #32、docs/seo/ci-plan.md。
+# main への push のうち、**文書だけの変更**は、ビルド・配信を省く(公開用の dist は、変わらない)。検査は、ci.yml の分類で、軽くなる。
+# コード・データ・設定、検査が読むファイル、未知のパス、基準の取得に失敗した場合は、**従来どおり、完全な検査の後に配信**する。
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  # テストが通らないと、公開しない(ci.yml の `full` が false のときは、公開するものが変わらないので、ビルドと配信を省く)
+  test:
+    uses: ./.github/workflows/ci.yml
+
+  build:
+    needs: test
+    if: needs.test.outputs.full == 'true'
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: [test, build]
+    if: needs.test.outputs.full == 'true'
+    runs-on: ubuntu-24.04
+    # 配信のジョブだけに、同時実行の制御を付ける(文書だけの実行が、実際の配信を取り消さないように。従来は、workflow 全体に付いていた)
+    concurrency:
+      group: pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5
