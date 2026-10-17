@@ -62,16 +62,44 @@ test.describe('公開文書は、元ファイルから生成される(ベース 
   })
 })
 
+// 履歴の漏えいの検出(題名・ハッシュ)。ブラウザなしの純粋な関数にして、ダミーの入力で、検出できることを確かめる
+const findHistoryLeaks = (text: string, subjects: string[], hashes: string[]) => {
+  const found: string[] = []
+  for (const s of subjects) if (text.includes(s)) { found.push(`題名「${s.slice(0, 30)}」`); break }
+  for (const h of hashes) if (new RegExp(`(?<![0-9a-f])${h}(?![0-9a-f])`).test(text)) { found.push(`ハッシュ ${h}`); break }
+  return found
+}
+
+// 公開の配布物に、題名と同じ文が、すでに公開の本文として含まれる、既知の一致(場所と理由つき)。**これ以外の一致は、除外しない**(短い題名も、除外しない)
+const KNOWN_PUBLIC_COINCIDENCES = [
+  { subject: '原典との照合に基づき、レッスンの記述を修正', file: 'src/lessons/CaseStudy.tsx', reason: 'ケーススタディの公開の本文に、同じ文が書かれている(コミットの題名の公開ではない)' },
+]
+
 test.describe('公開の配布物に、非公開のコミットの情報を入れない', () => {
-  type History = Record<string, { commits: { hash: string; subject: string }[] }>
+  type History = Record<string, { created: string; commits: { hash: string; subject: string }[] }>
   const history = JSON.parse(read('src/data/lesson-history.json')) as History
   const commits = Object.values(history).flatMap((h) => h.commits)
-  // 教材の本文や出典の記録に、同じ文言が、もともと書かれている題名(コミットの題名と、たまたま同じ文)は、履歴の漏えいではないので、除く
-  const ownText = walk('src').filter((f) => !f.endsWith('lesson-history.json') && /\.(tsx?|md|json)$/.test(f)).map(read).join('\n')
-  const subjects = [...new Set(commits.map((c) => c.subject).filter((s) => s.length >= 8 && !ownText.includes(s)))]
-  // 出典の記録(lesson-sources.json)に、もともと書かれているリポジトリへのリンク(このリポジトリの記録で確認した、というテストファイルなど)
-  const recordedBlobLinks = new Set(read('src/data/lesson-sources.json').match(/https:\/\/github\.com\/shn4pt\/dokushu-academia\/blob\/[^"\s]+/g) ?? [])
+  const allowed = new Set(KNOWN_PUBLIC_COINCIDENCES.map((k) => k.subject))
+  const subjects = [...new Set(commits.map((c) => c.subject))].filter((s) => !allowed.has(s)) // 短い題名も含める
   const hashes = [...new Set(commits.map((c) => c.hash))]
+  // 出典の記録(lesson-sources.json)に、もともと書かれているリポジトリへのリンク(blob は完全一致のみ許す)
+  const recordedBlobLinks = new Set(read('src/data/lesson-sources.json').match(/https:\/\/github\.com\/shn4pt\/dokushu-academia\/blob\/[^"\s]+/g) ?? [])
+
+  test('検出の自己検査: ダミーの題名(短いものを含む)・ハッシュを、検出できる。除外は、既知の一致(場所と理由つき)だけ', () => {
+    expect(findHistoryLeaks('....ダミーの題名ABC....', ['ダミーの題名ABC'], [])).toHaveLength(1)
+    expect(findHistoryLeaks('a fix b', ['fix'], [])).toHaveLength(1) // 短い題名も、黙って除外しない
+    expect(findHistoryLeaks('x abcdef1 y', [], ['abcdef1'])).toHaveLength(1)
+    expect(findHistoryLeaks('x abcdef12 y', [], ['abcdef1'])).toHaveLength(0) // 16 進数の一部は、ハッシュとは扱わない(誤検出を避ける)
+    // 既知の一致は、実在し、場所が正しい(古くなった・不正な除外を、許さない)
+    for (const k of KNOWN_PUBLIC_COINCIDENCES) {
+      expect(read(k.file), k.file).toContain(k.subject)
+      expect(commits.some((c) => c.subject === k.subject), k.subject).toBe(true)
+      expect(k.reason.length).toBeGreaterThan(10)
+    }
+    // 未公開の実装・コメント・設定の中にあるだけの文は、除外されない(除外は、上の一覧だけ)
+    expect(subjects.includes('原典との照合に基づき、レッスンの記述を修正')).toBe(false)
+    expect(subjects.length).toBeGreaterThan(50)
+  })
 
   for (const dir of ['dist-path', 'dist-path-root']) {
     test(`${dir}: HTML・JavaScript・JSON のどこにも、コミットの題名・ハッシュ・コミットへのリンクがない`, () => {
@@ -84,10 +112,16 @@ test.describe('公開の配布物に、非公開のコミットの情報を入�
         for (const m of text.match(/https?:\/\/github\.com\/shn4pt\/dokushu-academia\/blob\/[^"'\s)`<\\]+/g) ?? []) {
           if (!recordedBlobLinks.has(m)) offenders.push(`${f}: 記録にないリポジトリのファイルへのリンク ${m}`)
         }
-        for (const s of subjects) if (text.includes(s)) { offenders.push(`${f}: 題名「${s.slice(0, 30)}」`); break }
-        for (const h of hashes) if (new RegExp(`(?<![0-9a-f])${h}(?![0-9a-f])`).test(text)) { offenders.push(`${f}: ハッシュ ${h}`); break }
+        for (const l of findHistoryLeaks(text, subjects, hashes)) offenders.push(`${f}: ${l}`)
       }
       expect(offenders).toEqual([])
+    })
+
+    test(`${dir}: 公開用の履歴データは、作成日だけ(コミットの一覧が空)。全 172 レッスン分が、作成日として残る`, () => {
+      const js = walk(dir).filter((f) => f.endsWith('.js')).map(read).join('\n')
+      expect(js.match(/created:\s*["'`]\d{4}-\d{2}-\d{2}["'`]\s*,\s*commits:\s*\[\s*\]/g)?.length ?? 0).toBe(Object.keys(history).length)
+      expect(js).not.toMatch(/commits:\s*\[\s*\{/) // 空でないコミットの一覧が、ない
+      expect(js).not.toMatch(/\bsubject:\s*["'`]/) // コミットの題名のキーが、ない
     })
   }
 
