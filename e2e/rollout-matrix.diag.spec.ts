@@ -30,9 +30,9 @@ const progressFull = {
   version: 1,
   completed: { 'e-1': '2026-10-02T00:00:00.000Z' },
   quiz: { 'pm-1': { best: 4, total: 5 } },
-  questions: {},
-  reading: {},
-  lastVisited: 'pm-2',
+  questions: { 'protect-q1': { right: 2, wrong: 1, streak: 1, last: 'right', at: '2026-10-02T00:00:00.000Z' } }, // 非空: 保存後も残ること
+  reading: { 'e-1': { section: '保護の確認', index: 3, at: '2026-10-02T00:00:00.000Z' } }, // 別のレッスンのしおり: 残ること
+  lastVisited: 'pm-2', // 訪問に応じて、このレッスンの ID へ更新される(更新を確かめる。保護の対象ではない)
 }
 
 for (const route of TARGETS) {
@@ -149,8 +149,12 @@ for (const route of TARGETS) {
       const s = page.locator('main input[type=range]').first()
       const before = await s.inputValue()
       const max = await s.getAttribute('max')
+      const lab = s.locator('xpath=ancestor::label[1]').locator('.slider-label')
+      const labelOf = async () => ((await lab.count()) ? lab.first().innerText() : '')
+      const labelBefore = await labelOf()
       await s.fill(before === max ? String(Number(await s.getAttribute('min'))) : String(max))
       expect(await s.inputValue(), 'スライダー: 値が替わる').not.toBe(before)
+      if (labelBefore) expect(await labelOf(), 'スライダー: 関連する表示(ラベルの値)も替わる').not.toBe(labelBefore)
       ops.push('slider')
     }
     if (await page.locator('.task-row').count()) {
@@ -161,17 +165,27 @@ for (const route of TARGETS) {
       ops.push('classify')
     }
     if (await page.locator('.ci-lab button').count()) {
+      // 取り直しの結果まで確かめる: 区間の描画(線の位置)が替わり、n を替えると、区間の平均の幅の表示が替わる
+      const lines = () => page.locator('.ci-lab svg line').evaluateAll((els) => els.map((e) => `${e.getAttribute('x1')},${e.getAttribute('x2')}`).join('|'))
+      const linesBefore = await lines()
       await page.locator('.ci-lab button').first().click()
+      expect(await lines(), 'ci-lab: 標本の取り直しで、区間の描画が替わる').not.toBe(linesBefore)
+      const widthBefore = await page.locator('#ci-width').innerText()
+      await page.locator('.ci-lab select').selectOption('100')
+      expect(await page.locator('#ci-width').innerText(), 'ci-lab: n を替えると、区間の幅の表示が替わる').not.toBe(widthBefore)
       ops.push('ci-lab')
     }
     if (id) {
-      // 完了ボタン → 保存済みの進捗(完了・クイズ・最後に見たレッスン)が消えず、このレッスンが足される
+      // 完了ボタン → 保存済みの進捗(完了・クイズ・問題ごとの記録・別のレッスンのしおり)が消えず、このレッスンが足される。最後に見たレッスンは、訪問に応じて更新される
       await page.getByRole('button', { name: 'このレッスンを完了にする' }).click()
       await expect(page.getByRole('button', { name: /完了済み/ })).toBeVisible()
-      const saved = JSON.parse((await page.evaluate((k) => localStorage.getItem(k), KEY))!) as { completed: Record<string, string>; quiz: Record<string, unknown> }
+      const saved = JSON.parse((await page.evaluate((k) => localStorage.getItem(k), KEY))!) as { completed: Record<string, string>; quiz: Record<string, unknown>; questions: Record<string, unknown>; reading: Record<string, unknown>; lastVisited?: string }
       expect(saved.completed['e-1'], '進捗の保護: 既存の完了が残る').toBe('2026-10-02T00:00:00.000Z')
       expect(saved.completed[id], '進捗の保護: このレッスンの完了が足される').toBeTruthy()
       expect(saved.quiz['pm-1'], '進捗の保護: 既存のクイズが残る').toEqual({ best: 4, total: 5 })
+      expect(saved.questions['protect-q1'], '進捗の保護: 既存の問題ごとの記録が残る').toEqual(progressFull.questions['protect-q1'])
+      expect(saved.reading['e-1'], '進捗の保護: 別のレッスンのしおりが残る').toEqual(progressFull.reading['e-1'])
+      expect(saved.lastVisited, '最後に見たレッスン: 訪問したレッスンへ更新される(保護ではなく、更新の検査)').toBe(id)
       ops.push('complete+progress-protection')
     }
     // API キーなしでは、外部(api.anthropic.com)へ送信しない(キーを入れていない)

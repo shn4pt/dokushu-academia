@@ -13,9 +13,9 @@
 | `scripts/lib/rollout-scope.mjs` | **承認済みの範囲**(3 ページ + 8 レッスン。`pm-1` は重複して、合わせて 10 ページ)。広げるには、作者の承認(B)が要る |
 | `scripts/prerender.mjs`(変更) | `PRERENDER_DIAG` に、**承認範囲の外のレッスン ID が入ると、拒否**する。ビルドの種類(本番相当 / 開発用)を `build-info.json` に残す |
 | `scripts/rollout-diag.mjs` | 承認範囲だけを、生成(本番相当・開発用)→ 診断(Playwright)→ 集計する。**`--scope=full` は拒否(終了コード 2)**。`--dry-run`・`--list` |
-| `scripts/rollout-report.mjs` | Playwright の JSON から、**対象 ID ごと**の結果表(`rollout-results/report-<種類>.md`・`.json`。`.gitignore` 対象) |
+| `scripts/rollout-report.mjs`・`scripts/lib/rollout-summary.mjs` | Playwright の JSON から、**対象 ID ごと・検査の種類ごと**の結果表(`rollout-results/report-<種類>.md`・`.json`。`.gitignore` 対象)。**完了の判定**: 承認済みの 10 対象 × 4 検査(行列・操作と進捗の保護・引き継ぎ(進捗なし)・引き継ぎ(進捗あり))が**すべて実際に成功**したときだけ、終了コード 0。**スキップ・欠落は『未検証』**(成功にしない)、flaky は失敗、範囲外の対象は未完了。意図的な部分実行は `--partial`(欠落だけ許す。失敗は許さない) |
 | `e2e/rollout-matrix.diag.spec.ts` | 検証マトリクス(§3) |
-| `e2e/rollout-plan.spec.ts` | 生成一覧の検査(合成のデータでの検出の自己検査)と、承認範囲のガードの検査(11 件) |
+| `e2e/rollout-plan.spec.ts` | 生成一覧の検査(合成のデータでの検出の自己検査)と、承認範囲のガードの検査(11 件)と、結果表の集計の検査(合成の JSON 4 件。正常・スキップ・欠落・失敗・範囲外・CLI の終了コード) |
 
 コマンド: `npm run rollout:plan`(一覧の検査と件数の表示)、`npm run rollout:diag`(承認範囲の生成・診断・集計。本番相当と開発用の両方)、`node scripts/rollout-diag.mjs --dry-run`。
 
@@ -101,11 +101,13 @@
 ## 8. 未検証・限界
 
 - **全 172 教材の生成・診断(B)**: 未実施・未承認。**対象 164 教材の初期 HTML・引き継ぎ・部品の操作は、未検証**。
+- **部品の操作の確認の深さ**: `ci-lab` は、取り直しで区間の描画が替わること、n を替えると幅の表示が替わることまで確認する。スライダーは、値と、ラベルの表示の変化。それ以外(クイズ・手順・並べ替え・分類)は、従来どおり。
+- **進捗の保護の確認の範囲**: 既存の完了・クイズ・**問題ごとの記録(`questions`)**・**別のレッスンのしおり(`reading`)**が、保存後に残ること。最後に見たレッスン(`lastVisited`)は、訪問で更新される値なので、**保護ではなく『訪問したレッスンへ更新される』ことを確認**する。
 - 部品の操作は、検出した型だけ(クイズ・手順・並べ替え・スライダー・分類・`ci-lab`)。**API キーを入れた状態の通信、`ApiPlayground`・`ToolLoopPlayground` の実行、`CodeReview`・`TraceReading`・13 種の実験部品の個別の操作は、検査していない**(承認範囲に、該当する対象がなかったものを含む)。
 - A2 の「計画のみ」のページの存在、A9(プロジェクト配下の全対象)、実ホスティングでの HTTP(404・転送・ヘッダー)、ブラウザは Chromium のみ(Safari・実機は、未検証)。
 - 見出しの数の検査は、md レッスンのみ(TSX は、n/a)。「元の Markdown 以上」としたのは、枠の `<h3>` が混ざるため(厳密な一致ではない)。
 - 所要時間の実測は、この 10 ページのみ。全展開の推定は、`rollout.md` §4。
 
 ## 9. 検証の記録
-`npm run rollout:diag`: 本番相当 40 件・開発用 40 件が成功。`e2e/rollout-plan.spec.ts` 11 件成功。型チェック・全ビルド成功。全体の回帰(`npx playwright test`)の結果は、PR に記載。
-- **全体の回帰**: `npx playwright test`(desktop・mobile・path・diag・legacy)で、**1,137 件が成功**(3 スキップ)。
+`npm run rollout:diag`: 本番相当 40 件・開発用 40 件が成功。`e2e/rollout-plan.spec.ts` 15 件成功(PR #36 のレビュー対応後)。結果表は、10 対象 × 4 検査の完了判定で、終了コード 0。型チェック・全ビルド成功。全体の回帰(`npx playwright test`)の結果は、PR に記載。
+- **全体の回帰**: `npx playwright test`(desktop・mobile・path・diag・legacy)で、**1,141 件が成功**(3 スキップ。PR #36 のレビュー対応後。初版は 1,137 件)。

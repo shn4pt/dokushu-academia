@@ -1,10 +1,11 @@
 import { execFileSync, spawnSync } from 'node:child_process'
-import { existsSync, mkdtempSync, readFileSync } from 'node:fs'
+import { existsSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { expect, test } from '@playwright/test'
 import { buildPageList, summarize, validatePageList } from '../scripts/lib/page-list.mjs'
 import { APPROVED_LESSONS, APPROVED_PAGES } from '../scripts/lib/rollout-scope.mjs'
+import { expectedIds, summarizeReport } from '../scripts/lib/rollout-summary.mjs'
 
 // 全展開のローカル検証基盤(Issue #33 の A)の、生成一覧と、承認範囲のガードの検査。ブラウザなし。**ページの生成・診断は、しない**。
 const small = {
@@ -142,5 +143,63 @@ test.describe('全 172 教材の実行を、誤って始めないためのガー
   test('承認範囲は、10 ページ(3 ページ + 7 件 + 対照。pm-1 は重複)に限られる', () => {
     const uniq = new Set([...APPROVED_PAGES, ...APPROVED_LESSONS.map((id: string) => `/lesson/${id}`)])
     expect(uniq.size).toBe(10)
+  })
+})
+
+// 結果表の集計(レビュー指摘: 引き継ぎ検査のスキップ・欠落を、成功にしない)。合成の Playwright JSON で確かめる。ブラウザ・生成なし。
+test.describe('結果表の集計: 承認済みの対象 × 必要な 4 検査が、実際に成功したときだけ、完了', () => {
+  type Status = 'expected' | 'skipped' | 'unexpected' | 'flaky'
+  const titles = (id: string) => {
+    const head = id.startsWith('/') ? `[${id}]` : `[${id}]`
+    const handoff = (p: string) => (id.startsWith('/') ? `[${id}] 引き継ぎ: ${p}で、警告・回復可能なエラーがない` : `${id}(メモ): ${p}で、警告・回復可能なエラーがない`)
+    return { matrix: `${head} 行列: 初期 HTML`, ops: `${head} 部品の操作と進捗の保護(保存済みの進捗あり)`, handoffNone: handoff('進捗なし'), handoffProgress: handoff('進捗あり') }
+  }
+  const make = (override: (id: string, check: string) => Status | 'omit' = () => 'expected') => ({
+    stats: {},
+    suites: [{ specs: expectedIds().flatMap((id) => Object.entries(titles(id)).flatMap(([check, title]) => { const st = override(id, check); return st === 'omit' ? [] : [{ title, tests: [{ status: st, results: [{ annotations: [] }] }] }] })) }],
+  })
+  test('すべて成功: 10 対象 × 4 検査で完了', () => {
+    expect(expectedIds()).toHaveLength(10)
+    const r = summarizeReport(make())
+    expect(r.complete).toBe(true)
+    expect(r.rows.every((x) => x.complete)).toBe(true)
+  })
+  test('引き継ぎ検査のスキップ(行列は成功)は、引き継ぎ OK にせず、未完了', () => {
+    const r = summarizeReport(make((id, c) => (id === 'pm-1' && c.startsWith('handoff') ? 'skipped' : 'expected')))
+    const row = r.rows.find((x) => x.id === 'pm-1')!
+    expect(row.state.matrix).toBe('OK')
+    expect(row.state.handoffNone).toBe('未検証')
+    expect(row.state.handoffProgress).toBe('未検証')
+    expect(r.complete).toBe(false)
+  })
+  test('引き継ぎ検査の欠落・対象 ID の欠落・失敗(flaky を含む)・範囲外の対象は、未完了。--partial は、欠落だけ許し、失敗は許さない', () => {
+    const noHandoff = make((id, c) => (id === '4-3' && c === 'handoffProgress' ? 'omit' : 'expected'))
+    expect(summarizeReport(noHandoff).complete).toBe(false)
+    expect(summarizeReport(noHandoff, { partial: true }).complete).toBe(true)
+    const noTarget = make((id) => (id === '/catalog' ? 'omit' : 'expected'))
+    const rt = summarizeReport(noTarget)
+    expect(rt.missingTargets).toEqual(['/catalog'])
+    expect(rt.complete).toBe(false)
+    for (const bad of ['unexpected', 'flaky'] as const) {
+      const f = make((id, c) => (id === '9-2' && c === 'matrix' ? bad : 'expected'))
+      expect(summarizeReport(f).complete, bad).toBe(false)
+      expect(summarizeReport(f, { partial: true }).complete, `${bad} + partial`).toBe(false)
+    }
+    const extra = make()
+    extra.suites[0].specs.push({ title: '[1-1] 行列: 初期 HTML', tests: [{ status: 'expected', results: [{ annotations: [] }] }] })
+    const re = summarizeReport(extra)
+    expect(re.outOfScope).toEqual(['1-1'])
+    expect(re.complete).toBe(false)
+  })
+  test('CLI: 完了は終了コード 0、スキップは 1(合成の JSON)', () => {
+    const dir = mkdtempSync(join(tmpdir(), 'rollout-report-'))
+    const run = (name: string, json: unknown, extra: string[] = []) => {
+      const f = join(dir, `${name}.json`)
+      writeFileSync(f, JSON.stringify(json))
+      return spawnSync('node', ['scripts/rollout-report.mjs', f, join(dir, name), ...extra], { encoding: 'utf8' }).status
+    }
+    expect(run('ok', make())).toBe(0)
+    expect(run('skip', make((id, c) => (id === 'pm-1' && c === 'handoffNone' ? 'skipped' : 'expected')))).toBe(1)
+    expect(run('skip-partial', make((id, c) => (id === 'pm-1' && c === 'handoffNone' ? 'omit' : 'expected')), ['--partial'])).toBe(0)
   })
 })
