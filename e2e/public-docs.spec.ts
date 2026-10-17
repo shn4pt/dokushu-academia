@@ -4,6 +4,7 @@ import { existsSync, mkdtempSync, readFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { expect, test } from '@playwright/test'
+import { marked } from 'marked'
 
 // 公開文書の画面案(ローカル専用。Issue #24、docs/seo/public-docs.md)の生成物の検査(ブラウザなし)。
 // 画面案は、一時ディレクトリに生成する。本番の dist・アプリ・リンク・出典・確認日・ライセンスには触れない。
@@ -26,6 +27,13 @@ test('内容の唯一の元は元ファイル: 本文は元ファイルから生
   expect(html('licenses')).toContain('MIT License')
 })
 
+test('本文の対応: 元ファイルの変換結果が、生成物の本文にそのまま含まれる(ハッシュの表示だけでは検出できない本文の差を見る)', () => {
+  expect(html('licenses')).toContain(marked.parse(readFileSync('LICENSE-CONTENT.md', 'utf8')) as string)
+  expect(html('licenses/materials')).toContain(marked.parse(readFileSync('docs/licenses.md', 'utf8')) as string)
+  // 本文を 1 文字変えると、一致しない(この検査が、差を検出できること)
+  expect(html('licenses')).not.toContain((marked.parse(readFileSync('LICENSE-CONTENT.md', 'utf8')) as string).replace('CC BY-SA 4.0', 'CC BY-SA 9.9'))
+})
+
 test('更新記録の例: 人が書いた記録を出し、コミットへのリンク・コミットの題名を出さない', () => {
   const h = html('lesson-note')
   expect(h).toContain('確認日')
@@ -38,9 +46,9 @@ test('更新記録の例: 人が書いた記録を出し、コミットへのリ
   }
 })
 
-test('内部リンクは、画面案のページ(または、本番にある /sources/)に解決する。画面案に、本番のリンクの変更はない', () => {
-  const pages = ['licenses', 'licenses/materials', 'lesson-note', 'report']
-  const known = new Set([...pages.map((p) => `/${p}/`), '/sources/'])
+test('内部リンクは、画面案のすべてのページ(/sources/ は、本番にある画面のダミー)に解決する。画面案に、本番のリンクの変更はない', () => {
+  const pages = ['licenses', 'licenses/materials', 'lesson-note', 'report', 'sources']
+  const known = new Set(pages.map((p) => `/${p}/`))
   for (const p of pages) {
     for (const m of html(p).matchAll(/href="(\/[^"]*)"/g)) {
       if (m[1] === '/mock.css') continue
