@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { expect, test } from '@playwright/test'
 import { classifyFile, decide } from '../scripts/ci-classify.mjs'
+import { gate } from '../scripts/ci-publish-gate.mjs'
 
 // CI の変更分類(Issue #32、docs/seo/ci-plan.md)の検査。ブラウザなし。**workflow には、つないでいない**(草案の検証)。
 test.describe('変更の分類: 文書だけと確定したときだけ、完全な検査を省く', () => {
@@ -77,7 +78,12 @@ test.describe('変更の分類: 文書だけと確定したときだけ、完全
     expect(deploy).toMatch(/deploy:[\s\S]*concurrency:[\s\S]*group: pages/) // 同時実行の制御は、配信のジョブだけ
     expect(deploy.split('concurrency:').length - 1).toBe(1)
     expect(deploy).toContain('cancel-in-progress: false') // 配信を取り消さない
-    expect(deploy).toContain("needs.build.outputs.latest == 'true'") // 順序の逆転: 古い版を後から公開しない(ジョブごと省く)
+    // 順序の逆転: 判定は、排他区間(concurrency: pages を持つ deploy ジョブ)の中の、実配信より前のステップ。build ジョブには置かない
+    const dj = deploy.slice(deploy.indexOf('  deploy:'))
+    expect(dj.indexOf('ci-publish-gate.mjs')).toBeGreaterThan(dj.indexOf('group: pages'))
+    expect(dj.indexOf('ci-publish-gate.mjs')).toBeLessThan(dj.indexOf('actions/deploy-pages'))
+    expect(deploy.slice(0, deploy.indexOf('  deploy:'))).not.toContain('ci-publish-gate')
+    expect(dj).toContain('set -o pipefail') // 判定の失敗を、パイプで隠さない
   })
 
   test('検査が読む文書: 検査・ビルドの中で、リポジトリの文書を直接読んでいるものは、分類で完全な検査になる(自動発見。動的なパスは見つけられない)', () => {
@@ -132,5 +138,51 @@ test.describe('実際の Git の差分の分類(一時リポジトリ)', () => {
   test('コードの削除は、完全な検査', () => {
     const r = run((d) => put(d, 'src/x.ts', body), (d) => rmSync(join(d, 'src/x.ts')))
     expect(r.fullTests).toBe(true)
+  })
+})
+
+// 配信順の保証(PR #35 のレビュー指摘)。判定(gate)と、排他区間(concurrency: pages)の状態遷移を、合成の状態で確かめる。Actions の動作の確認ではない。
+test.describe('配信の可否の判定と、排他区間での順序', () => {
+  test('gate: 先頭のときだけ配信。先頭を取得できない場合・古い場合は、配信しない', () => {
+    expect(gate('A', 'A').publish).toBe(true)
+    expect(gate('A', 'B').publish).toBe(false)
+    expect(gate('A', '').publish, '先頭を取得できない').toBe(false)
+    expect(gate('A', undefined).publish).toBe(false)
+    expect(gate('', 'A').publish).toBe(false)
+  })
+
+  // 状態遷移: 2 つの実行 A(古い)・B(新しい)。main の先頭は、B の push で A から B に替わる。deploy ジョブは、排他区間(1 つずつ)で、
+  // 『判定 → 配信』を行う。判定は、区間に入った時点の main の先頭で行う。許す並びを、すべて列挙する。
+  type Ev = 'pushB' | 'A' | 'B'
+  const simulate = (order: Ev[], apiFails = false) => {
+    let head = 'A'
+    const deployed: string[] = []
+    for (const e of order) {
+      if (e === 'pushB') head = 'B'
+      else {
+        const g = gate(e, apiFails ? '' : head) // 区間の中で、判定と配信が連続する(割り込まれない)
+        if (g.publish) deployed.push(e)
+      }
+    }
+    return deployed
+  }
+  const orders: Ev[][] = [
+    ['A', 'pushB', 'B'], // A が先に配信 → B が配信(正しい順)
+    ['pushB', 'A', 'B'], // 確認後に A が遅延 → B が先に push。A が区間に入る時点で、先頭は B → A は配信しない
+    ['pushB', 'B', 'A'], // B が先に配信を終え、A が後から再開 → A は配信しない(旧版へ戻らない)
+  ]
+  test('A が遅延しても、B が先に配信しても、旧版 A が B の後に配信されない', () => {
+    for (const o of orders) {
+      const d = simulate(o)
+      expect(d.lastIndexOf('B'), o.join('→')).toBeGreaterThanOrEqual(d.indexOf('A'))
+      expect(d.join(''), o.join('→')).not.toContain('BA') // B の後に A が来ない
+      expect(d[d.length - 1], o.join('→')).toBe('B') // 最後に配信されるのは、新しい版
+    }
+    expect(simulate(['pushB', 'A', 'B'])).toEqual(['B'])
+    expect(simulate(['pushB', 'B', 'A'])).toEqual(['B'])
+    expect(simulate(['A', 'pushB', 'B'])).toEqual(['A', 'B'])
+  })
+  test('先頭の取得に失敗した場合は、どちらも配信しない(旧版を公開しうる側へ進めない)', () => {
+    expect(simulate(['pushB', 'A', 'B'], true)).toEqual([])
   })
 })

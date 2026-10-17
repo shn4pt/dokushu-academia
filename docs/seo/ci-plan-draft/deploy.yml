@@ -23,17 +23,7 @@ jobs:
     needs: test
     if: needs.test.outputs.full == 'true'
     runs-on: ubuntu-24.04
-    outputs:
-      latest: ${{ steps.latest.outputs.latest }}
     steps:
-      - id: latest
-        name: 最新の main か確認する(取得に失敗したら、配信する側)
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          head="$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha || true)"
-          if [ -z "$head" ] || [ "$head" = "${{ github.sha }}" ]; then echo "latest=true" >> "$GITHUB_OUTPUT"
-          else echo "latest=false" >> "$GITHUB_OUTPUT"; echo "### 配信を見送り(より新しい main がある: $head。新しい実行が、差を含めて配信する)" >> "$GITHUB_STEP_SUMMARY"; fi
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
@@ -47,10 +37,11 @@ jobs:
 
   deploy:
     needs: [test, build]
-    # 順序の逆転を防ぐ: より新しい main がある場合は、古い版を後から公開しない。**ジョブごと省く**(environment 付きのジョブは、実行すると、そのコミットを「配信済み」と記録してしまう。基準が狂う)
-    if: needs.test.outputs.full == 'true' && needs.build.outputs.latest == 'true'
+    if: needs.test.outputs.full == 'true'
     runs-on: ubuntu-24.04
-    # 配信のジョブだけに、同時実行の制御を付ける。**取り消さない**(待機中の古い配信は、新しい実行に置き換えられるが、基準が「最後に配信したコミット」なので、新しい実行が差を含む)
+    # **排他区間**: 配信の可否の判定(最初のステップ)から、実配信(deploy-pages)の完了まで、同じ group で直列にする。判定の後に、より新しい版が配信されることは、ない。
+    # 取り消さない(`cancel-in-progress: false`)。待機中の古い配信は、新しい実行に置き換えられるが、基準が「最後に配信したコミット」なので、新しい実行が差を含む。
+    # 配信のジョブだけに付ける(文書だけの実行が、配信を取り消さないように。従来は、workflow 全体に付いていた)。
     concurrency:
       group: pages
       cancel-in-progress: false
@@ -58,5 +49,15 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      # 排他区間の中で、判定する。**先頭でない場合・先頭を取得できない場合は、ジョブを失敗にして、配信しない**(旧版を公開しない。
+      # 失敗した配信は、基準の読み取り(state=success だけ)に数えられない)。『省略』ではなく失敗で終えるのは、environment 付きのジョブを成功させると、配信していないコミットが『配信済み』と記録されるため。
+      - uses: actions/checkout@v7
+      - name: 配信してよいか判定する(この SHA が main の先頭のときだけ)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -o pipefail
+          head="$(gh api "repos/${{ github.repository }}/commits/main" --jq .sha || true)"
+          node scripts/ci-publish-gate.mjs "${{ github.sha }}" "$head" | tee -a "$GITHUB_STEP_SUMMARY"
       - id: deployment
         uses: actions/deploy-pages@v5
