@@ -16,6 +16,11 @@ const PAGES = [
   { path: `${B}/catalog/`, h1: '講座一覧', canonical: `${ORIGIN}${B}/catalog/` },
   { path: `${B}/course/pm/`, h1: 'プロダクトマネジメント', canonical: `${ORIGIN}${B}/course/pm/` },
   { path: `${B}/lesson/pm-1/`, h1: 'PM の仕事の全体像', canonical: `${ORIGIN}${B}/lesson/pm-1/` },
+  // 公開文書(Issue #31)
+  { path: `${B}/licenses/`, h1: '講座の文章のライセンス', canonical: `${ORIGIN}${B}/licenses/` },
+  { path: `${B}/licenses/materials/`, h1: '資料のライセンスと、このサイトの扱い', canonical: `${ORIGIN}${B}/licenses/materials/` },
+  { path: `${B}/report/`, h1: '誤りの報告', canonical: `${ORIGIN}${B}/report/` },
+  { path: `${B}/sources/`, h1: '出典と確認の状況', canonical: `${ORIGIN}${B}/sources/` },
 ]
 
 const attr = (html: string, re: RegExp) => re.exec(html)?.[1]
@@ -370,7 +375,7 @@ test.describe('ページ移動時のメタ情報と noindex', () => {
 test.describe('生成物の整合: ベース・オリジン、サイトマップ、CSP', () => {
   const sitemapLocs = (xml: string) => [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
 
-  test('サイトマップは、生成した公開ページ(3 件)だけで、絶対 URL', async ({ request }) => {
+  test('サイトマップは、生成した公開ページ(7 件)だけで、絶対 URL', async ({ request }) => {
     const xml = await (await request.get(`${B}/sitemap.xml`)).text()
     expect(sitemapLocs(xml)).toEqual(PAGES.map((p) => p.canonical))
     expect(xml).not.toContain('pm-2')
@@ -402,7 +407,7 @@ test.describe('生成物の整合: ベース・オリジン、サイトマップ
     expect(html).toContain('href="/course/pm/"')
     expect(html).not.toMatch(/(?:href|src)="\/dokushu-academia\//) // プロジェクト配下のベースが、混ざらない(出典の GitHub への外部リンクは、別)
     const xml = await (await request.get(`${ROOT}/sitemap.xml`)).text()
-    expect(sitemapLocs(xml)).toEqual([`${ORIGIN}/catalog/`, `${ORIGIN}/course/pm/`, `${ORIGIN}/lesson/pm-1/`])
+    expect(sitemapLocs(xml)).toEqual(['catalog', 'course/pm', 'lesson/pm-1', 'licenses', 'licenses/materials', 'report', 'sources'].map((r) => `${ORIGIN}/${r}/`))
     // 旧ハッシュ URL の救済も、ルート配下で動く
     await page.goto(`${ROOT}/#/course/pm`)
     await expect(page).toHaveURL(`${ROOT}/course/pm/`)

@@ -18,6 +18,7 @@ import { overallStats } from './data/stats'
 import { useProgress } from './progress'
 import { REPO } from './sources'
 import { PATH_MODE } from './site'
+import { LicensesPage, MaterialsPage, ReportPage } from './pages/PublicDocs'
 import NotFound from './ui/NotFound'
 import HydrationMark from './ui/HydrationMark'
 import MetaUpdater from './ui/MetaUpdater'
@@ -63,6 +64,9 @@ export default function App() {
           <Route path="/api-key" element={<Suspense fallback={<p className="muted">読み込み中…</p>}><ApiKeyPage /></Suspense>} />
           <Route path="/progress" element={<ProgressPage />} />
           <Route path="/sources" element={<SourcesPage />} />
+          {PATH_MODE && <Route path="/licenses" element={<LicensesPage />} />}
+          {PATH_MODE && <Route path="/licenses/materials" element={<MaterialsPage />} />}
+          {PATH_MODE && <Route path="/report" element={<ReportPage />} />}
           <Route path="*" element={PATH_MODE ? <NotFound /> : <Navigate to="/" replace />} />
         </Routes>
       </main>
@@ -70,7 +74,12 @@ export default function App() {
         このアプリは AI(Claude Code)が執筆しています。<Link to="/sources">出典と確認の状況</Link>
         <span className="muted block" data-testid="license-footer">
           講座の文章は CC BY-SA 4.0、コードは MIT です(資料から訳した部分は、各レッスンの末尾に、その資料の条件を表示します)。
-          <a href={`${REPO}/blob/main/LICENSE-CONTENT.md`} target="_blank" rel="noreferrer">ライセンスの詳細</a>
+          {/* パスの URL 版は、サイト内の公開ページ(新しい開発リポジトリが非公開でも、読める)。ハッシュ版(本番)は、従来のリンク */}
+          {PATH_MODE ? (
+            <Link to="/licenses">ライセンスの詳細</Link>
+          ) : (
+            <a href={`${REPO}/blob/main/LICENSE-CONTENT.md`} target="_blank" rel="noreferrer">ライセンスの詳細</a>
+          )}
         </span>
       </footer>
     </>

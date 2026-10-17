@@ -14,6 +14,11 @@ const PAGES = [
   { route: '/catalog', file: 'catalog/index.html', ssr: true, sitemap: true },
   { route: '/course/pm', file: 'course/pm/index.html', ssr: true, sitemap: true },
   { route: '/lesson/pm-1', file: 'lesson/pm-1/index.html', ssr: true, sitemap: true },
+  // 公開文書(Issue #31)。ライセンス・資料の扱いは、元ファイルから生成する。出典の一覧は、初期 HTML に含める
+  { route: '/licenses', file: 'licenses/index.html', ssr: true, sitemap: true },
+  { route: '/licenses/materials', file: 'licenses/materials/index.html', ssr: true, sitemap: true },
+  { route: '/report', file: 'report/index.html', ssr: true, sitemap: true },
+  { route: '/sources', file: 'sources/index.html', ssr: true, sitemap: true },
   { route: '/', file: 'index.html', ssr: true, sitemap: false }, // 講座一覧と同じ内容。canonical は /catalog/
   { route: '/progress', file: 'progress/index.html', ssr: false, sitemap: false }, // ブラウザで描画する殻(noindex)
   { route: '/__not-found__', file: '404.html', ssr: false, sitemap: false }, // 見つからないページの殻(noindex)。配信側が 404 で返す

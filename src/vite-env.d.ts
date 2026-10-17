@@ -9,3 +9,9 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
+
+/** 公開文書(パスの URL 版。vite.config.ts の publicDocs プラグインが、元ファイルから、ビルド時に作る) */
+declare module 'virtual:public-docs' {
+  type Doc = { path: string; sha256: string; html: string }
+  export const docs: { license: Doc; materials: Doc; code: { path: string; sha256: string; text: string } }
+}
