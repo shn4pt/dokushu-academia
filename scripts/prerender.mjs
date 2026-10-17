@@ -4,6 +4,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { createServer } from 'vite'
+import { APPROVED_LESSON_SET } from './lib/rollout-scope.mjs'
 
 const OUT = process.env.OUT_DIR ?? 'dist-path'
 const BASE = process.env.SITE_BASE ?? '/dokushu-academia/'
@@ -30,6 +31,8 @@ if (process.env.PRERENDER_DIAG) {
   if (!/diag/.test(OUT)) throw new Error('PRERENDER_DIAG は、出力先(OUT_DIR)の名前に diag を含むときだけ使えます')
   for (const id of process.env.PRERENDER_DIAG.split(',').map((x) => x.trim()).filter(Boolean)) {
     if (!/^[\w-]+$/.test(id)) throw new Error(`レッスン ID が不正です: ${id}`)
+    // 誤って、全件の生成・診断が始まらないように、承認済みの範囲(scripts/lib/rollout-scope.mjs)の外の ID を拒否する(Issue #33。全 172 教材の実行は、作者の別の承認が要る)
+    if (!APPROVED_LESSON_SET.has(id)) throw new Error(`レッスン ${id} は、承認済みの診断の範囲(scripts/lib/rollout-scope.mjs)にありません。全教材の生成・診断は、作者の別の承認(Issue #33 の B)が要ります`)
     if (PAGES.some((p) => p.route === `/lesson/${id}`)) continue
     PAGES.splice(PAGES.length - 2, 0, { route: `/lesson/${id}`, file: `lesson/${id}/index.html`, ssr: true, sitemap: false })
   }
@@ -86,6 +89,7 @@ try {
   // サイトマップ: 生成した、検索に出すページだけ
   const urls = PAGES.filter((p) => p.sitemap).map((p) => `  <url><loc>${ORIGIN}${BASE}${p.route.slice(1)}/</loc></url>`)
   writeFileSync(join(OUT, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`)
+  writeFileSync(join(OUT, 'build-info.json'), JSON.stringify({ kind: process.env.BUILD_KIND ?? 'prod', diag: process.env.PRERENDER_DIAG ?? null }) + '\n') // 診断の記録に、ビルドの種類(本番相当 / 開発用)を残す
   writeFileSync(join(OUT, 'prerender-manifest.json'), JSON.stringify({ base: BASE, origin: ORIGIN, pages: written }, null, 2) + '\n')
   console.log(`prerender: ${written.length} ページ(本文入り ${written.filter((p) => p.ssr).length}、殻 ${written.filter((p) => !p.ssr).length})、サイトマップ ${urls.length} 件`)
 } finally {

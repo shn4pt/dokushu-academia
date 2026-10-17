@@ -15,3 +15,5 @@ reviews
 dist-path-diag
 dist-public-docs-mock
 dist-legacy-rescue
+.rollout
+rollout-results

@@ -19,6 +19,8 @@
     "serve:public-docs-mock": "node scripts/serve-static.mjs dist-public-docs-mock 4178 /",
     "build:legacy-rescue": "node scripts/build-legacy-rescue.mjs",
     "serve:legacy-rescue": "node scripts/serve-static.mjs dist-legacy-rescue 4177 /dokushu-academia/",
+    "rollout:plan": "node scripts/rollout-plan.mjs --check",
+    "rollout:diag": "node scripts/rollout-diag.mjs",
     "serve:path": "node scripts/serve-static.mjs dist-path 4174 /dokushu-academia/",
     "sources:check": "node scripts/check-sources.mjs",
     "history": "node scripts/update-history.mjs",

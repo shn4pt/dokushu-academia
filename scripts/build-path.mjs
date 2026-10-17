@@ -16,6 +16,8 @@ const env = {
   SITE_BASE: base,
   VITE_SITE_ORIGIN: process.env.SITE_ORIGIN ?? process.env.VITE_SITE_ORIGIN ?? 'https://shn4pt.github.io',
   OUT_DIR: process.env.OUT_DIR ?? 'dist-path',
+  // 診断の記録に残す、ビルドの種類(prerender の vite が NODE_ENV を書き換えるので、ここで先に決める)
+  BUILD_KIND: process.env.NODE_ENV === 'development' ? 'dev' : 'prod',
 }
 // 別名(./dist、dist/、絶対パス、dist 配下)も拒否するため、パスを解決して比べる
 const rel = relative(resolve('dist'), resolve(env.OUT_DIR))

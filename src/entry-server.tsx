@@ -13,7 +13,8 @@ export async function renderRoute(route: string) {
   if (lesson) await preloadLesson(lesson) // ブラウザと同じ最初の描画にするため、本文を先に読み込む
   return renderToString(
     <StrictMode>
-      <MemoryRouter basename={ROUTER_BASENAME} initialEntries={[ROUTER_BASENAME + route]}>
+      {/* 初期の位置は、ブラウザの URL と同じ形(末尾スラッシュ付き)にする。スラッシュなしだと、NavLink の現在位置の判定(class・aria-current)が、サーバーとブラウザで食い違う(Issue #33 の診断で発見) */}
+      <MemoryRouter basename={ROUTER_BASENAME} initialEntries={[ROUTER_BASENAME + (route === '/' ? '/' : route.replace(/\/+$/, '') + '/')]}>
         <App />
       </MemoryRouter>
     </StrictMode>,
