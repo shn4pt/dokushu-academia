@@ -15,6 +15,8 @@
     "build:path:root": "SITE_BASE=/ OUT_DIR=dist-path-root node scripts/build-path.mjs",
     "build:path:diag": "SITE_BASE=/ OUT_DIR=dist-path-diag PRERENDER_DIAG=pm-1,1-3,4-3,st-3,9-2,9-4,10-2,19-2 node scripts/build-path.mjs",
     "build:path:diag:dev": "NODE_ENV=development SITE_BASE=/ OUT_DIR=dist-path-diag PRERENDER_DIAG=pm-1,1-3,4-3,st-3,9-2,9-4,10-2,19-2 node scripts/build-path.mjs",
+    "build:legacy-rescue": "node scripts/build-legacy-rescue.mjs",
+    "serve:legacy-rescue": "node scripts/serve-static.mjs dist-legacy-rescue 4177 /dokushu-academia/",
     "serve:path": "node scripts/serve-static.mjs dist-path 4174 /dokushu-academia/",
     "sources:check": "node scripts/check-sources.mjs",
     "history": "node scripts/update-history.mjs",
