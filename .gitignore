@@ -13,4 +13,5 @@ reviews
 # Claude Code の個人の設定
 .claude/settings.local.json
 dist-path-diag
+dist-public-docs-mock
 dist-legacy-rescue
