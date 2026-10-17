@@ -440,3 +440,36 @@ test.describe('ビルドの安全条件と、運営者の転送停止設定', ()
     await context.close()
   })
 })
+
+test.describe('共通案内の文面の整合(Codex の再レビュー対応)', () => {
+  test('共通案内は、「API キーはファイルに含まれない」と断定せず、通常の書き出しに限定し、生データの保存は保証できないと示す(JS 無効でも表示される)', async ({ browser }) => {
+    const src = readFileSync('legacy-rescue/index.html', 'utf8')
+    expect(src).not.toContain('API キーは、ファイルに含まれません')
+    for (const state of [{ js: true, seed: JSON.stringify(full) }, { js: true, seed: '{broken' }, { js: false, seed: null }]) {
+      const context = await browser.newContext({ javaScriptEnabled: state.js })
+      if (state.js) await prepare(context, state.seed)
+      const page = await context.newPage()
+      await page.goto(OLD)
+      const text = await page.locator('main').innerText()
+      expect(text).toContain('既知の進捗の項目だけ')
+      expect(text).toContain('API キーなどが含まれないとは、保証できません')
+      expect(text).toContain('外部に共有しないでください')
+      expect(text).not.toContain('API キーは、ファイルに含まれません')
+      await context.close()
+    }
+  })
+
+  test('AUTO_FORWARD は、on / off 以外(OFF・0・false・空・yes)ならビルドを拒否する(入力違いで転送が有効にならない)', () => {
+    for (const v of ['OFF', 'Off', '0', 'false', '', 'yes', 'no']) {
+      const out = join(mkdtempSync(join(tmpdir(), 'legacy-rescue-')), 'out')
+      const r = spawnSync('node', ['scripts/build-legacy-rescue.mjs'], { env: { ...process.env, AUTO_FORWARD: v, OUT_DIR: out }, encoding: 'utf8' })
+      expect(r.status, JSON.stringify(v)).toBe(1)
+      expect(existsSync(out), JSON.stringify(v)).toBe(false)
+    }
+    for (const v of ['on', 'off']) {
+      const out = join(mkdtempSync(join(tmpdir(), 'legacy-rescue-')), 'out')
+      const r = spawnSync('node', ['scripts/build-legacy-rescue.mjs'], { env: { ...process.env, AUTO_FORWARD: v, OUT_DIR: out }, encoding: 'utf8' })
+      expect(r.status, v).toBe(0)
+    }
+  })
+})

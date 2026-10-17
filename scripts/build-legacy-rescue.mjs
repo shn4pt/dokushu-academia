@@ -11,7 +11,13 @@ if (!/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
   console.error(`NEW_ORIGIN は、この試作では、http://localhost:<ポート> か http://127.0.0.1:<ポート> に限ります。受け取った値: ${origin}`)
   process.exit(1)
 }
-const autoForward = (process.env.AUTO_FORWARD ?? 'on') !== 'off'
+const autoForwardEnv = process.env.AUTO_FORWARD ?? 'on'
+// 運営者向けの停止の操作なので、on / off 以外(`OFF`、`0` など)は、エラーにする(入力違いで、意図せず転送が有効にならないように)
+if (autoForwardEnv !== 'on' && autoForwardEnv !== 'off') {
+  console.error(`AUTO_FORWARD は、on か off のどちらかです(小文字)。受け取った値: ${autoForwardEnv}`)
+  process.exit(1)
+}
+const autoForward = autoForwardEnv === 'on'
 const OUT = process.env.OUT_DIR ?? 'dist-legacy-rescue'
 const rel = relative(resolve('dist'), resolve(OUT))
 if (rel === '' || (rel !== '..' && !rel.startsWith('..' + sep) && !isAbsolute(rel))) {
