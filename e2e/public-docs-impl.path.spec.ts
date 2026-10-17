@@ -147,6 +147,17 @@ test.describe('リンクの置き換え(サイト内の公開ページへ)', () 
     await expect(page).toHaveURL(`http://localhost:4174${B}/catalog/`)
   })
 
+  test('フォントの幅が違う環境(等幅フォントで、幅が広い場合)でも、390px で、公開文書の 4 ページが横にはみ出さない', async ({ page }) => {
+    // CI の環境(フォントが違う)で、長い URL がはみ出した不具合の再発を、ローカルでも検出するための検査
+    await page.setViewportSize({ width: 390, height: 900 })
+    for (const p of ['licenses', 'licenses/materials', 'report', 'sources']) {
+      await page.goto(`${B}/${p}/`)
+      await expect(page.locator('html')).toHaveAttribute('data-hydrated', '1')
+      await page.addStyleTag({ content: 'main, main * { font-family: Menlo, "Courier New", monospace !important; }' })
+      expect(await page.evaluate(() => document.documentElement.scrollWidth), `${p} (等幅)`).toBeLessThanOrEqual(390)
+    }
+  })
+
   test('1000px と 390px で、公開文書の 4 ページが、横にはみ出さない', async ({ page }) => {
     for (const w of [1000, 390]) {
       await page.setViewportSize({ width: w, height: 900 })
