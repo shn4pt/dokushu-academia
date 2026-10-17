@@ -7,6 +7,7 @@ import { classifyFile, decide } from '../scripts/ci-classify.mjs'
 import { gate } from '../scripts/ci-publish-gate.mjs'
 
 // CI の変更分類(Issue #32、docs/seo/ci-plan.md)の検査。ブラウザなし。**workflow には、つないでいない**(草案の検証)。
+const dj0 = (d: string) => d.slice(d.indexOf('  deploy:'))
 test.describe('変更の分類: 文書だけと確定したときだけ、完全な検査を省く', () => {
   test('文書だけの変更は、完全な検査を省き、配信も省く', () => {
     for (const files of [['docs/seo/plan.md'], ['README.md'], ['docs/seo/prototype/a.png', 'docs/memory/MEMORY.md'], ['reviews/x.md', 'docs/pilot/a.md']]) {
@@ -77,7 +78,8 @@ test.describe('変更の分類: 文書だけと確定したときだけ、完全
     expect(deploy).toMatch(/build:[\s\S]*if: needs\.test\.outputs\.full == 'true'/)
     expect(deploy).toMatch(/deploy:[\s\S]*concurrency:[\s\S]*group: pages/) // 同時実行の制御は、配信のジョブだけ
     expect(deploy.split('concurrency:').length - 1).toBe(1)
-    expect(deploy).toContain('cancel-in-progress: false') // 配信を取り消さない
+    expect(deploy).not.toContain('cancel-in-progress: true') // 配信を取り消さない(queue: max とも併用できない)
+    expect(dj0(deploy)).toContain('queue: max') // 待機を 1 件にしない(古い実行が、待機中の最新版を置き換えない)
     // 順序の逆転: 判定は、排他区間(concurrency: pages を持つ deploy ジョブ)の中の、実配信より前のステップ。build ジョブには置かない
     const dj = deploy.slice(deploy.indexOf('  deploy:'))
     expect(dj.indexOf('ci-publish-gate.mjs')).toBeGreaterThan(dj.indexOf('group: pages'))
@@ -184,5 +186,35 @@ test.describe('配信の可否の判定と、排他区間での順序', () => {
   })
   test('先頭の取得に失敗した場合は、どちらも配信しない(旧版を公開しうる側へ進めない)', () => {
     expect(simulate(['pushB', 'A', 'B'], true)).toEqual([])
+  })
+
+  // 待機の置換(PR #35 の再々レビュー指摘): X が配信中に、B・A の順で push され、B のビルドが先に終わって待機、遅れて A が到着する。
+  // 排他区間(1 つずつ)と待機の規則を模す。queue=single: 待機は 1 件で、新しい待機が古い待機を置き換える(取り消す)/ max: 待機は順に並ぶ(上限 100)
+  const simulateQueue = (queue: 'single' | 'max', arrivals: string[], head: string, cap = 100) => {
+    const pending: string[] = []
+    const cancelled: string[] = []
+    for (const r of arrivals) {
+      if (queue === 'single') { for (const old of pending.splice(0)) cancelled.push(old); pending.push(r) }
+      else if (pending.length >= cap) cancelled.push(r)
+      else pending.push(r)
+    }
+    const deployed: string[] = []
+    const failed: string[] = []
+    for (const r of pending) (gate(r, head).publish ? deployed : failed).push(r) // X の完了後、順に区間へ入り、判定する
+    return { deployed, failed, cancelled }
+  }
+  test('X 配信中に B が待機し、遅れて A が到着: 既定(single)では B が取り消されて配信されない / queue: max では B が配信される', () => {
+    const single = simulateQueue('single', ['B', 'A'], 'B')
+    expect(single.cancelled, '反例: 待機中の B が、A に置き換えられる').toEqual(['B'])
+    expect(single.deployed, '反例: 先頭 B を配信する実行が残らない').toEqual([])
+    const max = simulateQueue('max', ['B', 'A'], 'B')
+    expect(max.cancelled).toEqual([])
+    expect(max.deployed, 'B が配信される').toEqual(['B'])
+    expect(max.failed, 'A は先頭でないので、判定で停止(配信しない)').toEqual(['A'])
+  })
+  test('queue: max の限界: 待機が上限を超えると、超えた分は取り消される(未配信の検知・手動再実行が要る)', () => {
+    const r = simulateQueue('max', ['A', 'B', 'C'], 'C', 2)
+    expect(r.cancelled).toEqual(['C']) // 先頭 C が、上限で取り消される → 配信されない
+    expect(r.deployed).toEqual([])
   })
 })

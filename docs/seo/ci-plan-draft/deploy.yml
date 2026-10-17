@@ -40,11 +40,14 @@ jobs:
     if: needs.test.outputs.full == 'true'
     runs-on: ubuntu-24.04
     # **排他区間**: 配信の可否の判定(最初のステップ)から、実配信(deploy-pages)の完了まで、同じ group で直列にする。判定の後に、より新しい版が配信されることは、ない。
-    # 取り消さない(`cancel-in-progress: false`)。待機中の古い配信は、新しい実行に置き換えられるが、基準が「最後に配信したコミット」なので、新しい実行が差を含む。
+    # **待機は最大 100 件(`queue: max`)**。既定(`single`)は、待機が 1 件だけで、新しい待機が古い待機を置き換えて取り消す。ビルドの完了順が逆転すると、
+    # 『X が配信中 → 新しい B が待機 → 遅れて A が到着して、待機中の B を取り消す』となり、B を配信する実行が残らない(A は先頭でないので、判定で停止する)。
+    # `queue: max` は、`cancel-in-progress: true` と併用できない(検証エラー)ので、`cancel-in-progress` は書かない(既定=取り消さない)。公式の例も、書いていない。
+    # 待機が 100 件を超えると、超えた分は取り消される(限界。docs/seo/ci-plan.md §5)。
     # 配信のジョブだけに付ける(文書だけの実行が、配信を取り消さないように。従来は、workflow 全体に付いていた)。
     concurrency:
       group: pages
-      cancel-in-progress: false
+      queue: max
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
