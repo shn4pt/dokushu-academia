@@ -218,3 +218,11 @@ test.describe('配信の可否の判定と、排他区間での順序', () => {
     expect(r.deployed).toEqual([])
   })
 })
+
+// 適用した workflow は、草案とコメント以外で同一(Issue #32。適用後の退行を検知する)
+test('適用した workflow(.github/workflows/ci.yml・deploy.yml)は、草案とコメント以外で同一', () => {
+  const strip = (t: string) => t.split('\n').filter((l) => !l.trim().startsWith('#')).join('\n')
+  for (const f of ['ci.yml', 'deploy.yml']) {
+    expect(strip(readFileSync(`.github/workflows/${f}`, 'utf8')), f).toBe(strip(readFileSync(`docs/seo/ci-plan-draft/${f}`, 'utf8')))
+  }
+})
